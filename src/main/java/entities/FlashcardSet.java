@@ -2,7 +2,6 @@ package entities;
 import java.util.*;
 
 public class FlashcardSet {
-    private static int count;
     private String title;
     private String description;
     private boolean isPrivate;
@@ -11,12 +10,12 @@ public class FlashcardSet {
     private String ownerId;
     private int flashcardSetId;
 
-    public FlashcardSet(String title, String description, boolean isPrivate){
+    public FlashcardSet(String title, String description, boolean isPrivate, int flashcardSetId){
         this.title = title;
         this.description = description;
         this.isPrivate = isPrivate;
         this.flashcards = new ArrayList<>();
-        this.flashcardSetId = ++count;
+        this.flashcardSetId = flashcardSetId;
     }
 
     public String getTitle() {

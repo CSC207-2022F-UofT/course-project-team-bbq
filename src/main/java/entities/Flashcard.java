@@ -3,20 +3,20 @@ package entities;
 import java.time.*;
 
 public class Flashcard {
-    private static int count;
 
     private String term;
     private String definition;
     private LocalDateTime creationDate;
-    private int FlashcardId;
-    private int FlashcardSetId;
+    private int flashcardId;
+    private int flashcardSetId;
 
 
-    public Flashcard(String term, String definition, LocalDateTime creationDate){
+    public Flashcard(String term, String definition, LocalDateTime creationDate, int flashcardId, int flashcardSetId){
         this.term = term;
         this.definition = definition;
         this.creationDate = creationDate;
-        this.FlashcardId = ++count;
+        this.flashcardId = flashcardId;
+        this.flashcardSetId = flashcardSetId;
     }
 
     public String getTerm() {
@@ -32,15 +32,15 @@ public class Flashcard {
     }
 
     public int getFlashcardId() {
-        return FlashcardId;
+        return flashcardId;
     }
 
     public int getFlashcardSetId() {
-        return FlashcardSetId;
+        return flashcardSetId;
     }
 
     public void setFlashcardSetId(int flashcardSetId) {
-        FlashcardSetId = flashcardSetId;
+        this.flashcardSetId = flashcardSetId;
     }
 
     public void setDefinition(String definition) {
