@@ -5,17 +5,18 @@ public class FlashcardSet {
     private String title;
     private String description;
     private boolean isPrivate;
-    private List<Flashcard> flashcards;
+    private List<Flashcard> flashcards = new ArrayList<>();
 
-    private String ownerId;
+    private String ownerUsername;
     private int flashcardSetId;
 
-    public FlashcardSet(String title, String description, boolean isPrivate, int flashcardSetId){
+    public FlashcardSet(String title, String description, boolean isPrivate,
+                        int flashcardSetId, String ownerUsername){
         this.title = title;
         this.description = description;
         this.isPrivate = isPrivate;
-        this.flashcards = new ArrayList<>();
         this.flashcardSetId = flashcardSetId;
+        this.ownerUsername = ownerUsername;
     }
 
     public String getTitle() {
@@ -30,8 +31,8 @@ public class FlashcardSet {
         return flashcardSetId;
     }
 
-    public String getOwnerId() {
-        return ownerId;
+    public String getOwnerUsername() {
+        return ownerUsername;
     }
 
     public List<Flashcard> getFlashcards() {
@@ -50,11 +51,11 @@ public class FlashcardSet {
         this.description = description;
     }
 
-    public void setPrivate(boolean aPrivate) {
+    public void setIsPrivate(boolean aPrivate) {
         isPrivate = aPrivate;
     }
 
-    public void setFlashcards(ArrayList<Flashcard> flashcards) {
+    public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards = flashcards;
     }
 }
