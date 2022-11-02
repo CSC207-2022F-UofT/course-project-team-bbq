@@ -1,7 +1,7 @@
 package entities;
 import java.util.*;
 
-class User {
+public class User {
     private String username;
     private String password;
     private HashMap<Integer, String[]> flashcardSets;
