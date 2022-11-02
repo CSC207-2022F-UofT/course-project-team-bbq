@@ -30,4 +30,8 @@ class User {
     public String getPassword() {
         return password;
     }
+
+    public Map<Integer, String[]> getFlashcardSets() {
+        return flashcardSets;
+    }
 }
