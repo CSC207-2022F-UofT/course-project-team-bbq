@@ -5,18 +5,19 @@ public class FlashcardSet {
     private String title;
     private String description;
     private boolean isPrivate;
-    private List<Flashcard> flashcards = new ArrayList<>();
+    private List<Flashcard> flashcards;
 
     private String ownerUsername;
     private int flashcardSetId;
 
     public FlashcardSet(String title, String description, boolean isPrivate,
-                        int flashcardSetId, String ownerUsername){
+                        int flashcardSetId, String ownerUsername, List<Flashcard> flashcards){
         this.title = title;
         this.description = description;
         this.isPrivate = isPrivate;
         this.flashcardSetId = flashcardSetId;
         this.ownerUsername = ownerUsername;
+        this.flashcards = flashcards;
     }
 
     public String getTitle() {
