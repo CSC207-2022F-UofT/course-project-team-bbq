@@ -4,7 +4,7 @@ import java.util.*;
 class User {
     private String username;
     private String password;
-    private HashMap<String, String[]> flashcardSets;
+    private Map<Integer, String[]> flashcardSets;
 
     public User(String username, String password){
         this.username = username;
@@ -23,7 +23,11 @@ class User {
         this.password = password;
     }
 
-    public void setFlashcardSets(HashMap<String, String[]> flashcardSets) {
+    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
         this.flashcardSets = flashcardSets;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
