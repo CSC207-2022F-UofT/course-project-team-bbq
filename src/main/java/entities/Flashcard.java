@@ -8,15 +8,16 @@ public class Flashcard {
     private String definition;
     private LocalDateTime creationDate;
     private int flashcardId;
-    private int flashcardSetId;
+    private int belongsToId;
 
 
-    public Flashcard(String term, String definition, LocalDateTime creationDate, int flashcardId, int flashcardSetId){
+    public Flashcard(String term, String definition, LocalDateTime creationDate,
+                     int flashcardId, int belongsToId){
         this.term = term;
         this.definition = definition;
         this.creationDate = creationDate;
         this.flashcardId = flashcardId;
-        this.flashcardSetId = flashcardSetId;
+        this.belongsToId = belongsToId;
     }
 
     public String getTerm() {
@@ -35,12 +36,12 @@ public class Flashcard {
         return flashcardId;
     }
 
-    public int getFlashcardSetId() {
-        return flashcardSetId;
+    public int getBelongsToId() {
+        return belongsToId;
     }
 
-    public void setFlashcardSetId(int flashcardSetId) {
-        this.flashcardSetId = flashcardSetId;
+    public void setBelongsToId(int belongsToId) {
+        this.belongsToId = belongsToId;
     }
 
     public void setDefinition(String definition) {
