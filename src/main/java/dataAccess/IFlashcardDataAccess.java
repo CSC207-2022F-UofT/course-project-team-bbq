@@ -1,16 +1,18 @@
 package dataAccess;
 
-import entities.Flashcard;
+import entityRequestModels.FlashcardDsRequestModel;
+
+// use case layer
 
 public interface IFlashcardDataAccess {
 
-    static String database = "src/data/Flashcards.csv";
+    static String path = "src/data/Flashcards.csv";
 
-    Flashcard getFlashcardByID(String flashcardID);
+    FlashcardDsRequestModel getFlashcard(String flashcardID);
 
-    void addFlashcard(Flashcard flashcard);
+    void saveFlashcard(FlashcardDsRequestModel flashcard);
 
-    void editFlashcard(Flashcard flashcard);
+    void editFlashcard(FlashcardDsRequestModel flashcard);
 
     void deleteFlashcard(String flashcardID);
 }

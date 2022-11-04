@@ -1,29 +1,21 @@
 package dataAccess;
 
-import entities.Flashcard;
-import entities.FlashcardSet;
+import entityRequestModels.FlashcardSetDsRequestModel;
 
-import java.util.HashMap;
-
+// use case layer
 public interface IFlashcardSetDataAccess {
 
-    static String database = "src/data/FlashCardSets.csv";
+    static String path = "src/data/FlashCardSets.csv";
 
 
-    FlashcardSet getFlashcardSetByID(int flashcardSetID);
+    FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId);
 
-    String[] getTitleAndDescription(int flashcardSetID);
+    String[] getTitleAndDescription(int flashcardSetId);
+
+    void editTitleAndDescription(int flashcardSetId, String title, String description);
 
     void deleteFlashcardSet(int flashcardSetID);
 
-    void saveFlashcardSet(FlashcardSet flashcardSet);
-
-    void deleteFlashcard(int flashcardID);
-
-    void editFlashcard(int flashcardID);
-
-    void addFlashcard(Flashcard flashcard);
-
-
+    void saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet);
 
 }

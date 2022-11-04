@@ -1,4 +1,4 @@
-package dataAccess;
+package entityRequestModels;
 // use case layer
 
 import java.time.LocalDateTime;
