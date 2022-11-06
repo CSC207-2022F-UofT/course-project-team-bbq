@@ -5,7 +5,7 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 // use case layer
 public interface IFlashcardSetDataAccess {
 
-    static String path = "src/data/FlashCardSets.csv";
+
 
 
     FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId);

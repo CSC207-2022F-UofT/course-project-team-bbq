@@ -6,8 +6,6 @@ import entityRequestModels.FlashcardDsRequestModel;
 
 public interface IFlashcardDataAccess {
 
-    static String path = "src/data/Flashcards.csv";
-
     FlashcardDsRequestModel getFlashcard(String flashcardID);
 
     void saveFlashcard(FlashcardDsRequestModel flashcard);

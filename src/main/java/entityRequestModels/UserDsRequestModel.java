@@ -1,2 +1,7 @@
-package dataAccess;public interface UserDsRequestModel {
+package entityRequestModels;
+
+import java.util.Map;
+
+public interface UserDsRequestModel {
+
 }

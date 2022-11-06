@@ -5,7 +5,7 @@ import entityRequestModels.UserDsRequestModel;
 // use case layer
 
 public interface IUserDataAccess {
-    static String path = "src/data/Users.csv";
+
 
     /**
      * @param username the user's username
