@@ -1,4 +1,4 @@
-package entities;
+package entities.quiz;
 
 import java.util.ArrayList;
 

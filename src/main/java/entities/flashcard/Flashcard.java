@@ -1,4 +1,4 @@
-package entities;
+package entities.flashcard;
 
 import java.time.*;
 

@@ -1,4 +1,4 @@
-package entities;
+package entities.quiz;
 
 public class QuizSettings {
     private boolean timerOn = false;

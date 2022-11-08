@@ -1,17 +1,24 @@
-package entities;
+package entities.quiz;
+
+import entities.flashcard.Flashcard;
+import entities.flashcard.FlashcardSet;
 
 abstract public class QuizQuestion {
     private String question;
     private String actualAnswer;
     private String userAnswer;
 
-    abstract public void generateQuestion(Flashcard flashcard, FlashcardSet flashcardSet);
+    public QuizQuestion(FlashcardSet flashcardSet, int index) {
+        generateQuestion(flashcardSet, index);
+    }
+
+    abstract public void generateQuestion(FlashcardSet flashcardSet, int index);
 
     public boolean isCorrect(){
         return this.actualAnswer.equals(this.userAnswer);
     }
 
-    // getters and setters
+    /* GETTERS AND SETTERS */
     public String getQuestion() {
         return question;
     }
