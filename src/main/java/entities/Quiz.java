@@ -1,7 +1,6 @@
-package Entities;
+package entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Quiz {
     ArrayList<QuizQuestion> quizQuestions = new ArrayList<QuizQuestion>();
@@ -16,7 +15,9 @@ public class Quiz {
         /*
          * Use number of questions
          * divide the questions among multiple choice, true false, and text entry
-         * for each section, generate the associated question
+         * copy the flashcard set array, shuffle it, take the first num and truncate the array
+         * for each section, take a flashcard and generate the associated question
+         *
          * append to quizQuestions
          */
 

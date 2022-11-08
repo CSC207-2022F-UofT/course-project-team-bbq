@@ -3,7 +3,6 @@ package entities;
 import java.time.*;
 
 public class Flashcard {
-
     private String term;
     private String definition;
     private LocalDateTime creationDate;

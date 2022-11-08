@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class TextEntryQuestion extends QuizQuestion {
     public boolean isCorrect() {
