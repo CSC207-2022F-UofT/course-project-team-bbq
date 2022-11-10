@@ -6,7 +6,7 @@ import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway implements IGeneralDataAccess {
     private static String flashcardPath = "src/data/Flashcards.csv";
-    private static String flashcardSetPath = "src/data/FlashCardSets.csv";
+    private static String flashcardSetPath = "src/data/FlashcardSets.csv";
     private static String userPath = "src/data/Users.csv";
 
     IFlashcardDataAccess flashcardGateway;
