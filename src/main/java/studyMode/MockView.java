@@ -23,7 +23,7 @@ public class MockView {
         // Reading data using readLine
         String command = reader.readLine();
 
-        if (!command.equals("flip") || !command.equals("prev") || !command.equals("next") || !command.equals("quit")){
+        if (!command.equals("flip") && !command.equals("prev") && !command.equals("next") && !command.equals("quit")){
             this.eventHandler();
         }
         else{

@@ -19,7 +19,7 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
             return presenter.quitStudying();
         }
 
-        String outputText;
+        String outputText = null;
         if (userInput.wantsFlip()){
             outputText = studier.flipCard();
         }
@@ -32,5 +32,6 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         int cardNumber = studier.getCounter() + 1;
 
         return presenter.prepareStudyView(outputText, cardNumber);
+
     }
 }

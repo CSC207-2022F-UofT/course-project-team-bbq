@@ -11,12 +11,15 @@ public class FlashcardStudier {
 
     private int numFlashcards;
     private boolean displayingTerm;
+
+    private boolean termIsDefault;
     private int counter = 0;
     private Flashcard currFlashcard;
 
-    public FlashcardStudier(FlashcardSet flashcardSet, boolean defaultDisplay){
+    public FlashcardStudier(FlashcardSet flashcardSet, boolean termIsDefault){
         this.flashcards = flashcardSet.getFlashcards();
-        this.displayingTerm = defaultDisplay;
+        this.displayingTerm = termIsDefault;
+        this.termIsDefault = termIsDefault;
 
         this.numFlashcards = flashcards.size();
         this.currFlashcard = this.flashcards.get(0);
@@ -60,10 +63,12 @@ public class FlashcardStudier {
     }
 
     private String getOutputText() {
-        if (displayingTerm){
+        if (termIsDefault) {
+            displayingTerm = true;
             return currFlashcard.getTerm();
         }
         else {
+            displayingTerm = false;
             return currFlashcard.getDefinition();
         }
     }
