@@ -4,6 +4,10 @@ public class StudySessionResponseModel {
     private String outputText;
     private int cardNumber;
 
+    public StudySessionResponseModel(String outputText, int cardNumber){
+        this.outputText = outputText;
+        this.cardNumber = cardNumber;
+    }
 
     public String getOutputText() {
         return outputText;

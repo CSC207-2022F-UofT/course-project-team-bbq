@@ -2,5 +2,7 @@ package studyMode;
 
 public interface StudySessionOutputBoundary {
 
-    StudySessionViewModel prepareStudyView(StudySessionResponseModel output);
+    StudySessionResponseModel prepareStudyView(String outputText, int cardNumber);
+
+    StudySessionResponseModel quitStudying();
 }

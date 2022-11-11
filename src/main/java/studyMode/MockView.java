@@ -39,7 +39,9 @@ public class MockView {
             else if (command.equals("quit")){
                 request.setQuit();
             }
-            this.controller.study(request);
+            StudySessionResponseModel response = this.controller.study(request);
+            System.out.println("Card " + response.getCardNumber());
+            System.out.println(response.getOutputText());
         }
     }
 }
