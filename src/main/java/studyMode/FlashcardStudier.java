@@ -55,6 +55,10 @@ public class FlashcardStudier {
         return this.getOutputText();
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
     private String getOutputText() {
         if (displayingTerm){
             return currFlashcard.getTerm();
