@@ -32,7 +32,7 @@ public class MockMain {
         boolean quit = false;
 
         while (!quit){
-            view.eventHandler();
+            quit = view.eventHandler();
         }
     }
 }

@@ -16,7 +16,7 @@ public class MockView {
     }
 
 
-    public void eventHandler() throws IOException {
+    public boolean eventHandler() throws IOException {
         StudySessionRequestModel request = new StudySessionRequestModel();
         System.out.println("prev, flip, next, quit?");
 
@@ -24,7 +24,7 @@ public class MockView {
         String command = reader.readLine();
 
         if (!command.equals("flip") && !command.equals("prev") && !command.equals("next") && !command.equals("quit")){
-            this.eventHandler();
+            return this.eventHandler();
         }
         else{
             if (command.equals("flip")){
@@ -37,11 +37,13 @@ public class MockView {
                 request.setNext();
             }
             else if (command.equals("quit")){
-                request.setQuit();
+                System.out.println("Goodbye...");
+                return true;
             }
             StudySessionResponseModel response = this.controller.study(request);
             System.out.println("Card " + response.getCardNumber());
             System.out.println(response.getOutputText());
+            return false;
         }
     }
 }

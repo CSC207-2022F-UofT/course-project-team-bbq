@@ -7,8 +7,4 @@ public class StudySessionPresenter implements StudySessionOutputBoundary {
         return new StudySessionResponseModel(outputText, cardNumber);
     }
 
-    @Override
-    public StudySessionResponseModel quitStudying() {
-        return null;
-    }
 }

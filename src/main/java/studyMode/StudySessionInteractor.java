@@ -15,10 +15,6 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
 
     @Override
     public StudySessionResponseModel study(StudySessionRequestModel userInput) {
-        if (userInput.wantsQuit()){
-            return presenter.quitStudying();
-        }
-
         String outputText = null;
         if (userInput.wantsFlip()){
             outputText = studier.flipCard();
