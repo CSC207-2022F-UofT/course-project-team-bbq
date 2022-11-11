@@ -39,18 +39,18 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
                 int id = Integer.parseInt(col[headers.get("id")]);
                 String ownerUsername = String.valueOf(col[headers.get("owner")]);
 
-                List<Integer> flashcardIDs = new ArrayList<>();
+                List<Integer> flashcardIds = new ArrayList<>();
                 for (int i=6; i <= col.length; i++){
-                    if (flashcardIDs.size() == 0){
-                        flashcardIDs.add(Integer.parseInt(col[headers.get("flashcards")]));
+                    if (flashcardIds.size() == 0){
+                        flashcardIds.add(Integer.parseInt(col[headers.get("flashcards")]));
                     }
                     else{
-                        flashcardIDs.add(Integer.parseInt(col[i]));
+                        flashcardIds.add(Integer.parseInt(col[i]));
                     }
                 }
 
 
-                FlashcardSetDsRequestModel set = new FlashcardSetDsRequestModel(title, description, privacy, id, ownerUsername, flashcardIDs);
+                FlashcardSetDsRequestModel set = new FlashcardSetDsRequestModel(title, description, privacy, id, ownerUsername, flashcardIds);
                 accounts.put(ownerUsername, set);
             }
 
@@ -65,8 +65,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
             writer.newLine();
 
             for (FlashcardSetDsRequestModel set : accounts.values()) {
-                String line = "%s,%s,%s".
-                        formatted(set.getName(), set.getPassword(), set.getCreationTime());
+                String line = String.
+                        format(set.getTitle(), set.getDescription(), set.getPrivacy(), set.getFlashcardSetId(), set.getOwnerUsername(),
+                                set.getFlashcardIds());
                 writer.write(line);
                 writer.newLine();
             }
