@@ -23,24 +23,23 @@ public class MockView {
         // Reading data using readLine
         String command = reader.readLine();
 
-        if (command.equals("flip")){
-            request.setFlip();
-            this.controller.study(request);
-        }
-        else if (command.equals("prev")){
-            request.setPrev();
-            this.controller.study(request);
-        }
-        else if (command.equals("next")){
-            request.setNext();
-            this.controller.study(request);
-        }
-        else if (command.equals("quit")){
-            request.setQuit();
-            this.controller.study(request);
-        }
-        else {
+        if (!command.equals("flip") || !command.equals("prev") || !command.equals("next") || !command.equals("quit")){
             this.eventHandler();
+        }
+        else{
+            if (command.equals("flip")){
+                request.setFlip();
+            }
+            else if (command.equals("prev")){
+                request.setPrev();
+            }
+            else if (command.equals("next")){
+                request.setNext();
+            }
+            else if (command.equals("quit")){
+                request.setQuit();
+            }
+            this.controller.study(request);
         }
     }
 }
