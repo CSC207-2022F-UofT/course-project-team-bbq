@@ -30,12 +30,4 @@ public class StudySessionRequestModel {
     public void setPrev() {
         this.prev = true;
     }
-
-    public boolean wantsQuit() {
-        return quit;
-    }
-
-    public void setQuit() {
-        this.quit = true;
-    }
 }
