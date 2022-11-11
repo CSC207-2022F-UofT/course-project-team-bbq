@@ -4,7 +4,6 @@ public class StudySessionRequestModel {
     private boolean flip = false;
     private boolean next = false;
     private boolean prev = false;
-    private boolean quit = false;
 
 
     public boolean wantsFlip() {
