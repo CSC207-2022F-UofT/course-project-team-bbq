@@ -15,15 +15,19 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
 
     @Override
     public StudySessionResponseModel study(StudySessionRequestModel userInput) {
-        String outputText = null;
-        if (userInput.wantsFlip()){
-            outputText = studier.flipCard();
-        }
-        else if (userInput.wantsNext()){
-            outputText = studier.getNextCard();
-        }
-        else if (userInput.wantsPrev()){
-            outputText = studier.getPrevCard();
+        String outputText=null;
+        String command = userInput.getCommand();
+
+        switch (command) {
+            case "flip":
+                outputText = studier.flipCard();
+                break;
+            case "next":
+                outputText = studier.getNextCard();
+                break;
+            case "prev":
+                outputText = studier.getPrevCard();
+                break;
         }
         int cardNumber = studier.getCounter() + 1;
 
