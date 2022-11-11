@@ -56,8 +56,8 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
 
             for (FlashcardDsRequestModel set : accounts.values()) {
                 String line = String.
-                        format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
-                                set.getFlashcardIds());
+                        format(set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
+                                set.getBelongsToId());
                 writer.write(line);
                 writer.newLine();
             }
