@@ -18,10 +18,10 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
         headers.put("title", 0);
         headers.put("description", 1);
-        headers.put("privacy", 2);
-        headers.put("id", 3);
-        headers.put("owner", 4);
-        headers.put("flashcards", 5);
+        headers.put("isPrivate", 2);
+        headers.put("flashcardSetId", 3);
+        headers.put("ownerUsername", 4);
+        headers.put("flashcardIds", 5);
 
         if (flashCardSetCsvFile.length() == 0) {
             save();
@@ -35,14 +35,14 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
                 String[] col = row.split(",");
                 String title = String.valueOf(col[headers.get("title")]);
                 String description = String.valueOf(col[headers.get("description")]);
-                boolean privacy = Boolean.parseBoolean(col[headers.get("privacy")]);
-                int id = Integer.parseInt(col[headers.get("id")]);
-                String ownerUsername = String.valueOf(col[headers.get("owner")]);
+                boolean privacy = Boolean.parseBoolean(col[headers.get("isPrivate")]);
+                int id = Integer.parseInt(col[headers.get("flashcardSetId")]);
+                String ownerUsername = String.valueOf(col[headers.get("ownerUsername")]);
 
                 List<Integer> flashcardIds = new ArrayList<>();
                 for (int i=6; i <= col.length; i++){
                     if (flashcardIds.size() == 0){
-                        flashcardIds.add(Integer.parseInt(col[headers.get("flashcards")]));
+                        flashcardIds.add(Integer.parseInt(col[headers.get("flashcardIds")]));
                     }
                     else{
                         flashcardIds.add(Integer.parseInt(col[i]));
@@ -66,7 +66,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
             for (FlashcardSetDsRequestModel set : accounts.values()) {
                 String line = String.
-                        format(set.getTitle(), set.getDescription(), set.getPrivacy(), set.getFlashcardSetId(), set.getOwnerUsername(),
+                        format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
                                 set.getFlashcardIds());
                 writer.write(line);
                 writer.newLine();

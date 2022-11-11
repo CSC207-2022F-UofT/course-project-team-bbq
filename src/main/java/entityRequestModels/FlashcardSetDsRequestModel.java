@@ -30,7 +30,7 @@ public class FlashcardSetDsRequestModel {
         return description;
     }
 
-    public Boolean getPrivacy() {
+    public Boolean getIsPrivate() {
         return isPrivate;
     }
 
