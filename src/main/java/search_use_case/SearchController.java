@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SearchController {
 
-    private final SearchInputBoundary userInput;
+    final SearchInputBoundary userInput;
 
     public SearchController(SearchInputBoundary userInput){
         this.userInput = userInput;
