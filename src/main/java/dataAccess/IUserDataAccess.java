@@ -1,10 +1,12 @@
 package dataAccess;
 
+import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
 
 // use case layer
 
 public interface IUserDataAccess {
+    //THE DS GATEWAY
 
 
     /**
@@ -15,5 +17,5 @@ public interface IUserDataAccess {
 
     boolean existsByName(String username);
 
-    void saveUser(UserDsRequestModel user);
+    void saveUser(CommonUserDsRequestModel user);
 }
