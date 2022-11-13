@@ -36,6 +36,11 @@ public class CommonUserDataAccess implements IUserDataAccess{
                 String[] col = row.split(",");
                 String username = String.valueOf(col[headers.get("username")]);
                 String password = String.valueOf(col[headers.get("password")]);
+                Map<Integer, String[]> flashcardSets = new HashMap<>();
+                for (int i = 2; i < col.length; i += 3){
+
+
+                }
 
 
                 CommonUserDsRequestModel user = new CommonUserDsRequestModel(username, password, );
@@ -78,7 +83,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
     }
 
     @Override
-    public void saveFlashcardsetID(String username, int FlashcardSetID) {
+    public void saveFlashcardSetID(String username, int FlashcardSetID) {
 
     }
 

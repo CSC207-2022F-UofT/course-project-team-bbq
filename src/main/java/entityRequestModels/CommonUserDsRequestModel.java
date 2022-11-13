@@ -12,4 +12,13 @@ public class CommonUserDsRequestModel {
         this.password = password;
         this.flashcardSets = flashcardSets;
     }
+    public String getUsername(){
+        return username;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public Map<Integer, String[]> getFlashcardSets(){
+        return flashcardSets;
+    }
 }
