@@ -78,22 +78,29 @@ public class FlashcardStudier extends FlashcardSet {
 
     public void sort(Comparator<Flashcard> c){
         this.flashcards.sort(c);
+        this.setCurrFlashcard();
     }
 
     public void reverse(Comparator<Flashcard> c){
         this.sort(c);
         Collections.reverse(this.flashcards);
+        this.setCurrFlashcard();
     }
 
     public void shuffle(){
         Collections.shuffle(this.flashcards);
+        this.setCurrFlashcard();
     }
 
     public int getNumFlashcards() {
         return numFlashcards;
     }
 
-    public void prepareForStudying() {
+    public void setCurrFlashcard() {
         currFlashcard = flashcards.get(0);
-        numFlashcards = flashcards.size();}
+    }
+
+    public void setNumFlashcards() {
+        numFlashcards = flashcards.size();
+    }
 }
