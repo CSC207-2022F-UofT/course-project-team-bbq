@@ -6,12 +6,13 @@ public class User {
     // NEEDS TO BE PUBLIC FOR IT TO BE ACCESSED IN THE OTHER CLASSES
     public String password;
     public boolean isAdmin;
-    private Map<Integer, String[]> flashcardSets;
+    public Map<Integer, String[]> flashcardSets;
 
-    public User(String username, String password){
+    public User(String username, String password, boolean isAdmin, Map<Integer, String[]> flashcardSets){
         this.username = username;
         this.password = password;
-        //this.isAdmin = isAdmin;
+        this.isAdmin = isAdmin;
+        this.flashcardSets = flashcardSets;
     }
 
     public String getUsername() {
@@ -36,6 +37,10 @@ public class User {
 
     public boolean passwordIsValid() {
         return false;
+    }
+
+    public boolean getIsAdmin(){
+        return isAdmin;
     }
 
     public Map<Integer, String[]> getFlashcardSets() {

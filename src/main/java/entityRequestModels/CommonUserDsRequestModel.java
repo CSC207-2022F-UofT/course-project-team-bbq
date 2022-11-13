@@ -11,13 +11,12 @@ public class CommonUserDsRequestModel {
     private Map<Integer, String[]> flashcardSets;
     private final LocalDateTime creationTime;
 
-    public CommonUserDsRequestModel(String username, String password,
-                                    Map<Integer, String[]> flashcardSets,
+    public CommonUserDsRequestModel(String username, String password, boolean isAdmin,
                                     LocalDateTime creationTime){
         this.username = username;
         this.password = password;
-        //this.isAdmin = isAdmin;
-        this.flashcardSets = flashcardSets;
+        this.isAdmin = isAdmin;
+        //this.flashcardSets = flashcardSets;
         this.creationTime = creationTime;
     }
 
@@ -44,4 +43,13 @@ public class CommonUserDsRequestModel {
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
+
+    public boolean getIsAdmin(){
+        return isAdmin;
+    }
+    public void setIsAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
+    }
+    //public Map<Integer, String[]> getFlashcardSets() {return flashcardSets;}
+
 }

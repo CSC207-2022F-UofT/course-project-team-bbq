@@ -1,24 +1,42 @@
 package entities;
 
+import java.util.Map;
+
 public class CommonUser extends User{
 
 
-    public CommonUser(String username, String password) {
-        super(username, password);
-
+    public CommonUser(String username, String password, boolean isAdmin, Map<Integer, String[]> flashcardSets) {
+        super(username, password, isAdmin, flashcardSets);
     }
-    @Override
-    public boolean passwordIsValid() {
-        return password != null && password.length() > 5;
-    }
-
-    @Override
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
-    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
+        this.flashcardSets = flashcardSets;
+    }
+
     public String getPassword() {
         return password;
     }
+
+    public boolean passwordIsValid() {
+        return false;
+    }
+
+    public boolean getIsAdmin(){
+        return isAdmin;
+    }
+    public Map<Integer, String[]> getFlashcardSets() {
+        return flashcardSets;
+    }
+
 }

@@ -8,15 +8,16 @@ import entityRequestModels.UserDsRequestModel;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 public class UserRegisterInteractor implements UserInputBoundary {
     final IUserDataAccess userDsGateway;
     final UserPresenter userPresenter;
     final UserFactory userFactory;
 
-    public UserRegisterInteractor(IUserDataAccess userRegisterDfGateway, UserPresenter userPresenter,
+    public UserRegisterInteractor(IUserDataAccess userRegisterDsGateway, UserPresenter userPresenter,
                                   UserFactory userFactory) {
-        this.userDsGateway = userRegisterDfGateway;
+        this.userDsGateway = userRegisterDsGateway;
         this.userPresenter = userPresenter;
         this.userFactory = userFactory;
     }
@@ -29,14 +30,15 @@ public class UserRegisterInteractor implements UserInputBoundary {
             return userPresenter.prepareFailView("Passwords don't match.");
         }
 
-        User user = userFactory.create(requestModel.getName(), requestModel.getPassword());
+        User user = userFactory.create(requestModel.getName(), requestModel.getPassword(),
+                requestModel.getIsAdmin(), new HashMap<Integer, String[]>());
         if (!user.passwordIsValid()) {
             return userPresenter.prepareFailView("User password must have more than 5 characters.");
         }
 
         LocalDateTime now = LocalDateTime.now();
         CommonUserDsRequestModel userDsModel = new CommonUserDsRequestModel(user.getUsername(), user.getPassword(),
-                new HashMap<Integer, String[]>(), now);
+                user.getIsAdmin(), now);
         userDsGateway.saveUser(userDsModel);
 
         UserResponseModel accountResponseModel = new UserResponseModel(user.getUsername(), now.toString());
