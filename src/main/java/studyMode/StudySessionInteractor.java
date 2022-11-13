@@ -1,14 +1,24 @@
 package studyMode;
 
 
-public class StudySessionInteractor implements StudySessionInputBoundary {
+import dataAccess.DBGateway;
+import entities.Flashcard;
+
+import java.util.Comparator;
+
+public class StudySessionInteractor implements StudySessionInputBoundary, StudySettingsInputBoundary {
 
     private FlashcardStudier studier;
     private StudySessionOutputBoundary presenter;
 
-    public StudySessionInteractor(FlashcardStudier studier,
+    private DBGateway gateway;
+
+    private FlashcardStudierBuilder builder;
+
+    public StudySessionInteractor(DBGateway gateway,
                                   StudySessionOutputBoundary presenter){
-        this.studier = studier;
+        this.gateway = gateway;
+        this.builder = new FlashcardStudierBuilder(gateway);
         this.presenter = presenter;
 
     }
@@ -31,7 +41,22 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         }
         int cardNumber = studier.getCounter() + 1;
 
-        return presenter.prepareStudyView(outputText, cardNumber);
+        return presenter.prepareCardView(outputText, cardNumber);
 
+    }
+
+    @Override
+    public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
+        this.studier = builder.buildStudier(request.getFlashcardSetId());
+
+        String sortingOrder = request.getSortingOrder();
+        Comparator<Flashcard> comparator;
+        switch (sortingOrder) {
+            default:
+                comparator = new FlashcardByDateComparator();
+        }
+        studier.sort(comparator);
+
+        return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
     }
 }

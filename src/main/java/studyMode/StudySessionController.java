@@ -10,4 +10,5 @@ public class StudySessionController {
     public StudySessionResponseModel study(StudySessionRequestModel userInput){
         return inputBoundary.study(userInput);
     }
+
 }

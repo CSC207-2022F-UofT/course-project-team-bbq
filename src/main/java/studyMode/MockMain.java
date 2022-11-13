@@ -1,5 +1,6 @@
 package studyMode;
 
+import dataAccess.DBGateway;
 import entities.Flashcard;
 import entities.FlashcardFactory;
 import entities.FlashcardSet;
@@ -14,8 +15,7 @@ public class MockMain {
         FlashcardFactory cardFactory = new FlashcardFactory();
         FlashcardSetFactory setFactory = new FlashcardSetFactory();
 
-        FlashcardSet flashcards = setFactory.create("Test Set", "", true, 0,
-                                                    "Lucas");
+        FlashcardSet flashcards = setFactory.create();
 
         for (int i=0; i<3; i++){
             Flashcard card = cardFactory.create("Test Card " + i, "definition " + i, LocalDateTime.now(),
@@ -23,10 +23,13 @@ public class MockMain {
             flashcards.addFlashcard(card);
         }
         FlashcardStudierFactory studierFactory = new FlashcardStudierFactory();
-        FlashcardStudier studier = studierFactory.create(flashcards, true);
+        FlashcardStudier studier = studierFactory.create("Test Set", "", true, 0,
+                "Lucas", true);
+
+        DBGateway gateway = new DBGateway(null, null, null);
 
         StudySessionOutputBoundary presenter = new StudySessionPresenter();
-        StudySessionInputBoundary interactor = new StudySessionInteractor(studier, presenter);
+        StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
         StudySessionController controller = new StudySessionController(interactor);
         MockView view = new MockView(controller);
         boolean quit = false;
