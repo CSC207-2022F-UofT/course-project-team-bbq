@@ -21,13 +21,24 @@ public class DBGateway {
         this.userGateway = userGateway;
     }
 
-    public FlashcardDsRequestModel getFlashcard(int flashcardId){
-        return this.flashcardGateway.getFlashcard(flashcardId);
+//    public FlashcardDsRequestModel getFlashcard(int flashcardId){
+//        return this.flashcardGateway.getFlashcard(flashcardId);
+//    }
+//
+//    public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId){
+//        return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
+//    }
+
+
+    public IFlashcardDataAccess getFlashcardGateway() {
+        return flashcardGateway;
     }
 
-    public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId){
-        return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
+    public IUserDataAccess getUserGateway() {
+        return userGateway;
     }
 
-
+    public IFlashcardSetDataAccess getFlashcardSetGateway() {
+        return flashcardSetGateway;
+    }
 }
