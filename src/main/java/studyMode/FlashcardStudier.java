@@ -2,22 +2,28 @@ package studyMode;
 
 import entities.Flashcard;
 import entities.FlashcardSet;
+import entities.FlashcardSetFactory;
+
+import java.util.Comparator;
 import java.util.List;
 
 // entity layer
 
-public class FlashcardStudier {
+public class FlashcardStudier extends FlashcardSet {
     private List<Flashcard> flashcards;
 
-    private int numFlashcards;
+    private final int numFlashcards;
     private boolean displayingTerm;
 
     private boolean termIsDefault;
     private int counter = 0;
     private Flashcard currFlashcard;
 
-    public FlashcardStudier(FlashcardSet flashcardSet, boolean termIsDefault){
-        this.flashcards = flashcardSet.getFlashcards();
+    public FlashcardStudier(String title, String description, boolean isPrivate,
+                            int flashcardSetId, String ownerUsername, boolean termIsDefault){
+        super(title, description, isPrivate, flashcardSetId, ownerUsername);
+
+        this.flashcards = this.getFlashcards();
         this.displayingTerm = termIsDefault;
         this.termIsDefault = termIsDefault;
 
@@ -62,7 +68,7 @@ public class FlashcardStudier {
         return counter;
     }
 
-    private String getOutputText() {
+    public String getOutputText() {
         if (termIsDefault) {
             displayingTerm = true;
             return currFlashcard.getTerm();
@@ -71,5 +77,13 @@ public class FlashcardStudier {
             displayingTerm = false;
             return currFlashcard.getDefinition();
         }
+    }
+
+    public void sort(Comparator<Flashcard> c){
+        this.flashcards.sort(c);
+    }
+
+    public int getNumFlashcards() {
+        return numFlashcards;
     }
 }
