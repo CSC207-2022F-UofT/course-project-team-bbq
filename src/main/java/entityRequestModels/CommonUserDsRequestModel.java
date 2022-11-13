@@ -16,9 +16,11 @@ public class CommonUserDsRequestModel {
     public String getUsername(){
         return username;
     }
+
     public String getPassword(){
         return password;
     }
+
     public List<Integer> getFlashcardSetIds(){
         return flashcardSetIds  ;
     }
