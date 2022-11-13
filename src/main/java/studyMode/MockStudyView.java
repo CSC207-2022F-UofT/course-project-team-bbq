@@ -14,7 +14,8 @@ public class MockStudyView {
     }
 
 
-    public boolean eventHandler(int numFlashcards) throws IOException {
+    public void eventHandler(int numFlashcards) throws IOException {
+
         StudySessionRequestModel request = new StudySessionRequestModel();
         System.out.println("prev, flip, next, quit?");
 
@@ -23,14 +24,14 @@ public class MockStudyView {
 
         if (command.equals("quit")){
             System.out.println("Goodbye...");
-            return true;
         }
         else{
             request.setCommand(command);
             StudySessionResponseModel response = this.controller.study(request);
             System.out.println("Card " + response.getCardNumber() + " of " + numFlashcards);
             System.out.println(response.getOutputText());
-            return false;
+
+            eventHandler(numFlashcards);
         }
     }
 }

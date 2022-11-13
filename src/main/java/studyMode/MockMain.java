@@ -24,8 +24,6 @@ public class MockMain {
         boolean quit = false;
 
         int numFlashcards = settingsView.eventHandler(0);
-        while (!quit){
-            quit = studyView.eventHandler(numFlashcards);
-        }
+        studyView.eventHandler(numFlashcards);
     }
 }
