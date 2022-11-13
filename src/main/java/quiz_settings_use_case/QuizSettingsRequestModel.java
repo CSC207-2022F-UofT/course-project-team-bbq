@@ -1,19 +1,15 @@
-package entities.quiz;
+package quiz_settings_use_case;
 
-public class QuizSettings {
+public class QuizSettingsRequestModel {
     private int numQuestions;
-    private boolean timerOn = false;
-    private int timerDuration = 15; // minutes
-    private boolean multipleChoiceOn = true;
-    private boolean textEntryOn = true;
-    private boolean trueFalseOn = true;
+    private boolean timerOn;
+    private int timerDuration;
+    private boolean multipleChoiceOn;
+    private boolean textEntryOn;
+    private boolean trueFalseOn;
 
-    public QuizSettings(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
-    public QuizSettings(int numQuestions, boolean timerOn, int timerDuration, boolean multipleChoiceOn,
-                        boolean textEntryOn, boolean trueFalseOn){
+    public QuizSettingsRequestModel(int numQuestions, boolean timerOn, int timerDuration,
+                                    boolean multipleChoiceOn, boolean textEntryOn, boolean trueFalseOn) {
         this.numQuestions = numQuestions;
         this.timerOn = timerOn;
         this.timerDuration = timerDuration;
@@ -22,11 +18,7 @@ public class QuizSettings {
         this.trueFalseOn = trueFalseOn;
     }
 
-    public boolean atLeastOneOptionEnabled() {
-        return multipleChoiceOn || textEntryOn || trueFalseOn;
-    }
-
-    /* GETTERS AND SETTERS */
+    /** GETTERS AND SETTERS **/
     public int getNumQuestions() {
         return numQuestions;
     }

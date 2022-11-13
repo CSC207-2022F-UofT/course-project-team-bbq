@@ -1,20 +1,14 @@
-package entities.quiz;
+package entityRequestModels;
 
-public class QuizSettings {
-    private int numQuestions;
-    private boolean timerOn = false;
-    private int timerDuration = 15; // minutes
-    private boolean multipleChoiceOn = true;
-    private boolean textEntryOn = true;
-    private boolean trueFalseOn = true;
+public class QuizSettingsDsRequestModel {
+    private boolean timerOn;
+    private int timerDuration;
+    private boolean multipleChoiceOn;
+    private boolean textEntryOn;
+    private boolean trueFalseOn;
 
-    public QuizSettings(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
-    public QuizSettings(int numQuestions, boolean timerOn, int timerDuration, boolean multipleChoiceOn,
-                        boolean textEntryOn, boolean trueFalseOn){
-        this.numQuestions = numQuestions;
+    public QuizSettingsDsRequestModel(boolean timerOn, int timerDuration, boolean multipleChoiceOn,
+                                    boolean textEntryOn, boolean trueFalseOn) {
         this.timerOn = timerOn;
         this.timerDuration = timerDuration;
         this.multipleChoiceOn = multipleChoiceOn;
@@ -22,19 +16,7 @@ public class QuizSettings {
         this.trueFalseOn = trueFalseOn;
     }
 
-    public boolean atLeastOneOptionEnabled() {
-        return multipleChoiceOn || textEntryOn || trueFalseOn;
-    }
-
-    /* GETTERS AND SETTERS */
-    public int getNumQuestions() {
-        return numQuestions;
-    }
-
-    public void setNumQuestions(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
+    /** GETTERS AND SETTERS **/
     public boolean isTimerOn() {
         return timerOn;
     }

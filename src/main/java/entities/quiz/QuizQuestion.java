@@ -1,38 +1,35 @@
 package entities.quiz;
 
 import entities.flashcard.Flashcard;
-import entities.flashcard.FlashcardSet;
+
+import java.util.List;
 
 abstract public class QuizQuestion {
-    private String question;
     private String actualAnswer;
     private String userAnswer;
 
-    public QuizQuestion(FlashcardSet flashcardSet, int index) {
-        generateQuestion(flashcardSet, index);
-    }
+    /**
+     * Given a set of flashcards and an index for a specific flashcard, this method will generate a corresponding
+     * question. The implementation is specified by the question type.
+     * @param flashcards a list of flashcards
+     * @param index the index of a specific flashcard in which the question will be based on
+     */
+    abstract public void generateQuestion(List<Flashcard> flashcards, int index);
 
-    abstract public void generateQuestion(FlashcardSet flashcardSet, int index);
-
+    /**
+     * @return true if the user answer is equal to the actual answer.
+     */
     public boolean isCorrect(){
         return this.actualAnswer.equals(this.userAnswer);
     }
 
     /* GETTERS AND SETTERS */
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
     public String getActualAnswer() {
         return actualAnswer;
     }
 
     public void setActualAnswer(String actualAnswer) {
-        this.actualAnswer = actualAnswer;
+        this.actualAnswer = actualAnswer.toLowerCase();
     }
 
     public String getUserAnswer() {
@@ -40,6 +37,6 @@ abstract public class QuizQuestion {
     }
 
     public void setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer;
+        this.userAnswer = userAnswer.toLowerCase();
     }
 }

@@ -1,16 +1,18 @@
 package entities.quiz;
 
-import entities.flashcard.FlashcardSet;
+import entities.flashcard.Flashcard;
+
+import java.util.List;
 
 public class QuizQuestionFactory {
-    public QuizQuestion createQuizQuestion(FlashcardSet flashcardSet, int index, String type) {
+    public QuizQuestion create(List<Flashcard> flashcards, int index, String type) {
         switch (type) {
-            case "MC":
-                return new MultipleChoiceQuestion(flashcardSet, index);
-            case "TE":
-                return new TextEntryQuestion(flashcardSet, index);
             case "TF":
-                return new TrueFalseQuestion(flashcardSet, index);
+                return new TrueFalseQuestion(flashcards, index);
+            case "MC":
+                return new MultipleChoiceQuestion(flashcards, index);
+            case "TE":
+                return new TextEntryQuestion(flashcards, index);
             default:
                 throw new IllegalArgumentException("Invalid type.");
         }
