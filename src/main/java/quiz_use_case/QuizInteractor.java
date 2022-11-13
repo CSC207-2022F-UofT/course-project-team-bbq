@@ -27,7 +27,7 @@ public class QuizInteractor implements QuizInputBoundary {
         for (int i = 0; i < quizQuestions.size(); i++) {
             quizQuestions.get(i).setUserAnswer(userAnswers.get(i));
         }
-        QuizResponseModel results = new QuizResponseModel();
+        QuizResponseModel results = new QuizResponseModel(quiz);
         return presenter.prepareSuccessView(results);
     }
 }

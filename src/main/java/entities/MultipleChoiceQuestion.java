@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * MultipleChoiceQuestion
+ * @author Anthony
+ */
 public class MultipleChoiceQuestion extends QuizQuestion {
     private final boolean givenTerm;
 
@@ -20,6 +24,11 @@ public class MultipleChoiceQuestion extends QuizQuestion {
         generateQuestion(flashcards, index);
     }
 
+    /**
+     * Generates a multiple choice question.
+     * @param flashcards a list of flashcards
+     * @param index      the index of a specific flashcard in which the question will be based on
+     */
     @Override
     public void generateQuestion(List<Flashcard> flashcards, int index) {
         Flashcard flashcard = flashcards.get(index);

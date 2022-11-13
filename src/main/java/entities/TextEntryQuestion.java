@@ -3,6 +3,10 @@ package entities;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * TextEntryQuestion
+ * @author Anthony
+ */
 public class TextEntryQuestion extends QuizQuestion {
     private String term = null;
     private String definition = null;
@@ -15,6 +19,11 @@ public class TextEntryQuestion extends QuizQuestion {
         generateQuestion(flashcards, index);
     }
 
+    /**
+     * Generates a text entry question.
+     * @param flashcards a list of flashcards
+     * @param index      the index of a specific flashcard in which the question will be based on
+     */
     @Override
     public void generateQuestion(List<Flashcard> flashcards, int index) {
         Flashcard flashcard = flashcards.get(index);

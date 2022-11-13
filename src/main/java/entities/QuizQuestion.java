@@ -4,6 +4,10 @@ import entities.Flashcard;
 
 import java.util.List;
 
+/**
+ * Abstract class representing a quiz question.
+ * @author Anthony
+ */
 abstract public class QuizQuestion {
     private String actualAnswer;
     private String userAnswer;

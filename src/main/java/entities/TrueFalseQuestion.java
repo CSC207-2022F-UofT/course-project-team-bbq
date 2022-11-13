@@ -3,6 +3,10 @@ package entities;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * TrueFalseQuestion
+ * @author Anthony
+ */
 public class TrueFalseQuestion extends QuizQuestion {
     private String term;
     private String potentialDefinition; // this could be correct or incorrect
@@ -15,6 +19,11 @@ public class TrueFalseQuestion extends QuizQuestion {
         generateQuestion(flashcards, index);
     }
 
+    /**
+     * Generates a true/false question.
+     * @param flashcards a list of flashcards
+     * @param index      the index of a specific flashcard in which the question will be based on
+     */
     @Override
     public void generateQuestion(List<Flashcard> flashcards, int index) {
         Flashcard flashcard = flashcards.get(index);
@@ -36,6 +45,12 @@ public class TrueFalseQuestion extends QuizQuestion {
         return ("TRUE OR FALSE?\nTerm: " + this.term + "\nDefinition: " + this.potentialDefinition);
     }
 
+    /**
+     * Returns a random integer less than "max" that is not equal to "excluded".
+     * @param max the maximum value
+     * @param excluded some integer to be excluded
+     * @return a random integer that is not equal to excluded
+     */
     public static int randomExcluded(int max, int excluded) {
         int n = rand.nextInt(max - 1);
         if (n >= excluded) {

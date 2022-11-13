@@ -3,8 +3,6 @@ package quiz_use_case;
 import java.util.ArrayList;
 
 public class QuizRequestModel {
-    // user answer for each quiz question
-    // submit
     private ArrayList<String> userAnswers;
 
     public QuizRequestModel(ArrayList<String> userAnswers) {

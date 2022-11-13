@@ -1,5 +1,9 @@
 package entities;
 
+/**
+ * Stores quiz settings.
+ * @author Anthony
+ */
 public class QuizSettings {
     private int numQuestions;
     private boolean timerOn = false;

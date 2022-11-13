@@ -5,22 +5,31 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Main quiz class for the application's quiz mode.
+ * @author Anthony
+ */
 public class Quiz {
-    /*
-    * Assumption: There are at least 4 flashcards. At least 1 question type is enabled.
-    * */
     private final List<QuizQuestion> quizQuestions;
     private final QuizSettings quizSettings;
     private final List<Flashcard> flashcards;
     private static final Random rand = new Random();
 
+    /**
+     * Precondition: flashcards contains at least 4 flashcards, and at least 1 question type is enabled in quizSettings.
+     * @param quizSettings the quiz settings
+     * @param flashcards the list of flashcards
+     */
     public Quiz(QuizSettings quizSettings, List<Flashcard> flashcards) {
-        this.quizQuestions = new ArrayList<QuizQuestion>();
+        this.quizQuestions = new ArrayList<>();
         this.quizSettings = quizSettings;
-        this.flashcards = new ArrayList<Flashcard>(flashcards); // simple copy of references
+        this.flashcards = new ArrayList<>(flashcards); // simple copy of references
         this.generateQuestions();
     }
 
+    /**
+     * Based on the quiz settings and list of flashcards, generates a list of questions of varying types.
+     */
     public void generateQuestions() {
         int numQuestions = this.quizSettings.getNumQuestions();
 
@@ -48,6 +57,7 @@ public class Quiz {
 
     }
 
+    /** GETTERS AND SETTERS **/
     public List<QuizQuestion> getQuizQuestions() {
         return this.quizQuestions;
     }
