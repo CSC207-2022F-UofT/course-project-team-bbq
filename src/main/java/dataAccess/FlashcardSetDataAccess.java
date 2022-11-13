@@ -80,7 +80,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
     @Override
     public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId) {
-        return null;
+        return flashcardSets.get(flashcardSetId);
     }
 
     @Override
