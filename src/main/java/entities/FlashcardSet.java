@@ -11,13 +11,13 @@ public class FlashcardSet {
     private int flashcardSetId;
 
     public FlashcardSet(String title, String description, boolean isPrivate,
-                        int flashcardSetId, String ownerUsername, List<Flashcard> flashcards){
+                        int flashcardSetId, String ownerUsername){
         this.title = title;
         this.description = description;
         this.isPrivate = isPrivate;
         this.flashcardSetId = flashcardSetId;
         this.ownerUsername = ownerUsername;
-        this.flashcards = flashcards;
+        this.flashcards = new ArrayList<>();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class FlashcardSet {
         isPrivate = aPrivate;
     }
 
-    public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards = flashcards;
+    public void addFlashcard(Flashcard flashcard) {
+        this.flashcards.add(flashcard);
     }
 }

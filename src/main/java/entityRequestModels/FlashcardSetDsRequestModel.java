@@ -12,14 +12,16 @@ public class FlashcardSetDsRequestModel {
     private int flashcardSetId;
 
     public FlashcardSetDsRequestModel(String title, String description, boolean isPrivate,
-                                      int flashcardSetId, String ownerUsername,
-                                      List<Integer> flashcards){
+                        int flashcardSetId, String ownerUsername,
+                        List<Integer> flashcards){
+
         this.title = title;
         this.description = description;
         this.isPrivate = isPrivate;
         this.flashcardSetId = flashcardSetId;
         this.ownerUsername = ownerUsername;
         this.flashcardIds = flashcards;
+
     }
 
     public String getTitle() {
@@ -68,6 +70,7 @@ public class FlashcardSetDsRequestModel {
 
     public void setFlashcardSetId(int flashcardSetId) {
         this.flashcardSetId = flashcardSetId;
+
     }
 }
 
