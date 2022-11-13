@@ -1,6 +1,6 @@
 package quiz_settings_use_case;
 
-import entities.quiz.QuizSettings;
+import entities.QuizSettings;
 import entityRequestModels.QuizSettingsDsGateway;
 import entityRequestModels.QuizSettingsDsRequestModel;
 

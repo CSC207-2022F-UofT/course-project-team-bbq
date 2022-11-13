@@ -1,6 +1,6 @@
-package entities.quiz;
+package entities;
 
-import entities.flashcard.Flashcard;
+import entities.Flashcard;
 
 import java.util.List;
 

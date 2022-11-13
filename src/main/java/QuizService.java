@@ -1,6 +1,4 @@
-package entities.quiz;
-
-import entities.flashcard.*;
+import entities.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +7,7 @@ import java.util.Scanner;
 
 /**
  * This is just a temporary class that I use to test quiz functionality while using scanner user input.
+ * Feel free to run and try it out.
  */
 public class QuizService {
     public static void main(String[] args) {

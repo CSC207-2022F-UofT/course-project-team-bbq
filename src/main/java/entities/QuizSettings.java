@@ -1,4 +1,4 @@
-package entities.quiz;
+package entities;
 
 public class QuizSettings {
     private int numQuestions;

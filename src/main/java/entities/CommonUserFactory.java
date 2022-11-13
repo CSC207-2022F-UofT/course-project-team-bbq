@@ -1,4 +1,4 @@
-package entities.user;
+package entities;
 
 public class CommonUserFactory implements UserFactory {
 
