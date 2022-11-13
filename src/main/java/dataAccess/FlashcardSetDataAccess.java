@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.FlashcardSetDsRequestModel;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
@@ -11,7 +10,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, FlashcardSetDsRequestModel> accounts = new HashMap<>();
+    private final Map<Integer, FlashcardSetDsRequestModel> flashcardSets = new HashMap<>();
 
     public FlashcardSetDataAccess(String csvPath) throws IOException {
         flashCardSetCsvFile = new File(csvPath);
@@ -51,7 +50,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
 
                 FlashcardSetDsRequestModel set = new FlashcardSetDsRequestModel(title, description, privacy, id, ownerUsername, flashcardIds);
-                accounts.put(ownerUsername, set);
+                flashcardSets.put(id, set);
             }
 
             reader.close();
@@ -64,7 +63,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
-            for (FlashcardSetDsRequestModel set : accounts.values()) {
+            for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
                 String line = String.
                         format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
                                 set.getFlashcardIds());

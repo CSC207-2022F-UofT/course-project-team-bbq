@@ -1,16 +1,17 @@
 package entityRequestModels;
 
+import java.util.List;
 import java.util.Map;
 
 public class CommonUserDsRequestModel {
     private String username;
     private String password;
-    private Map<Integer, String[]> flashcardSets;
+    private List<Integer> flashcardSetIds;
 
-    public CommonUserDsRequestModel(String username, String password, Map<Integer, String[]> flashcardSets){
+    public CommonUserDsRequestModel(String username, String password, List<Integer> flashcardSetIds){
         this.username = username;
         this.password = password;
-        this.flashcardSets = flashcardSets;
+        this.flashcardSetIds = flashcardSetIds;
     }
     public String getUsername(){
         return username;
@@ -18,7 +19,7 @@ public class CommonUserDsRequestModel {
     public String getPassword(){
         return password;
     }
-    public Map<Integer, String[]> getFlashcardSets(){
-        return flashcardSets;
+    public List<Integer> getFlashcardSetIds(){
+        return flashcardSetIds  ;
     }
 }

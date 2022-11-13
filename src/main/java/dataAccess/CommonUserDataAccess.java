@@ -6,9 +6,7 @@ import entityRequestModels.UserDsRequestModel;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CommonUserDataAccess implements IUserDataAccess{
     private final File userCsvFile;
@@ -36,14 +34,18 @@ public class CommonUserDataAccess implements IUserDataAccess{
                 String[] col = row.split(",");
                 String username = String.valueOf(col[headers.get("username")]);
                 String password = String.valueOf(col[headers.get("password")]);
-                Map<Integer, String[]> flashcardSets = new HashMap<>();
-                for (int i = 2; i < col.length; i += 3){
-
+                List<Integer> flashcardSetIds = new ArrayList<>();
+                for (int i = 2; i <= col.length; i++){
+                    if (flashcardSetIds.size() == 0){
+                        flashcardSetIds.add(Integer.parseInt(col[headers.get("flashcardSetIds")]));
+                    }
+                    else{
+                        flashcardSetIds.add(Integer.parseInt(col[i]));
+                    }
 
                 }
 
-
-                CommonUserDsRequestModel user = new CommonUserDsRequestModel(username, password, );
+                CommonUserDsRequestModel user = new CommonUserDsRequestModel(username, password, flashcardSetIds);
                 accounts.put(username, user);
             }
 
@@ -58,9 +60,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
             writer.newLine();
 
             for (CommonUserDsRequestModel user : accounts.values()) {
-                String line = String.
-                        format(set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
-                                set.getBelongsToId());
+                String line = String.format(user.getUsername(), user.getPassword(), user.getFlashcardSetIds());
                 writer.write(line);
                 writer.newLine();
             }

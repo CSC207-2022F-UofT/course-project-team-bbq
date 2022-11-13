@@ -12,7 +12,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<Integer, FlashcardDsRequestModel> accounts = new HashMap<>();
+    private final Map<Integer, FlashcardDsRequestModel> flashCardIds = new HashMap<>();
 
     public FlashcardDataAccess(String csvPath) throws IOException {
         flashCardCsvFile = new File(csvPath);
@@ -41,7 +41,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
                 int belongsToId = Integer.parseInt(col[headers.get("belongsToId")]);
 
                 FlashcardDsRequestModel card = new FlashcardDsRequestModel(term, definition, creationDate, flashcardId, belongsToId);
-                accounts.put(belongsToId, card);
+                flashCardIds.put(flashcardId, card);
             }
 
             reader.close();
@@ -54,7 +54,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
-            for (FlashcardDsRequestModel set : accounts.values()) {
+            for (FlashcardDsRequestModel set : flashCardIds.values()) {
                 String line = String.
                         format(set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
                                 set.getBelongsToId());
@@ -71,7 +71,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
 
 
     @Override
-    public FlashcardDsRequestModel getFlashcard(String flashcardID) {
+    public FlashcardDsRequestModel getFlashcard(Integer flashcardID) {
         return null;
     }
 
@@ -86,7 +86,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
     }
 
     @Override
-    public void deleteFlashcard(String flashcardID) {
+    public void deleteFlashcard(Integer flashcardID) {
 
     }
 }
