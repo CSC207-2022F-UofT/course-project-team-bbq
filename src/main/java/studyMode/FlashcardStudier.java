@@ -89,6 +89,10 @@ public class FlashcardStudier extends FlashcardSet {
         Collections.reverse(this.flashcards);
     }
 
+    public void shuffle(){
+        Collections.shuffle(this.flashcards);
+    }
+
     public int getNumFlashcards() {
         return numFlashcards;
     }

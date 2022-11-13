@@ -50,18 +50,21 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         this.studier = builder.buildStudier(request.getFlashcardSetId(), request.isTermDefault());
 
         String sortingOrder = request.getSortingOrder();
-        Comparator<Flashcard> comparator;
-        switch (sortingOrder) {
-            case "alph":
-                comparator = new FlashcardAlphComparator();
-            default:
-                comparator = new FlashcardByDateComparator();
-        }
-        if (request.isReverse()) {
-            studier.reverse(comparator);
+        if (sortingOrder.equals("shuffle")){
+            studier.shuffle();
         }
         else {
-            studier.sort(comparator);
+            Comparator<Flashcard> comparator;
+            if ("alph".equals(sortingOrder)) {
+                comparator = new FlashcardAlphComparator();
+            } else {
+                comparator = new FlashcardByDateComparator();
+            }
+            if (request.isReverse()) {
+                studier.reverse(comparator);
+            } else {
+                studier.sort(comparator);
+            }
         }
 
         return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
