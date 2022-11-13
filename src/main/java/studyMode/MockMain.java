@@ -1,12 +1,9 @@
 package studyMode;
 
-import dataAccess.DBGateway;
-import entities.Flashcard;
-import entities.FlashcardFactory;
-import entities.FlashcardSet;
-import entities.FlashcardSetFactory;
+import dataAccess.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MockMain {
@@ -14,14 +11,17 @@ public class MockMain {
     public static void main(String[] args) throws IOException {
 
 
-        DBGateway gateway = new DBGateway(null, null, null);
+        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+
+        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
 
         StudySessionOutputBoundary presenter = new StudySessionPresenter();
         StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
         StudySessionController controller = new StudySessionController(interactor);
         MockSettingsView settingsView = new MockSettingsView(controller);
         MockStudyView studyView = new MockStudyView(controller);
-        boolean quit = false;
 
         int numFlashcards = settingsView.eventHandler(0);
         studyView.eventHandler(numFlashcards);

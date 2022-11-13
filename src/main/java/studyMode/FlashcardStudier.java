@@ -2,7 +2,6 @@ package studyMode;
 
 import entities.Flashcard;
 import entities.FlashcardSet;
-import entities.FlashcardSetFactory;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,7 +12,7 @@ import java.util.List;
 public class FlashcardStudier extends FlashcardSet {
     private List<Flashcard> flashcards;
 
-    private final int numFlashcards;
+    private int numFlashcards;
     private boolean displayingTerm;
 
     private boolean termIsDefault;
@@ -27,9 +26,6 @@ public class FlashcardStudier extends FlashcardSet {
         this.flashcards = this.getFlashcards();
         this.displayingTerm = termIsDefault;
         this.termIsDefault = termIsDefault;
-
-        this.numFlashcards = flashcards.size();
-        this.currFlashcard = this.flashcards.get(0);
     }
 
     public String flipCard(){
@@ -96,4 +92,8 @@ public class FlashcardStudier extends FlashcardSet {
     public int getNumFlashcards() {
         return numFlashcards;
     }
+
+    public void prepareForStudying() {
+        currFlashcard = flashcards.get(0);
+        numFlashcards = flashcards.size();}
 }

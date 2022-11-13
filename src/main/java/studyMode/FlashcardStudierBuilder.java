@@ -35,7 +35,7 @@ public class FlashcardStudierBuilder {
             Flashcard f = this.buildFlashcard(flashcardId);
             studier.addFlashcard(f);
         }
-
+        studier.prepareForStudying();
         return studier;
     }
 
