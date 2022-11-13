@@ -4,6 +4,7 @@ import entities.Flashcard;
 import entities.FlashcardSet;
 import entities.FlashcardSetFactory;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -81,6 +82,11 @@ public class FlashcardStudier extends FlashcardSet {
 
     public void sort(Comparator<Flashcard> c){
         this.flashcards.sort(c);
+    }
+
+    public void reverse(Comparator<Flashcard> c){
+        this.sort(c);
+        Collections.reverse(this.flashcards);
     }
 
     public int getNumFlashcards() {

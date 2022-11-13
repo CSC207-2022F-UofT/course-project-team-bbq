@@ -2,5 +2,7 @@ package studyMode;
 
 public interface StudySessionInputBoundary {
 
-    public StudySessionResponseModel study(StudySessionRequestModel userInput);
+    StudySessionResponseModel study(StudySessionRequestModel userInput);
+
+    StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request);
 }

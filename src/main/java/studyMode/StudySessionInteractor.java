@@ -6,7 +6,7 @@ import entities.Flashcard;
 
 import java.util.Comparator;
 
-public class StudySessionInteractor implements StudySessionInputBoundary, StudySettingsInputBoundary {
+public class StudySessionInteractor implements StudySessionInputBoundary {
 
     private FlashcardStudier studier;
     private StudySessionOutputBoundary presenter;
@@ -52,10 +52,17 @@ public class StudySessionInteractor implements StudySessionInputBoundary, StudyS
         String sortingOrder = request.getSortingOrder();
         Comparator<Flashcard> comparator;
         switch (sortingOrder) {
+            case "alph":
+                comparator = new FlashcardAlphComparator();
             default:
                 comparator = new FlashcardByDateComparator();
         }
-        studier.sort(comparator);
+        if (request.isReverse()) {
+            studier.reverse(comparator);
+        }
+        else {
+            studier.sort(comparator);
+        }
 
         return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
     }
