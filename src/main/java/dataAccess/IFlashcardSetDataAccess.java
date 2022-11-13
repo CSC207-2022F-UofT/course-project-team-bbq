@@ -1,5 +1,6 @@
 package dataAccess;
 
+import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 
 // use case layer
@@ -13,6 +14,8 @@ public interface IFlashcardSetDataAccess {
     String[] getTitleAndDescription(int flashcardSetId);
 
     void editTitleAndDescription(int flashcardSetId, String title, String description);
+
+    void saveFlashcardID(int flashcardSetID, int flashcardID);
 
     void deleteFlashcardSet(int flashcardSetID);
 

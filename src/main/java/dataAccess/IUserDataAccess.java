@@ -15,5 +15,7 @@ public interface IUserDataAccess {
 
     boolean existsByName(String username);
 
+    void saveFlashcardSetID(String username, int FlashcardSetID);
+
     void saveUser(UserDsRequestModel user);
 }
