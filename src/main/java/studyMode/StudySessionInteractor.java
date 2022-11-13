@@ -47,7 +47,7 @@ public class StudySessionInteractor implements StudySessionInputBoundary, StudyS
 
     @Override
     public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
-        this.studier = builder.buildStudier(request.getFlashcardSetId());
+        this.studier = builder.buildStudier(request.getFlashcardSetId(), request.isTermDefault());
 
         String sortingOrder = request.getSortingOrder();
         Comparator<Flashcard> comparator;
