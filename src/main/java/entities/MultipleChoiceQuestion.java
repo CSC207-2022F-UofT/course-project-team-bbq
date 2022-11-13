@@ -26,7 +26,7 @@ public class MultipleChoiceQuestion extends QuizQuestion {
         List<Flashcard> otherOptions = new ArrayList<>(flashcards); // shallow copy
         otherOptions.remove(flashcard); // list of all other options
         Collections.shuffle(otherOptions);
-        List<Flashcard> preparedList = new ArrayList<Flashcard>(otherOptions.subList(0, this.numChoices - 1));
+        List<Flashcard> preparedList = new ArrayList<>(otherOptions.subList(0, this.numChoices - 1));
         preparedList.add(flashcard);
         Collections.shuffle(preparedList); // shuffle the prepared list
 

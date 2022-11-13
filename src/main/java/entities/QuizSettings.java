@@ -26,7 +26,7 @@ public class QuizSettings {
         return multipleChoiceOn || textEntryOn || trueFalseOn;
     }
 
-    /* GETTERS AND SETTERS */
+    /** GETTERS AND SETTERS **/
     public int getNumQuestions() {
         return numQuestions;
     }

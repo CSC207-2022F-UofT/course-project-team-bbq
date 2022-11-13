@@ -9,10 +9,10 @@ public class Quiz {
     /*
     * Assumption: There are at least 4 flashcards. At least 1 question type is enabled.
     * */
-    private List<QuizQuestion> quizQuestions;
-    private QuizSettings quizSettings;
-    private List<Flashcard> flashcards;
-    private static Random rand = new Random();
+    private final List<QuizQuestion> quizQuestions;
+    private final QuizSettings quizSettings;
+    private final List<Flashcard> flashcards;
+    private static final Random rand = new Random();
 
     public Quiz(QuizSettings quizSettings, List<Flashcard> flashcards) {
         this.quizQuestions = new ArrayList<QuizQuestion>();

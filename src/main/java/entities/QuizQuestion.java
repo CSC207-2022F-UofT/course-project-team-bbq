@@ -23,7 +23,7 @@ abstract public class QuizQuestion {
         return this.actualAnswer.equals(this.userAnswer);
     }
 
-    /* GETTERS AND SETTERS */
+    /** GETTERS AND SETTERS **/
     public String getActualAnswer() {
         return actualAnswer;
     }

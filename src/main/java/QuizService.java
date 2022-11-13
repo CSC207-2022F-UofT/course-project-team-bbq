@@ -73,6 +73,7 @@ public class QuizService {
         for (QuizQuestion quizQuestion : quizQuestions) {
             System.out.println(quizQuestion);
             System.out.println("Enter your answer:");
+            // for now, you have to type the actual answer out (or "true" or "false")
             String answer = ui.nextLine();
             quizQuestion.setUserAnswer(answer);
             if (quizQuestion.isCorrect()) {
