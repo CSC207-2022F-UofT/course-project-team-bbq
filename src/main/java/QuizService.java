@@ -70,21 +70,28 @@ public class QuizService {
         // quiz
         Quiz quiz = new Quiz(quizSettings, flashcards);
         List<QuizQuestion> quizQuestions = quiz.getQuizQuestions();
-        for (QuizQuestion quizQuestion : quizQuestions) {
+        for (int i = 0; i < quizQuestions.size(); i++) {
+            QuizQuestion quizQuestion = quizQuestions.get(i);
+            System.out.println("Question #" + (i+1) + ":");
             System.out.println(quizQuestion);
             System.out.println("Enter your answer:");
             // for now, you have to type the actual answer out (or "true" or "false")
             String answer = ui.nextLine();
             quizQuestion.setUserAnswer(answer);
+            System.out.println();
+        }
+
+        // results
+        System.out.println("END OF QUIZ. Time to evaluate your results.");
+        for (int i = 0; i < quizQuestions.size(); i++) {
+            QuizQuestion quizQuestion = quizQuestions.get(i);
+            System.out.println("Question #" + (i+1) + ":");
             if (quizQuestion.isCorrect()) {
                 System.out.println("Correct!");
             } else {
                 System.out.println("WRONG! The correct answer was: " + quizQuestion.getActualAnswer());
             }
-            System.out.println("\n");
+            System.out.println();
         }
-
-        // results
-        System.out.println("END OF QUIZ.");
     }
 }
