@@ -20,6 +20,21 @@ public class FlashcardSet {
         this.flashcards = flashcards;
     }
 
+    @Override
+    public String toString() {
+        String privacy = "Private";
+        if (!this.isPrivate) {
+            privacy = "Public";
+        }
+        String line0 = "==========================" + "\n";
+        String line1 = "(" + privacy + ") FlashcardSet #" + this.flashcardSetId + "\n";
+        String line2 = "--------------------------" + "\n";
+        String line3 = "Title: " + this.title + "\n";
+        String line4 = "Owner: " + this.ownerUsername + "\n";
+        String line5 = "Number of Flashcards: " + this.flashcards.size() + "\n";
+        return line0 + line1 + line2 + line3 + line4 + line5 + line0;
+    };
+
     public String getTitle() {
         return title;
     }
