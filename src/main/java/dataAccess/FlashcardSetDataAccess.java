@@ -60,7 +60,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
             writer.newLine();
 
             for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
-                String line = format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
+                String line = format("%s,%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
                                 set.getFlashcardIds());
                 writer.write(line);
                 writer.newLine();

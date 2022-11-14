@@ -55,7 +55,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
 
             for (FlashcardDsRequestModel set : flashcards.values()) {
                 String line = String.
-                        format("%s","%s","%s","%s","%s", set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
+                        format("%s,%s,%s,%s,%s", set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
                                 set.getBelongsToId());
                 writer.write(line);
                 writer.newLine();
@@ -88,7 +88,6 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
         save();
 
     }
-
     @Override
     public void deleteFlashcard(Integer flashcardID) {
         flashcards.remove(flashcardID);
