@@ -1,5 +1,6 @@
 package search_use_case;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchController {
@@ -10,7 +11,7 @@ public class SearchController {
         this.userInput = userInput;
     }
 
-    SearchResponseModel create(String search_input, ArrayList<String> tags){
+    SearchResponseModel create(String search_input, ArrayList<String> tags) throws IOException {
         SearchRequestModel requestModel = new SearchRequestModel(search_input, tags);
 
         return userInput.create(requestModel);
