@@ -4,9 +4,9 @@ import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
 
-public class DBGateway implements IGeneralDataAccess {
+public class DBGateway {
     private static String flashcardPath = "src/data/Flashcards.csv";
-    private static String flashcardSetPath = "src/data/FlashCardSets.csv";
+    private static String flashcardSetPath = "src/data/FlashcardSets.csv";
     private static String userPath = "src/data/Users.csv";
 
     IFlashcardDataAccess flashcardGateway;
@@ -20,18 +20,22 @@ public class DBGateway implements IGeneralDataAccess {
         this.flashcardSetGateway = flashcardSetGateway;
         this.userGateway = userGateway;
     }
-    @Override
-    public IFlashcardDataAccess getFlashcardAccess() {
-        return this.flashcardGateway;
+
+    public static String getFlashcardPath() {
+        return DBGateway.flashcardPath;
     }
 
-    @Override
-    public IFlashcardSetDataAccess getFlashcardSetAccess() {
-        return this.flashcardSetGateway;
+    public static String getFlashcardSetPath() {
+        return DBGateway.flashcardSetPath;
     }
 
-    @Override
-    public IUserDataAccess getUserAccess() {
-        return this.userGateway;
+    public FlashcardDsRequestModel getFlashcard(int flashcardId){
+        return this.flashcardGateway.getFlashcard(flashcardId);
     }
+
+    public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId){
+        return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
+    }
+
+
 }
