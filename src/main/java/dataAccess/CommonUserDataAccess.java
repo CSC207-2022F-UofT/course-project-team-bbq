@@ -68,7 +68,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
 
     }
     @Override
-    public UserDsRequestModel getUser(String username) {
+    public CommonUserDsRequestModel getUser(String username) {
         return null;
     }
 
@@ -83,7 +83,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
     }
 
     @Override
-    public void saveUser(UserDsRequestModel user) {
+    public void saveUser(CommonUserDsRequestModel user) {
 
     }
 }
