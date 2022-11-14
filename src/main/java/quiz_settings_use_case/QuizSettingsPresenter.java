@@ -1,7 +1,13 @@
 package quiz_settings_use_case;
 
-public interface QuizSettingsPresenter {
-    QuizSettingsResponseModel prepareSuccessView(QuizSettingsResponseModel quizSettings);
+public class QuizSettingsPresenter implements QuizSettingsOutputBoundary {
+    @Override
+    public QuizSettingsResponseModel prepareSuccessView() {
+        return null;
+    }
 
-    QuizSettingsResponseModel prepareFailView(String error);
+    @Override
+    public QuizSettingsResponseModel prepareFailView(String error){
+        return null;
+    }
 }

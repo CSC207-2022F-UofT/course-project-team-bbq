@@ -31,6 +31,6 @@ public class QuizSettingsInteractor implements QuizSettingsInputBoundary {
         quizDsGateway.save(quizSettingsDsModel);
 
         QuizSettingsResponseModel responseModel = new QuizSettingsResponseModel(quizSettings);
-        return quizPresenter.prepareSuccessView(responseModel);
+        return quizPresenter.prepareSuccessView();
     }
 }
