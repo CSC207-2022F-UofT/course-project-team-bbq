@@ -13,9 +13,9 @@ public interface IFlashcardSetDataAccess {
 
     String[] getTitleAndDescription(int flashcardSetId);
 
-    void editTitleAndDescription(int flashcardSetId, String title, String description);
+    void editTitleAndDescription(FlashcardSetDsRequestModel flashcardSet);
 
-    void saveFlashcardID(int flashcardSetID, int flashcardID);
+    void saveFlashcardID(FlashcardSetDsRequestModel flashcardSet);
 
     void deleteFlashcardSet(int flashcardSetID);
 

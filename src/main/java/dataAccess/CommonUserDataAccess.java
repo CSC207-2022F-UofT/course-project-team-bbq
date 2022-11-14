@@ -55,7 +55,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
             writer.newLine();
 
             for (CommonUserDsRequestModel user : accounts.values()) {
-                String line = String.format(user.getUsername(), user.getPassword(), user.getFlashcardSetIds());
+                String line = String.format("%s", "%s", "%s", "%s", user.getUsername(), user.getPassword(), user.getFlashcardSetIds());
                 writer.write(line);
                 writer.newLine();
             }
@@ -71,7 +71,6 @@ public class CommonUserDataAccess implements IUserDataAccess{
     public CommonUserDsRequestModel getUser(String username) {
         return null;
     }
-
     @Override
     public boolean existsByName(String username) {
         return false;
