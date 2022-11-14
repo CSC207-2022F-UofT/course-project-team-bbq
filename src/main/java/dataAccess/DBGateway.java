@@ -21,6 +21,14 @@ public class DBGateway {
         this.userGateway = userGateway;
     }
 
+    public static String getFlashcardPath() {
+        return DBGateway.flashcardPath;
+    }
+
+    public static String getFlashcardSetPath() {
+        return DBGateway.flashcardSetPath;
+    }
+
     public FlashcardDsRequestModel getFlashcard(int flashcardId){
         return this.flashcardGateway.getFlashcard(flashcardId);
     }
