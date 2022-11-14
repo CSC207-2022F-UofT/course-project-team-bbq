@@ -1,7 +1,8 @@
-package Editor.screens;
+package Editor.Flashcard.screens;
 
-import Editor.FlashcardEditorOutputBoundary;
-import Editor.FlashcardEditorResponseModel;
+import Editor.Flashcard.FlashcardEditorOutputBoundary;
+import Editor.Flashcard.FlashcardEditorResponseModel;
+import Editor.Flashcard.screens.FlashcardEditFailed;
 
 public class FlashcardEditorPresenter implements FlashcardEditorOutputBoundary {
 

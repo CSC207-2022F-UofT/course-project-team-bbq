@@ -1,9 +1,11 @@
-package Editor.screens;
+package Editor.Flashcard.screens;
+
+import Editor.Flashcard.FlashcardEditorResponseModel;
+import Editor.Flashcard.screens.FlashcardEditorController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class FlashcardEditorScreen extends JPanel implements ActionListener {
 
@@ -12,6 +14,7 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
     JTextField idPanel;
     JTextField termPanel;
     JTextArea definitionPanel;
+
 
     public FlashcardEditorScreen(FlashcardEditorController controller){
         this.controller = controller;
@@ -42,16 +45,17 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
-
         if(e.getActionCommand().equals("Cancel")){
             System.exit(0);
         }
         else{
             try{
-                int id = Integer.parseInt(idPanel.getText());
-                String term = termPanel.getText();
-                String definition = definitionPanel.getText();
-                controller.edit(id, term, definition);
+                int numId = Integer.parseInt(idPanel.getText());
+                String newTerm = termPanel.getText();
+                String newDefinition = definitionPanel.getText();
+                FlashcardEditorResponseModel newFlashcard = controller.edit(numId, newTerm, newDefinition);
+                String message = "Edited Flashcard #" + newFlashcard.getFlashcardId() + ": " + newFlashcard.getTermEdit() + " : " + newFlashcard.getDefinitionEdit();
+                JOptionPane.showMessageDialog(this, message);
             }
             catch (Exception error){
                 JOptionPane.showMessageDialog(this, error.getMessage());

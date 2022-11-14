@@ -1,8 +1,8 @@
-package Editor.screens;
+package Editor.Flashcard.screens;
 
-import Editor.FlashcardEditorInputBoundary;
-import Editor.FlashcardEditorRequestModel;
-import Editor.FlashcardEditorResponseModel;
+import Editor.Flashcard.FlashcardEditorInputBoundary;
+import Editor.Flashcard.FlashcardEditorRequestModel;
+import Editor.Flashcard.FlashcardEditorResponseModel;
 
 public class FlashcardEditorController {
 

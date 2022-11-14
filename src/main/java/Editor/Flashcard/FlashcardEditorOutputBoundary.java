@@ -1,4 +1,4 @@
-package Editor;
+package Editor.Flashcard;
 
 public interface FlashcardEditorOutputBoundary {
     FlashcardEditorResponseModel prepareSuccessView(FlashcardEditorResponseModel flashcard);

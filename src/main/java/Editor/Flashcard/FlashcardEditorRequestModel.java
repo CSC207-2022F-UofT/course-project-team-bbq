@@ -1,4 +1,4 @@
-package Editor;
+package Editor.Flashcard;
 
 import entities.Flashcard;
 

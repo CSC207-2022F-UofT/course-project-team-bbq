@@ -1,8 +1,8 @@
-package Editor;
+package Editor.Flashcard;
 
-import Editor.screens.FlashcardEditorController;
-import Editor.screens.FlashcardEditorPresenter;
-import Editor.screens.FlashcardEditorScreen;
+import Editor.Flashcard.screens.FlashcardEditorController;
+import Editor.Flashcard.screens.FlashcardEditorPresenter;
+import Editor.Flashcard.screens.FlashcardEditorScreen;
 import dataAccess.CommonUserDataAccess;
 import dataAccess.DBGateway;
 import dataAccess.FlashcardDataAccess;
@@ -25,13 +25,13 @@ public class FlashcardEditorMain {
         try{
             fcDataAccess = new FlashcardDataAccess("src/data/Flashcards.csv");
             fcSDataAccess = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-            userDataAccess = new CommonUserDataAccess("src/data/Users.csv");
+            //userDataAccess = new CommonUserDataAccess("src/data/Users.csv");
         }
         catch(IOException e){
             throw new RuntimeException("could not find file");
         }
 
-        dataBaseGateway = new DBGateway(fcDataAccess, fcSDataAccess, userDataAccess);
+        dataBaseGateway = new DBGateway(fcDataAccess, fcSDataAccess, null);
 
         FlashcardEditorInputBoundary interactor = new FlashcardEditorInteractor(dataBaseGateway, presenter);
         FlashcardEditorController controller = new FlashcardEditorController(interactor);
@@ -47,6 +47,11 @@ public class FlashcardEditorMain {
         cardLayout.show(screens, "Edit");
         application.pack();
         application.setVisible(true);
+
+
+
+
+        //Second use case
 
     }
 }
