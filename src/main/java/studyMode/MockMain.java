@@ -20,10 +20,11 @@ public class MockMain {
         StudySessionOutputBoundary presenter = new StudySessionPresenter();
         StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
         StudySessionController controller = new StudySessionController(interactor);
-        MockSettingsView settingsView = new MockSettingsView(controller);
-        MockStudyView studyView = new MockStudyView(controller);
-
-        int numFlashcards = settingsView.eventHandler(0);
-        studyView.eventHandler(numFlashcards);
+//        MockSettingsView settingsView = new MockSettingsView(controller);
+//        MockStudyView studyView = new MockStudyView(controller);
+//
+//        int numFlashcards = settingsView.eventHandler(0);
+//        studyView.eventHandler(numFlashcards);
+        new StudySettingsScreen(controller, 0);
     }
 }
