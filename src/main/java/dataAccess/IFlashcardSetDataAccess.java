@@ -15,7 +15,7 @@ public interface IFlashcardSetDataAccess {
 
     void editTitleAndDescription(FlashcardSetDsRequestModel flashcardSet);
 
-    void saveFlashcardID(FlashcardSetDsRequestModel flashcardSet);
+    void saveFlashcardID(int flashcardSetId, int flashcardId);
 
     void deleteFlashcardSet(int flashcardSetID);
 

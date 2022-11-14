@@ -34,13 +34,14 @@ public class CommonUserDataAccess implements IUserDataAccess{
                 String[] col = row.split(",");
                 String username = String.valueOf(col[headers.get("username")]);
                 String password = String.valueOf(col[headers.get("password")]);
+                boolean isAdmin = Boolean.parseBoolean((col[headers.get("isAdmin")]));
                 List<Integer> flashcardSetIds = new ArrayList<>();
                 for (int i = headers.get("flashcardSetIds"); i < col.length; i++){
                     flashcardSetIds.add(Integer.parseInt(col[i]));
 
                 }
 
-                CommonUserDsRequestModel user = new CommonUserDsRequestModel(username, password, flashcardSetIds);
+                CommonUserDsRequestModel user = new CommonUserDsRequestModel(username, password, isAdmin, flashcardSetIds);
                 accounts.put(username, user);
             }
 
@@ -73,6 +74,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
     }
     @Override
     public boolean existsByName(String username) {
+
         return false;
     }
 

@@ -91,7 +91,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     }
 
     @Override
-    public void saveFlashcardID(FlashcardSetDsRequestModel flashcardSet) {
+    public void saveFlashcardID(int flashcardSetId, int flashcardId) {
 
     }
 
