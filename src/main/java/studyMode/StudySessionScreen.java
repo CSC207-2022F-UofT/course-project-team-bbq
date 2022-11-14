@@ -74,7 +74,7 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         else{
             request.setCommand(command);
             StudySessionResponseModel response = this.controller.study(request);
-            this.flip.setText(response.getOutputText());
+            this.flip.setText("<html>" + response.getOutputText() + "</html>");
             this.cardLabel.setText(response.getCardNumber() + " / "  + this.numFlashcards);
         }
     }
