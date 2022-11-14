@@ -106,6 +106,9 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.setSize(350,200);
         this.setVisible(true);//making the frame visible
+
+        // quit if you close the tab
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override

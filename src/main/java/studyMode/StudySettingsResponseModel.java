@@ -2,8 +2,8 @@ package studyMode;
 
 public class StudySettingsResponseModel extends StudySessionResponseModel {
 
-    int numFlashcards;
-    String title;
+    private int numFlashcards;
+    private String title;
     public StudySettingsResponseModel(String outputText, String title, int numFlashcards) {
         super(outputText, 1);
         this.numFlashcards = numFlashcards;

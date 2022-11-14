@@ -59,6 +59,7 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         this.setLayout(null);//using no layout managers
         this.setVisible(true);//making the frame visible
 
+        // quit if you close the tab
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

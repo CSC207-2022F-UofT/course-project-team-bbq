@@ -12,4 +12,8 @@ public class StudySessionPresenter implements StudySessionOutputBoundary {
         return new StudySettingsResponseModel(outputText, title, numFlashcards);
     }
 
+    private String reformatText(String outputText){
+        // reformat the outputText to fit on the flashacard
+        return null;
+    }
 }
