@@ -39,15 +39,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
                 String ownerUsername = String.valueOf(col[headers.get("ownerUsername")]);
 
                 List<Integer> flashcardIds = new ArrayList<>();
-                for (int i=6; i <= col.length; i++){
-                    if (flashcardIds.size() == 0){
-                        flashcardIds.add(Integer.parseInt(col[headers.get("flashcardIds")]));
+                for (int i=headers.get("flashcardIds"); i < col.length; i++){
+                    flashcardIds.add(Integer.parseInt(col[i]));
                     }
-                    else{
-                        flashcardIds.add(Integer.parseInt(col[i]));
-                    }
-                }
-
 
                 FlashcardSetDsRequestModel set = new FlashcardSetDsRequestModel(title, description, privacy, id, ownerUsername, flashcardIds);
                 flashcardSets.put(id, set);

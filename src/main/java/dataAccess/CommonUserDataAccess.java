@@ -35,13 +35,8 @@ public class CommonUserDataAccess implements IUserDataAccess{
                 String username = String.valueOf(col[headers.get("username")]);
                 String password = String.valueOf(col[headers.get("password")]);
                 List<Integer> flashcardSetIds = new ArrayList<>();
-                for (int i = 2; i <= col.length; i++){
-                    if (flashcardSetIds.size() == 0){
-                        flashcardSetIds.add(Integer.parseInt(col[headers.get("flashcardSetIds")]));
-                    }
-                    else{
-                        flashcardSetIds.add(Integer.parseInt(col[i]));
-                    }
+                for (int i = headers.get("flashcardSetIds"); i < col.length; i++){
+                    flashcardSetIds.add(Integer.parseInt(col[i]));
 
                 }
 
