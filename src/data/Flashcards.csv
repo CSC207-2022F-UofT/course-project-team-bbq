@@ -1,2 +1,5 @@
 term, definition, creationDate, flashcardId, belongsToId
-String, a sequence of characters, 2022-11-11T4:14:30, 0, 1
+test card 1,the first test card,2022-11-13T15:32:26.666982800,0,0
+test card 2,the second test card,2022-11-13T15:32:27.666982800,1,0
+test card 3,the third test card,2022-11-13T15:32:28.666982800,2,0
+alphabetical order checker,to test if alphabetical order is working,2022-11-13T15:32:29.666982800,3,0
