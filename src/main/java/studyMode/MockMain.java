@@ -25,6 +25,8 @@ public class MockMain {
 //
 //        int numFlashcards = settingsView.eventHandler(0);
 //        studyView.eventHandler(numFlashcards);
+
         new StudySettingsScreen(controller, 0);
+//        new StudySettingsScreen(controller, 1);
     }
 }

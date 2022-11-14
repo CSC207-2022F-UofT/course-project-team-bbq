@@ -46,27 +46,31 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
     }
 
     @Override
-    public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
+    public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) throws IndexOutOfBoundsException {
         this.studier = builder.buildStudier(request.getFlashcardSetId(), request.isTermDefault());
 
-        String sortingOrder = request.getSortingOrder();
-        if (sortingOrder.equals("shuffle")){
-            studier.shuffle();
-        }
-        else {
-            Comparator<Flashcard> comparator;
-            if ("alph".equals(sortingOrder)) {
-                comparator = new FlashcardAlphComparator();
+        try {
+            String sortingOrder = request.getSortingOrder();
+            if (sortingOrder.equals("shuffle")) {
+                studier.shuffle();
             } else {
-                comparator = new FlashcardByDateComparator();
+                Comparator<Flashcard> comparator;
+                if ("alph".equals(sortingOrder)) {
+                    comparator = new FlashcardAlphComparator();
+                } else {
+                    comparator = new FlashcardByDateComparator();
+                }
+                if (request.isReverse()) {
+                    studier.reverse(comparator);
+                } else {
+                    studier.sort(comparator);
+                }
             }
-            if (request.isReverse()) {
-                studier.reverse(comparator);
-            } else {
-                studier.sort(comparator);
-            }
-        }
 
-        return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
+            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
+        }
+        catch (IndexOutOfBoundsException exception) {
+            return presenter.prepareFailedStudyView();
+        }
     }
 }

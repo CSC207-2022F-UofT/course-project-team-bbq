@@ -11,4 +11,11 @@ public class StudySessionPresenter implements StudySessionOutputBoundary {
     public StudySettingsResponseModel prepareStudyView(String outputText, String title, int numFlashcards) {
         return new StudySettingsResponseModel(outputText, title, numFlashcards);
     }
+
+    @Override
+    public StudySettingsResponseModel prepareFailedStudyView() {
+        StudySettingsResponseModel response = new StudySettingsResponseModel();
+        response.setFailed(true);
+        return response;
+    }
 }

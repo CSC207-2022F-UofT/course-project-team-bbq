@@ -6,4 +6,6 @@ public interface StudySessionOutputBoundary {
 
     StudySettingsResponseModel prepareStudyView(String outputText, String title, int numFlashcards);
 
+    StudySettingsResponseModel prepareFailedStudyView();
+
 }

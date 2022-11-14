@@ -127,9 +127,15 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
 
         StudySettingsResponseModel response = this.controller.getSetToStudy(request);
 
+
+
         setVisible(false);
         dispose();
-
-        new StudySessionScreen(this.controller, response);
+        if (response.hasFailed()){
+            new StudySettingsFailureScreen();
+        }
+        else {
+            new StudySessionScreen(this.controller, response);
+        }
     }
 }

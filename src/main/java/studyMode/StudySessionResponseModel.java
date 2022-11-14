@@ -9,6 +9,10 @@ public class StudySessionResponseModel {
         this.cardNumber = cardNumber;
     }
 
+    public StudySessionResponseModel() {
+
+    }
+
     public String getOutputText() {
         return outputText;
     }
