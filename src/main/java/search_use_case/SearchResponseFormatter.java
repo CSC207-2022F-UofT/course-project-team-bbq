@@ -16,8 +16,7 @@ public class SearchResponseFormatter implements SearchPresenter{
 
     @Override
     public SearchResponseModel prepareFailView(String error) {
-        // to be implemented, need to throw error
-        return null;
+        throw new SearchFail(error);
     }
 }
 
