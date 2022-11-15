@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class StudySettingsFailureScreen extends JFrame {
 
-    private static String failMessage = "<html>This flashcard set is empty! Please add flashcards if you wish to study.</html>";
+    private static final String failMessage = "<html>This flashcard set is empty! Please add flashcards if you wish to study.</html>";
     public StudySettingsFailureScreen() {
         super("Error: Empty Flashcard Set");
         JLabel label = new JLabel(StudySettingsFailureScreen.failMessage);

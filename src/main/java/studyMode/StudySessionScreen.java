@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudySessionScreen extends JFrame implements ActionListener {
-    private StudySessionController controller;
-    private JButton flip;
+    private final StudySessionController controller;
+    private final JButton flip;
 
-    private int numFlashcards;
+    private final int numFlashcards;
 
-    private JLabel cardLabel;
+    private final JLabel cardLabel;
 
     public StudySessionScreen(StudySessionController controller,
                               StudySettingsResponseModel response) {

@@ -9,15 +9,12 @@ import java.util.Comparator;
 public class StudySessionInteractor implements StudySessionInputBoundary {
 
     private FlashcardStudier studier;
-    private StudySessionOutputBoundary presenter;
+    private final StudySessionOutputBoundary presenter;
 
-    private DBGateway gateway;
-
-    private FlashcardStudierBuilder builder;
+    private final FlashcardStudierBuilder builder;
 
     public StudySessionInteractor(DBGateway gateway,
                                   StudySessionOutputBoundary presenter){
-        this.gateway = gateway;
         this.builder = new FlashcardStudierBuilder(gateway);
         this.presenter = presenter;
 
@@ -29,15 +26,9 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         String command = userInput.getCommand();
 
         switch (command) {
-            case "flip":
-                outputText = studier.flipCard();
-                break;
-            case "next":
-                outputText = studier.getNextCard();
-                break;
-            case "prev":
-                outputText = studier.getPrevCard();
-                break;
+            case "flip" -> outputText = studier.flipCard();
+            case "next" -> outputText = studier.getNextCard();
+            case "prev" -> outputText = studier.getPrevCard();
         }
         int cardNumber = studier.getCounter() + 1;
 

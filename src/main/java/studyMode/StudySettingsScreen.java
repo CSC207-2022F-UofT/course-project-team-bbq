@@ -6,8 +6,9 @@ import java.awt.event.ActionListener;
 
 public class StudySettingsScreen extends JFrame implements ActionListener {
 
-    private int flashcardSetId;
-    private StudySessionController controller;
+    private final int flashcardSetId;
+
+    private final StudySessionController controller;
 
     private String sortingOrder;
 
@@ -45,6 +46,7 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
         this.sortingOrder = "time";
         dropDown.addActionListener(e -> {
             String choice = (String) dropDown.getSelectedItem();
+            assert choice != null;
             if (choice.equals(choices[0])){
                 this.sortingOrder = "time";
                 setReverseLabel.setVisible(true);

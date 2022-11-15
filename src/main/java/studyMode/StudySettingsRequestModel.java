@@ -1,11 +1,11 @@
 package studyMode;
 
 public class StudySettingsRequestModel {
-    private int flashcardSetId;
-    private String sortingOrder;
+    private final int flashcardSetId;
+    private final String sortingOrder;
 
     private boolean isReverse = false;
-    private boolean termIsDefault;
+    private final boolean termIsDefault;
 
     public StudySettingsRequestModel(int flashcardSetId, String sortingOrder,
                                      boolean termIsDefault) {
@@ -38,7 +38,4 @@ public class StudySettingsRequestModel {
         return isReverse;
     }
 
-    public void setReverse() {
-        isReverse = !isReverse;
-    }
 }
