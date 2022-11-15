@@ -3,8 +3,6 @@ package studyMode;
 import dataAccess.*;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class MockMain {
 
@@ -20,11 +18,6 @@ public class MockMain {
         StudySessionOutputBoundary presenter = new StudySessionPresenter();
         StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
         StudySessionController controller = new StudySessionController(interactor);
-//        MockSettingsView settingsView = new MockSettingsView(controller);
-//        MockStudyView studyView = new MockStudyView(controller);
-//
-//        int numFlashcards = settingsView.eventHandler(0);
-//        studyView.eventHandler(numFlashcards);
 
         new StudySettingsScreen(controller, 0);
 //        new StudySettingsScreen(controller, 1);

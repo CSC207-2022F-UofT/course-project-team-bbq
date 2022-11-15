@@ -1,6 +1,7 @@
 package studyMode;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class StudySettingsFailureScreen extends JFrame {
 
@@ -8,7 +9,7 @@ public class StudySettingsFailureScreen extends JFrame {
     public StudySettingsFailureScreen() {
         super("Error: Empty Flashcard Set");
         JLabel label = new JLabel(StudySettingsFailureScreen.failMessage);
-        this.add(label);
+        this.add(label, BorderLayout.CENTER);
 
         this.setSize(350,200);
         this.setVisible(true);//making the frame visible
