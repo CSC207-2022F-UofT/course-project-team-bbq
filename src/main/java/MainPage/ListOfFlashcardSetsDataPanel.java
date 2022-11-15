@@ -22,18 +22,4 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
-
-    public static void main(String[] args) {
-        JFrame f = new JFrame();
-        f.setSize(1000, 1000);
-
-        Map<Integer, String[]> map = new HashMap<>();
-        for (int i = 1; i < 4; i++) {
-            map.put(i, new String[]{"test set " + i, "test description " + i});
-        }
-
-        f.add(new ListOfFlashcardSetsDataPanel(map));
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 }
