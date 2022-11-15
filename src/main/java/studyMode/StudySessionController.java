@@ -11,7 +11,6 @@ public class StudySessionController {
         return inputBoundary.study(userInput);
     }
 
-    
     public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
         return inputBoundary.getSetToStudy(request);
     }
