@@ -43,22 +43,22 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
         });
 
         JComboBox<String> dropDown = new JComboBox<>(choices);
-        this.sortingOrder = "time";
+        this.sortingOrder = StudySessionController.timeSort;
         dropDown.addActionListener(e -> {
             String choice = (String) dropDown.getSelectedItem();
             assert choice != null;
             if (choice.equals(choices[0])){
-                this.sortingOrder = "time";
+                this.sortingOrder = StudySessionController.timeSort;
                 setReverseLabel.setVisible(true);
                 setReverse.setVisible(true);
             }
             else if (choice.equals(choices[1])) {
-                this.sortingOrder ="alph";
+                this.sortingOrder = StudySessionController.alphSort;
                 setReverseLabel.setVisible(true);
                 setReverse.setVisible(true);
             }
             else {
-                this.sortingOrder = "shuffle";
+                this.sortingOrder = StudySessionController.shuffleSort;
                 setReverseLabel.setVisible(false);
                 setReverse.setVisible(false);
             }
@@ -117,7 +117,7 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         StudySettingsRequestModel request;
 
-        if (sortingOrder.equals("shuffle")) {
+        if (sortingOrder.equals(StudySessionController.shuffleSort)) {
             request = new StudySettingsRequestModel(flashcardSetId, sortingOrder,
                     termIsDefault);
         }

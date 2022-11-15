@@ -29,9 +29,9 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         JButton quit = new JButton("Quit");
 
         // set action commands so action listener knows what to do
-        flip.setActionCommand("flip");
-        next.setActionCommand("next");
-        prev.setActionCommand("prev");
+        flip.setActionCommand(StudySessionController.flip);
+        next.setActionCommand(StudySessionController.next);
+        prev.setActionCommand(StudySessionController.prev);
         quit.setActionCommand("quit");
         flip.addActionListener(this);
         next.addActionListener(this);

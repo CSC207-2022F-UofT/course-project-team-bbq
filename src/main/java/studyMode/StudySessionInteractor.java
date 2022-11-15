@@ -26,9 +26,9 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         String command = userInput.getCommand();
 
         switch (command) {
-            case "flip" -> outputText = studier.flipCard();
-            case "next" -> outputText = studier.getNextCard();
-            case "prev" -> outputText = studier.getPrevCard();
+            case StudySessionInputBoundary.flip -> outputText = studier.flipCard();
+            case StudySessionInputBoundary.next -> outputText = studier.getNextCard();
+            case StudySessionInputBoundary.prev -> outputText = studier.getPrevCard();
         }
         int cardNumber = studier.getCounter() + 1;
 
@@ -42,11 +42,11 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
 
         try {
             String sortingOrder = request.getSortingOrder();
-            if (sortingOrder.equals("shuffle")) {
+            if (sortingOrder.equals(StudySessionInteractor.shuffleSort)) {
                 studier.shuffle();
             } else {
                 Comparator<Flashcard> comparator;
-                if ("alph".equals(sortingOrder)) {
+                if (StudySessionInteractor.alphSort.equals(sortingOrder)) {
                     comparator = new FlashcardAlphComparator();
                 } else {
                     comparator = new FlashcardByDateComparator();
