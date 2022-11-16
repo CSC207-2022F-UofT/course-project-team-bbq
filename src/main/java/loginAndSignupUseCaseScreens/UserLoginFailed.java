@@ -1,7 +1,7 @@
 package loginAndSignupUseCaseScreens;
 
-//public class UserLoginFailed {
-//    public UserLoginFailed(String error) {
-//        super(error);
-//    }
-//}
+public class UserLoginFailed extends RuntimeException{
+    public UserLoginFailed(String error) {
+        super(error);
+    }
+}

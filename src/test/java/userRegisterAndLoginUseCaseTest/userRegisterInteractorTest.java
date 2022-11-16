@@ -1,4 +1,4 @@
-package userRegisterUseCaseTest;
+package userRegisterAndLoginUseCaseTest;
 
 import dataAccess.IUserDataAccess;
 import entities.CommonUserFactory;
@@ -34,7 +34,7 @@ class UserRegisterInteractorTest {
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
                 // 4) Check that the Output Data and associated changes
                 // are correct
-                assertEquals("Steve", user.getLogin());
+                assertEquals("Steve", user.getSignedUpUsername());
                 assertEquals(false, user.getIsAdmin());
                 assertTrue(userRepository.existsByName("Steve"));
                 return null;
@@ -68,7 +68,7 @@ class UserRegisterInteractorTest {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
 
-                assertEquals("Richard", user.getLogin());
+                assertEquals("Richard", user.getSignedUpUsername());
                 assertEquals(true, user.getIsAdmin());
                 assertFalse(userRepository.existsByName("Steve"));
                 assertTrue(userRepository.existsByName("Richard"));
