@@ -37,13 +37,13 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
                 String title = String.valueOf(col[headers.get("title")]);
                 String description = String.valueOf(col[headers.get("description")]);
                 boolean privacy = Boolean.parseBoolean(col[headers.get("isPrivate")]);
-                int id = Integer.parseInt(col[headers.get("flashcardSetId")]);
+                int id = Integer.parseInt(col[headers.get("flashcardSetId")]) + 1;
                 String ownerUsername = String.valueOf(col[headers.get("ownerUsername")]);
 
                 List<Integer> flashcardIds = new ArrayList<>();
-                for (int i=headers.get("flashcardIds"); i < col.length; i++){
-                    flashcardIds.add(Integer.parseInt(col[i]));
-                    }
+//                for (int i=headers.get("flashcardIds"); i < col.length; i++){
+//                    flashcardIds.add(Integer.parseInt(col[i]));
+//                    }
 
                 FlashcardSetDsRequestModel set = new FlashcardSetDsRequestModel(title, description, privacy, id, ownerUsername, flashcardIds);
                 flashcardSets.put(id, set);
@@ -60,8 +60,8 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
             writer.newLine();
 
             for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
-                String line = format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
-                                set.getFlashcardIds());
+                String line = set.getTitle() + "," + set.getDescription() + "," + set.getIsPrivate() + ","
+                        + set.getFlashcardSetId() + "," + set.getOwnerUsername() + "," + set.getFlashcardIds();
                 writer.write(line);
                 writer.newLine();
             }
@@ -102,6 +102,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
     @Override
     public void saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
-
+        flashcardSets.put(flashcardSet.getFlashcardSetId(), flashcardSet);
+        this.save();
     }
 }
