@@ -1,28 +1,23 @@
-import entityRequestModels.QuizSettingsDsGateway;
-
-import quiz_settings_use_case.*;
+import quizUseCase.*;
 import dataAccess.*;
+import quizUseCase.screens.QuizSettingsScreen;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // DATABASE
-//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
-//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-//
-//        // QUIZ SETTINGS USE CASE
-//        QuizSettingsOutputBoundary presenter = new QuizSettingsPresenter();
-//        QuizSettingsInputBoundary interactor = new QuizSettingsInteractor(gateway, presenter);
-//        StudySessionController controller = new StudySessionController(interactor);
-////        MockSettingsView settingsView = new MockSettingsView(controller);
-////        MockStudyView studyView = new MockStudyView(controller);
-////
-////        int numFlashcards = settingsView.eventHandler(0);
-////        studyView.eventHandler(numFlashcards);
-//
-//        new QuizSettingsScreen(controller, 0);
+        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+        // IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+
+        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
+
+        // QUIZ SETTINGS USE CASE
+        QuizOutputBoundary presenter = new QuizPresenter();
+        QuizInputBoundary interactor = new QuizInteractor(gateway, presenter);
+        QuizController controller = new QuizController(interactor);
+
+        new QuizSettingsScreen(controller, 0);
     }
 }

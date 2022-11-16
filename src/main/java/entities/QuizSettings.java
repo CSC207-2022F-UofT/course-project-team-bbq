@@ -6,11 +6,11 @@ package entities;
  */
 public class QuizSettings {
     private int numQuestions;
-    private boolean timerOn = false;
-    private int timerDuration = 15; // minutes
-    private boolean multipleChoiceOn = true;
-    private boolean textEntryOn = true;
-    private boolean trueFalseOn = true;
+    private boolean timerOn;
+    private int timerDuration;
+    private boolean multipleChoiceOn;
+    private boolean textEntryOn;
+    private boolean trueFalseOn;
 
     public QuizSettings(int numQuestions) {
         this.numQuestions = numQuestions;
@@ -28,6 +28,10 @@ public class QuizSettings {
 
     public boolean atLeastOneOptionEnabled() {
         return multipleChoiceOn || textEntryOn || trueFalseOn;
+    }
+
+    public boolean timerIsReasonable() {
+        return 1 <= this.timerDuration && this.timerDuration <= 60;
     }
 
     /** GETTERS AND SETTERS **/

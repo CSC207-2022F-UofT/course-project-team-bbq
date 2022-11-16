@@ -1,7 +1,10 @@
-package quiz_use_case;
+package quizUseCase;
 
 import java.util.ArrayList;
 
+/**
+ * Application Business Rules
+ */
 public class QuizRequestModel {
     private ArrayList<String> userAnswers;
 
