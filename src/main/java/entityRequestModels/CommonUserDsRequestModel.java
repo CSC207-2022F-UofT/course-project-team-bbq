@@ -1,23 +1,24 @@
 package entityRequestModels;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CommonUserDsRequestModel {
     private String username;
     private String password;
-    private String repeatPassword;
     private boolean isAdmin;
-    private Map<Integer, String[]> flashcardSets;
-    private final LocalDateTime creationTime;
 
-    public CommonUserDsRequestModel(String username, String password, boolean isAdmin,
-                                    LocalDateTime creationTime){
+    private List<Integer> flashcardSetIds;
+//    private Map<Integer, String[]> flashcardSets;
+//    private final LocalDateTime creationTime;
+
+    public CommonUserDsRequestModel(String username, String password, boolean isAdmin, List<Integer> flashcardSetIds){
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
-        //this.flashcardSets = flashcardSets;
-        this.creationTime = creationTime;
+        this.flashcardSetIds = flashcardSetIds;
     }
 
     public String getName() {
@@ -36,20 +37,24 @@ public class CommonUserDsRequestModel {
         this.password = password;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
-
     public boolean getIsAdmin(){
         return isAdmin;
     }
     public void setIsAdmin(boolean isAdmin){
         this.isAdmin = isAdmin;
     }
-    //public Map<Integer, String[]> getFlashcardSets() {return flashcardSets;}
+
+    public List<Integer> getFlashcardSetIds(){
+        return flashcardSetIds;
+    }
+
+//    public Map<Integer, String[]> getFlashcardSets(){
+//        return this.flashcardSets;
+//    }
+//
+//    public Object getCreationTime() {
+//        return creationTime;
+//    }
+//    //public Map<Integer, String[]> getFlashcardSets() {return flashcardSets;}
 
 }

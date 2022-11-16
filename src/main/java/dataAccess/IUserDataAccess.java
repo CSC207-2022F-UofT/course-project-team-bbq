@@ -8,12 +8,11 @@ import entityRequestModels.UserDsRequestModel;
 public interface IUserDataAccess {
     //THE DS GATEWAY
 
-
     /**
      * @param username the user's username
      * @return the User object who has username
      */
-    UserDsRequestModel getUser(String username);
+    CommonUserDsRequestModel getUser(String username);
 
     boolean existsByName(String username);
 

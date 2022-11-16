@@ -1,13 +1,25 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.Map;
 
-public class CommonUser extends User{
+public class CommonUser implements User{
 
+    private String username;
 
-    public CommonUser(String username, String password, boolean isAdmin, Map<Integer, String[]> flashcardSets) {
-        super(username, password, isAdmin, flashcardSets);
+    private String password;
+    private boolean isAdmin;
+    //private Map<Integer, String[]> flashcardSets = new HashMap<>();
+    private ArrayList<Integer> flashcardSetIds;
+
+    public CommonUser(String username, String password, boolean isAdmin){
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.flashcardSetIds = new ArrayList<Integer>();
     }
+
+    @Override
     public String getUsername() {
         return username;
     }
@@ -16,27 +28,44 @@ public class CommonUser extends User{
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
-        this.flashcardSets = flashcardSets;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public boolean passwordIsValid() {
-        return false;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public boolean getIsAdmin(){
+    @Override
+    public boolean passwordIsValid() {
+        return password != null && password.length() > 5;
+    }
+
+    @Override
+    public boolean getIsAdmin() {
         return isAdmin;
     }
-    public Map<Integer, String[]> getFlashcardSets() {
-        return flashcardSets;
+
+    public void setIsAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
     }
+
+    @Override
+    public ArrayList<Integer> getFlashcardSetIds() {
+        return flashcardSetIds;
+    }
+
+    public void setFlashcardSetIds(ArrayList<Integer> setFlashcardSetIds) {
+        this.flashcardSetIds = setFlashcardSetIds;
+    }
+
+
+//    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
+//        this.flashcardSets = flashcardSets;
+//    }
+//    public Map<Integer, String[]> getFlashcardSets() {
+//        return flashcardSets;
+//    }
 
 }
