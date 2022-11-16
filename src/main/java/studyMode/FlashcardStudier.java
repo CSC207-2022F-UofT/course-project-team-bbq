@@ -28,6 +28,10 @@ public class FlashcardStudier extends FlashcardSet {
         this.termIsDefault = termIsDefault;
     }
 
+    /**
+     * @return the flashcard's definition if displayingTerm is true, and
+     * the flashcard's term if displayingTerm is false. Negates displayingTerm.
+     */
     public String flipCard(){
         if (displayingTerm){
             displayingTerm = !displayingTerm;
@@ -39,6 +43,11 @@ public class FlashcardStudier extends FlashcardSet {
         }
     }
 
+    /**
+     * Sets currFlashcard to the next flashcard in flashcards. If currFlashcard is the
+     * last flashcard, sets currFlashcard to the zeroth flashcard in flashcards.
+     * @return the output text for the new currFlashcard as defined by getOutputText
+     */
     public String getNextCard(){
         if (counter < numFlashcards - 1){
             counter += 1;
@@ -50,6 +59,11 @@ public class FlashcardStudier extends FlashcardSet {
         return this.getOutputText();
     }
 
+    /**
+     * Sets currFlashcard to the previous flashcard in flashcards. If currFlashcard is the
+     * zeroth flashcard, sets currFlashcard to the last flashcard in flashcards.
+     * @return the output text for the new currFlashcard as defined by getOutputText
+     */
     public String getPrevCard(){
         if (counter > 0){
             counter -= 1;
@@ -65,6 +79,10 @@ public class FlashcardStudier extends FlashcardSet {
         return counter;
     }
 
+    /**
+     * @return the term of currFlashcard if termIsDefault and set displayingTerm to be true.
+     * Otherwise, return the definition of currFlashcard and set displayingTerm to be false.
+     */
     public String getOutputText() {
         if (termIsDefault) {
             displayingTerm = true;
@@ -76,30 +94,50 @@ public class FlashcardStudier extends FlashcardSet {
         }
     }
 
+    /**
+     * @param c a flashcard comparator class
+     * Sorts flashcards by the rule defined by c and sets currFlashcard to the
+     * zeroth flashcard
+     */
     public void sort(Comparator<Flashcard> c){
         this.flashcards.sort(c);
-        this.setCurrFlashcard();
+        this.resetCurrFlashcard();
     }
 
+    /**
+     * @param c a flashcard comparator class
+     * Sorts flashcards by the rule defined by c and reverses flashcards
+     * sets currFlashcard to the zeroth flashcard
+     */
     public void reverse(Comparator<Flashcard> c){
         this.sort(c);
         Collections.reverse(this.flashcards);
-        this.setCurrFlashcard();
+        this.resetCurrFlashcard();
     }
 
+    /**
+     * Randomly shuffles flashcards and sets currFlashcard to the
+     * zeroth flashcard
+     */
     public void shuffle(){
         Collections.shuffle(this.flashcards);
-        this.setCurrFlashcard();
+        this.resetCurrFlashcard();
     }
 
     public int getNumFlashcards() {
         return numFlashcards;
     }
 
-    public void setCurrFlashcard() {
+    /**
+     * Sets currflashcard to the zeroth flashcard in flashcards
+     */
+    public void resetCurrFlashcard() {
         currFlashcard = flashcards.get(0);
     }
 
+    /**
+     * sets numFlashcards to be the size of flashcards
+     */
     public void setNumFlashcards() {
         numFlashcards = flashcards.size();
     }
