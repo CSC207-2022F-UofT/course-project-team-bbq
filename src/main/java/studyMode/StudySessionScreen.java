@@ -1,16 +1,17 @@
 package studyMode;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudySessionScreen extends JFrame implements ActionListener {
-    private StudySessionController controller;
-    private JButton flip;
+    private final StudySessionController controller;
+    private final JButton flip;
 
-    private int numFlashcards;
+    private final int numFlashcards;
 
-    private JLabel cardLabel;
+    private final JLabel cardLabel;
 
     public StudySessionScreen(StudySessionController controller,
                               StudySettingsResponseModel response) {
@@ -18,16 +19,19 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         this.numFlashcards = response.getNumFlashcards();
         this.controller = controller;
 
+        JPanel cLabelPanel = new JPanel();
         cardLabel = new JLabel("1 / " + this.numFlashcards);
+        cLabelPanel.add(cardLabel, BorderLayout.SOUTH);
+
         this.flip = new JButton(response.getOutputText());//creating instance of JButton
         JButton next = new JButton("Next");
         JButton prev = new JButton("Previous");
         JButton quit = new JButton("Quit");
 
         // set action commands so action listener knows what to do
-        flip.setActionCommand("flip");
-        next.setActionCommand("next");
-        prev.setActionCommand("prev");
+        flip.setActionCommand(StudySessionController.flip);
+        next.setActionCommand(StudySessionController.next);
+        prev.setActionCommand(StudySessionController.prev);
         quit.setActionCommand("quit");
         flip.addActionListener(this);
         next.addActionListener(this);
@@ -35,29 +39,31 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         quit.addActionListener(this);
 
 
-        int size = 700;
+        int width = 550;
+        int height = 400;
         int cardWidth = 250;
         int cardHeight = 200;
-        int x = (size - cardWidth) / 2;
-        int y = (size - cardWidth) / 2;
+        int x = (width - cardWidth) / 2;
+        int y = (height - cardWidth) / 2;
         int bWidth = 100;
         int bHeight = 50;
         // set the button bounds on the screen
         flip.setBounds(x,y,cardWidth, cardHeight);
-        next.setBounds(x+cardWidth+(x-bWidth)/2, (size - bHeight)/2, bWidth, bHeight);
-        prev.setBounds((x-bWidth)/2, (size -bHeight)/2, bWidth, bHeight);
-        quit.setBounds((size-bWidth)/2, y + cardHeight + (y-bHeight)/2, bWidth, bHeight);
-        cardLabel.setBounds((size-bWidth)/2, (y-bHeight)/2, bWidth, bHeight);
+        next.setBounds(x+cardWidth+(x-bWidth)/2, (height)/2 - bHeight, bWidth, bHeight);
+        prev.setBounds((x-bWidth)/2, height/2 - bHeight, bWidth, bHeight);
+        quit.setBounds((width-bWidth)/2, y + cardHeight + (y-bHeight)/2, bWidth, bHeight);
+        cLabelPanel.setBounds((width-bWidth)/2, (y-bHeight)/2, bWidth, bHeight);
         this.add(flip);//adding button in JFrame
         this.add(next);
         this.add(prev);
         this.add(quit);
-        this.add(cardLabel);
+        this.add(cLabelPanel);
 
 
-        this.setSize(size,size);
+        this.setSize(width,height);
         this.setLayout(null);//using no layout managers
         this.setVisible(true);//making the frame visible
+//        setLocationRelativeTo(null);
 
         // quit if you close the tab
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

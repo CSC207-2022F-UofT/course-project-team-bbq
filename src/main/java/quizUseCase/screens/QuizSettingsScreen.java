@@ -1,8 +1,12 @@
 package quizUseCase.screens;
 
 import quizUseCase.*;
+import quizUseCase.GUI.*;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -20,15 +24,16 @@ public class QuizSettingsScreen extends Screen {
     private final int flashcardSetID;
 
     // GUI components
-    private final JSlider numQuestionsSlider;
-    private final JSlider timerDurationSlider;
-
-    private final JLabel timerDurationLabel;
+    private Slider numQuestionsSlider;
+    private Slider timerSlider;
 
     private final JButton timerButton;
     private final JButton multipleChoiceButton;
     private final JButton textEntryButton;
     private final JButton trueFalseButton;
+
+    // listener
+    private ChangeListener listener;
 
     // actions
     private enum Actions {
@@ -42,8 +47,7 @@ public class QuizSettingsScreen extends Screen {
      * @param flashcardSetID the flashcard set ID
      */
     public QuizSettingsScreen(QuizController controller, int flashcardSetID) {
-        super("Quiz Settings");
-
+        super("Quiz Settings", false);
         this.controller = controller;
         this.flashcardSetID = flashcardSetID;
 
@@ -52,26 +56,28 @@ public class QuizSettingsScreen extends Screen {
         QuizSettingsResponseModel response = this.controller.getNumFlashcards(request);
         int numFlashcards = response.getNumFlashcards();
 
-        // USER INPUT
-        JLabel numQuestionsLabel = new JLabel("Number of Questions");
-        this.numQuestionsSlider = new JSlider(1, numFlashcards, 4);
-        this.numQuestionsSlider.setPaintTicks(true);
-        this.numQuestionsSlider.setPaintLabels(true);
-        this.numQuestionsSlider.setMinorTickSpacing(1);
-        this.numQuestionsSlider.setMajorTickSpacing(1);
+        // LISTENER
+        this.listener = new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider s = (JSlider) e.getSource();
+                if (s.equals(numQuestionsSlider.slider)) {
+                    numQuestionsSlider.updateValue();
+                } else if (s.equals(timerSlider.slider)) {
+                    timerSlider.updateValue();
+                }
+            }
+        };
+
+        // GUI COMPONENTS
+        this.numQuestionsSlider = new Slider(1, numFlashcards, 4, 1, "Number of Questions:");
+        this.numQuestionsSlider.addChangeListener(this.listener);
 
         this.timerButton = new JButton("Timer OFF");
         this.timerButton.setActionCommand(Actions.TIMER.name());
         this.timerButton.addActionListener(this);
-
-        this.timerDurationLabel = new JLabel("Timer Duration");
-        this.timerDurationSlider = new JSlider(0, 60, 30);
-        this.timerDurationSlider.setPaintTicks(true);
-        this.timerDurationSlider.setPaintLabels(true);
-        this.timerDurationSlider.setMinorTickSpacing(1);
-        this.timerDurationSlider.setMajorTickSpacing(10);
-        this.timerDurationLabel.setVisible(false);
-        this.timerDurationSlider.setVisible(false);
+        this.timerSlider = new Slider(0, 60, 30, 10, "Timer Duration:");
+        this.timerSlider.setVisible(false);
+        this.timerSlider.addChangeListener(this.listener);
 
         this.multipleChoiceButton = new JButton("Multiple Choice ON");
         this.multipleChoiceButton.setActionCommand(Actions.MULTIPLE_CHOICE.name());
@@ -89,22 +95,41 @@ public class QuizSettingsScreen extends Screen {
         submit.setActionCommand(Actions.SUBMIT.name());
         submit.addActionListener(this);
 
-        // ADDING BUTTONS
-        this.getContentPane().add(numQuestionsLabel);
-        this.getContentPane().add(numQuestionsSlider);
+        // ADDING COMPONENTS IN A LAYOUT
+        JPanel timerPanel = new JPanel();
+        timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.LINE_AXIS));
+        timerPanel.add(timerButton);
+        timerPanel.add(timerSlider);
 
-        this.getContentPane().add(timerButton);
+        JPanel typesPanel = new JPanel();
+        typesPanel.setLayout(new BoxLayout(typesPanel, BoxLayout.LINE_AXIS));
+        typesPanel.setBorder(BorderFactory.createEmptyBorder(10,10, 10, 10));
+        typesPanel.add(multipleChoiceButton);
+        typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        typesPanel.add(textEntryButton);
+        typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        typesPanel.add(trueFalseButton);
 
-        this.getContentPane().add(timerDurationLabel);
-        this.getContentPane().add(timerDurationSlider);
+        JPanel submitPanel = new JPanel();
+        submitPanel.add(submit);
 
-        this.getContentPane().add(multipleChoiceButton);
-        this.getContentPane().add(textEntryButton);
-        this.getContentPane().add(trueFalseButton);
+        // adding everything
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
+        leftPanel.add(typesPanel);
 
-        this.getContentPane().add(submit);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+        centerPanel.add(numQuestionsSlider);
+        centerPanel.add(timerPanel);
 
-        this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(submitPanel);
+
+        Container contentPane = this.getContentPane();
+        contentPane.add(leftPanel, BorderLayout.LINE_START);
+        contentPane.add(centerPanel, BorderLayout.CENTER);
+        contentPane.add(bottomPanel, BorderLayout.PAGE_END);
         this.setupScreen();
     }
 
@@ -119,12 +144,10 @@ public class QuizSettingsScreen extends Screen {
             this.timerOn = !(this.timerOn);
             if (this.timerOn) {
                 this.timerButton.setText("Timer ON");
-                this.timerDurationLabel.setVisible(true);
-                this.timerDurationSlider.setVisible(true);
+                this.timerSlider.setVisible(true);
             } else {
                 this.timerButton.setText("Timer OFF");
-                this.timerDurationLabel.setVisible(false);
-                this.timerDurationSlider.setVisible(false);
+                this.timerSlider.setVisible(false);
             }
         } else if (command.equals(Actions.MULTIPLE_CHOICE.name())) {
             this.multipleChoiceOn = !(this.multipleChoiceOn);
@@ -149,7 +172,7 @@ public class QuizSettingsScreen extends Screen {
             }
         } else if (command.equals(Actions.SUBMIT.name())) {
             int numQuestions = this.numQuestionsSlider.getValue();
-            int timerDuration = this.timerDurationSlider.getValue();
+            int timerDuration = this.timerSlider.getValue();
             QuizSettingsRequestModel request = new QuizSettingsRequestModel(numQuestions, this.timerOn,
                     timerDuration, this.multipleChoiceOn, this.textEntryOn, this.trueFalseOn, this.flashcardSetID);
             QuizSettingsResponseModel response = this.controller.startQuiz(request);

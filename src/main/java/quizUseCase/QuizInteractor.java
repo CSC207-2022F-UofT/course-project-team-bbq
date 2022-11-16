@@ -48,16 +48,6 @@ public class QuizInteractor implements QuizInputBoundary {
         } else if (!quizSettings.timerIsReasonable()) {
             return presenter.prepareSettingsErrorView("Invalid quiz settings: unreasonable time limit.");
         } else {
-
-            // SAVE TO DATABASE
-//        QuizSettingsDsRequestModel quizSettingsDsModel = new QuizSettingsDsRequestModel(
-//                request.isTimerOn(),
-//                request.getTimerDuration(),
-//                request.isMultipleChoiceOn(),
-//                request.isTextEntryOn(),
-//                request.isTrueFalseOn());
-            // gateway.save(quizSettingsDsModel);
-
             // CREATE QUIZ
             this.quiz = this.quizBuilder.buildQuiz(request.getFlashcardSetID(), quizSettings);
 

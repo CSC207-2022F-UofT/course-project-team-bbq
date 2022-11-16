@@ -11,7 +11,7 @@ public class QuizResultsScreen extends Screen {
     QuizController controller;
 
     public QuizResultsScreen(QuizController controller, QuizResponseModel response) {
-        super("Quiz Results");
+        super("Quiz Results", false);
 
         this.controller = controller;
 

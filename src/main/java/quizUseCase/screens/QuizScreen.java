@@ -12,16 +12,11 @@ import java.util.ArrayList;
  * Frameworks & Drivers
  */
 public class QuizScreen extends Screen {
-    private QuizController controller;
+    private final QuizController controller;
 
     // user input values
     private ArrayList<String> userAnswers;
-
     private final int flashcardSetID;
-
-    // GUI components
-    private JPanel panel;
-    private Card card;
 
     // actions
     private enum Actions {
@@ -29,7 +24,7 @@ public class QuizScreen extends Screen {
     }
 
     public QuizScreen(QuizController controller, QuizSettingsResponseModel response, int flashcardSetID) {
-        super("QUIZ TIME :)");
+        super("Quiz", false);
 
         this.controller = controller;
         this.flashcardSetID = flashcardSetID;
@@ -39,15 +34,45 @@ public class QuizScreen extends Screen {
         ArrayList<String> types = response.getTypes();
         ArrayList<ArrayList<String>> outputText = response.getOutputText();
 
-        // GUI components
-        this.panel = new JPanel();
-        this.panel.setLayout(null);
-        this.panel.setBackground(Color.DARK_GRAY);
+        // CENTER PANEL
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 
-        JButton button = new JButton("HELLO");
-        this.panel.add(button);
+        for (int i = 0; i < types.size(); i++) {
+            String type = types.get(i);
+            QuestionCard q;
+            if (type.equals("MC")) {
+                q = new MultipleChoiceQuestionCard(outputText.get(i));
+                centerPanel.add(q);
+            } else if (type.equals("TE")) {
+                q = new TextEntryQuestionCard(outputText.get(i));
+                centerPanel.add(q);
+            } else if (type.equals("TF")) {
+                q = new TrueFalseQuestionCard(outputText.get(i));
+                centerPanel.add(q);
+            }
+        }
 
-        this.add(this.panel);
+        // SCROLL BAR
+        JScrollPane scroll = new JScrollPane(centerPanel);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // BOTTOM PANEL
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout());
+        JButton restart = new JButton("RESTART");
+        restart.setActionCommand(Actions.RESTART.name());
+        restart.addActionListener(this);
+        bottomPanel.add(restart);
+        JButton submit = new JButton("SUBMIT");
+        submit.setActionCommand(Actions.SUBMIT.name());
+        submit.addActionListener(this);
+        bottomPanel.add(submit);
+
+        // CONTENT PANE
+        Container contentPane = this.getContentPane();
+        contentPane.add(scroll, BorderLayout.CENTER);
+        contentPane.add(bottomPanel, BorderLayout.PAGE_END);
         this.setupScreen();
     }
 
@@ -69,7 +94,6 @@ public class QuizScreen extends Screen {
                 // transition into next screen
                 this.setVisible(false);
                 this.dispose();
-                System.out.println("RESULTS TIME!!! AW YEA");
                 new QuizResultsScreen(this.controller, response);
             }
         }

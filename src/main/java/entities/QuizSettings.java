@@ -31,7 +31,7 @@ public class QuizSettings {
     }
 
     public boolean timerIsReasonable() {
-        return 1 <= this.timerDuration && this.timerDuration <= 60;
+        return ((1 <= this.timerDuration && this.timerDuration <= 60) || !(this.timerOn));
     }
 
     /** GETTERS AND SETTERS **/
