@@ -2,6 +2,9 @@ package dataAccess;
 
 import entityRequestModels.CommonUserDsRequestModel;
 
+import java.util.Collection;
+import java.util.Collections;
+
 // use case layer
 
 public interface IUserDataAccess {
@@ -14,6 +17,8 @@ public interface IUserDataAccess {
     CommonUserDsRequestModel getUser(String username);
 
     boolean existsByName(String username);
+
+    Collection<CommonUserDsRequestModel> getAllUsers();
 
     void saveFlashcardSetID(String username, int FlashcardSetID);
 

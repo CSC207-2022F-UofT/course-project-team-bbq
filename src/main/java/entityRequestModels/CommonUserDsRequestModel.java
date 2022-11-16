@@ -6,7 +6,6 @@ import java.util.Map;
 public class CommonUserDsRequestModel {
     private String username;
     private String password;
-
     private boolean isAdmin;
     private List<Integer> flashcardSetIds;
 

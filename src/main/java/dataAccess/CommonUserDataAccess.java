@@ -24,6 +24,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
 
         if (userCsvFile.length() == 0) {
             save();
+
         } else {
 
             BufferedReader reader = new BufferedReader(new FileReader(userCsvFile));
@@ -56,8 +57,13 @@ public class CommonUserDataAccess implements IUserDataAccess{
             writer.newLine();
 
             for (CommonUserDsRequestModel user : accounts.values()) {
-                String line = String.format("%s, %s, %s, %s", user.getUsername(), user.getPassword(), user.getIsAdmin(), user.getFlashcardSetIds());
-                writer.write(line);
+                StringBuilder line = new StringBuilder(String.format("%s, %s, %s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
+                for(int flashcardSetIds: user.getFlashcardSetIds()){
+                    line.append(",");
+                    line.append(Integer.toString(flashcardSetIds));
+                }
+
+                writer.write(line.toString());
                 writer.newLine();
             }
 
@@ -70,21 +76,35 @@ public class CommonUserDataAccess implements IUserDataAccess{
     }
     @Override
     public CommonUserDsRequestModel getUser(String username) {
-        return null;
+        return accounts.get(username);
+
     }
+
+    @Override
+    public Collection<CommonUserDsRequestModel> getAllUsers(){
+        return accounts.values();
+    }
+
     @Override
     public boolean existsByName(String username) {
+        return accounts.containsKey(username);
 
-        return false;
     }
-
     @Override
     public void saveFlashcardSetID(String username, int FlashcardSetID) {
+        CommonUserDsRequestModel oldUser = accounts.get(username);
+        List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
+        newFlashcardSet.add(FlashcardSetID);
+        CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
 
+        accounts.put(username, newUser);
+        save();
     }
 
     @Override
     public void saveUser(CommonUserDsRequestModel user) {
+        accounts.put(user.getUsername(), user);
+        save();
 
     }
 }
