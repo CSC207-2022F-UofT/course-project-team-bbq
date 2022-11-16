@@ -5,6 +5,8 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 import java.io.*;
 import java.util.*;
 
+import static java.util.Collections.max;
+
 public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     private final File flashCardSetCsvFile;
 
@@ -58,10 +60,14 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
             writer.newLine();
 
             for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
-                String line = String.
-                        format(set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
-                                set.getFlashcardIds());
-                writer.write(line);
+                StringBuilder line = new StringBuilder(String.
+                        format("%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
+                                set.getFlashcardIds()));
+                for(int flashcardId : set.getFlashcardIds()){
+                    line.append(",");
+                    line.append(Integer.toString(flashcardId));
+                }
+                writer.write(line.toString());
                 writer.newLine();
             }
 
@@ -83,22 +89,42 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     }
 
     @Override
-    public void editTitleAndDescription(int flashcardSetId, String title, String description) {
-
+    public void editTitleAndDescription(FlashcardSetDsRequestModel flashcardSet) {
+        int id = flashcardSet.getFlashcardSetId();
+        flashcardSets.replace(id, flashcardSet);
+        save();
     }
 
     @Override
-    public void saveFlashcardID(int flashcardSetID, int flashcardID) {
+    public void saveFlashcardID(int flashcardSetId, int flashcardId) {
+        FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
+        List<Integer> newFlashcards = new ArrayList<>(oldFlashcardSet.getFlashcardIds());
+        newFlashcards.add(flashcardId);
+        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(
+                oldFlashcardSet.getTitle(),
+                oldFlashcardSet.getDescription(),
+                oldFlashcardSet.getIsPrivate(),
+                flashcardSetId, oldFlashcardSet.getOwnerUsername(), newFlashcards);
 
+        flashcardSets.put(flashcardSetId, newFlashcardSet);
+        save();
     }
 
     @Override
     public void deleteFlashcardSet(int flashcardSetID) {
-
+        flashcardSets.remove(flashcardSetID);
+        save();
     }
 
     @Override
     public void saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
+        int id = getLargestId() + 1;
+        flashcardSets.put(id, flashcardSet);
+        save();
+    }
 
+    private int getLargestId(){
+        Set<Integer> ids = flashcardSets.keySet();
+        return max(ids);
     }
 }

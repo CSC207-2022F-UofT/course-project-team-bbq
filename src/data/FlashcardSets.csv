@@ -1,2 +1,2 @@
-title, description, privacy, id, owner, flashcardsIds
-csc207, flashcards for csc207, true, 0, jempio, 1, 4, 5, 6, 7
+title,description,isPrivate,flashcardSetId,ownerUsername,flashcardIds
+csc207,SoftwareDesign,true,0,jempio,1,2,3,4,5,6,7,8,9
