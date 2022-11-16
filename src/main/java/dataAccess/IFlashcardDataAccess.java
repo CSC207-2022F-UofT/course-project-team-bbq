@@ -13,4 +13,5 @@ public interface IFlashcardDataAccess {
     void editFlashcard(FlashcardDsRequestModel flashcard);
 
     void deleteFlashcard(Integer flashcardID);
+
 }

@@ -1,5 +1,6 @@
 package dataAccess;
 
+import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
@@ -21,24 +22,39 @@ public class DBGateway {
         this.userGateway = userGateway;
     }
 
-//    public FlashcardDsRequestModel getFlashcard(int flashcardId){
-//        return this.flashcardGateway.getFlashcard(flashcardId);
-//    }
-//
-//    public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId){
-//        return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
-//    }
+    public static String getFlashcardPath() {
+        return flashcardPath;
+    }
 
+    public static String getFlashcardSetPath() {
+        return flashcardSetPath;
+    }
+
+    public static String getUserPath() {
+        return userPath;
+    }
+
+    public FlashcardDsRequestModel getFlashcard(int flashcardId){
+        return this.flashcardGateway.getFlashcard(flashcardId);
+    }
+
+    public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId){
+        return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
+    }
+
+    public CommonUserDsRequestModel getCommonUser(String username){
+        return (CommonUserDsRequestModel)this.userGateway.getUser(username);
+    }
 
     public IFlashcardDataAccess getFlashcardGateway() {
         return flashcardGateway;
     }
 
-    public IUserDataAccess getUserGateway() {
-        return userGateway;
-    }
-
     public IFlashcardSetDataAccess getFlashcardSetGateway() {
         return flashcardSetGateway;
+    }
+
+    public IUserDataAccess getUserGateway() {
+        return userGateway;
     }
 }
