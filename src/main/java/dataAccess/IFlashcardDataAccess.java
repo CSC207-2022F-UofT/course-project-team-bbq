@@ -8,7 +8,7 @@ public interface IFlashcardDataAccess {
 
     FlashcardDsRequestModel getFlashcard(Integer flashcardID);
 
-    void saveFlashcard(FlashcardDsRequestModel flashcard);
+    int saveFlashcard(FlashcardDsRequestModel flashcard);
 
     void editFlashcard(FlashcardDsRequestModel flashcard);
 
