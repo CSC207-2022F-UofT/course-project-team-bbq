@@ -6,6 +6,7 @@ public interface User {
 
     String password = null;
     boolean isAdmin = false;
+    String ADMIN_KEY = "BuiltDifferent";
 
     //Map<Integer, String[]> flashcardSets = null;
     ArrayList<Integer> flashcardSetIds = null;
@@ -21,5 +22,5 @@ public interface User {
 
     ArrayList<Integer> getFlashcardSetIds();
 
-
+    boolean adminKeyValid(String adminKey);
 }

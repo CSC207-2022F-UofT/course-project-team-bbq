@@ -9,14 +9,14 @@ public class UserRegisterRequestModel {
     private String name;
     private String password;
     private String repeatPassword;
-    private boolean isAdmin;
-    private String ADMIN_KEY = "BuiltDifferent";
+    //private boolean isAdmin;
+    private String adminKeyEntered;
 
-    public UserRegisterRequestModel(String name, String password, String repeatPassword, boolean isAdmin) {
+    public UserRegisterRequestModel(String name, String password, String repeatPassword, String adminKeyEntered) {
         this.name = name;
         this.password = password;
         this.repeatPassword = repeatPassword;
-        this.isAdmin = isAdmin;
+        this.adminKeyEntered = adminKeyEntered;
     }
 
     String getName() {
@@ -43,16 +43,13 @@ public class UserRegisterRequestModel {
         this.repeatPassword = repeatPassword;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
+    public String getAdminKeyEntered() {
+        return adminKeyEntered;
     }
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
+//    public void setAdmin(boolean isAdmin) {
+//        this.isAdmin = isAdmin;
+//    }
 
-    public String getADMIN_KEY(){
-        return ADMIN_KEY;
-    }
 
 
 }

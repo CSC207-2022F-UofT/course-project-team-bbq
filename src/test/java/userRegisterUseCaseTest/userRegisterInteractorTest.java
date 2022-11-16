@@ -35,6 +35,7 @@ class UserRegisterInteractorTest {
                 // 4) Check that the Output Data and associated changes
                 // are correct
                 assertEquals("Steve", user.getLogin());
+                assertEquals(false, user.getIsAdmin());
                 assertTrue(userRepository.existsByName("Steve"));
                 return null;
             }
@@ -52,7 +53,7 @@ class UserRegisterInteractorTest {
 
         // 2) Input data — Normally created by the Controller.
         UserRegisterRequestModel inputData = new UserRegisterRequestModel(
-                "Steve", "Apple123", "Apple123", true);
+                "Steve", "Apple123", "Apple123", "");
 
         // 3) Run the use case
         interactor.create(inputData);
@@ -68,7 +69,9 @@ class UserRegisterInteractorTest {
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
 
                 assertEquals("Richard", user.getLogin());
+                assertEquals(true, user.getIsAdmin());
                 assertFalse(userRepository.existsByName("Steve"));
+                assertTrue(userRepository.existsByName("Richard"));
                 return null;
             }
 
@@ -84,7 +87,7 @@ class UserRegisterInteractorTest {
                 userRepository, presenter, userFactory);
 
         UserRegisterRequestModel inputData = new UserRegisterRequestModel(
-                "Richard", "Virgin123", "Virgin123", true);
+                "Richard", "Virgin123", "Virgin123", "BuiltDifferent");
 
         interactor.create(inputData);
     }

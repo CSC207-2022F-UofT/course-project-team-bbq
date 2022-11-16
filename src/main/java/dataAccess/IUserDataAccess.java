@@ -1,7 +1,6 @@
 package dataAccess;
 
 import entityRequestModels.CommonUserDsRequestModel;
-import entityRequestModels.UserDsRequestModel;
 
 // use case layer
 
@@ -17,4 +16,6 @@ public interface IUserDataAccess {
     boolean existsByName(String username);
 
     void saveUser(CommonUserDsRequestModel user);
+
+//    boolean correctAdminKey(String inputtedAdminKey);
 }

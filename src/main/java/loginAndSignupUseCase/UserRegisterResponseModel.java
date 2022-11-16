@@ -1,22 +1,28 @@
 package loginAndSignupUseCase;
 
+
 public class UserRegisterResponseModel {
 
-    String login;
+    String loggedInUsername;
+    boolean isAdmin;
 //    String creationTime;
 
-    public UserRegisterResponseModel(String login) {
-        this.login = login;
+    public UserRegisterResponseModel(String login, boolean isAdmin) {
+        this.loggedInUsername = login;
+        this.isAdmin = isAdmin;
 //        this.creationTime = creationTime;
     }
 
     public String getLogin() {
-        return login;
+        return loggedInUsername;
     }
+    public boolean getIsAdmin(){return isAdmin;}
 
     public void setLogin(String login) {
-        this.login = login;
+        this.loggedInUsername = login;
     }
+
+
 
 //    public String getCreationTime() {
 //        return creationTime;

@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class CommonUser implements User{
 
@@ -9,6 +8,7 @@ public class CommonUser implements User{
 
     private String password;
     private boolean isAdmin;
+    private String ADMIN_KEY = "BuiltDifferent";
     //private Map<Integer, String[]> flashcardSets = new HashMap<>();
     private ArrayList<Integer> flashcardSetIds;
 
@@ -54,6 +54,11 @@ public class CommonUser implements User{
     @Override
     public ArrayList<Integer> getFlashcardSetIds() {
         return flashcardSetIds;
+    }
+
+    @Override
+    public boolean adminKeyValid(String adminKey) {
+        return adminKey.equals(ADMIN_KEY);
     }
 
     public void setFlashcardSetIds(ArrayList<Integer> setFlashcardSetIds) {

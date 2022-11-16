@@ -11,8 +11,6 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class RegisterScreen extends JPanel implements ActionListener {
 
-    String ADMIN_KEY = "BuiltDifferent";
-
     /**
      * The username chosen by the user
      */
@@ -82,16 +80,10 @@ public class RegisterScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
 
-        boolean adminStatus = false;
-
-        if(String.valueOf(adminChecker.getPassword()).equals(ADMIN_KEY)){
-            adminStatus = true;
-        }
-
         try {
             userRegisterController.create(username.getText(),
                     String.valueOf(password.getPassword()),
-                    String.valueOf(repeatPassword.getPassword()), adminStatus);
+                    String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
             JOptionPane.showMessageDialog(this, "%s created.".format(username.getText()));
 
             LoginScreen LoginScreen = new LoginScreen();
