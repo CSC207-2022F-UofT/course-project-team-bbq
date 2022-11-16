@@ -3,10 +3,7 @@ package Editor.Flashcard;
 import Editor.Flashcard.screens.FlashcardEditorController;
 import Editor.Flashcard.screens.FlashcardEditorPresenter;
 import Editor.Flashcard.screens.FlashcardEditorScreen;
-import dataAccess.CommonUserDataAccess;
-import dataAccess.DBGateway;
-import dataAccess.FlashcardDataAccess;
-import dataAccess.FlashcardSetDataAccess;
+import dataAccess.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,9 +15,9 @@ public class FlashcardEditorMain {
         FlashcardEditorOutputBoundary presenter = new FlashcardEditorPresenter();
         DBGateway dataBaseGateway;
 
-        FlashcardDataAccess fcDataAccess;
-        FlashcardSetDataAccess fcSDataAccess;
-        CommonUserDataAccess userDataAccess;
+        IFlashcardDataAccess fcDataAccess;
+        IFlashcardSetDataAccess fcSDataAccess;
+        IUserDataAccess userDataAccess;
 
         try{
             fcDataAccess = new FlashcardDataAccess("src/data/Flashcards.csv");
