@@ -22,7 +22,7 @@ public class FCSetEditorMain {
 
         try {
             fcDataAccess = new FlashcardDataAccess("src/data/Flashcards.csv");
-            fcSDataAccess = new FlashcardSetDataAccess("src/data/FCSetSets.csv");
+            fcSDataAccess = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
             //userDataAccess = new CommonUserDataAccess("src/data/Users.csv");
         } catch (IOException e) {
             throw new RuntimeException("could not find file");
