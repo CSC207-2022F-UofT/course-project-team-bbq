@@ -1,5 +1,7 @@
 package quizUseCase;
 
+import java.util.ArrayList;
+
 /**
  * Interface Adapters
  */
@@ -11,10 +13,7 @@ public class QuizPresenter implements QuizOutputBoundary {
      */
     @Override
     public QuizSettingsResponseModel prepareSettingsErrorView(String error){
-        QuizSettingsResponseModel response = new QuizSettingsResponseModel();
-        response.setFailed(true);
-        response.setError(error);
-        return response;
+        return new QuizSettingsResponseModel(true, error);
     }
 
     /**
@@ -22,8 +21,9 @@ public class QuizPresenter implements QuizOutputBoundary {
      * @return quiz settings response model
      */
     @Override
-    public QuizSettingsResponseModel prepareQuizView() {
-        return new QuizSettingsResponseModel();
+    public QuizSettingsResponseModel prepareQuizView(ArrayList<String> types,
+                                                     ArrayList<ArrayList<String>> outputText) {
+        return new QuizSettingsResponseModel(types, outputText);
     }
 
     /**

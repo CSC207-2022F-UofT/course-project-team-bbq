@@ -1,5 +1,7 @@
 package quizUseCase;
 
+import java.util.ArrayList;
+
 /**
  * Application Business Rules
  */
@@ -15,7 +17,7 @@ public interface QuizOutputBoundary {
      * Prepares the quiz view.
      * @return quiz settings response model
      */
-    QuizSettingsResponseModel prepareQuizView();
+    QuizSettingsResponseModel prepareQuizView(ArrayList<String> types, ArrayList<ArrayList<String>> outputText);
 
     /**
      * Prepares the results view.

@@ -3,6 +3,7 @@ package quizUseCase.screens;
 import quizUseCase.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -32,10 +33,15 @@ public class QuizScreen extends Screen {
 
         this.userAnswers = new ArrayList<>();
 
+        // I want to get information to display
+        // I need question type
+
+        // scrollbar
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         this.add(scrollPane);
 
+        this.setLayout(null);
         this.setupScreen();
     }
 

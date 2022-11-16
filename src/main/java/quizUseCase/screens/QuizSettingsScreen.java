@@ -104,6 +104,7 @@ public class QuizSettingsScreen extends Screen {
 
         this.getContentPane().add(submit);
 
+        this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         this.setupScreen();
     }
 

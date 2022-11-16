@@ -13,7 +13,7 @@ public class MultipleChoiceQuestion extends QuizQuestion {
     private final boolean givenTerm;
 
     private String question;
-    private final String[] choices;
+    private String[] choices;
     private final int numChoices = 4;
 
     private static final Random rand = new Random();
@@ -61,5 +61,22 @@ public class MultipleChoiceQuestion extends QuizQuestion {
             s += "Option " + (i+1) + ": " + this.choices[i] + "\n";
         }
         return s;
+    }
+
+    /** GETTERS AND SETTERS **/
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String[] getChoices() {
+        return choices;
+    }
+
+    public void setChoices(String[] choices) {
+        this.choices = choices;
     }
 }

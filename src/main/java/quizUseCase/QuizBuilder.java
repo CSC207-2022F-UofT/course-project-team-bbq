@@ -11,6 +11,9 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Quiz Builder.
+ */
 public class QuizBuilder {
     private final FlashcardFactory flashcardFactory;
     private final DBGateway gateway;

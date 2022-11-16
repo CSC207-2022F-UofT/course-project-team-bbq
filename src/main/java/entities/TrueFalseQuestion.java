@@ -58,4 +58,21 @@ public class TrueFalseQuestion extends QuizQuestion {
         }
         return n;
     }
+
+    /** GETTERS AND SETTERS **/
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getPotentialDefinition() {
+        return potentialDefinition;
+    }
+
+    public void setPotentialDefinition(String potentialDefinition) {
+        this.potentialDefinition = potentialDefinition;
+    }
 }

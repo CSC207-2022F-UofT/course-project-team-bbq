@@ -5,6 +5,7 @@ import entities.*;
 import entityRequestModels.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,6 +31,11 @@ public class QuizInteractor implements QuizInputBoundary {
         this.quizBuilder = new QuizBuilder(this.gateway);
     }
 
+    /**
+     * Handles starting the quiz.
+     * @param request the quiz settings request model
+     * @return the quiz settings response model
+     */
     @Override
     public QuizSettingsResponseModel startQuiz(QuizSettingsRequestModel request) {
         this.quizSettings = new QuizSettings(request.getNumQuestions(), request.isTimerOn(),
@@ -54,7 +60,34 @@ public class QuizInteractor implements QuizInputBoundary {
 
             // CREATE QUIZ
             this.quiz = this.quizBuilder.buildQuiz(request.getFlashcardSetID(), quizSettings);
-            return presenter.prepareQuizView();
+
+            // GENERATING OUTPUT TO BE VIEWED
+            List<QuizQuestion> quizQuestions = this.quiz.getQuizQuestions();
+            ArrayList<String> questionTypes = new ArrayList<>();
+            ArrayList<ArrayList<String>> outputText = new ArrayList<>();
+
+            for (QuizQuestion quizQuestion : quizQuestions) {
+                if (quizQuestion instanceof MultipleChoiceQuestion q) {
+                    questionTypes.add("MC"); // add type
+                    ArrayList<String> output = new ArrayList<>(); // add question + choices under output
+                    output.add((q.getQuestion()));
+                    output.addAll(Arrays.asList(q.getChoices()));
+                    outputText.add(output);
+                } else if (quizQuestion instanceof TextEntryQuestion q) {
+                    questionTypes.add("TE"); // add type
+                    ArrayList<String> output = new ArrayList<>(); // add term and definition (one of them is null)
+                    output.add(q.getTerm());
+                    output.add(q.getDefinition());
+                    outputText.add(output);
+                } else if (quizQuestion instanceof TrueFalseQuestion q) {
+                    questionTypes.add("TF"); // add type
+                    ArrayList<String> output = new ArrayList<>(); // add term and potential definition
+                    output.add(q.getTerm());
+                    output.add(q.getPotentialDefinition());
+                    outputText.add(output);
+                }
+            }
+            return presenter.prepareQuizView(questionTypes, outputText);
         }
     }
 
