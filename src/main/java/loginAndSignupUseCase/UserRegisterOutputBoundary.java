@@ -1,6 +1,6 @@
 package loginAndSignupUseCase;
 
-public interface UserRegisterPresenter {
+public interface UserRegisterOutputBoundary {
 
     UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user);
 

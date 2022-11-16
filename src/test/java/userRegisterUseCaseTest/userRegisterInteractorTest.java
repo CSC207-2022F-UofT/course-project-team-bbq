@@ -29,7 +29,7 @@ class UserRegisterInteractorTest {
         IUserDataAccess userRepository = new InMemoryUser();
 
         // This creates an anonymous implementing class for the Output Boundary.
-        UserRegisterPresenter presenter = new UserRegisterPresenter() {
+        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
                 // 4) Check that the Output Data and associated changes
@@ -63,7 +63,7 @@ class UserRegisterInteractorTest {
 
         IUserDataAccess userRepository = new InMemoryUser();
 
-        UserRegisterPresenter presenter = new UserRegisterPresenter() {
+        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
 

@@ -1,14 +1,11 @@
 package loginAndSignupUseCaseScreens;
 
-import loginAndSignupUseCase.UserRegisterPresenter;
+import loginAndSignupUseCase.UserRegisterOutputBoundary;
 import loginAndSignupUseCase.UserRegisterResponseModel;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 // Interface adapters layer
 
-public class UserRegisterResponseFormatter implements UserRegisterPresenter {
+public class UserRegisterPresenter implements UserRegisterOutputBoundary {
 
     @Override
     public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel response) {

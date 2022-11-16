@@ -7,13 +7,13 @@ import entityRequestModels.CommonUserDsRequestModel;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final IUserDataAccess userDsGateway;
-    final UserRegisterPresenter userRegisterPresenter;
+    final UserRegisterOutputBoundary userRegisterOutputBoundary;
     final UserFactory userFactory;
 
-    public UserRegisterInteractor(IUserDataAccess userRegisterDsGateway, UserRegisterPresenter userRegisterPresenter,
+    public UserRegisterInteractor(IUserDataAccess userRegisterDsGateway, UserRegisterOutputBoundary userRegisterOutputBoundary,
                                   UserFactory userFactory) {
         this.userDsGateway = userRegisterDsGateway;
-        this.userRegisterPresenter = userRegisterPresenter;
+        this.userRegisterOutputBoundary = userRegisterOutputBoundary;
         this.userFactory = userFactory;
     }
 
@@ -21,17 +21,17 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
     @Override
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) {
         if (userDsGateway.existsByName(requestModel.getName())) {
-            return userRegisterPresenter.prepareFailView("User Already Exists.");
+            return userRegisterOutputBoundary.prepareFailView("User Already Exists.");
         } else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
-            return userRegisterPresenter.prepareFailView("Passwords Don't Match.");
+            return userRegisterOutputBoundary.prepareFailView("Passwords Don't Match.");
         } else if (!requestModel.getADMIN_KEY().equals(requestModel.getADMIN_KEY())){
-            return userRegisterPresenter.prepareFailView("Incorrect Admin Key.");
+            return userRegisterOutputBoundary.prepareFailView("Incorrect Admin Key.");
         }
 
         User user = userFactory.create(requestModel.getName(), requestModel.getPassword(),
                 requestModel.getIsAdmin());
         if (!user.passwordIsValid()) {
-            return userRegisterPresenter.prepareFailView("User password must have more than 5 characters.");
+            return userRegisterOutputBoundary.prepareFailView("User password must have more than 5 characters.");
         }
 
         CommonUserDsRequestModel userDsModel = new CommonUserDsRequestModel(user.getUsername(), user.getPassword(),
@@ -39,6 +39,6 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         userDsGateway.saveUser(userDsModel);
 
         UserRegisterResponseModel accountResponseModel = new UserRegisterResponseModel(user.getUsername());
-        return userRegisterPresenter.prepareSuccessView(accountResponseModel);
+        return userRegisterOutputBoundary.prepareSuccessView(accountResponseModel);
     }
 }

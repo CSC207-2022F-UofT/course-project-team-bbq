@@ -5,8 +5,6 @@ public class UserRegisterResponseModel {
     String login;
 //    String creationTime;
 
-    //ADD ARRAY List of flashcard set ids
-
     public UserRegisterResponseModel(String login) {
         this.login = login;
 //        this.creationTime = creationTime;
