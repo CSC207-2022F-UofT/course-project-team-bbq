@@ -37,24 +37,33 @@ public class SearchInteractor implements SearchInputBoundary{
         // search algorithm
         ArrayList<String> tags = requestModel.getTags();
         String input = requestModel.getSearch_input();
-        for (Integer x : flashcard_set_ids){
-            if (!dbGateway.getFlashcardSet(x).getIsPrivate()){
-                for(String tag : tags){
-                    if(tag.equals("Title") && dbGateway.getFlashcardSet(x).getTitle().equals(input)){
-                        result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
-                        break;
-                    }
-                    if(tag.equals("Description") && dbGateway.getFlashcardSet(x).getDescription().equals(input)){
-                        result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
-                        break;
-                    }
-                    if(tag.equals("Owner") && dbGateway.getFlashcardSet(x).getOwnerUsername().equals(input)){
-                        result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
-                        break;
-                    }
+        if (input.equals("GET_ALL")) {
+            for (Integer x : flashcard_set_ids) {
+                if (!dbGateway.getFlashcardSet(x).getIsPrivate()) {
+                    result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
                 }
             }
+        }
+        else{
+            for (Integer x : flashcard_set_ids){
+                if (!dbGateway.getFlashcardSet(x).getIsPrivate()){
+                    for(String tag : tags){
+                        if(tag.equals("Title") && dbGateway.getFlashcardSet(x).getTitle().equals(input)){
+                            result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
+                            break;
+                        }
+                        if(tag.equals("Description") && dbGateway.getFlashcardSet(x).getDescription().equals(input)){
+                            result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
+                            break;
+                        }
+                        if(tag.equals("Owner") && dbGateway.getFlashcardSet(x).getOwnerUsername().equals(input)){
+                            result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
+                            break;
+                        }
+                    }
+                }
 
+            }
         }
 
         if (result_set.size() > 0){
