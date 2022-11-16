@@ -1,3 +1,5 @@
+import com.formdev.flatlaf.FlatIntelliJLaf;
+
 import quizUseCase.*;
 import dataAccess.*;
 import quizUseCase.screens.QuizSettingsScreen;
@@ -6,6 +8,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        FlatIntelliJLaf.setup();
+
         // DATABASE
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());

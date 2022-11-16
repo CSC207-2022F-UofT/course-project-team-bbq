@@ -26,7 +26,8 @@ public abstract class Screen extends JFrame implements ActionListener {
         // SCREEN SETUP
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
-        this.setSize(screenSize.width, screenSize.height);
+        this.setSize(screenSize.width, screenSize.height); // max size
+//        this.pack(); // pack it into a compact form
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

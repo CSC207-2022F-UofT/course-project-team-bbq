@@ -1,6 +1,7 @@
 package quizUseCase.screens;
 
 import quizUseCase.*;
+import quizUseCase.GUI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,8 @@ public class QuizScreen extends Screen {
     private final int flashcardSetID;
 
     // GUI components
+    private JPanel panel;
+    private Card card;
 
     // actions
     private enum Actions {
@@ -33,15 +36,18 @@ public class QuizScreen extends Screen {
 
         this.userAnswers = new ArrayList<>();
 
-        // I want to get information to display
-        // I need question type
+        ArrayList<String> types = response.getTypes();
+        ArrayList<ArrayList<String>> outputText = response.getOutputText();
 
-        // scrollbar
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        this.add(scrollPane);
+        // GUI components
+        this.panel = new JPanel();
+        this.panel.setLayout(null);
+        this.panel.setBackground(Color.DARK_GRAY);
 
-        this.setLayout(null);
+        JButton button = new JButton("HELLO");
+        this.panel.add(button);
+
+        this.add(this.panel);
         this.setupScreen();
     }
 
