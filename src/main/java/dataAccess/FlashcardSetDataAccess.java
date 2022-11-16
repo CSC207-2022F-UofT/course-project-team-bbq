@@ -117,10 +117,11 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     }
 
     @Override
-    public void saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
+    public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
         int id = getLargestId() + 1;
         flashcardSets.put(id, flashcardSet);
         save();
+        return id;
     }
 
     private int getLargestId(){
