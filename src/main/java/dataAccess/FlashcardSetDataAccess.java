@@ -63,9 +63,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
                 StringBuilder line = new StringBuilder(String.
                         format("%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
                                 set.getFlashcardIds()));
-                for(int flashcardId : set.getFlashcardIds()){
+                for(int flashcardIds : set.getFlashcardIds()){
                     line.append(",");
-                    line.append(Integer.toString(flashcardId));
+                    line.append(Integer.toString(flashcardIds));
                 }
                 writer.write(line.toString());
                 writer.newLine();
@@ -85,7 +85,8 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
     @Override
     public String[] getTitleAndDescription(int flashcardSetId) {
-        return new String[0];
+        return new String[] {flashcardSets.get(flashcardSetId).getTitle(),
+                flashcardSets.get(flashcardSetId).getDescription()};
     }
 
     @Override
