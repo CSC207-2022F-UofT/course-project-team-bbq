@@ -93,6 +93,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
     @Override
     public void editFlashcard(FlashcardDsRequestModel flashcard) {
         int id = flashcard.getFlashcardId();
+        flashcard.setFlashcardId(id);
         flashcards.replace(id, flashcard);
         save();
     }
