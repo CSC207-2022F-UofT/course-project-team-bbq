@@ -1,4 +1,8 @@
-package studyMode;
+package studyMode.screens;
+
+import studyMode.StudySessionController;
+import studyMode.StudySettingsRequestModel;
+import studyMode.StudySettingsResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

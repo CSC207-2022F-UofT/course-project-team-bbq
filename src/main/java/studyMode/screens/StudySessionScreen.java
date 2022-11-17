@@ -1,4 +1,6 @@
-package studyMode;
+package studyMode.screens;
+
+import studyMode.*;
 
 import javax.swing.*;
 import java.awt.*;

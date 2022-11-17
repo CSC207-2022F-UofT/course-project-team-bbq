@@ -3,6 +3,9 @@ package studyMode;
 
 import dataAccess.DBGateway;
 import entities.Flashcard;
+import entities.FlashcardStudier;
+import entities.comparators.FlashcardAlphComparator;
+import entities.comparators.FlashcardByDateComparator;
 
 import java.util.Comparator;
 

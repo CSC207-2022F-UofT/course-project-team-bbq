@@ -1,6 +1,7 @@
 package studyMode;
 
 import dataAccess.*;
+import studyMode.screens.StudySettingsScreen;
 
 import java.io.IOException;
 
