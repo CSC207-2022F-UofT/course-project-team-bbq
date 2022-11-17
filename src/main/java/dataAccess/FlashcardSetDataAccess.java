@@ -120,6 +120,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     @Override
     public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
         int id = getLargestId() + 1;
+        flashcardSet.setFlashcardSetId(id);
         flashcardSets.put(id, flashcardSet);
         save();
         return id;
