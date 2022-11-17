@@ -1,26 +1,36 @@
 package Editor.Flashcard.screens;
 
 import Editor.Flashcard.FlashcardEditorResponseModel;
+import EditorMainPage.FlashcardInfo;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FlashcardEditorScreen extends JPanel implements ActionListener {
-
     FlashcardEditorController controller;
+    FlashcardInfo flashcard;
+    JFrame application;
+    JTextField termText;
+    JTextField definitionText;
 
-    JTextField idPanel;
-    JTextField termPanel;
-    JTextArea definitionPanel;
 
-
-    public FlashcardEditorScreen(FlashcardEditorController controller){
+    public FlashcardEditorScreen(FlashcardEditorController controller, FlashcardInfo flashcard, JFrame application){
         this.controller = controller;
+        this.flashcard = flashcard;
+        this.application = application;
 
-        idPanel = new JTextField("Enter id...");
-        termPanel = new JTextField("Enter term...");
-        definitionPanel = new JTextArea("Enter definition...");
+        JPanel termPanel = new JPanel();
+        JLabel termLabel = new JLabel("Term: ");
+        termText = new JTextField(flashcard.getTerm());
+        termPanel.add(termLabel);
+        termPanel.add(termText);
+
+        JPanel definitionPanel = new JPanel();
+        JLabel definitionLabel = new JLabel("Definition: ");
+        definitionText = new JTextField(flashcard.getDefinition());
+        definitionPanel.add(definitionLabel);
+        definitionPanel.add(definitionText);
 
         JButton confirm = new JButton("Confirm");
         JButton cancel = new JButton("Cancel");
@@ -32,7 +42,6 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
         buttons.add(confirm);
         buttons.add(cancel);
 
-        this.add(idPanel);
         this.add(termPanel);
         this.add(definitionPanel);
         this.add(buttons);
@@ -45,16 +54,17 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
         if(e.getActionCommand().equals("Cancel")){
-            System.exit(0);
+            application.dispose();
         }
         else{
             try{
-                int numId = Integer.parseInt(idPanel.getText());
-                String newTerm = termPanel.getText();
-                String newDefinition = definitionPanel.getText();
+                int numId = flashcard.getId();
+                String newTerm = termText.getText();
+                String newDefinition = definitionText.getText();
                 FlashcardEditorResponseModel newFlashcard = controller.edit(numId, newTerm, newDefinition);
-                String message = "Edited Flashcard #" + newFlashcard.getFlashcardId() + ": " + newFlashcard.getTermEdit() + " : " + newFlashcard.getDefinitionEdit();
+                String message = "Edited Flashcard" + ": " + newFlashcard.getTermEdit() + " : " + newFlashcard.getDefinitionEdit();
                 JOptionPane.showMessageDialog(this, message);
+                application.dispose();
             }
             catch (Exception error){
                 JOptionPane.showMessageDialog(this, error.getMessage());

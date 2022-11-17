@@ -3,6 +3,7 @@ package Editor.Flashcard;
 import Editor.Flashcard.screens.FlashcardEditorController;
 import Editor.Flashcard.screens.FlashcardEditorPresenter;
 import Editor.Flashcard.screens.FlashcardEditorScreen;
+import EditorMainPage.FlashcardInfo;
 import dataAccess.*;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class FlashcardEditorMain {
 
-    public static void main(String[] args) {
+    public static void main(FlashcardInfo flashcard) {
         FlashcardEditorOutputBoundary presenter = new FlashcardEditorPresenter();
         DBGateway dataBaseGateway;
 
@@ -37,7 +38,7 @@ public class FlashcardEditorMain {
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        FlashcardEditorScreen editScreen = new FlashcardEditorScreen(controller);
+        FlashcardEditorScreen editScreen = new FlashcardEditorScreen(controller, flashcard, application);
         screens.add(editScreen, "welcome");
         cardLayout.show(screens, "Edit");
         application.pack();
