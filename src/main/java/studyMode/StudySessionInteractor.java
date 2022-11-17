@@ -26,9 +26,15 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         String command = userInput.getCommand();
 
         switch (command) {
-            case StudySessionInputBoundary.flip -> outputText = studier.flipCard();
-            case StudySessionInputBoundary.next -> outputText = studier.getNextCard();
-            case StudySessionInputBoundary.prev -> outputText = studier.getPrevCard();
+            case StudySessionInputBoundary.flip:
+                outputText = studier.flipCard();
+                break;
+            case StudySessionInputBoundary.next:
+                outputText = studier.getNextCard();
+                break;
+            case StudySessionInputBoundary.prev:
+                outputText = studier.getPrevCard();
+                break;
         }
         int cardNumber = studier.getCounter() + 1;
 
