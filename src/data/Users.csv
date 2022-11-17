@@ -1,2 +1,2 @@
-username, password, flashcardSetsIds
-testUser,456r2t17yuihjn@,0,1
+username,password,isAdmin,flashcardSetsIds
+testUser,456r2t17yuihjn@,false,0,1

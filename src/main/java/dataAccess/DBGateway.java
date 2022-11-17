@@ -1,5 +1,6 @@
 package dataAccess;
 
+import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
@@ -22,11 +23,15 @@ public class DBGateway {
     }
 
     public static String getFlashcardPath() {
-        return DBGateway.flashcardPath;
+        return flashcardPath;
     }
 
     public static String getFlashcardSetPath() {
-        return DBGateway.flashcardSetPath;
+        return flashcardSetPath;
+    }
+
+    public static String getUserPath() {
+        return userPath;
     }
 
     public FlashcardDsRequestModel getFlashcard(int flashcardId){
@@ -37,5 +42,19 @@ public class DBGateway {
         return this.flashcardSetGateway.getFlashcardSet(flashcardSetId);
     }
 
+    public CommonUserDsRequestModel getCommonUser(String username){
+        return (CommonUserDsRequestModel)this.userGateway.getUser(username);
+    }
 
+    public IFlashcardDataAccess getFlashcardGateway() {
+        return flashcardGateway;
+    }
+
+    public IFlashcardSetDataAccess getFlashcardSetGateway() {
+        return flashcardSetGateway;
+    }
+
+    public IUserDataAccess getUserGateway() {
+        return userGateway;
+    }
 }
