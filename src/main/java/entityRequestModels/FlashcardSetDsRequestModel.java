@@ -57,4 +57,7 @@ public class FlashcardSetDsRequestModel {
         this.isPrivate = privacy;
     }
 
+    public void setFlashcardSetId(int flashcardSetId) {
+        this.flashcardSetId = flashcardSetId;
+    }
 }
