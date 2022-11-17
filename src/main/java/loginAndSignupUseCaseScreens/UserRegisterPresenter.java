@@ -14,7 +14,7 @@ public class UserRegisterPresenter implements UserRegisterOutputBoundary {
 
     @Override
     public UserRegisterResponseModel prepareFailView(String error) {
-        throw new UserCreationFailed(error);
+        throw new UserRegistrationFailed(error);
     }
 }
 

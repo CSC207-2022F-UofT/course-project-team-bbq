@@ -1,9 +1,6 @@
 package entityRequestModels;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CommonUserDsRequestModel {
     private String username;
@@ -11,8 +8,6 @@ public class CommonUserDsRequestModel {
     private boolean isAdmin;
 
     private List<Integer> flashcardSetIds;
-//    private Map<Integer, String[]> flashcardSets;
-//    private final LocalDateTime creationTime;
 
     public CommonUserDsRequestModel(String username, String password, boolean isAdmin, List<Integer> flashcardSetIds){
         this.username = username;
@@ -21,7 +16,7 @@ public class CommonUserDsRequestModel {
         this.flashcardSetIds = flashcardSetIds;
     }
 
-    public String getName() {
+    public String getUsername() {
         return username;
     }
 
@@ -47,14 +42,5 @@ public class CommonUserDsRequestModel {
     public List<Integer> getFlashcardSetIds(){
         return flashcardSetIds;
     }
-
-//    public Map<Integer, String[]> getFlashcardSets(){
-//        return this.flashcardSets;
-//    }
-//
-//    public Object getCreationTime() {
-//        return creationTime;
-//    }
-//    //public Map<Integer, String[]> getFlashcardSets() {return flashcardSets;}
 
 }

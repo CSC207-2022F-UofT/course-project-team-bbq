@@ -2,10 +2,11 @@ package dataAccess;
 
 import entityRequestModels.CommonUserDsRequestModel;
 
+import java.util.Collection;
+
 // use case layer
 
 public interface IUserDataAccess {
-    //THE DS GATEWAY
 
     /**
      * @param username the user's username
@@ -15,7 +16,10 @@ public interface IUserDataAccess {
 
     boolean existsByName(String username);
 
+    Collection<CommonUserDsRequestModel> getAllUsers();
+
+    void saveFlashcardSetID(String username, int FlashcardSetID);
+
     void saveUser(CommonUserDsRequestModel user);
 
-//    boolean correctAdminKey(String inputtedAdminKey);
 }

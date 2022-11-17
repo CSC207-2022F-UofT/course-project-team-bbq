@@ -1,6 +1,7 @@
 package loginAndSignupUseCase;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class UserLoginResponseModel {
     String username;
@@ -9,15 +10,18 @@ public class UserLoginResponseModel {
 
     HashMap<Integer, String[]> flashcardSets;
 
-    //public UserLoginResponseModel();
+    public UserLoginResponseModel(String loggedInUsername, boolean isAdmin, HashMap<Integer, String[]> flashcardSets){
+        this.username = loggedInUsername;
+        this.isAdmin = isAdmin;
+        this.flashcardSets = flashcardSets;
+    }
 
-//    public UserRegisterResponseModel(String signedUpUsername, boolean isAdmin) {
-//        this.signedUpUsername = signedUpUsername;
-//        this.isAdmin = isAdmin;
-//    }
-//
-//    public String getSignedUpUsername() {
-//        return signedUpUsername;
-//    }
-//    public boolean getIsAdmin(){return isAdmin;}
+    public String getSignedInUsername() {
+        return username;
+    }
+    public boolean getIsAdmin(){return isAdmin;}
+
+    public HashMap<Integer, String[]> getFlashcardSets(){
+        return flashcardSets;
+    }
 }

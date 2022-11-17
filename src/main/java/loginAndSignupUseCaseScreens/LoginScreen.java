@@ -16,6 +16,11 @@ public class LoginScreen extends JFrame implements ActionListener {
      */
     JPasswordField password = new JPasswordField(15);
 
+    /**
+     * The controller
+     */
+    UserLoginController userLoginController;
+
 
     /**
      * A window with a title and a JButton.
@@ -56,6 +61,16 @@ public class LoginScreen extends JFrame implements ActionListener {
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
+
         System.out.println("Click " + evt.getActionCommand());
+
+        try {
+            userLoginController.create(username.getText(),
+                    String.valueOf(password.getPassword()));
+            JOptionPane.showMessageDialog(this, "%s Logged In.".format(username.getText()));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 }

@@ -9,7 +9,6 @@ public class CommonUser implements User{
     private String password;
     private boolean isAdmin;
     private String ADMIN_KEY = "BuiltDifferent";
-    //private Map<Integer, String[]> flashcardSets = new HashMap<>();
     private ArrayList<Integer> flashcardSetIds;
 
     public CommonUser(String username, String password, boolean isAdmin){
@@ -65,12 +64,5 @@ public class CommonUser implements User{
         this.flashcardSetIds = setFlashcardSetIds;
     }
 
-
-//    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
-//        this.flashcardSets = flashcardSets;
-//    }
-//    public Map<Integer, String[]> getFlashcardSets() {
-//        return flashcardSets;
-//    }
 
 }
