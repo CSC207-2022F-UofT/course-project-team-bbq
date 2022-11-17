@@ -6,6 +6,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static java.util.Collections.max;
+
 public class FlashcardDataAccess implements IFlashcardDataAccess{
     private final File flashCardCsvFile;
 
@@ -57,6 +59,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
                 String line = String.
                         format("%s,%s,%s,%s,%s", set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
                                 set.getBelongsToId());
+
                 writer.write(line);
                 writer.newLine();
             }
@@ -75,10 +78,16 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
     }
 
     @Override
-    public void saveFlashcard(FlashcardDsRequestModel flashcard) {
-        int id = flashcard.getFlashcardId();
+    public int saveFlashcard(FlashcardDsRequestModel flashcard) {
+        int id = getLargestId() + 1;
         flashcards.put(id, flashcard);
         save();
+        return id;
+    }
+
+    private int getLargestId(){
+        Set<Integer> ids = flashcards.keySet();
+        return max(ids);
     }
 
     @Override
@@ -86,8 +95,8 @@ public class FlashcardDataAccess implements IFlashcardDataAccess{
         int id = flashcard.getFlashcardId();
         flashcards.replace(id, flashcard);
         save();
-
     }
+
     @Override
     public void deleteFlashcard(Integer flashcardID) {
         flashcards.remove(flashcardID);

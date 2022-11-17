@@ -46,5 +46,15 @@ public class DBGateway {
         return (CommonUserDsRequestModel)this.userGateway.getUser(username);
     }
 
+    public IFlashcardDataAccess getFlashcardGateway() {
+        return flashcardGateway;
+    }
 
+    public IFlashcardSetDataAccess getFlashcardSetGateway() {
+        return flashcardSetGateway;
+    }
+
+    public IUserDataAccess getUserGateway() {
+        return userGateway;
+    }
 }
