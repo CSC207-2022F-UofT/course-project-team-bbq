@@ -8,14 +8,14 @@ public class CommonUser implements User{
 
     private String password;
     private boolean isAdmin;
-    private String ADMIN_KEY = "BuiltDifferent";
-    private ArrayList<Integer> flashcardSetIds;
+    final String ADMIN_KEY = "BuiltDifferent";
+    final ArrayList<Integer> flashcardSetIds;
 
     public CommonUser(String username, String password, boolean isAdmin){
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
-        this.flashcardSetIds = new ArrayList<Integer>();
+        this.flashcardSetIds = new ArrayList<>();
     }
 
     @Override
@@ -58,10 +58,6 @@ public class CommonUser implements User{
     @Override
     public boolean adminKeyValid(String adminKey) {
         return adminKey.equals(ADMIN_KEY);
-    }
-
-    public void setFlashcardSetIds(ArrayList<Integer> setFlashcardSetIds) {
-        this.flashcardSetIds = setFlashcardSetIds;
     }
 
 

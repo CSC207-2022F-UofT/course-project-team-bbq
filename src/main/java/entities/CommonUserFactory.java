@@ -1,8 +1,5 @@
 package entities;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class CommonUserFactory implements UserFactory {
 
     @Override

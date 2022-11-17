@@ -27,7 +27,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary{
         }
         HashMap flashcardSets = new HashMap<Integer, String[]>();
         for(int flashcardSetId : tempUser.getFlashcardSetIds()){
-            flashcardSets.put(flashcardSetId, flashcardSetDsGateway.getFlashcardSet(flashcardSetId));
+            flashcardSets.put(flashcardSetId, flashcardSetDsGateway.getTitleAndDescription(flashcardSetId));
         }
 
 
