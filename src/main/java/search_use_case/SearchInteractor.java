@@ -27,6 +27,7 @@ public class SearchInteractor implements SearchInputBoundary{
         IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
         IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
         DBGateway dbGateway = new DBGateway(null, flashcardSetDataAccess, userDataAccess);
+        CommonUserDsRequestModel curr_user = requestModel.getUser();
 
         // change to dbGateway.getAllUsers()
         Collection<CommonUserDsRequestModel> all_users = userDataAccess.getAllUsers();
@@ -39,14 +40,14 @@ public class SearchInteractor implements SearchInputBoundary{
         String input = requestModel.getSearch_input();
         if (input.equals("GET_ALL")) {
             for (Integer x : flashcard_set_ids) {
-                if (!dbGateway.getFlashcardSet(x).getIsPrivate()) {
+                if (!dbGateway.getFlashcardSet(x).getIsPrivate()|| curr_user.getIsAdmin()) {
                     result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
                 }
             }
         }
         else{
             for (Integer x : flashcard_set_ids){
-                if (!dbGateway.getFlashcardSet(x).getIsPrivate()){
+                if (!dbGateway.getFlashcardSet(x).getIsPrivate() || curr_user.getIsAdmin()){
                     for(String tag : tags){
                         if(tag.equals("Title") && dbGateway.getFlashcardSet(x).getTitle().equals(input)){
                             result_set.add(flashcardSetDataAccess.getFlashcardSet(x));
