@@ -64,7 +64,8 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
                 }
             }
 
-            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
+            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(),
+                    studier.getNumFlashcards(), studier.getFlashcardSetId());
         }
         catch (IndexOutOfBoundsException exception) {
             return presenter.prepareFailedStudyView();

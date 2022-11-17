@@ -8,8 +8,9 @@ public class StudySessionPresenter implements StudySessionOutputBoundary {
     }
 
     @Override
-    public StudySettingsResponseModel prepareStudyView(String outputText, String title, int numFlashcards) {
-        return new StudySettingsResponseModel(outputText, title, numFlashcards);
+    public StudySettingsResponseModel prepareStudyView(String outputText, String title,
+                                                       int numFlashcards, int flashcardSetId) {
+        return new StudySettingsResponseModel(outputText, title, numFlashcards, flashcardSetId);
     }
 
     @Override
