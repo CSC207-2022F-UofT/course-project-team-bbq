@@ -10,12 +10,12 @@ import java.util.List;
 // entity layer
 
 public class FlashcardStudier extends FlashcardSet {
-    private List<Flashcard> flashcards;
+    private final List<Flashcard> flashcards;
 
     private int numFlashcards;
     private boolean displayingTerm;
 
-    private boolean termIsDefault;
+    private final boolean termIsDefault;
     private int counter = 0;
     private Flashcard currFlashcard;
 
@@ -34,11 +34,11 @@ public class FlashcardStudier extends FlashcardSet {
      */
     public String flipCard(){
         if (displayingTerm){
-            displayingTerm = !displayingTerm;
+            displayingTerm = false;
             return currFlashcard.getDefinition();
         }
         else {
-            displayingTerm = !displayingTerm;
+            displayingTerm = true;
             return currFlashcard.getTerm();
         }
     }
