@@ -57,19 +57,22 @@ public class QuizInteractor implements QuizInputBoundary {
             ArrayList<ArrayList<String>> outputText = new ArrayList<>();
 
             for (QuizQuestion quizQuestion : quizQuestions) {
-                if (quizQuestion instanceof MultipleChoiceQuestion q) {
+                if (quizQuestion instanceof MultipleChoiceQuestion) {
+                    MultipleChoiceQuestion q = (MultipleChoiceQuestion) quizQuestion;
                     questionTypes.add("MC"); // add type
                     ArrayList<String> output = new ArrayList<>(); // add question + choices under output
                     output.add((q.getQuestion()));
                     output.addAll(Arrays.asList(q.getChoices()));
                     outputText.add(output);
-                } else if (quizQuestion instanceof TextEntryQuestion q) {
+                } else if (quizQuestion instanceof TextEntryQuestion) {
+                    TextEntryQuestion q = (TextEntryQuestion) quizQuestion;
                     questionTypes.add("TE"); // add type
                     ArrayList<String> output = new ArrayList<>(); // add term and definition (one of them is null)
                     output.add(q.getTerm());
                     output.add(q.getDefinition());
                     outputText.add(output);
-                } else if (quizQuestion instanceof TrueFalseQuestion q) {
+                } else if (quizQuestion instanceof TrueFalseQuestion) {
+                    TrueFalseQuestion q = (TrueFalseQuestion) quizQuestion;
                     questionTypes.add("TF"); // add type
                     ArrayList<String> output = new ArrayList<>(); // add term and potential definition
                     output.add(q.getTerm());
