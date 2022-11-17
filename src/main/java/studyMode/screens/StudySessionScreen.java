@@ -1,4 +1,6 @@
-package studyMode;
+package studyMode.screens;
+
+import studyMode.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +15,11 @@ public class StudySessionScreen extends JFrame implements ActionListener {
 
     private final JLabel cardLabel;
 
+    private final int flashcardSetId;
     public StudySessionScreen(StudySessionController controller,
                               StudySettingsResponseModel response) {
         super(response.getTitle());
+        this.flashcardSetId = response.getFlashcardSetId();
         this.numFlashcards = response.getNumFlashcards();
         this.controller = controller;
 
@@ -27,16 +31,19 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         JButton next = new JButton("Next");
         JButton prev = new JButton("Previous");
         JButton quit = new JButton("Quit");
+        JButton restart = new JButton("Restart");
 
         // set action commands so action listener knows what to do
         flip.setActionCommand(StudySessionController.flip);
         next.setActionCommand(StudySessionController.next);
         prev.setActionCommand(StudySessionController.prev);
         quit.setActionCommand("quit");
+        restart.setActionCommand("restart");
         flip.addActionListener(this);
         next.addActionListener(this);
         prev.addActionListener(this);
         quit.addActionListener(this);
+        restart.addActionListener(this);
 
 
         int width = 550;
@@ -51,12 +58,14 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         flip.setBounds(x,y,cardWidth, cardHeight);
         next.setBounds(x+cardWidth+(x-bWidth)/2, (height)/2 - bHeight, bWidth, bHeight);
         prev.setBounds((x-bWidth)/2, height/2 - bHeight, bWidth, bHeight);
-        quit.setBounds((width-bWidth)/2, y + cardHeight + (y-bHeight)/2, bWidth, bHeight);
+        quit.setBounds((width-2 * bWidth)/3, y + cardHeight + (y-bHeight)/2, bWidth, bHeight);
+        restart.setBounds(2* (width-2 * bWidth)/3 + bWidth, y + cardHeight + (y-bHeight)/2, bWidth, bHeight);
         cLabelPanel.setBounds((width-bWidth)/2, (y-bHeight)/2, bWidth, bHeight);
         this.add(flip);//adding button in JFrame
         this.add(next);
         this.add(prev);
         this.add(quit);
+        this.add(restart);
         this.add(cLabelPanel);
 
 
@@ -76,6 +85,11 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         if (command.equals("quit")){
             setVisible(false);
             dispose();
+        }
+        else if (command.equals("restart")) {
+            setVisible(false);
+            dispose();
+            new StudySettingsScreen(controller, this.flashcardSetId);
         }
         else{
             request.setCommand(command);

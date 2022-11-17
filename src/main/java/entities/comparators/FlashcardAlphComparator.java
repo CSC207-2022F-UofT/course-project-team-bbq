@@ -1,4 +1,4 @@
-package studyMode;
+package entities.comparators;
 
 import entities.Flashcard;
 

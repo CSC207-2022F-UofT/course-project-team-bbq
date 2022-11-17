@@ -1,4 +1,8 @@
-package studyMode;
+package studyMode.screens;
+
+import studyMode.StudySessionController;
+import studyMode.StudySessionRequestModel;
+import studyMode.StudySessionResponseModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
