@@ -1,6 +1,9 @@
 package dataAccess;
 
-import entityRequestModels.UserDsRequestModel;
+import entityRequestModels.CommonUserDsRequestModel;
+
+import java.util.Collection;
+import java.util.Collections;
 
 // use case layer
 
@@ -11,11 +14,13 @@ public interface IUserDataAccess {
      * @param username the user's username
      * @return the User object who has username
      */
-    UserDsRequestModel getUser(String username);
+    CommonUserDsRequestModel getUser(String username);
 
     boolean existsByName(String username);
 
+    Collection<CommonUserDsRequestModel> getAllUsers();
+
     void saveFlashcardSetID(String username, int FlashcardSetID);
 
-    void saveUser(UserDsRequestModel user);
+    void saveUser(CommonUserDsRequestModel user);
 }
