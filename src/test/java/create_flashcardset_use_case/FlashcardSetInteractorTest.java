@@ -42,7 +42,7 @@ public class FlashcardSetInteractorTest {
             public FlashcardSetResponseModel prepareSuccessView(FlashcardSetResponseModel responseModel) {
 
                 assertEquals("CSC207", responseModel.getFs().getTitle());
-                assertEquals("CSC207", flashcardSetRepository.getFlashcardSet(0).getTitle());
+                assertEquals("CSC207", flashcardSetRepository.getFlashcardSet(-1).getTitle());
                 return null;
             }
 
