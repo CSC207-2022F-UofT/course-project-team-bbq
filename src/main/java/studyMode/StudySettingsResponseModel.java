@@ -7,10 +7,14 @@ public class StudySettingsResponseModel extends StudySessionResponseModel {
 
     private boolean failed = false;
 
-    public StudySettingsResponseModel(String outputText, String title, int numFlashcards) {
+    private int flashcardSetId;
+
+    public StudySettingsResponseModel(String outputText, String title,
+                                      int numFlashcards, int flashcardSetId) {
         super(outputText, 1);
         this.numFlashcards = numFlashcards;
         this.title = title;
+        this.flashcardSetId = flashcardSetId;
     }
 
     public StudySettingsResponseModel(){
@@ -26,5 +30,9 @@ public class StudySettingsResponseModel extends StudySessionResponseModel {
 
     public void setFailed(boolean failed) {
         this.failed = failed;
+    }
+
+    public int getFlashcardSetId() {
+        return flashcardSetId;
     }
 }

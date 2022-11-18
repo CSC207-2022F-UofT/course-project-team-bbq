@@ -1,4 +1,4 @@
-package studyMode;
+package entities;
 
 import entities.Flashcard;
 import entities.FlashcardSet;

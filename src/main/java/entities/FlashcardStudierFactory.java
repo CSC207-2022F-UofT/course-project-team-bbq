@@ -1,6 +1,6 @@
-package studyMode;
+package entities;
 
-import entities.FlashcardSet;
+import entities.FlashcardStudier;
 
 public class FlashcardStudierFactory {
 

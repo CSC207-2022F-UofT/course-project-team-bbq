@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import dataAccess.*;
+import studyMode.screens.StudySettingsScreen;
 
 import java.io.IOException;
 

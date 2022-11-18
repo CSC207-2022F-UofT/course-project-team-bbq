@@ -3,6 +3,9 @@ package studyMode;
 
 import dataAccess.DBGateway;
 import entities.Flashcard;
+import entities.FlashcardStudier;
+import entities.comparators.FlashcardAlphComparator;
+import entities.comparators.FlashcardByDateComparator;
 
 import java.util.Comparator;
 
@@ -64,7 +67,8 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
                 }
             }
 
-            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(), studier.getNumFlashcards());
+            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(),
+                    studier.getNumFlashcards(), studier.getFlashcardSetId());
         }
         catch (IndexOutOfBoundsException exception) {
             return presenter.prepareFailedStudyView();
