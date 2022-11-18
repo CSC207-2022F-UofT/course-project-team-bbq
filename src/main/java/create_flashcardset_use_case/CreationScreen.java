@@ -27,10 +27,13 @@ public class CreationScreen extends JPanel implements ActionListener {
      */
     FlashcardSetController flashcardSetController;
 
+    private boolean privateSelected;  // for public or private status of flashcard set
+
+    private boolean keepFrame = true;  // indicates when to quit the application in MainCreateFlashcardSet
+
     /**
      * A window with a title and a JButton.
      */
-    boolean privateSelected;  // for public or private status of flashcard set
     public CreationScreen(FlashcardSetController controller) {
 
         this.flashcardSetController = controller;
@@ -76,9 +79,9 @@ public class CreationScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
 //        System.out.println("Click " + evt.getActionCommand());
 
-        // Exit program if user cancels creation
+        // Exit the creation screen if user cancels creation
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
-            System.exit(0);
+            keepFrame = false;
         } else if (Objects.equals(evt.getActionCommand(), "Set as Private")) {
             privateSelected = !privateSelected;  // toggle every time clicked
         } else {
@@ -86,12 +89,16 @@ public class CreationScreen extends JPanel implements ActionListener {
                 flashcardSetController.create(title.getText(), description.getText(),
                         privateSelected, username.getText(), evt.getActionCommand());
                 JOptionPane.showMessageDialog(this,
-                        String.format("Flashcard Set: [%s] created.", title.getText()));
-                System.exit(0);
+                        "Flashcard Set: [%s] created.".formatted(title.getText()));
+                keepFrame = false;  // exit creation screen
             } catch (FlashcardSetCreationFailed e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
 
             }
         }
+    }
+
+    public boolean isKeepFrame() {
+        return keepFrame;
     }
 }

@@ -38,7 +38,11 @@ public class MainCreateFlashcardSet {
         screens.add(creationScreen, "welcome");
         cardLayout.show(screens, "create flashcard set");
         application.pack();
-        application.setVisible(true);
 
+        // Keep the application running until the user successfully creates a flashcard set or cancels creation
+        while (creationScreen.isKeepFrame()) {
+            application.setVisible(true);
+        }
+        application.dispose();
     }
 }

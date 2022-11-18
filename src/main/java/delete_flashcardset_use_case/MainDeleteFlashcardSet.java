@@ -36,7 +36,11 @@ public class MainDeleteFlashcardSet {
         screens.add(deletionScreen, "welcome");
         cardLayout.get().show(screens, "delete flashcard set");
         application.pack();
-        application.setVisible(true);
 
+        // Keep the application running until the user successfully creates a flashcard set or cancels creation
+        while (deletionScreen.isKeepFrame()) {
+            application.setVisible(true);
+        }
+        application.dispose();
     }
 }

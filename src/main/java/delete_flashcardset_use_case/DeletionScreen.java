@@ -25,6 +25,8 @@ public class DeletionScreen extends JPanel implements ActionListener {
      * A window with a title and a JButton.
      */
 
+    private boolean keepFrame = true;  // indicates when to quit the application in MainCreateFlashcardSet
+
     public DeletionScreen(DelFlashcardSetController controller) {
 
         this.controller = controller;
@@ -52,15 +54,19 @@ public class DeletionScreen extends JPanel implements ActionListener {
         this.add(confirmationButtons);
     }
 
+    public boolean isKeepFrame() {
+        return keepFrame;
+    }
+
     /**
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
 //        System.out.println("Click " + evt.getActionCommand());
 
-        // Exit program if user cancels deletion
+        // Exit deletion screen if user cancels deletion
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
-            System.exit(0);
+            keepFrame = false;
         }
 
         else {  // Delete was pressed
@@ -76,7 +82,7 @@ public class DeletionScreen extends JPanel implements ActionListener {
                         controller.delete(id);
                         JOptionPane.showMessageDialog(this, "Flashcard Set #"
                                 + flashcardSetID.getText() + " has been deleted.");
-                        System.exit(0);
+                        keepFrame = false;  // exit deletion screen
                     } catch (FlashcardSetNotFound e) {
                         JOptionPane.showMessageDialog(this, e.getMessage());
                     }
@@ -86,5 +92,7 @@ public class DeletionScreen extends JPanel implements ActionListener {
 
             }
         }
+
+
     }
 }
