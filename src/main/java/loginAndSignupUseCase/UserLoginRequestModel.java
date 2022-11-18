@@ -3,8 +3,8 @@ package loginAndSignupUseCase;
 public class UserLoginRequestModel {
     //Login Data
 
-    final String username;
-    final String password;
+    private final String username;
+    private final String password;
 
     public UserLoginRequestModel(String username, String password) {
         this.username = username;

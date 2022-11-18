@@ -4,11 +4,11 @@ package loginAndSignupUseCase;
 
 public class UserRegisterRequestModel {
 
-    final String name;
-    final String password;
-    final String repeatPassword;
+    private final String name;
+    private final String password;
+    private final String repeatPassword;
     //private boolean isAdmin;
-    final String adminKeyEntered;
+    private final String adminKeyEntered;
 
     public UserRegisterRequestModel(String name, String password, String repeatPassword, String adminKeyEntered) {
         this.name = name;

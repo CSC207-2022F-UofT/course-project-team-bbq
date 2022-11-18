@@ -6,9 +6,9 @@ import entities.UserFactory;
 import entityRequestModels.CommonUserDsRequestModel;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
-    final IUserDataAccess userDsGateway;
-    final UserRegisterOutputBoundary userRegisterOutputBoundary;
-    final UserFactory userFactory;
+    private final IUserDataAccess userDsGateway;
+    private final UserRegisterOutputBoundary userRegisterOutputBoundary;
+    private final UserFactory userFactory;
 
     public UserRegisterInteractor(IUserDataAccess userRegisterDsGateway, UserRegisterOutputBoundary userRegisterOutputBoundary,
                                   UserFactory userFactory) {
