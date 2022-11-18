@@ -1,12 +1,12 @@
 //package userRegisterAndLoginUseCaseTest;
 //
+//import dataAccess.CommonUserDataAccess;
 //import dataAccess.IUserDataAccess;
 //import entities.CommonUserFactory;
 //import entities.UserFactory;
 ////import org.junit.jupiter.api.BeforeEach;
 ////import org.junit.jupiter.api.Test;
 //import loginAndSignupUseCase.*;
-//import loginAndSignupUseCaseScreens.CommonUserDataAccess;
 //import org.junit.jupiter.api.Test;
 ////import org.testing.annotations.Test;
 //

@@ -44,6 +44,16 @@ public class UserUnitTest {
         assertEquals(user.getFlashcardSetIds(), check);
     }
 
+    @Test
+    void adminKeyValidChecker() {
+        User user = new CommonUser("Junyu", "12345", false);
+        assertTrue(user.adminKeyValid("BuiltDifferent"));
+    }
 
+    @Test
+    void adminKeyValidChecker2() {
+        User user = new CommonUser("Winston", "12345", false);
+        assertFalse(user.adminKeyValid(" "));
+    }
 
 }
