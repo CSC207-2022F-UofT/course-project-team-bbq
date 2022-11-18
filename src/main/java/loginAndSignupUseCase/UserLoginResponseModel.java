@@ -1,7 +1,6 @@
 package loginAndSignupUseCase;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class UserLoginResponseModel {
     String username;

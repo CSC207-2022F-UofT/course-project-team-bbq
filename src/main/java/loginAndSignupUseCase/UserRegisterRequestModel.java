@@ -2,15 +2,13 @@ package loginAndSignupUseCase;
 
 // Use case layer
 
-import java.util.Map;
-
 public class UserRegisterRequestModel {
 
-    private String name;
-    private String password;
-    private String repeatPassword;
+    final String name;
+    final String password;
+    final String repeatPassword;
     //private boolean isAdmin;
-    private String adminKeyEntered;
+    final String adminKeyEntered;
 
     public UserRegisterRequestModel(String name, String password, String repeatPassword, String adminKeyEntered) {
         this.name = name;
@@ -23,24 +21,12 @@ public class UserRegisterRequestModel {
         return name;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-
     String getPassword() {
         return password;
     }
 
-    void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getRepeatPassword() {
         return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
     }
 
     public String getAdminKeyEntered() {
