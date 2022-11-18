@@ -84,19 +84,27 @@ public class QuizInteractor implements QuizInputBoundary {
         }
     }
 
+    /**
+     * Handles ending the quiz and getting the results.
+     * @param requestModel the quiz request model
+     * @return the quiz response model
+     */
     @Override
     public QuizResponseModel getResults(QuizRequestModel requestModel) {
         ArrayList<String> userAnswers = requestModel.getUserAnswers();
         List<QuizQuestion> quizQuestions = quiz.getQuizQuestions();
-        if (userAnswers.size() != quizQuestions.size()) {
-            return presenter.prepareErrorView("User answers and quiz questions do not have the same size.");
-        }
-
         for (int i = 0; i < quizQuestions.size(); i++) {
             quizQuestions.get(i).setUserAnswer(userAnswers.get(i));
         }
-        QuizResponseModel results = new QuizResponseModel();
-        return presenter.prepareResultsView();
+        this.quiz.evaluate(); // evaluate the quiz
+        int score = this.quiz.getScore();
+        int numQuestions = this.quiz.getNumQuestions();
+
+        if (userAnswers.contains(null) || userAnswers.contains("")) { // missing answers
+            return presenter.prepareConfirmationView("Not all questions have been answered." +
+                    " Are you sure you want to submit?", score, numQuestions);
+        }
+        return presenter.prepareResultsView(score, numQuestions);
     }
 
     @Override

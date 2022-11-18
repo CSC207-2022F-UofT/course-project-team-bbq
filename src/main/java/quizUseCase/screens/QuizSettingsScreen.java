@@ -184,7 +184,6 @@ public class QuizSettingsScreen extends Screen {
                 // transition to next screen
                 this.setVisible(false);
                 this.dispose();
-                System.out.println("QUIZ TIME!!! AW YEA");
                 new QuizScreen(this.controller, response, this.flashcardSetID);
             }
         }

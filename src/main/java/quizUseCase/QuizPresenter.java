@@ -31,8 +31,8 @@ public class QuizPresenter implements QuizOutputBoundary {
      * @return quiz response model
      */
     @Override
-    public QuizResponseModel prepareResultsView() {
-        return new QuizResponseModel();
+    public QuizResponseModel prepareResultsView(int score, int numQuestions) {
+        return new QuizResponseModel(score, numQuestions);
     }
 
     /**
@@ -41,6 +41,16 @@ public class QuizPresenter implements QuizOutputBoundary {
      */
     @Override
     public QuizResponseModel prepareErrorView(String error) {
-        return new QuizResponseModel();
+        return new QuizResponseModel(true, error);
+    }
+
+    /**
+     * Prepares the confirmation view.
+     * @param message the message
+     * @return quiz response model
+     */
+    @Override
+    public QuizResponseModel prepareConfirmationView(String message, int score, int numQuestions) {
+        return new QuizResponseModel(true, message, score, numQuestions);
     }
 }

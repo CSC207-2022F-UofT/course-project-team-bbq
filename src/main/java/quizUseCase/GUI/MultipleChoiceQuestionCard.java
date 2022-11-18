@@ -2,7 +2,7 @@ package quizUseCase.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class MultipleChoiceQuestionCard extends QuestionCard {
@@ -15,6 +15,7 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
 
         for (int i = 1; i < outputText.size(); i++) {
             JRadioButton choice = new JRadioButton(outputText.get(i));
+            choice.addActionListener(this);
             choices.add(choice);
             group.add(choice);
         }
@@ -27,9 +28,9 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
         }
     }
 
-    public void addActionListener(ActionListener actionListener) {
-        for (JRadioButton choice : this.choices) {
-            choice.addActionListener(actionListener);
-        }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JRadioButton source = (JRadioButton) e.getSource();
+        this.setUserAnswer(source.getText());
     }
 }

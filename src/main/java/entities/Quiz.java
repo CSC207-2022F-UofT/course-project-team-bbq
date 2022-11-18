@@ -13,6 +13,9 @@ public class Quiz {
     private final List<QuizQuestion> quizQuestions;
     private final QuizSettings quizSettings;
     private final List<Flashcard> flashcards;
+
+    private int score;
+
     private static final Random rand = new Random();
 
     /**
@@ -24,6 +27,7 @@ public class Quiz {
         this.quizQuestions = new ArrayList<>();
         this.quizSettings = quizSettings;
         this.flashcards = new ArrayList<>(flashcards); // simple copy of references
+        this.score = 0;
         this.generateQuestions();
     }
 
@@ -54,11 +58,26 @@ public class Quiz {
             QuizQuestion question = qqFactory.create(this.flashcards, i, type);
             this.quizQuestions.add(question);
         }
+    }
 
+    public void evaluate() {
+        for (QuizQuestion q : this.quizQuestions) {
+            if (q.isCorrect()) {
+                score++;
+            }
+        }
     }
 
     /** GETTERS AND SETTERS **/
     public List<QuizQuestion> getQuizQuestions() {
         return this.quizQuestions;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public int getNumQuestions() {
+        return this.quizQuestions.size();
     }
 }

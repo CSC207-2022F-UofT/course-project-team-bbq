@@ -40,7 +40,14 @@ abstract public class QuizQuestion {
         return userAnswer;
     }
 
+    /**
+     * @param userAnswer the user answer
+     */
     public void setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer.toLowerCase();
+        if (userAnswer == null || userAnswer.equals("")) {
+            this.userAnswer = null;
+        } else {
+            this.userAnswer = userAnswer.toLowerCase();
+        }
     }
 }
