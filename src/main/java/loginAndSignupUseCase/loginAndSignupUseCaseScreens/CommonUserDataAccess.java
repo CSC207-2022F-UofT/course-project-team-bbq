@@ -1,4 +1,4 @@
-package loginAndSignupUseCaseScreens;
+package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
 import dataAccess.IUserDataAccess;
 import entityRequestModels.CommonUserDsRequestModel;

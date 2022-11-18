@@ -1,4 +1,4 @@
-package loginAndSignupUseCaseScreens;
+package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

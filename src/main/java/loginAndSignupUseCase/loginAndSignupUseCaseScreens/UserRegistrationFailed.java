@@ -1,4 +1,4 @@
-package loginAndSignupUseCaseScreens;
+package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
 public class UserRegistrationFailed extends RuntimeException {
     public UserRegistrationFailed(String error) {

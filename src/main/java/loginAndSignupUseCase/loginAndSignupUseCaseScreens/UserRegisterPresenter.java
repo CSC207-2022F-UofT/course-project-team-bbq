@@ -1,4 +1,4 @@
-package loginAndSignupUseCaseScreens;
+package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
 import loginAndSignupUseCase.UserRegisterOutputBoundary;
 import loginAndSignupUseCase.UserRegisterResponseModel;
