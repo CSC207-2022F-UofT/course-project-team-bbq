@@ -86,6 +86,5 @@ public class SearchScreen extends JFrame implements ActionListener{
     }
 
         public void actionPerformed(ActionEvent e){
-            // do i need this
-    }
+        }
 }
