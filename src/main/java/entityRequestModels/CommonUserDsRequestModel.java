@@ -1,12 +1,12 @@
 package entityRequestModels;
 
 import java.util.List;
+import java.util.Map;
 
 public class CommonUserDsRequestModel {
     private String username;
     private String password;
     private boolean isAdmin;
-
     private List<Integer> flashcardSetIds;
 
     public CommonUserDsRequestModel(String username, String password, boolean isAdmin, List<Integer> flashcardSetIds){
@@ -15,32 +15,19 @@ public class CommonUserDsRequestModel {
         this.isAdmin = isAdmin;
         this.flashcardSetIds = flashcardSetIds;
     }
-
-    public String getUsername() {
+    public String getUsername(){
         return username;
     }
 
-    void setName(String name) {
-        this.username = name;
-    }
-
-    public String getPassword() {
+    public String getPassword(){
         return password;
-    }
-
-    void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean getIsAdmin(){
         return isAdmin;
     }
-    public void setIsAdmin(boolean isAdmin){
-        this.isAdmin = isAdmin;
-    }
 
     public List<Integer> getFlashcardSetIds(){
-        return flashcardSetIds;
+        return flashcardSetIds  ;
     }
-
 }

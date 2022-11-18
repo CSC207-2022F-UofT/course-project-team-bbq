@@ -3,10 +3,12 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 
 import java.util.Collection;
+import java.util.Collections;
 
 // use case layer
 
 public interface IUserDataAccess {
+
 
     /**
      * @param username the user's username
@@ -21,5 +23,4 @@ public interface IUserDataAccess {
     void saveFlashcardSetID(String username, int FlashcardSetID);
 
     void saveUser(CommonUserDsRequestModel user);
-
 }

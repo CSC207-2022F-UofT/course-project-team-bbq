@@ -1,5 +1,6 @@
 package dataAccess;
 
+import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 
 // use case layer
@@ -15,7 +16,7 @@ public interface IFlashcardSetDataAccess {
 
     void deleteFlashcardSet(int flashcardSetID);
 
-    void saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet);
+    int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet);
 
 
 }

@@ -6,11 +6,12 @@ import entityRequestModels.FlashcardDsRequestModel;
 
 public interface IFlashcardDataAccess {
 
-    FlashcardDsRequestModel getFlashcard(String flashcardID);
+    FlashcardDsRequestModel getFlashcard(Integer flashcardID);
 
-    void saveFlashcard(FlashcardDsRequestModel flashcard);
+    int saveFlashcard(FlashcardDsRequestModel flashcard);
 
     void editFlashcard(FlashcardDsRequestModel flashcard);
 
-    void deleteFlashcard(String flashcardID);
+    void deleteFlashcard(Integer flashcardID);
+
 }
