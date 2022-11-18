@@ -1,5 +1,8 @@
 package studyMode;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import dataAccess.*;
 import studyMode.screens.StudySettingsScreen;
 
@@ -8,6 +11,9 @@ import java.io.IOException;
 public class MockMain {
 
     public static void main(String[] args) throws IOException {
+        // only use one
+        FlatIntelliJLaf.setup(); // light mode
+        // FlatDarculaLaf.setup(); // dark mode
 
 
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
