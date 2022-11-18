@@ -37,7 +37,7 @@ public class StudySessionUseCaseUnitTest {
     }
     @Test
     void testTimeSort() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -65,7 +65,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testAlphSort() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.alphSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -93,7 +93,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testPrevious() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -121,7 +121,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testFlip() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -141,7 +141,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testsTermNotDefault() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.timeSort, false, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -161,7 +161,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testReverse() throws IOException {
-        StudySettingsRequestModel request = this.setup(0,
+        StudySettingsRequestModel request = this.setup(testSetId,
                 StudySessionController.timeSort, true, true);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
@@ -189,7 +189,7 @@ public class StudySessionUseCaseUnitTest {
 
     @Test
     void testEmpty() throws IOException {
-        StudySettingsRequestModel request = this.setup(1,
+        StudySettingsRequestModel request = this.setup(emptyTestSetId,
                 StudySessionController.timeSort, true, true);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
