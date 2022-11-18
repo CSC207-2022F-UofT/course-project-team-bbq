@@ -46,4 +46,7 @@ public class FlashcardDsRequestModel {
         this.definition = definition;
     }
 
+    public void setFlashcardId(int flashcardId) {
+        this.flashcardId = flashcardId;
+    }
 }
