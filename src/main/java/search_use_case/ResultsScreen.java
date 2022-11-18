@@ -1,6 +1,8 @@
 package search_use_case;
 
 import entityRequestModels.CommonUserDsRequestModel;
+import studyMode.StudySessionController;
+import studyMode.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,30 +12,38 @@ import java.util.ArrayList;
 
 public class ResultsScreen extends JFrame implements ActionListener {
     private final SearchResponseModel responseModel;
+    private final StudySessionController studySessionController;
 
-    public ResultsScreen(SearchResponseModel responseModel){
+    public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller){
         super("Search Results");
-
+        this.studySessionController = study_controller;
         this.responseModel = responseModel;
         int num_results = responseModel.getResult_set().size();
 
         for (int x=0; x<num_results; x++){
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 25));
             JLabel title = new JLabel(responseModel.getResult_set().get(x).getTitle());
-            JLabel description = new JLabel(responseModel.getResult_set().get(x).getDescription());
+//            JLabel description = new JLabel(responseModel.getResult_set().get(x).getDescription());
             JLabel owner = new JLabel(responseModel.getResult_set().get(x).getOwnerUsername());
-            JLabel id = new JLabel(String.valueOf(responseModel.getResult_set().get(x).getFlashcardSetId()));
             JButton study = new JButton("Study");
-            study.addActionListener( e -> {
-                // to be implemented
+            int tempX = x;
+            study.addActionListener(e -> {
+                try{
+                    new StudySettingsScreen(study_controller, responseModel.getResult_set().get(tempX).getFlashcardSetId());
+                }
+                catch (Exception s){
+                    JOptionPane.showMessageDialog(this, s.getMessage());
+                }
             });
+            JButton test = new JButton("Test");
+
             title.setBounds(0, 0, 200, 40);
 
             panel.add(title);
-            panel.add(description);
+//            panel.add(description);
             panel.add(owner);
-            panel.add(id);
             panel.add(study);
+            panel.add(test);
             add(panel);
         }
 
