@@ -6,9 +6,9 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway {
-    private static String flashcardPath = "src/data/Flashcards.csv";
-    private static String flashcardSetPath = "src/data/FlashcardSets.csv";
-    private static String userPath = "src/data/Users.csv";
+    private static final String flashcardPath = "src/data/Flashcards.csv";
+    private static final String flashcardSetPath = "src/data/FlashcardSets.csv";
+    private static final String userPath = "src/data/Users.csv";
 
     IFlashcardDataAccess flashcardGateway;
     IFlashcardSetDataAccess flashcardSetGateway;
