@@ -1,7 +1,9 @@
 package quizUseCase;
 
 /**
+ * Quiz Controller.
  * Interface Adapters
+ * @author Anthony
  */
 public class QuizController {
     private final QuizInputBoundary userInput;

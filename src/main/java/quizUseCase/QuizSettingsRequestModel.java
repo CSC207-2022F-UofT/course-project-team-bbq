@@ -1,7 +1,9 @@
 package quizUseCase;
 
 /**
+ * Quiz Settings Request Model.
  * Application Business Rules
+ * @author Anthony
  */
 public class QuizSettingsRequestModel {
     private int numQuestions;

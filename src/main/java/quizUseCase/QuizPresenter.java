@@ -3,7 +3,9 @@ package quizUseCase;
 import java.util.ArrayList;
 
 /**
+ * Quiz Presenter.
  * Interface Adapters
+ * @author Anthony
  */
 public class QuizPresenter implements QuizOutputBoundary {
     /**
@@ -31,8 +33,12 @@ public class QuizPresenter implements QuizOutputBoundary {
      * @return quiz response model
      */
     @Override
-    public QuizResponseModel prepareResultsView(int score, int numQuestions) {
-        return new QuizResponseModel(score, numQuestions);
+    public QuizResponseModel prepareResultsView(int score, int numQuestions,
+                                                ArrayList<String> types,
+                                                ArrayList<ArrayList<String>> outputText,
+                                                ArrayList<String> userAnswers,
+                                                ArrayList<String> actualAnswers) {
+        return new QuizResponseModel(score, numQuestions, types, outputText, userAnswers, actualAnswers);
     }
 
     /**
@@ -50,7 +56,13 @@ public class QuizPresenter implements QuizOutputBoundary {
      * @return quiz response model
      */
     @Override
-    public QuizResponseModel prepareConfirmationView(String message, int score, int numQuestions) {
-        return new QuizResponseModel(true, message, score, numQuestions);
+    public QuizResponseModel prepareConfirmationView(String message,
+                                                     int score, int numQuestions,
+                                                     ArrayList<String> types,
+                                                     ArrayList<ArrayList<String>> outputText,
+                                                     ArrayList<String> userAnswers,
+                                                     ArrayList<String> actualAnswers) {
+        return new QuizResponseModel(true, message, score, numQuestions,
+                types, outputText, userAnswers, actualAnswers);
     }
 }

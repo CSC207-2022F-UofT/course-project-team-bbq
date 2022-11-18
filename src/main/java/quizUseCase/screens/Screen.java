@@ -7,32 +7,31 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
+ * Abstract class representing a GUI screen.
  * Frameworks & Drivers
+ * @author Anthony
  */
 public abstract class Screen extends JFrame implements ActionListener {
-    private int w;
-    private int h;
-
     private final boolean pack;
 
+    /**
+     * Constructs a large screen.
+     * @param title the screen title
+     * @param pack true if I want to pack it
+     */
     public Screen(String title, boolean pack) {
         super(title);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
-        this.w = (int) (screenSize.width * (0.9));
-        this.h = (int) (screenSize.height * (0.9));
+        int w = (int) (screenSize.width * (0.9));
+        int h = (int) (screenSize.height * (0.9));
         this.pack = pack;
-        this.setSize(this.w, this.h);
+        this.setSize(w, h);
     }
 
-    public Screen(String title, int w, int h, boolean pack) {
-        super(title);
-        this.w = w;
-        this.h = h;
-        this.pack = pack;
-        this.setSize(this.w, this.h);
-    }
-
+    /**
+     * Sets up the screen at the end. Also adds an icon.
+     */
     public void setupScreen() {
         // ICON
         File file = new File("src/images/spungebub.png");
@@ -49,22 +48,5 @@ public abstract class Screen extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    /** GETTERS AND SETTERS **/
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int w) {
-        this.w = w;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int h) {
-        this.h = h;
     }
 }

@@ -10,7 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
+ * GUI screen for the quiz settings.
  * Frameworks & Drivers
+ * @author Anthony
  */
 public class QuizSettingsScreen extends Screen {
     private final QuizController controller;

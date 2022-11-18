@@ -2,14 +2,26 @@ package quizUseCase.GUI;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 
+/**
+ * GUI slider with more functionality.
+ * Frameworks & Drivers
+ * @author Anthony
+ */
 public class Slider extends JPanel {
     public JSlider slider;
 
     private JLabel title;
     private JLabel valueText;
 
+    /**
+     * Constructs a slider.
+     * @param min the minimum slider value
+     * @param max the maximum slider value
+     * @param value the starting slider value
+     * @param tickSpacing the major tick spacing
+     * @param title the slider title
+     */
     public Slider(int min, int max, int value, int tickSpacing, String title) {
         this.slider = new JSlider(min, max, value);
         this.slider.setPaintTicks(true);
@@ -28,6 +40,9 @@ public class Slider extends JPanel {
         this.add(this.valueText);
     }
 
+    /**
+     * Updates the value text label based on the current slider value.
+     */
     public void updateValue() {
         this.valueText.setText(String.valueOf(this.slider.getValue()));
     }

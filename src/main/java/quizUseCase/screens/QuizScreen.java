@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
+ * GUI screen for the quiz.
  * Frameworks & Drivers
+ * @author Anthony
  */
 public class QuizScreen extends Screen {
     private final QuizController controller;
@@ -36,7 +38,7 @@ public class QuizScreen extends Screen {
 
         // CENTER PANEL
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         for (int i = 0; i < types.size(); i++) {
             String type = types.get(i);
@@ -63,11 +65,11 @@ public class QuizScreen extends Screen {
         // BOTTOM PANEL
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout());
-        JButton restart = new JButton("RESTART");
+        JButton restart = new JButton("Restart");
         restart.setActionCommand(Actions.RESTART.name());
         restart.addActionListener(this);
         bottomPanel.add(restart);
-        JButton submit = new JButton("SUBMIT");
+        JButton submit = new JButton("Submit");
         submit.setActionCommand(Actions.SUBMIT.name());
         submit.addActionListener(this);
         bottomPanel.add(submit);
@@ -110,13 +112,13 @@ public class QuizScreen extends Screen {
                 if (input == 0) { // continue onwards
                     this.setVisible(false);
                     this.dispose();
-                    new QuizResultsScreen(this.controller, response);
+                    new QuizResultsScreen(this.controller, response, this.flashcardSetID);
                 }
             } else {
                 // transition into next screen
                 this.setVisible(false);
                 this.dispose();
-                new QuizResultsScreen(this.controller, response);
+                new QuizResultsScreen(this.controller, response, this.flashcardSetID);
             }
         }
     }

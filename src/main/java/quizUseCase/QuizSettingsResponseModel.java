@@ -3,17 +3,19 @@ package quizUseCase;
 import java.util.ArrayList;
 
 /**
+ * Quiz Settings Response Model.
  * Application Business Rules
+ * @author Anthony
  */
 public class QuizSettingsResponseModel {
-    // error handling
-    private boolean failed = false;
-    private String error;
-
     // information
     private int numFlashcards;
     private ArrayList<String> types;
     private ArrayList<ArrayList<String>> outputText;
+
+    // error handling
+    private boolean failed = false;
+    private String error;
 
     /**
      * Constructor that handles failures.

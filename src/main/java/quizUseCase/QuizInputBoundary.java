@@ -1,7 +1,9 @@
 package quizUseCase;
 
 /**
+ * Quiz Input Boundary.
  * Application Business Rules
+ * @author Anthony
  */
 public interface QuizInputBoundary {
     /**

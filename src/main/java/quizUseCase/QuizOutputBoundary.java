@@ -3,7 +3,9 @@ package quizUseCase;
 import java.util.ArrayList;
 
 /**
+ * Quiz Output Boundary.
  * Application Business Rules
+ * @author Anthony
  */
 public interface QuizOutputBoundary {
     /**
@@ -27,7 +29,11 @@ public interface QuizOutputBoundary {
      * @param numQuestions the number of questions
      * @return quiz response model
      */
-    QuizResponseModel prepareResultsView(int score, int numQuestions);
+    QuizResponseModel prepareResultsView(int score, int numQuestions,
+                                         ArrayList<String> types,
+                                         ArrayList<ArrayList<String>> outputText,
+                                         ArrayList<String> userAnswers,
+                                         ArrayList<String> actualAnswers);
 
     /**
      * Prepares the quiz error view.
@@ -41,5 +47,9 @@ public interface QuizOutputBoundary {
      * @param message the message
      * @return quiz response model
      */
-    QuizResponseModel prepareConfirmationView(String message, int score, int numQuestions);
+    QuizResponseModel prepareConfirmationView(String message, int score, int numQuestions,
+                                              ArrayList<String> types,
+                                              ArrayList<ArrayList<String>> outputText,
+                                              ArrayList<String> userAnswers,
+                                              ArrayList<String> actualAnswers);
 }

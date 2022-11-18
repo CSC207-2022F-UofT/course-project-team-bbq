@@ -13,16 +13,26 @@ import java.util.List;
 
 /**
  * Quiz Builder.
+ * @author Anthony
  */
 public class QuizBuilder {
     private final FlashcardFactory flashcardFactory;
     private final DBGateway gateway;
 
+    /**
+     * Constructs a quiz builder.
+     * @param gateway the gateway
+     */
     public QuizBuilder(DBGateway gateway) {
         this.flashcardFactory = new FlashcardFactory();
         this.gateway = gateway;
     }
 
+    /**
+     * Builds a flashcard object given a flashcard ID.
+     * @param flashcardID the flashcard ID
+     * @return a flashcard object
+     */
     public Flashcard buildFlashcard(int flashcardID) {
         FlashcardDsRequestModel request = gateway.getFlashcard(flashcardID);
 
@@ -30,8 +40,14 @@ public class QuizBuilder {
                 request.getFlashcardId(), request.getBelongsToId());
     }
 
-    public Quiz buildQuiz(int flashcardSetId, QuizSettings quizSettings) {
-        FlashcardSetDsRequestModel request = gateway.getFlashcardSet(flashcardSetId);
+    /**
+     * Builds a quiz given a flashcard set ID and quiz settings.
+     * @param flashcardSetID the flashcard set ID
+     * @param quizSettings the quiz settings
+     * @return a quiz object
+     */
+    public Quiz buildQuiz(int flashcardSetID, QuizSettings quizSettings) {
+        FlashcardSetDsRequestModel request = gateway.getFlashcardSet(flashcardSetID);
 
         // create list of flashcards
         List<Flashcard> flashcards = new ArrayList<>();

@@ -60,7 +60,11 @@ public class Quiz {
         }
     }
 
+    /**
+     * Evaluates the quiz and updates the score value based on how many questions are correct.
+     */
     public void evaluate() {
+        this.score = 0;
         for (QuizQuestion q : this.quizQuestions) {
             if (q.isCorrect()) {
                 score++;
@@ -69,6 +73,30 @@ public class Quiz {
     }
 
     /** GETTERS AND SETTERS **/
+    public ArrayList<String> getUserAnswers() {
+        ArrayList<String> userAnswers = new ArrayList<>();
+        for (QuizQuestion q : this.quizQuestions) {
+            userAnswers.add(q.getUserAnswer());
+        }
+        return userAnswers;
+    }
+
+    public void setUserAnswers(ArrayList<String> userAnswers) {
+        for (int i = 0; i < userAnswers.size(); i++) {
+            QuizQuestion q = this.quizQuestions.get(i);
+            String a = userAnswers.get(i);
+            q.setUserAnswer(a);
+        }
+    }
+
+    public ArrayList<String> getActualAnswers() {
+        ArrayList<String> actualAnswers = new ArrayList<>();
+        for (QuizQuestion q : this.quizQuestions) {
+            actualAnswers.add(q.getActualAnswer());
+        }
+        return actualAnswers;
+    }
+
     public List<QuizQuestion> getQuizQuestions() {
         return this.quizQuestions;
     }

@@ -41,6 +41,7 @@ abstract public class QuizQuestion {
     }
 
     /**
+     * Sets the user answer. If the user answer is null or empty, the user answer should be set to null.
      * @param userAnswer the user answer
      */
     public void setUserAnswer(String userAnswer) {

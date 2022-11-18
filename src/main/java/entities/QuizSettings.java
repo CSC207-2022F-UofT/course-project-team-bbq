@@ -12,10 +12,15 @@ public class QuizSettings {
     private boolean textEntryOn;
     private boolean trueFalseOn;
 
-    public QuizSettings(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
+    /**
+     * Constructor for quiz settings.
+     * @param numQuestions the number of questions
+     * @param timerOn true if timer is on
+     * @param timerDuration the timer duration
+     * @param multipleChoiceOn true if multiple choice is on
+     * @param textEntryOn true if text entry is on
+     * @param trueFalseOn true if true false is on
+     */
     public QuizSettings(int numQuestions, boolean timerOn, int timerDuration, boolean multipleChoiceOn,
                         boolean textEntryOn, boolean trueFalseOn){
         this.numQuestions = numQuestions;
@@ -26,10 +31,16 @@ public class QuizSettings {
         this.trueFalseOn = trueFalseOn;
     }
 
+    /**
+     * @return true if at least one option is enabled
+     */
     public boolean atLeastOneOptionEnabled() {
         return multipleChoiceOn || textEntryOn || trueFalseOn;
     }
 
+    /**
+     * @return true if the timer is between 1 and 60 or the timer is not on
+     */
     public boolean timerIsReasonable() {
         return ((1 <= this.timerDuration && this.timerDuration <= 60) || !(this.timerOn));
     }

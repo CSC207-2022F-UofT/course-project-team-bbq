@@ -5,17 +5,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+/**
+ * GUI panel that displays a text entry question.
+ * Frameworks & Drivers
+ * @author Anthony
+ */
 public class TextEntryQuestionCard extends QuestionCard {
     private boolean missingTerm;
     private JLabel label;
     private JTextField textField;
 
+    /**
+     * Constructs a text entry question card that is ready to receive user input.
+     * @param outputText the output text to be displayed
+     */
     public TextEntryQuestionCard(ArrayList<String> outputText) {
-        if (outputText.get(0) == null) {
-            this.missingTerm = true;
-        } else {
-            this.missingTerm = false;
-        }
+        this.missingTerm = outputText.get(0) == null;
 
         this.textField = new JTextField();
         if (missingTerm) { // missing term
@@ -35,6 +40,47 @@ public class TextEntryQuestionCard extends QuestionCard {
         }
     }
 
+    /**
+     * Constructs a text entry question card that already has user answers inputted. For display purposes only.
+     * @param outputText the output text to be displayed
+     * @param userAnswer the user answer
+     * @param actualAnswer the actual answer
+     */
+    public TextEntryQuestionCard(ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+        this.missingTerm = outputText.get(0) == null;
+
+        boolean isCorrect = actualAnswer.equals(userAnswer);
+        JLabel status = generateStatus(isCorrect);
+
+        this.textField = new JTextField();
+        this.textField.setText(userAnswer);
+        this.textField.setEnabled(false); // disabled
+        if (missingTerm) { // missing term
+            this.label = new JLabel(outputText.get(1));
+
+            // adding components in a specific order
+            this.setLayout(new FlowLayout());
+            this.add(status);
+            this.add(textField);
+            this.add(label);
+        } else { // missing definition
+            this.label = new JLabel(outputText.get(0));
+
+            // adding components in a specific order
+            this.setLayout(new FlowLayout());
+            this.add(status);
+            this.add(label);
+            this.add(textField);
+        }
+        if (!isCorrect) {
+            JLabel actualAnswerLabel = new JLabel("Actual Answer: " + actualAnswer);
+            this.add(actualAnswerLabel);
+        }
+    }
+
+    /**
+     * Updates the user answer based on the text field.
+     */
     public void updateUserAnswer() {
         this.setUserAnswer(this.textField.getText());
     }

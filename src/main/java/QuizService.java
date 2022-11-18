@@ -8,6 +8,7 @@ import java.util.Scanner;
 /**
  * This is just a temporary class that I use to test quiz functionality while using scanner user input.
  * Feel free to run and try it out.
+ * @author Anthony
  */
 public class QuizService {
     public static void main(String[] args) {
@@ -65,7 +66,8 @@ public class QuizService {
         System.out.println("Enter the number of questions. This should be a value between 1 and "
                 + flashcards.size() + ".");
         int num = Integer.parseInt(ui.nextLine());
-        QuizSettings quizSettings = new QuizSettings(num);
+        QuizSettings quizSettings = new QuizSettings(num, false, 30,
+                true, true, true);
 
         // quiz
         Quiz quiz = new Quiz(quizSettings, flashcards);
