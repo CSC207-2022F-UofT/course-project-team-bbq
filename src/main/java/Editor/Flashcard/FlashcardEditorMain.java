@@ -19,7 +19,6 @@ public class FlashcardEditorMain extends JFrame{
 
         this.setTitle("Edit Flashcard \"" + flashcard.getTerm() + "\"");
         FlashcardEditorScreen editScreen = new FlashcardEditorScreen(controller, flashcard, this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(editScreen);
         this.setSize(500, 200);
         this.setVisible(true);
