@@ -13,20 +13,11 @@ import java.util.ArrayList;
 
 public class SearchScreen extends JFrame implements ActionListener{
 
-    private final SearchController search_controller;
-    private final StudySessionController study_controller;
-    private final QuizController quiz_controller;
-    private final CommonUserDsRequestModel curr_user;
-
-    private ArrayList<String> selected_tags = new ArrayList<>();
-
     public SearchScreen(SearchController search_controller, StudySessionController study_controller,
                         QuizController quiz_controller, CommonUserDsRequestModel curr_user){
         super("Search Flashcards");
-        this.search_controller = search_controller;
-        this.study_controller = study_controller;
-        this.quiz_controller = quiz_controller;
-        this.curr_user = curr_user;
+
+        ArrayList<String> selected_tags = new ArrayList<>();
 
         // search input text field
         JTextField search_input = new JTextField("Search Input Here");

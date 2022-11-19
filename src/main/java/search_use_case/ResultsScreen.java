@@ -21,13 +21,16 @@ public class ResultsScreen extends JFrame implements ActionListener {
         result_panel.setLayout(new BoxLayout(result_panel, BoxLayout.Y_AXIS));
 
         JScrollPane scrPane = new JScrollPane(result_panel);
-        scrPane.setPreferredSize(new Dimension(400, 500));
+        scrPane.setPreferredSize(new Dimension(350, 500));
+        scrPane.getVerticalScrollBar().setUnitIncrement(16);
 
         for (int x=0; x<num_results; x++){
-            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 50));
-            JLabel title = new JLabel(responseModel.getResult_set().get(x).getTitle());
-            JLabel description = new JLabel(responseModel.getResult_set().get(x).getDescription());
-            JLabel owner = new JLabel(responseModel.getResult_set().get(x).getOwnerUsername());
+            JPanel panel = new JPanel();
+            panel.setLayout(new GridLayout(6, 1, 20, 20));
+            JLabel title = new JLabel("   " + responseModel.getResult_set().get(x).getTitle());
+            JLabel description = new JLabel("   Description: " +
+                    responseModel.getResult_set().get(x).getDescription());
+            JLabel owner = new JLabel("   Creator: " + responseModel.getResult_set().get(x).getOwnerUsername());
             JButton study = new JButton("Study");
             int tempX = x;
             study.addActionListener(e -> {
