@@ -112,6 +112,21 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     }
 
     @Override
+    public void removeFlashcardId(int flashcardSetId, int flashcardId){
+        FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
+        List<Integer> newFlashcards = new ArrayList<>(oldFlashcardSet.getFlashcardIds());
+        newFlashcards.remove(Integer.valueOf(flashcardId));
+        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(
+                oldFlashcardSet.getTitle(),
+                oldFlashcardSet.getDescription(),
+                oldFlashcardSet.getIsPrivate(),
+                flashcardSetId, oldFlashcardSet.getOwnerUsername(), newFlashcards);
+
+        flashcardSets.put(flashcardSetId, newFlashcardSet);
+        save();
+    }
+
+    @Override
     public void deleteFlashcardSet(int flashcardSetID) {
         flashcardSets.remove(flashcardSetID);
         save();
