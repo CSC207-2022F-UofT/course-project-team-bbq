@@ -11,22 +11,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResultsScreen extends JFrame implements ActionListener {
-    private final SearchResponseModel responseModel;
-    private final StudySessionController study_controller;
-    private final QuizController quiz_controller;
 
     public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller,
                          QuizController quiz_controller){
         super("Search Results");
-        this.study_controller = study_controller;
-        this.quiz_controller = quiz_controller;
-        this.responseModel = responseModel;
         int num_results = responseModel.getResult_set().size();
 
+        JPanel result_panel = new JPanel();
+        result_panel.setLayout(new BoxLayout(result_panel, BoxLayout.Y_AXIS));
+
+        JScrollPane scrPane = new JScrollPane(result_panel);
+        scrPane.setPreferredSize(new Dimension(400, 500));
+
         for (int x=0; x<num_results; x++){
-            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 25));
+            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 50));
             JLabel title = new JLabel(responseModel.getResult_set().get(x).getTitle());
-//            JLabel description = new JLabel(responseModel.getResult_set().get(x).getDescription());
+            JLabel description = new JLabel(responseModel.getResult_set().get(x).getDescription());
             JLabel owner = new JLabel(responseModel.getResult_set().get(x).getOwnerUsername());
             JButton study = new JButton("Study");
             int tempX = x;
@@ -48,24 +48,22 @@ public class ResultsScreen extends JFrame implements ActionListener {
                 }
             });
 
-            title.setBounds(0, 0, 200, 40);
-
             panel.add(title);
-//            panel.add(description);
+            panel.add(description);
             panel.add(owner);
             panel.add(study);
             panel.add(test);
-            add(panel);
+            result_panel.add(panel);
         }
+        add(scrPane);
 
 
-    setSize(400, 500);
-    setLayout(new FlowLayout());
-    setVisible(true);
+        setSize(400, 500);
+        setLayout(new FlowLayout());
+        setVisible(true);
 
 
     }
-
 
 
     @Override
