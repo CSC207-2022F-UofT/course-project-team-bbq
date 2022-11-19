@@ -3,7 +3,6 @@ package flashcardRemover;
 import dataAccess.*;
 import flashcardRemover.fcRScreens.FcRFailureScreen;
 import flashcardRemover.fcRScreens.FcRSuccessScreen;
-import quizUseCase.screens.Screen;
 
 import java.io.IOException;
 
