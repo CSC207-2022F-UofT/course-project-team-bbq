@@ -3,6 +3,7 @@ package EditorMainPage;
 import Editor.Flashcard.FlashcardEditorMain;
 import dataAccess.DBGateway;
 import entityRequestModels.FlashcardDsRequestModel;
+import flashcardRemover.FcRMain;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -37,6 +38,7 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
         buttons.add(delete);
 
         edit.addActionListener(this);
+        delete.addActionListener(this);
 
         this.add(buttons);
         this.setBorder(border);
@@ -51,7 +53,7 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
             fcEditPage.addWindowListener(this);
         }
         else if(event.getActionCommand().equals("Delete Flashcard")){
-            //Insert delete flashcard main method
+            new FcRMain(flashcardSetId, flashcard.getFlashcardId());
         }
     }
 
@@ -62,7 +64,7 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
     @Override
     public void windowClosed(WindowEvent e) {
         frame.dispose();
-        new EditorMainPage(dbGateway, flashcardSetId);
+        new EditorMainPage(flashcardSetId);
     }
     @Override
     public void windowIconified(WindowEvent e) {}

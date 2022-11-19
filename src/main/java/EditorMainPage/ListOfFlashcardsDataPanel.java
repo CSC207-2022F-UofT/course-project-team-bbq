@@ -5,6 +5,7 @@ import Editor.FlashcardSet.FCSetEditorMain;
 import dataAccess.DBGateway;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
+import flashcardCreator.FcCMain;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -37,8 +38,17 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
 
         this.add(buttons);
 
-        for (FlashcardDsRequestModel flashcard : flashcardData) {
-            this.add(new FlashcardDataPanel(dbGateway, flashcard, flashcardSet.getFlashcardSetId(),frame));
+        int numCards = flashcardData.size();
+        if (numCards == 0){
+            JLabel label = new JLabel("You have no Flashcards in this FlashcardSet.");
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setVerticalAlignment(SwingConstants.CENTER);
+            this.add(label);
+        }
+        else{
+            for (FlashcardDsRequestModel flashcard : flashcardData) {
+                this.add(new FlashcardDataPanel(dbGateway, flashcard, flashcardSet.getFlashcardSetId(),frame));
+            }
         }
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
@@ -47,11 +57,10 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
     public void actionPerformed(ActionEvent event) {
         if(event.getActionCommand().equals("Refresh")){
             int flashcardSetId = flashcardSet.getFlashcardSetId();
-            new EditorMainPage(dbGateway, flashcardSetId);
+            new EditorMainPage(flashcardSetId);
             frame.dispose();
         } else if(event.getActionCommand().equals("Add Flashcard")){
-            // Soon to add line below. Once add flashcard use case is done
-            //FcCMain(flashcardSetId);
+            new FcCMain(flashcardSet.getFlashcardSetId());
         } else if(event.getActionCommand().equals("Edit Flashcard Set")) {
             JFrame fcSetEditPage = new FCSetEditorMain(dbGateway, flashcardSet);
             fcSetEditPage.addWindowListener(this);
@@ -65,7 +74,7 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
     @Override
     public void windowClosed(WindowEvent e) {
         frame.dispose();
-        new EditorMainPage(dbGateway, flashcardSet.getFlashcardSetId());
+        new EditorMainPage(flashcardSet.getFlashcardSetId());
     }
     @Override
     public void windowIconified(WindowEvent e) {}
