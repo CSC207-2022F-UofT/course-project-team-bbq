@@ -44,6 +44,22 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     }
 
     @Override
+    public void removeFlashcardId(int flashcardSetId, int flashcardId) {
+        FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
+        String title = oldFlashcardSet.getTitle();
+        String description = oldFlashcardSet.getDescription();
+        boolean isPrivate = oldFlashcardSet.getIsPrivate();
+        List<Integer> flashcardIds = oldFlashcardSet.getFlashcardIds();
+        String owner = oldFlashcardSet.getOwnerUsername();
+
+        ArrayList<Integer> newFlashcardIds = new ArrayList<>(flashcardIds);
+        newFlashcardIds.remove(flashcardId);
+        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(title, description, isPrivate, flashcardSetId, owner, newFlashcardIds);
+
+        flashcardSets.put(flashcardSetId, newFlashcardSet);
+    }
+
+    @Override
     public void deleteFlashcardSet(int flashcardSetID) {
         flashcardSets.remove(flashcardSetID);
     }

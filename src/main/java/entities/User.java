@@ -1,37 +1,26 @@
 package entities;
 import java.util.*;
 
-public class User {
-    private String username;
-    private String password;
-    private Map<Integer, String[]> flashcardSets;
+public interface User {
+    String username = null;
 
-    public User(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
+    String password = null;
+    boolean isAdmin = false;
+    String ADMIN_KEY = "BuiltDifferent";
 
-    public String getUsername() {
-        return username;
-    }
+    //Map<Integer, String[]> flashcardSets = null;
+    ArrayList<Integer> flashcardSetIds = null;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    String getUsername();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    String getPassword();
 
-    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
-        this.flashcardSets = flashcardSets;
-    }
 
-    public String getPassword() {
-        return password;
-    }
+    boolean passwordIsValid();
 
-    public Map<Integer, String[]> getFlashcardSets() {
-        return flashcardSets;
-    }
+    boolean getIsAdmin();
+
+    ArrayList<Integer> getFlashcardSetIds();
+
+    boolean adminKeyValid(String adminKey);
 }
