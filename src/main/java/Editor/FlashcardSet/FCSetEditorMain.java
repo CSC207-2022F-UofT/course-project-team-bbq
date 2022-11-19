@@ -4,45 +4,23 @@ import Editor.FlashcardSet.screens.FCSetEditorController;
 import Editor.FlashcardSet.screens.FCSetEditorPresenter;
 import Editor.FlashcardSet.screens.FCSetEditorScreen;
 import dataAccess.DBGateway;
-import dataAccess.FlashcardSetDataAccess;
-import dataAccess.FlashcardDataAccess;
+import entityRequestModels.FlashcardSetDsRequestModel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
 
-public class FCSetEditorMain {
-    public static void main(String[] args) {
+public class FCSetEditorMain extends JFrame{
+    public FCSetEditorMain(DBGateway dbGateway, FlashcardSetDsRequestModel flashcardSet){
         FCSetEditorOutputBoundary presenter = new FCSetEditorPresenter();
-        DBGateway dataBaseGateway;
 
-        FlashcardDataAccess fcDataAccess;
-        FlashcardSetDataAccess fcSDataAccess;
-        //CommonUserDataAccess userDataAccess;
-
-        try {
-            fcDataAccess = new FlashcardDataAccess("src/data/Flashcards.csv");
-            fcSDataAccess = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-            //userDataAccess = new CommonUserDataAccess("src/data/Users.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("could not find file");
-        }
-
-        dataBaseGateway = new DBGateway(fcDataAccess, fcSDataAccess, null);
-
-        FCSetEditorInputBoundary interactor = new FCSetEditorInteractor(dataBaseGateway, presenter);
+        FCSetEditorInputBoundary interactor = new FCSetEditorInteractor(dbGateway, presenter);
         FCSetEditorController controller = new FCSetEditorController(interactor);
 
 
-        JFrame application = new JFrame("Edit Example");
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
-        application.add(screens);
+        this.setTitle("Edit Flashcard Set \"" + flashcardSet.getTitle() + "\"");
 
-        FCSetEditorScreen editScreen = new FCSetEditorScreen(controller);
-        screens.add(editScreen, "welcome");
-        cardLayout.show(screens, "Edit");
-        application.pack();
-        application.setVisible(true);
+        FCSetEditorScreen editScreen = new FCSetEditorScreen(controller, flashcardSet, this);
+        this.add(editScreen);
+        this.setSize(500, 200);
+        this.setVisible(true);
     }
 }
