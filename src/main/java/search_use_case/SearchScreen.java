@@ -5,14 +5,27 @@ import quizUseCase.QuizController;
 import studyMode.StudySessionController;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The search screen where the user can select
+ * tags and type in search input to find relevant
+ * FlashcardSets to study and test from
+ * <p>
+ * Frameworks & Drivers
+ * @author Winston Chieng
+ */
 public class SearchScreen extends JFrame implements ActionListener{
 
+    /**
+     * Creates a SearchScreen
+     * @param search_controller the controller to handle search operations
+     * @param study_controller the controller to handle the study option when results are returned
+     * @param quiz_controller the controller to handle the quiz option when results are returned
+     * @param curr_user the current user
+     */
     public SearchScreen(SearchController search_controller, StudySessionController study_controller,
                         QuizController quiz_controller, CommonUserDsRequestModel curr_user){
         super("Search Flashcards");
@@ -23,6 +36,7 @@ public class SearchScreen extends JFrame implements ActionListener{
         JTextField search_input = new JTextField("Search Input Here");
         search_input.setBounds(80, 100, 200, 40);
 
+        // search tag options
         JCheckBox title_box = new JCheckBox("Title");
         title_box.setBounds(100,200, 50,50);
 
@@ -36,7 +50,6 @@ public class SearchScreen extends JFrame implements ActionListener{
         JButton search = new JButton("Search");
         search.setBounds(130, 350, 100, 40);
         search.addActionListener( e -> {
-            // nav to next screen
             String s1 = search_input.getText();
 
             // define the tags selected
@@ -49,6 +62,7 @@ public class SearchScreen extends JFrame implements ActionListener{
             if (owner_box.isSelected()){
                 selected_tags.add("Owner");
             }
+            // navigate to results screen if results are found
             try {
                 new ResultsScreen(search_controller.create(s1, selected_tags, curr_user),
                         study_controller, quiz_controller);
@@ -59,6 +73,7 @@ public class SearchScreen extends JFrame implements ActionListener{
 
         });
 
+        // search all flashcards option
         JButton search_all = new JButton("Search All");
         search_all.setBounds(130, 400, 100, 40);
         search_all.addActionListener( e -> {
@@ -84,7 +99,7 @@ public class SearchScreen extends JFrame implements ActionListener{
         setVisible(true);
 
     }
-
+    // action methods defined within body
         public void actionPerformed(ActionEvent e){
         }
 }

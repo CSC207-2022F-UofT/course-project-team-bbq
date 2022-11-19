@@ -8,17 +8,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+/**
+ * The Search Interactor
+ * <p>
+ * Application Business Rules.
+ * @author Winston Chieng
+ */
 public class SearchInteractor implements SearchInputBoundary{
 
-    private final SearchPresenter presenter;
+    private final SearchOutputBoundary presenter;
     private final DBGateway gateway;
 
-    // figure out what else needs to be here
-    public SearchInteractor(SearchPresenter presenter, DBGateway gateway){
+    /**
+     * Creates a SearchInteractor Object
+     * @param presenter an object that recieves data and updates the view
+     * @param gateway gateway to give the class data to function
+     */
+    public SearchInteractor(SearchOutputBoundary presenter, DBGateway gateway){
         this.presenter = presenter;
         this.gateway = gateway;
     }
 
+    /**
+     * Create a SearchResponseModel using the requestModel information
+     * @param requestModel a data-structure containing the user input, search tags, and current user
+     * @return SearchResponseModel that contains the result set of FlashcardSets from the user search
+     */
     @Override
     public SearchResponseModel create(SearchRequestModel requestModel) throws IOException {
 
@@ -28,13 +44,14 @@ public class SearchInteractor implements SearchInputBoundary{
         // populate result_set with all possible flashcards from database
         CommonUserDsRequestModel curr_user = requestModel.getUser();
 
-        // change to dbGateway.getAllUsers()
         Collection<CommonUserDsRequestModel> all_users = gateway.getUserGateway().getAllUsers();
         for (CommonUserDsRequestModel user : all_users){
             flashcard_set_ids.addAll(user.getFlashcardSetIds());
         }
 
-        // search algorithm
+        // Search algorithm
+
+        // Search through all flashcards
         ArrayList<String> tags = requestModel.getTags();
         String input = requestModel.getSearch_input();
         if (input.equals("GET_ALL")) {
@@ -44,6 +61,7 @@ public class SearchInteractor implements SearchInputBoundary{
                 }
             }
         }
+        // Search through flashcards using user input
         else{
             for (Integer x : flashcard_set_ids){
                 if (!gateway.getFlashcardSet(x).getIsPrivate() || curr_user.getIsAdmin()){
@@ -66,17 +84,20 @@ public class SearchInteractor implements SearchInputBoundary{
             }
         }
 
+        // Return results if there is atleast 1 result
         if (result_set.size() > 0){
             SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
             return presenter.prepareSuccessView(searchResponseModel);
         }
+        // User chooses no tags
         if (tags.size() == 0){
             return presenter.prepareFailView("Please select at least 1 tag.");
         }
+        // User provides no input
         if (input.equals("")){
             return presenter.prepareFailView("Please enter a keyword to search.");
         }
+        // User search unsuccessful
         return presenter.prepareFailView("No Flashcard Sets matched your search criteria, please try again.");
-
     }
 }

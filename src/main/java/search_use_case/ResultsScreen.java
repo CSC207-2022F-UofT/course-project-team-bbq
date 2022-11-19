@@ -10,29 +10,49 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The results screen where the user can
+ * see the results from their search and
+ * select FlashcardSets to study or test from
+ * <p>
+ * Frameworks & Drivers
+ * @author Winston Chieng
+ */
 public class ResultsScreen extends JFrame implements ActionListener {
 
+    /**
+     *
+     * @param responseModel contains results from search
+     * @param study_controller  controller to handle the study option
+     * @param quiz_controller   controller to handel the quiz option
+     */
     public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller,
                          QuizController quiz_controller){
         super("Search Results");
-        int num_results = responseModel.getResult_set().size();
 
+        // store results in a Box layout
         JPanel result_panel = new JPanel();
         result_panel.setLayout(new BoxLayout(result_panel, BoxLayout.Y_AXIS));
 
+        // scrollbar if results dont fit on screen
         JScrollPane scrPane = new JScrollPane(result_panel);
         scrPane.setPreferredSize(new Dimension(350, 500));
         scrPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        for (int x=0; x<num_results; x++){
+        // Loop through every result in the result set
+        for (int x=0; x<responseModel.getResult_set().size(); x++){
+
+            // store all elements of this result in a GridLayout
             JPanel panel = new JPanel();
             panel.setLayout(new GridLayout(6, 1, 20, 20));
             JLabel title = new JLabel("   " + responseModel.getResult_set().get(x).getTitle());
             JLabel description = new JLabel("   Description: " +
                     responseModel.getResult_set().get(x).getDescription());
             JLabel owner = new JLabel("   Creator: " + responseModel.getResult_set().get(x).getOwnerUsername());
-            JButton study = new JButton("Study");
             int tempX = x;
+
+            // if user decides to study
+            JButton study = new JButton("Study");
             study.addActionListener(e -> {
                 try{
                     new StudySettingsScreen(study_controller, responseModel.getResult_set().get(tempX).getFlashcardSetId());
@@ -41,6 +61,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, s.getMessage());
                 }
             });
+            // if user decides to test
             JButton test = new JButton("Test");
             test.addActionListener(e -> {
                 try{
@@ -51,6 +72,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
                 }
             });
 
+            // add elements to the GridLayout
             panel.add(title);
             panel.add(description);
             panel.add(owner);
@@ -58,19 +80,15 @@ public class ResultsScreen extends JFrame implements ActionListener {
             panel.add(test);
             result_panel.add(panel);
         }
+        // add the panel containing all the results
         add(scrPane);
-
-
         setSize(400, 500);
         setLayout(new FlowLayout());
         setVisible(true);
 
 
     }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 }
