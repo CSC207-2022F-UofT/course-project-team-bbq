@@ -7,6 +7,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A screen where a user can flip the flashcard they are currently
+ * looking at or go to the next/prev flashcard
+ * <p>
+ * Frameworks & Drivers
+ * @author Lucas Prates
+ */
 public class StudySessionScreen extends JFrame implements ActionListener {
     private final StudySessionController controller;
     private final JButton flip;
@@ -16,6 +23,12 @@ public class StudySessionScreen extends JFrame implements ActionListener {
     private final JLabel cardLabel;
 
     private final int flashcardSetId;
+
+    /**
+     * Create a StudySessionScreen
+     * @param controller handles the study mode use case
+     * @param response contains the data required to prepare the view
+     */
     public StudySessionScreen(StudySessionController controller,
                               StudySettingsResponseModel response) {
         super(response.getTitle());
@@ -78,6 +91,14 @@ public class StudySessionScreen extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     *  If the user chose to quit, close this screen. If the user chose to restart,
+     * close this screen and reopen a StudySettingsScreen. Otherwise, calls the
+     * controller's study method with a StudySessionRequestModel compiled based on
+     * the data the user input into this screen. The response data is used to update
+     * this StudySessionScreen.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         StudySessionRequestModel request = new StudySessionRequestModel();

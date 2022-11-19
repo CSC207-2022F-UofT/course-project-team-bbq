@@ -3,9 +3,20 @@ package studyMode.screens;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A screen which warns the user they are trying to study
+ * an empty flashcard set.
+ * <p>
+ * Frameworks & Drivers
+ * @author Lucas Prates
+ */
 public class StudySettingsFailureScreen extends JFrame {
 
     private static final String failMessage = "<html>This flashcard set is empty! Please add flashcards if you wish to study.</html>";
+
+    /**
+     * Creates a StudySettingsFailureScreen
+     */
     public StudySettingsFailureScreen() {
         super("Error: Empty Flashcard Set");
         JLabel label = new JLabel(StudySettingsFailureScreen.failMessage);
@@ -18,7 +29,4 @@ public class StudySettingsFailureScreen extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        new StudySettingsFailureScreen();
-    }
 }

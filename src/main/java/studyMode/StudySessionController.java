@@ -1,7 +1,14 @@
 package studyMode;
 
+/**
+ * The controller for the study mode use case.
+ * <p>
+ * Interface Adapters.
+ * @author Lucas Prates
+ */
 public class StudySessionController {
     private final StudySessionInputBoundary inputBoundary;
+
 
     public static String flip = StudySessionInputBoundary.flip;
     public static String next = StudySessionInputBoundary.next;
@@ -13,27 +20,31 @@ public class StudySessionController {
 
     public static String timeSort = StudySessionInputBoundary.timeSort;
 
+    /**
+     * Creates a StudySessionController
+     * @param inputBoundary the StudySettingsInputBoundary
+     */
     public StudySessionController(StudySessionInputBoundary inputBoundary){
         this.inputBoundary = inputBoundary;
     }
 
     /**
-     * @param userInput tells the system if the user wants to flip the flashcard
-     *                  or go to the next / previous flashcard
-     * @return a data structure containing the new text to display on the flashcard,
-     * as well as the current card number.
+     * Tells the system to flip the current flashcard, or go to the next/prev flashcard.
+     *
+     * @param request the user's input
+     * @return a response model with the updated view data
      */
-    public StudySessionResponseModel study(StudySessionRequestModel userInput){
-        return inputBoundary.study(userInput);
+    public StudySessionResponseModel study(StudySessionRequestModel request){
+        return inputBoundary.study(request);
     }
 
     /**
-     * @param request tells the system the flashcard set the user wants to study,
-     *                how the cards should be sorted, and whether the term or description
-     *                of the flashcards should be displayed first by default
-     * @return a data structure which tells the system if the flashcard set was successfully
-     * fetched from the database, the length and title of the flashcard set, and initial text
-     * to be written to the first flashcard set.
+     * Tells the system the user wants to begin studying a flashcard set, specifying how the
+     * flashcard set should be sorted.
+     *
+     * @param request a data-structure containing the id of the flashcard set to be studied, as
+     *                well as the sorting method the user chose
+     * @return a data structure with the data required to set up the study mode view
      */
     public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
         return inputBoundary.getSetToStudy(request);
