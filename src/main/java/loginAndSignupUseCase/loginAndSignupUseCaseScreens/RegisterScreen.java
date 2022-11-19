@@ -1,15 +1,19 @@
 package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
+import dataAccess.*;
+import loginAndSignupUseCase.UserLoginInputBoundary;
+import loginAndSignupUseCase.UserLoginInteractor;
+import loginAndSignupUseCase.UserLoginOutputBoundary;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static javax.swing.JOptionPane.showMessageDialog;
+import java.io.IOException;
 
 // Frameworks/Drivers layer
 
-public class RegisterScreen extends JPanel implements ActionListener {
+public class RegisterScreen extends JFrame implements ActionListener {
 
     /**
      * The username chosen by the user
@@ -62,8 +66,8 @@ public class RegisterScreen extends JPanel implements ActionListener {
 
         signUp.addActionListener(this);
         cancel.addActionListener(this);
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JPanel main = new JPanel();
+        main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         this.add(title);
         this.add(usernameInfo);
@@ -72,6 +76,9 @@ public class RegisterScreen extends JPanel implements ActionListener {
         this.add(adminCheckerInfo);
         this.add(buttons);
 
+        this.setContentPane(main);
+
+        this.pack();
     }
 
     /**
@@ -85,8 +92,26 @@ public class RegisterScreen extends JPanel implements ActionListener {
                     String.valueOf(password.getPassword()),
                     String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
             JOptionPane.showMessageDialog(this, "%s created.".format(username.getText()));
-
-            LoginScreen LoginScreen = new LoginScreen();
+            IFlashcardSetDataAccess flashcardSetGateway;
+            try {
+                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            IUserDataAccess userGateway;
+            try {
+                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            UserLoginOutputBoundary presenter = new UserLoginPresenter();
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    userGateway, flashcardSetGateway, presenter);
+            UserLoginController userLoginController = new UserLoginController(interactor);
+            setVisible(false);
+            dispose();
+            new LoginScreen(userLoginController).setVisible(true);
+            new LoginScreen(userLoginController).setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

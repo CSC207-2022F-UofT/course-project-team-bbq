@@ -1,4 +1,4 @@
-package entitiesTest;
+package loginAndSignUpUseCase;
 
 import entities.CommonUser;
 import entities.User;

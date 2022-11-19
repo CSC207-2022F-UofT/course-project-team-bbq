@@ -1,8 +1,14 @@
 package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
+import dataAccess.*;
+import entities.CommonUserFactory;
+import entities.UserFactory;
+import loginAndSignupUseCase.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 // Frameworks/Drivers layer
 
@@ -43,9 +49,41 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
 
         if(evt.getActionCommand().equals("Log in")){
-            LoginScreen LoginScreen = new LoginScreen();
+            IFlashcardSetDataAccess flashcardSetGateway = null;
+            try {
+                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            IUserDataAccess userGateway = null;
+            try {
+                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            UserLoginOutputBoundary presenter = new UserLoginPresenter();
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    userGateway, flashcardSetGateway, presenter);
+            UserLoginController userLoginController = new UserLoginController(interactor);
+            setVisible(false);
+            dispose();
+            new LoginScreen(userLoginController).setVisible(true);
+
         } else if(evt.getActionCommand().equals("Sign up")){
-            RegisterScreen RegisterScreen = new RegisterScreen(null); //May need editing
+            IUserDataAccess userGateway = null;
+            try {
+                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            UserRegisterOutputBoundary presenter = new UserRegisterPresenter();
+            UserFactory userFactory = new CommonUserFactory();
+            UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                    userGateway, presenter, userFactory);
+            UserRegisterController userRegisterController = new UserRegisterController(interactor);
+            setVisible(false);
+            dispose();
+            new RegisterScreen(userRegisterController).setVisible(true);
         }
 
     }

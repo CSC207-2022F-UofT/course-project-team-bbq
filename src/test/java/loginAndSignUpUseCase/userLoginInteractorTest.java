@@ -1,4 +1,4 @@
-package userRegisterAndLoginUseCaseTest;
+package loginAndSignUpUseCase;
 
 public class userLoginInteractorTest {
 }

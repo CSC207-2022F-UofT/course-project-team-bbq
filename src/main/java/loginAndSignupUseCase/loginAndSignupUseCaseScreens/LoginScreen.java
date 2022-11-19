@@ -21,11 +21,12 @@ public class LoginScreen extends JFrame implements ActionListener {
      */
     UserLoginController userLoginController;
 
-
     /**
      * A window with a title and a JButton.
      */
-    public LoginScreen() {
+    public LoginScreen(UserLoginController controller) {
+
+        this.userLoginController = controller;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

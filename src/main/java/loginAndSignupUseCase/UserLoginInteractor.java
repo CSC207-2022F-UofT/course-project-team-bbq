@@ -25,7 +25,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary{
         } else if (!tempUser.getPassword().equals(userLoginRequestModel.getPassword())) {
             return userLoginOutputBoundary.prepareFailView("Incorrect Password");
         }
-        HashMap flashcardSets = new HashMap<Integer, String[]>();
+        HashMap<Integer, String[]> flashcardSets = new HashMap<>();
         for(int flashcardSetId : tempUser.getFlashcardSetIds()){
             flashcardSets.put(flashcardSetId, flashcardSetDsGateway.getTitleAndDescription(flashcardSetId));
         }
