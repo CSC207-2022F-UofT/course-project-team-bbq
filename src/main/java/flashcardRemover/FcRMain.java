@@ -8,7 +8,7 @@ import quizUseCase.screens.Screen;
 import java.io.IOException;
 
 public class FcRMain{
-    public static void FcRMain(int flashcardSetId, int flashcardId){
+    public FcRMain(int flashcardSetId, int flashcardId){
         DBGateway gateway;
         try{
             IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());

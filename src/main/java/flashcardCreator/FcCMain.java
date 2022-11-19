@@ -6,7 +6,7 @@ import dataAccess.*;
 import java.io.IOException;
 
 public class FcCMain{
-    public static void FcCMain(int flashcardSetId){
+    public FcCMain(int flashcardSetId){
         DBGateway gateway;
         try{
             IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
