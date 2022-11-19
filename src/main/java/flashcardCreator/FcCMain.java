@@ -6,10 +6,8 @@ import dataAccess.*;
 import java.io.IOException;
 
 public class FcCMain{
-    public static void main(String[] args){
+    public static void FcCMain(int flashcardSetId){
         DBGateway gateway;
-        //for test purposes.
-        int flashcardSetId = 0;
         try{
             IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
             IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
@@ -22,7 +20,6 @@ public class FcCMain{
         FcCInputBoundary interactor = new FcCInterator(gateway,presenter);
         FcCController controller = new FcCController(interactor, flashcardSetId);
         new FcCScreen(controller);
-
     }
 
 }

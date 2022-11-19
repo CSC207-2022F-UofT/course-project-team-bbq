@@ -1,15 +1,15 @@
 package flashcardRemover;
 
 import dataAccess.*;
+import flashcardRemover.fcRScreens.FcRFailureScreen;
+import flashcardRemover.fcRScreens.FcRSuccessScreen;
+import quizUseCase.screens.Screen;
 
 import java.io.IOException;
 
 public class FcRMain{
-    public static void main(String[] args){
+    public static void FcRMain(int flashcardSetId, int flashcardId){
         DBGateway gateway;
-        //for test purposes.
-        int flashcardSetId = 0;
-        int flashcardId = 4;
         try{
             IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
             IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
@@ -22,8 +22,12 @@ public class FcRMain{
         FcRInputBoundary interactor = new FcRInterator(gateway,presenter);
         FcRController controller = new FcRController(interactor, flashcardSetId);
 
-        FcRResponseModel response = controller.delete(flashcardSetId, flashcardId);
-        System.out.println(response.getTerm()+" deleted at " + response.getDeleteDate());
+        try {
+            FcRResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);
+            new FcRSuccessScreen(responseModel);
+        }catch (RuntimeException error){
+            new FcRFailureScreen(error.toString());
+        }
     }
 
 }

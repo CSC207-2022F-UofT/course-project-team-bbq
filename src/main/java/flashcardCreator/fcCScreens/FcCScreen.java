@@ -1,6 +1,7 @@
 package flashcardCreator.fcCScreens;
 
 import flashcardCreator.FcCController;
+import flashcardCreator.FcCResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +15,8 @@ public class FcCScreen extends JFrame implements ActionListener {
     public FcCScreen(FcCController controller){
         this.controller = controller;
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        JPanel labelPanel = new JPanel();
-        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.X_AXIS));
-        JPanel textPanel = new JPanel(new FlowLayout());
+        JPanel labelPanel = new JPanel(new GridLayout(1,2));
+        JPanel textPanel = new JPanel(new GridLayout(1,2));
 
         JButton confirm = new JButton("confirm");
         JButton cancel = new JButton("cancel");
@@ -51,8 +51,8 @@ public class FcCScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
-            controller.create(term_text.getText(), definition_text.getText());
-            new FcCSuccessScreen(controller, term_text.getText(), definition_text.getText());
+            FcCResponseModel responseModel = controller.create(term_text.getText(), definition_text.getText());
+            new FcCSuccessScreen(controller, responseModel);
             dispose();
         }catch (RuntimeException error){
             new FcCFailureScreen(controller,error.toString());

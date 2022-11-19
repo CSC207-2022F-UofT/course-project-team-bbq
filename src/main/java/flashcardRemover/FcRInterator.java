@@ -26,8 +26,9 @@ public class FcRInterator implements FcRInputBoundary{
             presenter.prepareFailView("Flashcard set do not exist");
         }
         term = fcDataAccess.getFlashcard(requestModel.getFlashcardId()).getTerm();
+        String cardSetTitle = fcsDataAccess.getFlashcardSet(requestModel.getFlashcardSetId()).getTitle();
         fcDataAccess.deleteFlashcard(requestModel.getFlashcardId());
         fcsDataAccess.removeFlashcardId(requestModel.getFlashcardSetId(), requestModel.getFlashcardId());
-        return presenter.prepareSuccessView(new FcRResponseModel(LocalDateTime.now(), term));
+        return presenter.prepareSuccessView(new FcRResponseModel(LocalDateTime.now(), term, cardSetTitle));
     }
 }
