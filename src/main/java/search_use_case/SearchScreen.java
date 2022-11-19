@@ -1,6 +1,7 @@
 package search_use_case;
 
 import entityRequestModels.CommonUserDsRequestModel;
+import quizUseCase.QuizController;
 import studyMode.StudySessionController;
 
 import javax.swing.*;
@@ -14,14 +15,17 @@ public class SearchScreen extends JFrame implements ActionListener{
 
     private final SearchController search_controller;
     private final StudySessionController study_controller;
+    private final QuizController quiz_controller;
     private final CommonUserDsRequestModel curr_user;
 
     private ArrayList<String> selected_tags = new ArrayList<>();
 
-    public SearchScreen(SearchController search_controller, StudySessionController study_controller, CommonUserDsRequestModel curr_user){
+    public SearchScreen(SearchController search_controller, StudySessionController study_controller,
+                        QuizController quiz_controller, CommonUserDsRequestModel curr_user){
         super("Search Flashcards");
         this.search_controller = search_controller;
         this.study_controller = study_controller;
+        this.quiz_controller = quiz_controller;
         this.curr_user = curr_user;
 
         // search input text field
@@ -55,7 +59,8 @@ public class SearchScreen extends JFrame implements ActionListener{
                 selected_tags.add("Owner");
             }
             try {
-                new ResultsScreen(search_controller.create(s1, selected_tags, curr_user), study_controller);
+                new ResultsScreen(search_controller.create(s1, selected_tags, curr_user),
+                        study_controller, quiz_controller);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
@@ -67,7 +72,8 @@ public class SearchScreen extends JFrame implements ActionListener{
         search_all.setBounds(130, 400, 100, 40);
         search_all.addActionListener( e -> {
             try {
-                new ResultsScreen(search_controller.create("GET_ALL", selected_tags, curr_user), study_controller);
+                new ResultsScreen(search_controller.create("GET_ALL", selected_tags, curr_user),
+                        study_controller, quiz_controller);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());

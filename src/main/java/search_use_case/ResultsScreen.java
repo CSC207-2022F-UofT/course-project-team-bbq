@@ -1,6 +1,7 @@
 package search_use_case;
 
-import entityRequestModels.CommonUserDsRequestModel;
+import quizUseCase.QuizController;
+import quizUseCase.screens.QuizSettingsScreen;
 import studyMode.StudySessionController;
 import studyMode.screens.StudySettingsScreen;
 
@@ -8,15 +9,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ResultsScreen extends JFrame implements ActionListener {
     private final SearchResponseModel responseModel;
-    private final StudySessionController studySessionController;
+    private final StudySessionController study_controller;
+    private final QuizController quiz_controller;
 
-    public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller){
+    public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller,
+                         QuizController quiz_controller){
         super("Search Results");
-        this.studySessionController = study_controller;
+        this.study_controller = study_controller;
+        this.quiz_controller = quiz_controller;
         this.responseModel = responseModel;
         int num_results = responseModel.getResult_set().size();
 
@@ -36,6 +39,14 @@ public class ResultsScreen extends JFrame implements ActionListener {
                 }
             });
             JButton test = new JButton("Test");
+            test.addActionListener(e -> {
+                try{
+                    new QuizSettingsScreen(quiz_controller, responseModel.getResult_set().get(tempX).getFlashcardSetId());
+                }
+                catch (Exception s){
+                    JOptionPane.showMessageDialog(this, s.getMessage());
+                }
+            });
 
             title.setBounds(0, 0, 200, 40);
 
