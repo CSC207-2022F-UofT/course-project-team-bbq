@@ -1,22 +1,26 @@
 package studyMode;
 
+/**
+ * The study session presenter.
+ * <p>
+ * Interface adapters.
+ * @author Lucas Prates
+ */
 public class StudySessionPresenter implements StudySessionOutputBoundary {
 
     @Override
-    public StudySessionResponseModel prepareCardView(String outputText, int cardNumber) {
+    public StudySessionResponseModel updateStudyView(String outputText, int cardNumber) {
         return new StudySessionResponseModel(outputText, cardNumber);
     }
 
     @Override
-    public StudySettingsResponseModel prepareStudyView(String outputText, String title,
-                                                       int numFlashcards, int flashcardSetId) {
+    public StudySettingsResponseModel prepareSuccessStudyView(String outputText, String title,
+                                                              int numFlashcards, int flashcardSetId) {
         return new StudySettingsResponseModel(outputText, title, numFlashcards, flashcardSetId);
     }
 
     @Override
     public StudySettingsResponseModel prepareFailedStudyView() {
-        StudySettingsResponseModel response = new StudySettingsResponseModel();
-        response.setFailed(true);
-        return response;
+        return new StudySettingsResponseModel();
     }
 }

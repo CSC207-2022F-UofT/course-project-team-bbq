@@ -9,6 +9,12 @@ import entities.comparators.FlashcardByDateComparator;
 
 import java.util.Comparator;
 
+/**
+ * The study session interactor
+ * <p>
+ * Application Business Rules.
+ * @author Lucas Prates
+ */
 public class StudySessionInteractor implements StudySessionInputBoundary {
 
     private FlashcardStudier studier;
@@ -16,6 +22,11 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
 
     private final FlashcardStudierBuilder builder;
 
+    /**
+     * Creates a StudySessionInteractor
+     * @param gateway a gateway which gives this class database access
+     * @param presenter an object capable of updating the view data
+     */
     public StudySessionInteractor(DBGateway gateway,
                                   StudySessionOutputBoundary presenter){
         this.builder = new FlashcardStudierBuilder(gateway);
@@ -24,9 +35,9 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
     }
 
     @Override
-    public StudySessionResponseModel study(StudySessionRequestModel userInput) {
+    public StudySessionResponseModel study(StudySessionRequestModel request) {
         String outputText=null;
-        String command = userInput.getCommand();
+        String command = request.getCommand();
 
         switch (command) {
             case StudySessionInputBoundary.flip:
@@ -41,7 +52,7 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         }
         int cardNumber = studier.getCounter() + 1;
 
-        return presenter.prepareCardView(outputText, cardNumber);
+        return presenter.updateStudyView(outputText, cardNumber);
 
     }
 
@@ -67,7 +78,7 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
                 }
             }
 
-            return presenter.prepareStudyView(studier.getOutputText(), studier.getTitle(),
+            return presenter.prepareSuccessStudyView(studier.getOutputText(), studier.getTitle(),
                     studier.getNumFlashcards(), studier.getFlashcardSetId());
         }
         catch (IndexOutOfBoundsException exception) {

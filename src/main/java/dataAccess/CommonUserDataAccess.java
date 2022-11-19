@@ -20,7 +20,8 @@ public class CommonUserDataAccess implements IUserDataAccess{
 
         headers.put("username", 0);
         headers.put("password", 1);
-        headers.put("flashcardSets", 2);
+        headers.put("isAdmin", 2);
+        headers.put("flashcardSetIds", 3);
 
         if (userCsvFile.length() == 0) {
             save();

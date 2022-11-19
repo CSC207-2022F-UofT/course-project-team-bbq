@@ -8,6 +8,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A screen where a user can set the study settings for their study session.
+ * <p>
+ * Frameworks & Drivers
+ * @author Lucas Prates
+ */
 public class StudySettingsScreen extends JFrame implements ActionListener {
 
     private final int flashcardSetId;
@@ -21,6 +27,11 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
     private boolean isReverse=false;
 
 
+    /**
+     * Creates a StudySettingsScreen
+     * @param controller handles the study mode use case
+     * @param flashcardSetId the ID of the flashcard set the user wants to study
+     */
     public StudySettingsScreen(StudySessionController controller, int flashcardSetId){
         super("Study Settings");
 
@@ -117,10 +128,18 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Calls the controller's getSetToStudy method with a StudySettingsRequestModel
+     * compiled based on the data the user input into this screen. If the flashcard set
+     * is not empty, a study session screen is created. Otherwise, a StudySettingsFailure
+     * screen is created
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         StudySettingsRequestModel request;
 
+        // create the appropriate request model
         if (sortingOrder.equals(StudySessionController.shuffleSort)) {
             request = new StudySettingsRequestModel(flashcardSetId, sortingOrder,
                     termIsDefault);
@@ -130,13 +149,14 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
                     termIsDefault, isReverse);
         }
 
-
+        // get the response model
         StudySettingsResponseModel response = this.controller.getSetToStudy(request);
 
-
-
+        // close this screen
         setVisible(false);
         dispose();
+
+        // open the appropriate screen
         if (response.hasFailed()){
             new StudySettingsFailureScreen();
         }

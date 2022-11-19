@@ -7,8 +7,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-// entity layer
 
+/**
+ * A FlashcardSet that knows how to flip flashcards, go to the next/previous flashcard
+ * and how to sort itself
+ *<p>
+ * Enterprise Business Rules
+ * @author Lucas Prates
+ */
 public class FlashcardStudier extends FlashcardSet {
     private final List<Flashcard> flashcards;
 
@@ -19,6 +25,16 @@ public class FlashcardStudier extends FlashcardSet {
     private int counter = 0;
     private Flashcard currFlashcard;
 
+    /**
+     * Creates a FlashcardStudier
+     * @param title the title of the flashcard set
+     * @param description the description of the flashcard set
+     * @param isPrivate true if the flashcard set is private, false otherwise
+     * @param flashcardSetId the flashcard set ID
+     * @param ownerUsername the username of the user who created this flashcard set
+     * @param termIsDefault true if the user wishes to display flashcard 'terms' by default,
+     *                      false if the user wishes to display flashcard 'definitions' by default
+     */
     public FlashcardStudier(String title, String description, boolean isPrivate,
                             int flashcardSetId, String ownerUsername, boolean termIsDefault){
         super(title, description, isPrivate, flashcardSetId, ownerUsername);
@@ -29,6 +45,7 @@ public class FlashcardStudier extends FlashcardSet {
     }
 
     /**
+     * Flips the current flashcard.
      * @return the flashcard's definition if displayingTerm is true, and
      * the flashcard's term if displayingTerm is false. Negates displayingTerm.
      */
@@ -75,6 +92,9 @@ public class FlashcardStudier extends FlashcardSet {
         return this.getOutputText();
     }
 
+    /**
+     * @return the index of currFlashcard in the flashcard set
+     */
     public int getCounter() {
         return counter;
     }
@@ -124,6 +144,9 @@ public class FlashcardStudier extends FlashcardSet {
         this.resetCurrFlashcard();
     }
 
+    /**
+     * @return the total number of flashcards in the flashcard set
+     */
     public int getNumFlashcards() {
         return numFlashcards;
     }
