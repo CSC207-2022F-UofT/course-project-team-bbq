@@ -29,7 +29,6 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
     FlashcardSetOutputBoundary flashcardSetOutputBoundary;
     FlashcardSetFactory flashcardSetFactory;
 
-//    private static int counter;
 
     public FlashcardSetInteractor(IFlashcardSetDataAccess flashcardSetDataAccess,
                                   FlashcardSetOutputBoundary flashcardSetOutputBoundary,
@@ -37,7 +36,6 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
         this.flashcardSetDataAccess = flashcardSetDataAccess;
         this.flashcardSetOutputBoundary = flashcardSetOutputBoundary;
         this.flashcardSetFactory = flashcardSetFactory;
-//        counter = 0;
     }
 
     @Override
@@ -69,7 +67,6 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
 
         flashcardSetDataAccess.saveFlashcardSet(dsRequestModel);
         FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
-//        counter++;
 
         return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
     }
