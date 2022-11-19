@@ -1,6 +1,7 @@
 package Editor.FlashcardSet.screens;
 
 import Editor.FlashcardSet.FCSetEditorResponseModel;
+import entityRequestModels.FlashcardSetDsRequestModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,35 +9,40 @@ import javax.swing.*;
 
 public class FCSetEditorScreen extends JPanel implements ActionListener {
     FCSetEditorController controller;
+    JFrame editPage;
+    FlashcardSetDsRequestModel flashcardSet;
+    JTextField termText;
+    JTextField definitionText;
 
-    JTextField idPanel;
-    JTextField termPanel;
-    JTextArea definitionPanel;
 
-
-    public FCSetEditorScreen(FCSetEditorController controller){
+    public FCSetEditorScreen(FCSetEditorController controller, FlashcardSetDsRequestModel flashcardSet, JFrame editPage){
         this.controller = controller;
+        this.editPage = editPage;
+        this.flashcardSet = flashcardSet;
 
-        idPanel = new JTextField("Enter id...");
-        termPanel = new JTextField("Enter title...");
-        definitionPanel = new JTextArea("Enter description...");
+        JPanel termPanel = new JPanel();
+        JLabel termLabel = new JLabel("Title: ");
+        termText = new JTextField(flashcardSet.getTitle());
+        termPanel.add(termLabel);
+        termPanel.add(termText);
 
-        JButton confirm = new JButton("Confirm");
-        JButton cancel = new JButton("Cancel");
-
-        confirm.addActionListener(this);
-        cancel.addActionListener(this);
+        JPanel definitionPanel = new JPanel();
+        JLabel definitionLabel = new JLabel("Description: ");
+        definitionText = new JTextField(flashcardSet.getDescription());
+        definitionPanel.add(definitionLabel);
+        definitionPanel.add(definitionText);
 
         JPanel buttons = new JPanel();
+        JButton confirm = new JButton("Confirm");
+        JButton cancel = new JButton("Cancel");
+        confirm.addActionListener(this);
+        cancel.addActionListener(this);
         buttons.add(confirm);
         buttons.add(cancel);
 
-        this.add(idPanel);
         this.add(termPanel);
         this.add(definitionPanel);
         this.add(buttons);
-
-
     }
 
 
@@ -44,16 +50,17 @@ public class FCSetEditorScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
         if(e.getActionCommand().equals("Cancel")){
-            System.exit(0);
+            editPage.dispose();
         }
         else{
+            int numId = flashcardSet.getFlashcardSetId();
+            String newTerm = termText.getText();
+            String newDefinition = definitionText.getText();
             try{
-                int numId = Integer.parseInt(idPanel.getText());
-                String newTerm = termPanel.getText();
-                String newDefinition = definitionPanel.getText();
-                FCSetEditorResponseModel newFlashcard = controller.edit(numId, newTerm, newDefinition);
-                String message = "Edited Flashcard #" + newFlashcard.getFlashcardSetId() + ": " + newFlashcard.getTitleEdit() + " : " + newFlashcard.getDescriptionEdit();
+                FCSetEditorResponseModel newFlashcardSet = controller.edit(numId, newTerm, newDefinition);
+                String message = "Edited FlashcardSet: " + newFlashcardSet.getTitleEdit() + " : " + newFlashcardSet.getDescriptionEdit();
                 JOptionPane.showMessageDialog(this, message);
+                editPage.dispose();
             }
             catch (Exception error){
                 JOptionPane.showMessageDialog(this, error.getMessage());

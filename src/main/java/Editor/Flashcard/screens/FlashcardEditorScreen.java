@@ -1,7 +1,7 @@
 package Editor.Flashcard.screens;
 
 import Editor.Flashcard.FlashcardEditorResponseModel;
-import EditorMainPage.FlashcardInfo;
+import entityRequestModels.FlashcardDsRequestModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,16 +9,16 @@ import java.awt.event.ActionListener;
 
 public class FlashcardEditorScreen extends JPanel implements ActionListener {
     FlashcardEditorController controller;
-    FlashcardInfo flashcard;
-    JFrame application;
+    FlashcardDsRequestModel flashcard;
+    JFrame editPage;
     JTextField termText;
     JTextField definitionText;
 
 
-    public FlashcardEditorScreen(FlashcardEditorController controller, FlashcardInfo flashcard, JFrame application){
+    public FlashcardEditorScreen(FlashcardEditorController controller, FlashcardDsRequestModel flashcard, JFrame editPage){
         this.controller = controller;
         this.flashcard = flashcard;
-        this.application = application;
+        this.editPage = editPage;
 
         JPanel termPanel = new JPanel();
         JLabel termLabel = new JLabel("Term: ");
@@ -54,17 +54,17 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
         if(e.getActionCommand().equals("Cancel")){
-            application.dispose();
+            editPage.dispose();
         }
         else{
+            int numId = flashcard.getFlashcardId();
+            String newTerm = termText.getText();
+            String newDefinition = definitionText.getText();
             try{
-                int numId = flashcard.getId();
-                String newTerm = termText.getText();
-                String newDefinition = definitionText.getText();
                 FlashcardEditorResponseModel newFlashcard = controller.edit(numId, newTerm, newDefinition);
-                String message = "Edited Flashcard" + ": " + newFlashcard.getTermEdit() + " : " + newFlashcard.getDefinitionEdit();
+                String message = "Edited Flashcard: " + newFlashcard.getTermEdit() + " : " + newFlashcard.getDefinitionEdit();
                 JOptionPane.showMessageDialog(this, message);
-                application.dispose();
+                editPage.dispose();
             }
             catch (Exception error){
                 JOptionPane.showMessageDialog(this, error.getMessage());

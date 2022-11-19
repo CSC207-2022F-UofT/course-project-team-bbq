@@ -1,18 +1,26 @@
 package EditorMainPage;
 
 import Editor.Flashcard.FlashcardEditorMain;
+import dataAccess.DBGateway;
+import entityRequestModels.FlashcardDsRequestModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class FlashcardDataPanel extends JPanel implements ActionListener {
-    FlashcardInfo flashcard;
+public class FlashcardDataPanel extends JPanel implements ActionListener, WindowListener {
+    private final DBGateway dbGateway;
+    private final FlashcardDsRequestModel flashcard;
+    private final int flashcardSetId;
     JFrame frame;
-    public FlashcardDataPanel(FlashcardInfo flashcard, JFrame frame){
+    public FlashcardDataPanel(DBGateway dbGateway, FlashcardDsRequestModel flashcard, int flashcardSetId, JFrame frame){
+        this.dbGateway = dbGateway;
         this.frame = frame;
         this.flashcard = flashcard;
+        this.flashcardSetId = flashcardSetId;
 
 
         Border border = BorderFactory.createTitledBorder(flashcard.getTerm());
@@ -38,10 +46,30 @@ public class FlashcardDataPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        System.out.println("Clicked " + event.getActionCommand());
-
         if(event.getActionCommand().equals("Edit Flashcard")){
-            FlashcardEditorMain.main(flashcard);
+            JFrame fcEditPage = new FlashcardEditorMain(dbGateway, flashcard);
+            fcEditPage.addWindowListener(this);
+        }
+        else if(event.getActionCommand().equals("Delete Flashcard")){
+            //Insert delete flashcard main method
         }
     }
+
+    @Override
+    public void windowOpened(WindowEvent e) {}
+    @Override
+    public void windowClosing(WindowEvent e) {}
+    @Override
+    public void windowClosed(WindowEvent e) {
+        frame.dispose();
+        new EditorMainPage(dbGateway, flashcardSetId);
+    }
+    @Override
+    public void windowIconified(WindowEvent e) {}
+    @Override
+    public void windowDeiconified(WindowEvent e) {}
+    @Override
+    public void windowActivated(WindowEvent e) {}
+    @Override
+    public void windowDeactivated(WindowEvent e) {}
 }

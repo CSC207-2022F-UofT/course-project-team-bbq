@@ -3,51 +3,25 @@ package Editor.Flashcard;
 import Editor.Flashcard.screens.FlashcardEditorController;
 import Editor.Flashcard.screens.FlashcardEditorPresenter;
 import Editor.Flashcard.screens.FlashcardEditorScreen;
-import EditorMainPage.FlashcardInfo;
 import dataAccess.*;
+import entityRequestModels.FlashcardDsRequestModel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
 
-public class FlashcardEditorMain {
+public class FlashcardEditorMain extends JFrame{
 
-    public static void main(FlashcardInfo flashcard) {
+    public FlashcardEditorMain(DBGateway dbGateway, FlashcardDsRequestModel flashcard){
         FlashcardEditorOutputBoundary presenter = new FlashcardEditorPresenter();
-        DBGateway dataBaseGateway;
 
-        IFlashcardDataAccess fcDataAccess;
-        IFlashcardSetDataAccess fcSDataAccess;
-
-        try{
-            fcDataAccess = new FlashcardDataAccess("src/data/Flashcards.csv");
-            fcSDataAccess = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-        }
-        catch(IOException e){
-            throw new RuntimeException("could not find file");
-        }
-
-        dataBaseGateway = new DBGateway(fcDataAccess, fcSDataAccess, null);
-
-        FlashcardEditorInputBoundary interactor = new FlashcardEditorInteractor(dataBaseGateway, presenter);
+        FlashcardEditorInputBoundary interactor = new FlashcardEditorInteractor(dbGateway, presenter);
         FlashcardEditorController controller = new FlashcardEditorController(interactor);
 
 
-        JFrame application = new JFrame("Edit Example");
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
-        application.add(screens);
-
-        FlashcardEditorScreen editScreen = new FlashcardEditorScreen(controller, flashcard, application);
-        screens.add(editScreen, "welcome");
-        cardLayout.show(screens, "Edit");
-        application.pack();
-        application.setVisible(true);
-
-
-
-
-        //Second use case
-
+        this.setTitle("Edit Flashcard \"" + flashcard.getTerm() + "\"");
+        FlashcardEditorScreen editScreen = new FlashcardEditorScreen(controller, flashcard, this);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.add(editScreen);
+        this.setSize(500, 200);
+        this.setVisible(true);
     }
 }
