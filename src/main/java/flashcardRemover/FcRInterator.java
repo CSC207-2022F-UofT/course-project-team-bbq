@@ -1,9 +1,8 @@
-package FlashcardRemover;
+package flashcardRemover;
 
 import dataAccess.DBGateway;
 import dataAccess.IFlashcardDataAccess;
 import dataAccess.IFlashcardSetDataAccess;
-import entityRequestModels.FlashcardDsRequestModel;
 
 import java.time.LocalDateTime;
 

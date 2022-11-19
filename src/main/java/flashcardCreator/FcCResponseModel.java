@@ -1,10 +1,10 @@
-package FlashcardCreator;
+package flashcardCreator;
 
 import java.time.LocalDateTime;
 
 public class FcCResponseModel {
-    LocalDateTime creationDate;
-    String term, definition;
+    private LocalDateTime creationDate;
+    private String term, definition;
 
     public FcCResponseModel(LocalDateTime creationDate, String term, String definition) {
         this.creationDate = creationDate;

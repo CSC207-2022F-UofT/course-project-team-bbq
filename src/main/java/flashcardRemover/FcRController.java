@@ -1,6 +1,4 @@
-package FlashcardRemover;
-
-import dataAccess.FlashcardSetDataAccess;
+package flashcardRemover;
 
 public class FcRController {
     FcRInputBoundary inputBoundary;

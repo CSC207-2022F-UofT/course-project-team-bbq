@@ -1,4 +1,4 @@
-package FlashcardRemover;
+package flashcardRemover;
 
 import java.time.LocalDateTime;
 

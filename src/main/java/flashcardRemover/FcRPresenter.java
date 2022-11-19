@@ -1,4 +1,4 @@
-package FlashcardRemover;
+package flashcardRemover;
 
 public interface FcRPresenter {
     FcRResponseModel prepareSuccessView(FcRResponseModel responseModel);

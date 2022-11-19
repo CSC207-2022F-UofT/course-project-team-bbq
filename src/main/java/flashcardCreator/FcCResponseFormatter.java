@@ -1,4 +1,4 @@
-package FlashcardCreator;
+package flashcardCreator;
 
 public class FcCResponseFormatter implements FcCPresenter{
     @Override

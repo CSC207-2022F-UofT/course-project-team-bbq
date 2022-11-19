@@ -1,4 +1,4 @@
-package FlashcardRemover;
+package flashcardRemover;
 
 public class FcRResponseFormatter implements FcRPresenter{
     @Override

@@ -1,4 +1,4 @@
-package FlashcardRemover;
+package flashcardRemover;
 
 public class FcRRequestModel {
     private int flashcardSetId, flashcardId;

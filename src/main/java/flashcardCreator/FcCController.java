@@ -1,6 +1,5 @@
-package FlashcardCreator;
+package flashcardCreator;
 
-import dataAccess.FlashcardSetDataAccess;
 
 public class FcCController {
     FcCInputBoundary inputBoundary;

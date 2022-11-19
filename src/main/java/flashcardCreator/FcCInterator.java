@@ -1,4 +1,4 @@
-package FlashcardCreator;
+package flashcardCreator;
 
 import dataAccess.DBGateway;
 import dataAccess.IFlashcardDataAccess;

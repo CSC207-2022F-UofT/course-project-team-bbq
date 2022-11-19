@@ -1,7 +1,6 @@
-package FlashcardCreator.FcCScreens;
+package flashcardCreator.fcCScreens;
 
-import FlashcardCreator.FcCController;
-import FlashcardCreator.FcCFailure;
+import flashcardCreator.FcCController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

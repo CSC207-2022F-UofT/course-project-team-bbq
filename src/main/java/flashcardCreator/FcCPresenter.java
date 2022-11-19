@@ -1,4 +1,4 @@
-package FlashcardCreator;
+package flashcardCreator;
 
 public interface FcCPresenter {
     FcCResponseModel prepareSuccessView(FcCResponseModel responseModel);
