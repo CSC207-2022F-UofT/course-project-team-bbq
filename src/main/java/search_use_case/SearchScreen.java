@@ -1,5 +1,6 @@
 package search_use_case;
 
+import dataAccess.DBGateway;
 import entityRequestModels.CommonUserDsRequestModel;
 import quizUseCase.QuizController;
 import studyMode.StudySessionController;
@@ -22,12 +23,10 @@ public class SearchScreen extends JFrame implements ActionListener{
     /**
      * Creates a SearchScreen
      * @param search_controller the controller to handle search operations
-     * @param study_controller the controller to handle the study option when results are returned
-     * @param quiz_controller the controller to handle the quiz option when results are returned
+     * @param gateway to handle study and quiz controllers in the results
      * @param curr_user the current user
      */
-    public SearchScreen(SearchController search_controller, StudySessionController study_controller,
-                        QuizController quiz_controller, CommonUserDsRequestModel curr_user){
+    public SearchScreen(SearchController search_controller, DBGateway gateway, CommonUserDsRequestModel curr_user){
         super("Search Flashcards");
 
         ArrayList<String> selected_tags = new ArrayList<>();
@@ -65,7 +64,7 @@ public class SearchScreen extends JFrame implements ActionListener{
             // navigate to results screen if results are found
             try {
                 new ResultsScreen(search_controller.create(s1, selected_tags, curr_user),
-                        study_controller, quiz_controller);
+                        gateway);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
@@ -79,7 +78,7 @@ public class SearchScreen extends JFrame implements ActionListener{
         search_all.addActionListener( e -> {
             try {
                 new ResultsScreen(search_controller.create("GET_ALL", selected_tags, curr_user),
-                        study_controller, quiz_controller);
+                        gateway);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());

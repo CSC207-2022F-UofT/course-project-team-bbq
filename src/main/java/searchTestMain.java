@@ -1,8 +1,6 @@
 import dataAccess.*;
 import entityRequestModels.CommonUserDsRequestModel;
-import quizUseCase.*;
 import search_use_case.*;
-import studyMode.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,19 +26,9 @@ public class searchTestMain {
         CommonUserDsRequestModel user = new CommonUserDsRequestModel("jemp", "pio",
                 true, setIDs);
 
-        // Study session requirements
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
-        StudySessionOutputBoundary study_presenter = new StudySessionPresenter();
-        StudySessionInputBoundary study_interactor = new StudySessionInteractor(gateway, study_presenter);
-        StudySessionController study_controller = new StudySessionController(study_interactor);
 
-        // QUIZ SETTINGS USE CASE
-        QuizOutputBoundary quiz_presenter = new QuizPresenter();
-        QuizInputBoundary quiz_interactor = new QuizInteractor(gateway, quiz_presenter);
-        QuizController quiz_controller = new QuizController(quiz_interactor);
-
-
-        new SearchScreen(search_controller, study_controller, quiz_controller, user);
+        new SearchScreen(search_controller, gateway, user);
 
     }
 

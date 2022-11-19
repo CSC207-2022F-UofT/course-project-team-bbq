@@ -22,7 +22,7 @@ public class SearchInteractor implements SearchInputBoundary{
 
     /**
      * Creates a SearchInteractor Object
-     * @param presenter an object that recieves data and updates the view
+     * @param presenter an object that receives data and updates the view
      * @param gateway gateway to give the class data to function
      */
     public SearchInteractor(SearchOutputBoundary presenter, DBGateway gateway){
@@ -66,15 +66,15 @@ public class SearchInteractor implements SearchInputBoundary{
             for (Integer x : flashcard_set_ids){
                 if (!gateway.getFlashcardSet(x).getIsPrivate() || curr_user.getIsAdmin()){
                     for(String tag : tags){
-                        if(tag.equals("Title") && gateway.getFlashcardSet(x).getTitle().equals(input)){
+                        if(tag.equals("Title") && gateway.getFlashcardSet(x).getTitle().contains(input)){
                             result_set.add(gateway.getFlashcardSetGateway().getFlashcardSet(x));
                             break;
                         }
-                        if(tag.equals("Description") && gateway.getFlashcardSet(x).getDescription().equals(input)){
+                        if(tag.equals("Description") && gateway.getFlashcardSet(x).getDescription().contains(input)){
                             result_set.add(gateway.getFlashcardSetGateway().getFlashcardSet(x));
                             break;
                         }
-                        if(tag.equals("Owner") && gateway.getFlashcardSet(x).getOwnerUsername().equals(input)){
+                        if(tag.equals("Owner") && gateway.getFlashcardSet(x).getOwnerUsername().contains(input)){
                             result_set.add(gateway.getFlashcardSetGateway().getFlashcardSet(x));
                             break;
                         }
@@ -84,7 +84,7 @@ public class SearchInteractor implements SearchInputBoundary{
             }
         }
 
-        // Return results if there is atleast 1 result
+        // Return results if there is at least 1 result
         if (result_set.size() > 0){
             SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
             return presenter.prepareSuccessView(searchResponseModel);

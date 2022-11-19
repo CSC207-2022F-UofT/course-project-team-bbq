@@ -1,8 +1,9 @@
 package search_use_case;
 
-import quizUseCase.QuizController;
+import dataAccess.DBGateway;
+import quizUseCase.*;
 import quizUseCase.screens.QuizSettingsScreen;
-import studyMode.StudySessionController;
+import studyMode.*;
 import studyMode.screens.StudySettingsScreen;
 
 import javax.swing.*;
@@ -23,11 +24,9 @@ public class ResultsScreen extends JFrame implements ActionListener {
     /**
      *
      * @param responseModel contains results from search
-     * @param study_controller  controller to handle the study option
-     * @param quiz_controller   controller to handel the quiz option
+     * @param gateway to access information for study and quiz options
      */
-    public ResultsScreen(SearchResponseModel responseModel, StudySessionController study_controller,
-                         QuizController quiz_controller){
+    public ResultsScreen(SearchResponseModel responseModel, DBGateway gateway){
         super("Search Results");
 
         // store results in a Box layout
@@ -55,6 +54,9 @@ public class ResultsScreen extends JFrame implements ActionListener {
             JButton study = new JButton("Study");
             study.addActionListener(e -> {
                 try{
+                    StudySessionOutputBoundary study_presenter = new StudySessionPresenter();
+                    StudySessionInputBoundary study_interactor = new StudySessionInteractor(gateway, study_presenter);
+                    StudySessionController study_controller = new StudySessionController(study_interactor);
                     new StudySettingsScreen(study_controller, responseModel.getResult_set().get(tempX).getFlashcardSetId());
                 }
                 catch (Exception s){
@@ -65,6 +67,9 @@ public class ResultsScreen extends JFrame implements ActionListener {
             JButton test = new JButton("Test");
             test.addActionListener(e -> {
                 try{
+                    QuizOutputBoundary quiz_presenter = new QuizPresenter();
+                    QuizInputBoundary quiz_interactor = new QuizInteractor(gateway, quiz_presenter);
+                    QuizController quiz_controller = new QuizController(quiz_interactor);
                     new QuizSettingsScreen(quiz_controller, responseModel.getResult_set().get(tempX).getFlashcardSetId());
                 }
                 catch (Exception s){
