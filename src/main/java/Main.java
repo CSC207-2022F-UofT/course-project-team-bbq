@@ -1,10 +1,13 @@
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.WelcomeScreen;
 import quizUseCase.*;
 import dataAccess.*;
 import quizUseCase.screens.QuizSettingsScreen;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -19,9 +22,20 @@ public class Main {
         // DATABASE
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-        // IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
 
-        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
+        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
+
+        //Welcome Screen
+        JFrame application = new JFrame("Welcome");
+        CardLayout cardLayout = new CardLayout();
+        JPanel screens = new JPanel(cardLayout);
+        application.add(screens);
+        WelcomeScreen welcome = new WelcomeScreen();
+        screens.add(welcome, "Welcome");
+        cardLayout.show(screens, "Welcome");
+        application.pack();
+        application.setVisible(true);
 
         // QUIZ SETTINGS USE CASE
         QuizOutputBoundary presenter = new QuizPresenter();
