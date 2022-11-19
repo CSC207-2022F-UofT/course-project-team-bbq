@@ -26,7 +26,7 @@ public class FlashcardSetInteractorTest {
     public void testCreate() {
         // Create a mock user input
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
-                "Final Exam Review", false, "uncle_bob69", "create");
+                "Final Exam Review", false, "uncle_bob69");
 
 
         // Create the arguments for FlashcardSetInteractor
@@ -68,7 +68,7 @@ public class FlashcardSetInteractorTest {
     public void testMissingTitleException() throws FlashcardSetCreationFailed {
         // Create a mock user input with no title
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("",
-                "Final Exam Review", false, "uncle_bob69", "create");
+                "Final Exam Review", false, "uncle_bob69");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();
@@ -101,7 +101,7 @@ public class FlashcardSetInteractorTest {
     public void testMissingDescriptionException() throws FlashcardSetCreationFailed {
         // Create a mock user input with no description
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
-                "", false, "uncle_bob69", "create");
+                "", false, "uncle_bob69");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();
@@ -134,7 +134,7 @@ public class FlashcardSetInteractorTest {
     public void testMissingUsernameException() throws FlashcardSetCreationFailed {
         // Create a mock user input with no username
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
-                "Final Exam Review", false, "", "create");
+                "Final Exam Review", false, "");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();

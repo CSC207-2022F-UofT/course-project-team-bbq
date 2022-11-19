@@ -10,10 +10,9 @@ public class FlashcardSetController {
         this.userInput = userInput;
     }
 
-    FlashcardSetResponseModel create(String title, String description, boolean isPrivate, String username,
-                                     String action) {
+    FlashcardSetResponseModel create(String title, String description, boolean isPrivate, String username) {
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel(title, description,
-                isPrivate, username, action);
+                isPrivate, username);
 
         return userInput.create(requestModel);
     }

@@ -91,7 +91,7 @@ public class CreationScreen extends JPanel implements ActionListener {
         } else {
             try {
                 flashcardSetController.create(title.getText(), description.getText(),
-                        privateSelected, username.getText(), evt.getActionCommand());
+                        privateSelected, username.getText());
                 JOptionPane.showMessageDialog(this,
                         String.format("Flashcard Set: [%s] created.", title.getText()));
                 application.dispose();  // exit creation screen
