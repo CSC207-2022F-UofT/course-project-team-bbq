@@ -1,6 +1,6 @@
 package delete_flashcardset_use_case;
 
-import entityRequestModels.UserDsRequestModel;
+
 import loginAndSignupUseCase.UserLoginResponseModel;
 
 import javax.swing.*;
@@ -24,10 +24,10 @@ public class DeletionScreen extends JFrame implements ActionListener {
      */
     DelFlashcardSetController controller;
 
-    /**
-     * The application
-     */
-    JFrame application;  // need this variable to only close the application and not the whole program
+//    /**
+//     * The application
+//     */
+//    JFrame application;  // need this variable to only close the application and not the whole program
 
     /**
      * A window with a title and a JButton.
@@ -72,7 +72,7 @@ public class DeletionScreen extends JFrame implements ActionListener {
 
         // Exit deletion screen if user cancels deletion
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
-            application.dispose();
+            this.dispose();
         }
 
         else {  // Delete was pressed
