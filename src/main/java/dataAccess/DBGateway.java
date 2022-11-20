@@ -5,6 +5,9 @@ import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 import entityRequestModels.UserDsRequestModel;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class DBGateway {
     private static final String flashcardPath = "src/data/Flashcards.csv";
     private static final String flashcardSetPath = "src/data/FlashcardSets.csv";
@@ -56,5 +59,11 @@ public class DBGateway {
 
     public IUserDataAccess getUserGateway() {
         return userGateway;
+    }
+
+    public static void main(String[] args) throws IOException {
+        IUserDataAccess iUserDataAccess = new CommonUserDataAccess(getUserPath());
+        DBGateway dbGateway = new DBGateway(null, null, iUserDataAccess);
+        dbGateway.userGateway.saveUser(new CommonUserDsRequestModel("lucas","r6tygh",false, new ArrayList<Integer>()));
     }
 }

@@ -56,6 +56,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
 
             for (CommonUserDsRequestModel user : accounts.values()) {
                 StringBuilder line = new StringBuilder(String.format("%s, %s, %s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
+
                 for(int flashcardSetIds: user.getFlashcardSetIds()){
                     line.append(",");
                     line.append(Integer.toString(flashcardSetIds));
@@ -77,7 +78,6 @@ public class CommonUserDataAccess implements IUserDataAccess{
         return accounts.get(username);
 
     }
-
     @Override
     public Collection<CommonUserDsRequestModel> getAllUsers(){
         return accounts.values();

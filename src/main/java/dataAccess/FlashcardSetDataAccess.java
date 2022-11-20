@@ -61,8 +61,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
 
             for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
                 StringBuilder line = new StringBuilder(String.
-                        format("%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername(),
-                                set.getFlashcardIds()));
+                        format("%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(), set.getFlashcardSetId(), set.getOwnerUsername()));
                 for(int flashcardIds : set.getFlashcardIds()){
                     line.append(",");
                     line.append(Integer.toString(flashcardIds));
