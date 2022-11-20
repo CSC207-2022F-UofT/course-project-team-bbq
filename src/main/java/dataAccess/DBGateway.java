@@ -65,4 +65,8 @@ public class DBGateway {
         return this.userGateway.existsByName(username);
     }
 
+    public void saveUser(CommonUserDsRequestModel user) {
+        this.userGateway.saveUser(user);
+    }
+
 }
