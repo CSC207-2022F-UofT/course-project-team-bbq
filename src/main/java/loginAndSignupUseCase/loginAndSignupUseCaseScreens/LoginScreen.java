@@ -1,8 +1,12 @@
 package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
+import MainPage.HomePage;
+import loginAndSignupUseCase.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 // Frameworks/Drivers layer
 
@@ -67,13 +71,17 @@ public class LoginScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
         if (evt.getActionCommand().equals("Return")) {
             this.dispose();
-            new WelcomeScreen();
+            try {
+                new WelcomeScreen();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             try {
-                userLoginController.create(username.getText(),
+                UserLoginResponseModel user = userLoginController.create(username.getText(),
                         String.valueOf(password.getPassword()));
-                JOptionPane.showMessageDialog(this, String.format(username.getText()));
-
+//                JOptionPane.showMessageDialog(this, String.format(username.getText()));
+                new HomePage(user);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }

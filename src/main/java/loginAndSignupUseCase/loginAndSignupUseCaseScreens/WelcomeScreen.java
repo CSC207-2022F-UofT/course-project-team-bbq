@@ -17,7 +17,15 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public WelcomeScreen() {
+
+    DBGateway gateway;
+    public WelcomeScreen() throws IOException {
+        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+
+        gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
+
 
         JLabel title = new JLabel("Welcome Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -90,7 +98,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new WelcomeScreen();
     }
 }

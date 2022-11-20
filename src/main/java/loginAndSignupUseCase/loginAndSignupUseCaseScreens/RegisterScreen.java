@@ -89,7 +89,12 @@ public class RegisterScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
         if (evt.getActionCommand().equals("Return")) {
             this.dispose();
-            new WelcomeScreen();
+            try {
+                new WelcomeScreen();
+            }
+            catch (IOException e){
+                throw new RuntimeException(e);
+            }
         } else {
             try {
                 userRegisterController.create(username.getText(),
