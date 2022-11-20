@@ -26,7 +26,7 @@ public class Main {
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
-        //Welcome Screen
+        // WELCOME SCREEN
         JFrame application = new JFrame("Welcome");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
@@ -36,12 +36,5 @@ public class Main {
         cardLayout.show(screens, "Welcome");
         application.pack();
         application.setVisible(true);
-
-        // QUIZ SETTINGS USE CASE
-        QuizOutputBoundary presenter = new QuizPresenter();
-        QuizInputBoundary interactor = new QuizInteractor(gateway, presenter);
-        QuizController controller = new QuizController(interactor);
-
-        new QuizSettingsScreen(controller, 0);
     }
 }
