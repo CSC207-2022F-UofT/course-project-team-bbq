@@ -15,9 +15,9 @@ public class EditorMainPage extends JFrame {
         IFlashcardDataAccess fcGateway;
         IUserDataAccess userGateway;
         try {
-            fcSetGateway = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-            fcGateway = new FlashcardDataAccess("src/data/Flashcards.csv");
-            userGateway = new CommonUserDataAccess("src/data/Users.csv");
+            fcGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+            fcSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+            userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
         }
         catch(IOException error){
             throw new RuntimeException("error: file not found");
@@ -42,10 +42,5 @@ public class EditorMainPage extends JFrame {
         this.setSize(1000, 800);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public static void main(String[] args) {
-
-        new EditorMainPage(2);
     }
 }
