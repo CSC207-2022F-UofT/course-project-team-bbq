@@ -1,0 +1,3 @@
+title, description, privacy, id, owner, flashcardsIds
+test set,for testing study use case,true,0,testUser,0,1,2,3
+empty test set,for testing study use case with empty set,true,1,testUser,
