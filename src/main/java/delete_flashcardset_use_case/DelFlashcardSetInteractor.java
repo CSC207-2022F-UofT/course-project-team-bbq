@@ -2,6 +2,7 @@ package delete_flashcardset_use_case;
 
 // Use case (Red) layer
 
+import dataAccess.DBGateway;
 import dataAccess.IFlashcardDataAccess;
 import dataAccess.IFlashcardSetDataAccess;
 
@@ -19,12 +20,17 @@ import dataAccess.IFlashcardSetDataAccess;
 
 public class DelFlashcardSetInteractor implements DelFlashcardSetInputBoundary {
 
-
-
-    IFlashcardSetDataAccess flashcardSetDataAccess;
-    IFlashcardDataAccess flashcardDataAccess;  // for deleting flashcards associated with the flashcard set
+    DBGateway dbGateway;
+    IFlashcardSetDataAccess flashcardSetDataAccess;  // for testing
+    IFlashcardDataAccess flashcardDataAccess;  // for testing
     DelFlashcardSetOutputBoundary outputBoundary;
 
+    public DelFlashcardSetInteractor(DBGateway dbGateway, DelFlashcardSetOutputBoundary outputBoundary) {
+        this.dbGateway = dbGateway;
+        this.outputBoundary = outputBoundary;
+    }
+
+    // Alternative constructor for testing purposes
     public DelFlashcardSetInteractor(IFlashcardSetDataAccess flashcardSetDataAccess,
                                      IFlashcardDataAccess flashcardDataAccess,
                                      DelFlashcardSetOutputBoundary outputBoundary) {
@@ -36,16 +42,17 @@ public class DelFlashcardSetInteractor implements DelFlashcardSetInputBoundary {
     @Override
     public DelFlashcardSetResponseModel delete(DelFlashcardSetRequestModel requestModel) {
 
-        if (flashcardSetDataAccess.getFlashcardSet(requestModel.getFlashcardSetId()) == null) {
+        if (dbGateway.getFlashcardSet(requestModel.getFlashcardSetId()) == null) {
             return outputBoundary.prepareFailView("Flashcard set #"
                     + requestModel.getFlashcardSetId() + " doesn't exist.");
         } else {
             // First delete all the flashcards associated with this flashcard set in Flashcards.csv
-            for (int id : flashcardSetDataAccess.getFlashcardSet(requestModel.getFlashcardSetId()).getFlashcardIds()) {
-                flashcardDataAccess.deleteFlashcard(id);
+            for (int id : dbGateway.getFlashcardSetGateway().getFlashcardSet(requestModel.getFlashcardSetId()).getFlashcardIds()) {
+                dbGateway.deleteFlashcard(requestModel.getFlashcardSetId(), id);
             }
             // Then delete the flashcard set in FlashcardSets.csv
-            flashcardSetDataAccess.deleteFlashcardSet(requestModel.getFlashcardSetId());
+            dbGateway.deleteFlashcardSet(dbGateway.getFlashcardSet(requestModel.getFlashcardSetId()).getOwnerUsername(),
+                    requestModel.getFlashcardSetId());
 
             return outputBoundary.prepareSuccessView("Flashcard set #" + requestModel.getFlashcardSetId()
                     + " has been deleted.");

@@ -167,7 +167,7 @@ public class DelFlashcardSetInteractorTest {
         // Test part
         try {
             interactor.delete(inputData);  // invalid id should go immediately to catch block (i.e., pass test)
-            assert (false);  // if id exists, then this line is reached and test fails
+            assert(false);  // if id exists, then this line is reached and test fails
         } catch (FlashcardSetNotFound e) {
 
         }
