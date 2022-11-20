@@ -1,5 +1,6 @@
 package create_flashcardset_use_case;
 
+import dataAccess.DBGateway;
 import dataAccess.IFlashcardSetDataAccess;
 import entities.FlashcardSet;
 import entities.FlashcardSetFactory;
@@ -24,12 +25,20 @@ import java.util.Objects;
  */
 
 public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
-
-    IFlashcardSetDataAccess flashcardSetDataAccess;
+    DBGateway dbGateway;
+    IFlashcardSetDataAccess flashcardSetDataAccess;  // for testing
     FlashcardSetOutputBoundary flashcardSetOutputBoundary;
     FlashcardSetFactory flashcardSetFactory;
 
 
+    public FlashcardSetInteractor(DBGateway dbGateway, FlashcardSetOutputBoundary flashcardSetOutputBoundary,
+                                  FlashcardSetFactory flashcardSetFactory) {
+        this.dbGateway = dbGateway;
+        this.flashcardSetOutputBoundary = flashcardSetOutputBoundary;
+        this.flashcardSetFactory = flashcardSetFactory;
+    }
+
+    // Alternative construction for testing purposes
     public FlashcardSetInteractor(IFlashcardSetDataAccess flashcardSetDataAccess,
                                   FlashcardSetOutputBoundary flashcardSetOutputBoundary,
                                   FlashcardSetFactory flashcardSetFactory) {
@@ -61,17 +70,22 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
                 inputData.isPrivate(), tempFlashcardSetId, inputData.getUsername());
 
         // store the flashcard set into database
-        ArrayList<Integer> flashcardIds= new ArrayList<>();  // set starts with empty list of flashcard ids for database
-        FlashcardSetDsRequestModel dsRequestModel= new FlashcardSetDsRequestModel(fs.getTitle(), fs.getDescription(),
+        ArrayList<Integer> flashcardIds = new ArrayList<>();  // set starts with empty list of flashcard ids for database
+        FlashcardSetDsRequestModel dsRequestModel = new FlashcardSetDsRequestModel(fs.getTitle(), fs.getDescription(),
                 fs.getIsPrivate(), tempFlashcardSetId, fs.getOwnerUsername(), flashcardIds);
 
-        flashcardSetDataAccess.saveFlashcardSet(dsRequestModel);
-        FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
+        try {
+            dbGateway.saveFlashcardSet(dsRequestModel);
+            FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
+            return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
+        } catch (Exception e) {
+            return null;
+        }
+//        dbGateway.saveFlashcardSet(dsRequestModel);
+//        FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
 
-        return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
+//        return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
     }
-
-
 
 
 }

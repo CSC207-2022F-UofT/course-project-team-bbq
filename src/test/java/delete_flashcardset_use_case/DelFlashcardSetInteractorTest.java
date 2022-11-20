@@ -91,8 +91,22 @@ public class DelFlashcardSetInteractorTest {
 
         // Create the arguments for the interactor
         DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
-        DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(flashcardSetRepo,
-                flashcardRepo, presenter);
+        DelFlashcardSetInputBoundary interactor = requestModel -> {
+            if (flashcardSetRepo.getFlashcardSet(requestModel.getFlashcardSetId()) == null) {
+                return presenter.prepareFailView("Flashcard set #"
+                        + requestModel.getFlashcardSetId() + " doesn't exist.");
+            } else {
+                // First delete all the flashcards associated with this flashcard set in Flashcards.csv
+                for (int id : flashcardSetRepo.getFlashcardSet(requestModel.getFlashcardSetId()).getFlashcardIds()) {
+                    flashcardRepo.deleteFlashcard(id);
+                }
+                // Then delete the flashcard set in FlashcardSets.csv
+                flashcardSetRepo.deleteFlashcardSet(requestModel.getFlashcardSetId());
+
+                return presenter.prepareSuccessView("Flashcard set #" + requestModel.getFlashcardSetId()
+                        + " has been deleted.");
+            }
+        };
 
         // Use the interactor to delete fs1
         interactor.delete(inputData);
@@ -129,15 +143,31 @@ public class DelFlashcardSetInteractorTest {
             }
         };
 
+        DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
+
         // Construct the interactor
-        DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(flashcardSetRepo, flashcardRepo,
-                outputBoundary);
+        DelFlashcardSetInputBoundary interactor = requestModel -> {
+            if (flashcardSetRepo.getFlashcardSet(requestModel.getFlashcardSetId()) == null) {
+                return presenter.prepareFailView("Flashcard set #"
+                        + requestModel.getFlashcardSetId() + " doesn't exist.");
+            } else {
+                // First delete all the flashcards associated with this flashcard set in Flashcards.csv
+                for (int id : flashcardSetRepo.getFlashcardSet(requestModel.getFlashcardSetId()).getFlashcardIds()) {
+                    flashcardRepo.deleteFlashcard(id);
+                }
+                // Then delete the flashcard set in FlashcardSets.csv
+                flashcardSetRepo.deleteFlashcardSet(requestModel.getFlashcardSetId());
+
+                return presenter.prepareSuccessView("Flashcard set #" + requestModel.getFlashcardSetId()
+                        + " has been deleted.");
+            }
+        };
 
 
         // Test part
         try {
             interactor.delete(inputData);  // invalid id should go immediately to catch block (i.e., pass test)
-            assert(false);  // if id exists, then this line is reached and test fails
+            assert (false);  // if id exists, then this line is reached and test fails
         } catch (FlashcardSetNotFound e) {
 
         }
