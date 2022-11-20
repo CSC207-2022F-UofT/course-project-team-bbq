@@ -28,9 +28,8 @@ public class HomePage extends JFrame {
         IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
         IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
         IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
-        DBGateway gateway = new DBGateway(new FlashcardDataAccess(DBGateway.getFlashcardPath()),
-                new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
-                new CommonUserDataAccess(DBGateway.getUserPath()));
+        DBGateway gateway = new DBGateway(flashcardDataAccess,
+                flashcardSetDataAccess, userDataAccess);
 
         // top bar
         JPanel topBar = new JPanel();
@@ -44,7 +43,7 @@ public class HomePage extends JFrame {
             SearchOutputBoundary presenter = new SearchPresenter();
             SearchInteractor interactor = new SearchInteractor(presenter, gateway);
             SearchController controller = new SearchController(interactor);
-//            new SearchScreen(controller, gateway, );
+            new SearchScreen(controller, gateway, user);
         });
 
         addFlashcardSetButton.addActionListener(e -> {

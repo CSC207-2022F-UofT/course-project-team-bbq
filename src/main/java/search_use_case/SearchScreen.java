@@ -1,9 +1,7 @@
 package search_use_case;
 
 import dataAccess.DBGateway;
-import entityRequestModels.CommonUserDsRequestModel;
-import quizUseCase.QuizController;
-import studyMode.StudySessionController;
+import loginAndSignupUseCase.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +24,7 @@ public class SearchScreen extends JFrame implements ActionListener{
      * @param gateway to handle study and quiz controllers in the results
      * @param curr_user the current user
      */
-    public SearchScreen(SearchController search_controller, DBGateway gateway, CommonUserDsRequestModel curr_user){
+    public SearchScreen(SearchController search_controller, DBGateway gateway, UserLoginResponseModel curr_user){
         super("Search Flashcards");
 
         ArrayList<String> selected_tags = new ArrayList<>();

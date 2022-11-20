@@ -1,9 +1,9 @@
 import dataAccess.*;
-import entityRequestModels.CommonUserDsRequestModel;
+import loginAndSignupUseCase.UserLoginResponseModel;
 import search_use_case.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 
@@ -22,9 +22,8 @@ public class searchTestMain {
         SearchOutputBoundary search_presenter = new SearchPresenter();
         SearchInputBoundary search_interactor = new SearchInteractor(search_presenter, dbGateway);
         SearchController search_controller = new SearchController(search_interactor);
-        ArrayList<Integer> setIDs = new ArrayList<>();
-        CommonUserDsRequestModel user = new CommonUserDsRequestModel("jemp", "pio",
-                true, setIDs);
+        UserLoginResponseModel user = new UserLoginResponseModel("jempio",
+                true, new HashMap<>());
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
 
