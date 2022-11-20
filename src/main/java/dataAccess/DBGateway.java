@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
-import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway {
     private static final String flashcardPath = "src/data/Flashcards.csv";
@@ -43,7 +42,7 @@ public class DBGateway {
     }
 
     public CommonUserDsRequestModel getCommonUser(String username){
-        return (CommonUserDsRequestModel)this.userGateway.getUser(username);
+        return this.userGateway.getUser(username);
     }
 
     public IFlashcardDataAccess getFlashcardGateway() {
@@ -57,4 +56,13 @@ public class DBGateway {
     public IUserDataAccess getUserGateway() {
         return userGateway;
     }
+
+    public String[] getTitleAndDescription(int flashcardSetId) {
+        return this.flashcardSetGateway.getTitleAndDescription(flashcardSetId);
+    }
+
+    public boolean existsByName(String username){
+        return this.userGateway.existsByName(username);
+    }
+
 }
