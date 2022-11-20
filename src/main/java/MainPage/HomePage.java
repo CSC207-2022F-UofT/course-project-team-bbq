@@ -50,10 +50,10 @@ public class HomePage extends JFrame {
         addFlashcardSetButton.addActionListener(e -> {
             FlashcardSetOutputBoundary presenter = new FlashcardSetPresenter();
             FlashcardSetFactory setFactory = new FlashcardSetFactory();
-            FlashcardSetInteractor interactor = new FlashcardSetInteractor(flashcardSetDataAccess, presenter,
+            FlashcardSetInteractor interactor = new FlashcardSetInteractor(gateway, presenter,
                     setFactory);
             FlashcardSetController controller = new FlashcardSetController(interactor);
-            new CreationScreen(controller, this);
+            new CreationScreen(controller, user);
 
         });
 
@@ -86,7 +86,7 @@ public class HomePage extends JFrame {
             this.add(labelPanel);
         }
         else {
-            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway));
+            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user));
         }
         this.setSize(1000, 1000);
         this.setVisible(true);

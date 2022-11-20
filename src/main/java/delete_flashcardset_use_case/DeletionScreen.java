@@ -1,5 +1,8 @@
 package delete_flashcardset_use_case;
 
+import entityRequestModels.UserDsRequestModel;
+import loginAndSignupUseCase.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,11 +11,13 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class DeletionScreen extends JPanel implements ActionListener {
+public class DeletionScreen extends JFrame implements ActionListener {
     /**
      * The id of the flashcard set to be deleted
      */
     int flashcardSetID;
+
+    UserLoginResponseModel user;
 
     /**
      * The controller
@@ -27,10 +32,9 @@ public class DeletionScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, JFrame application) {
+    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user) {
         this.flashcardSetID = flashcardSetID;
         this.controller = controller;
-        this.application = application;
 
         JLabel name = new JLabel("Flashcard Set Deletion Screen");
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -48,11 +52,14 @@ public class DeletionScreen extends JPanel implements ActionListener {
         delete.addActionListener(this);
         cancel.addActionListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         this.add(name);
 //        this.add(id);
         this.add(confirmationButtons);
+
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -79,7 +86,7 @@ public class DeletionScreen extends JPanel implements ActionListener {
                     controller.delete(flashcardSetID);
                     JOptionPane.showMessageDialog(this, "Flashcard Set #"
                             + flashcardSetID + " has been deleted.");
-                    application.dispose();  // exit deletion screen
+                    this.dispose();  // exit deletion screen
                 } catch (FlashcardSetNotFound e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }

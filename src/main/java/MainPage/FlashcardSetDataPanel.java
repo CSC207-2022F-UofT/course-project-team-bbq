@@ -2,6 +2,8 @@ package MainPage;
 
 import EditorMainPage.EditorMainPage;
 import dataAccess.DBGateway;
+import delete_flashcardset_use_case.*;
+import loginAndSignupUseCase.UserLoginResponseModel;
 import quizUseCase.*;
 import quizUseCase.screens.QuizSettingsScreen;
 import studyMode.*;
@@ -13,7 +15,8 @@ import javax.swing.border.Border;
 public class FlashcardSetDataPanel extends JPanel {
 
     public FlashcardSetDataPanel(String title, String description,
-                                 int flashcardSetId, DBGateway gateway) {
+                                 int flashcardSetId, DBGateway gateway,
+                                 UserLoginResponseModel user) {
         Border border = BorderFactory.createTitledBorder(title);
 
 
@@ -46,6 +49,12 @@ public class FlashcardSetDataPanel extends JPanel {
             QuizController controller = new QuizController(interactor);
 
             new QuizSettingsScreen(controller, flashcardSetId);
+        });
+        delete.addActionListener(e -> {
+            DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
+            DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
+            DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
+            new DeletionScreen(flashcardSetId, controller, user);
         });
 
         this.add(buttons);
