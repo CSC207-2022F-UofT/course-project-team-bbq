@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 
 import java.util.Collection;
-import java.util.Collections;
 
 // use case layer
 
@@ -21,6 +20,8 @@ public interface IUserDataAccess {
     Collection<CommonUserDsRequestModel> getAllUsers();
 
     void saveFlashcardSetID(String username, int FlashcardSetID);
+
+    void deleteFlashcardSetID(String username, int FlashcardSetID);
 
     void saveUser(CommonUserDsRequestModel user);
 }

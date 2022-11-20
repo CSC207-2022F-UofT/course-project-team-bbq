@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
-import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway {
     private static final String flashcardPath = "src/data/Flashcards.csv";
@@ -63,8 +62,8 @@ public class DBGateway {
         return this.flashcardSetGateway.saveFlashcardSet(flashcardSet);
     }
 
-    public void deleteFlashcardSet(int flashcardSetID) {
-        // need to delete ID from user database too!!!
+    public void deleteFlashcardSet(String ownerUsername, int flashcardSetID) {
+        this.userGateway.deleteFlashcardSetID(ownerUsername, flashcardSetID);
         this.flashcardSetGateway.deleteFlashcardSet(flashcardSetID);
     }
 
@@ -73,8 +72,8 @@ public class DBGateway {
         return this.flashcardGateway.saveFlashcard(flashcard);
     }
 
-    public void deleteFlashcard(Integer flashcardID) {
-        // need to delete from flashcard set database as well
-        this.flashcardGateway.deleteFlashcard(flashcardID);
+    public void deleteFlashcard(int flashcardSetId, int flashcardId) {
+        this.flashcardSetGateway.removeFlashcardId(flashcardSetId, flashcardId);
+        this.flashcardGateway.deleteFlashcard(flashcardId);
     }
 }
