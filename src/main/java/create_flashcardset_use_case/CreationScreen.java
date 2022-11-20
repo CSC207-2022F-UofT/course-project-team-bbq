@@ -76,6 +76,7 @@ public class CreationScreen extends JFrame implements ActionListener {
 
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(1000, 800);
     }
 
     /**

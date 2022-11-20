@@ -88,7 +88,7 @@ public class HomePage extends JFrame {
         else {
             this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user));
         }
-        this.setSize(1000, 1000);
+        this.setSize(1000, 800);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

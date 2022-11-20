@@ -33,6 +33,7 @@ public class DeletionScreen extends JFrame implements ActionListener {
      * A window with a title and a JButton.
      */
     public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user) {
+        this.user=user;
         this.flashcardSetID = flashcardSetID;
         this.controller = controller;
 
@@ -60,6 +61,7 @@ public class DeletionScreen extends JFrame implements ActionListener {
 
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(1000, 800);
     }
 
     /**
@@ -78,14 +80,15 @@ public class DeletionScreen extends JFrame implements ActionListener {
 //                int id = Integer.parseInt(flashcardSetID.getText());  // check input is an integer
 
             // Ask for confirmation
+            String title = user.getFlashcardSets().get(flashcardSetID)[0];
+
             int confirmation = JOptionPane.showConfirmDialog(this,
-                    "Delete Flashcard set #" + flashcardSetID + "?",
+                    "Delete " + title + "?",
                     "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmation == 0) {
                 try {
                     controller.delete(flashcardSetID);
-                    JOptionPane.showMessageDialog(this, "Flashcard Set #"
-                            + flashcardSetID + " has been deleted.");
+                    JOptionPane.showMessageDialog(this, title + " has been deleted.");
                     this.dispose();  // exit deletion screen
                 } catch (FlashcardSetNotFound e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
