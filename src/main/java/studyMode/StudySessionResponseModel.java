@@ -8,8 +8,8 @@ package studyMode;
  * @author Lucas Prates
  */
 public class StudySessionResponseModel {
-    private String outputText;
-    private int cardNumber;
+    private final String outputText;
+    private final int cardNumber;
 
     /**
      * Creates a StudySessionResponseModel
@@ -20,13 +20,6 @@ public class StudySessionResponseModel {
     public StudySessionResponseModel(String outputText, int cardNumber){
         this.outputText = outputText;
         this.cardNumber = cardNumber;
-    }
-
-    /**
-     * Creates a StudySessionResponseModel with null values.
-     */
-    public StudySessionResponseModel() {
-
     }
 
     /**

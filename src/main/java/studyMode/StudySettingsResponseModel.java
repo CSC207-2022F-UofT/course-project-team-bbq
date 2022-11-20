@@ -9,10 +9,9 @@ package studyMode;
  */
 public class StudySettingsResponseModel extends StudySessionResponseModel {
 
-    private int numFlashcards;
-    private String title;
-    private boolean failed = false;
-    private int flashcardSetId;
+    private final int numFlashcards;
+    private final String title;
+    private final int flashcardSetId;
 
     /**
      * Creates a StudySettingsResponseModel
@@ -30,15 +29,6 @@ public class StudySettingsResponseModel extends StudySessionResponseModel {
     }
 
     /**
-     * Creates a StudySettingsResponseModel with null values, and sets
-     * hasFailed to true
-     */
-    public StudySettingsResponseModel(){
-        super();
-        this.failed = true;
-    }
-
-    /**
      * @return the total number of flashcards in the current flashcard set
      */
     public int getNumFlashcards() {return numFlashcards;}
@@ -47,13 +37,6 @@ public class StudySettingsResponseModel extends StudySessionResponseModel {
      * @return the title of the current flashcard set
      */
     public String getTitle(){return title;}
-
-    /**
-     * @return returns true if the output data was successfully created
-     */
-    public boolean hasFailed (){
-        return failed;
-    }
 
     /**
      * @return the ID of the current flashcard set
