@@ -16,13 +16,14 @@ public class HomePage extends JFrame {
     UserLoginResponseModel user;
 
     public HomePage(UserLoginResponseModel user) throws IOException {
+        super(user.getSignedInUsername() + "'s home page");
         // initialize DBGateway
         DBGateway gateway = new DBGateway(new FlashcardDataAccess(DBGateway.getFlashcardPath()),
                 new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
                 new CommonUserDataAccess(DBGateway.getUserPath()));
 
 
-        user.getSignedInUsername();
+
         Map<Integer, String[]> idsToFlashcardSetData = user.getFlashcardSets();
 
         int numSets = idsToFlashcardSetData.size();
@@ -37,12 +38,12 @@ public class HomePage extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        Map<Integer, String[]> map = new HashMap<>();
+    public static void main(String[] args) throws IOException {
+        HashMap<Integer, String[]> map = new HashMap<>();
         for (int i = 1; i < 4; i++) {
             map.put(i, new String[]{"test set " + i, "test description " + i});
         }
-
-//        new HomePage(map);
+        UserLoginResponseModel user = new UserLoginResponseModel("Lucas", false, map);
+        new HomePage(user);
     }
 }
