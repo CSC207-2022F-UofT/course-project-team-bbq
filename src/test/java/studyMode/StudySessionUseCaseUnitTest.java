@@ -23,7 +23,7 @@ public class StudySessionUseCaseUnitTest {
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess("src/test/java/studyMode/testData/FlashcardSets.csv");
         IUserDataAccess userGateway = new CommonUserDataAccess("src/test/java/studyMode/testData/Users.csv");
 
-        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
+        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
         StudySessionOutputBoundary presenter = new StudySessionPresenter();
         StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
