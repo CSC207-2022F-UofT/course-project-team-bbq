@@ -6,9 +6,6 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 // use case layer
 public interface IFlashcardSetDataAccess {
 
-
-
-
     FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId);
 
     String[] getTitleAndDescription(int flashcardSetId);
@@ -17,8 +14,11 @@ public interface IFlashcardSetDataAccess {
 
     void saveFlashcardID(int flashcardSetId, int flashcardId);
 
+    void removeFlashcardId(int flashcardSetId, int flashcardId);
+
     void deleteFlashcardSet(int flashcardSetID);
 
     int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet);
+
 
 }
