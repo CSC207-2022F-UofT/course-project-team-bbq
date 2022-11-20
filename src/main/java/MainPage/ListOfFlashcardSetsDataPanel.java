@@ -1,11 +1,12 @@
 package MainPage;
 
-import dataAccess.CommonUserDataAccess;
+
 import dataAccess.DBGateway;
 import dataAccess.FlashcardDataAccess;
 import dataAccess.FlashcardSetDataAccess;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,9 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
            this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, editable));
         }
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new FlowLayout());
+        this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        this.setPreferredSize(new Dimension(500, 1000));
     }
 
     public static void main(String[] args) throws IOException {
