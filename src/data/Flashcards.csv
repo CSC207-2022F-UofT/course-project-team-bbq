@@ -1,4 +1,4 @@
-term, definition, creationDate, flashcardId, belongsToId
+term,definition,creationDate,flashcardId,belongsToId
 test card 1,the first test card,2022-11-13T15:32:26.666982800,0,0
 test card 2,the second test card,2022-11-13T15:32:27.666982800,1,0
 test card 3,the third test card,2022-11-13T15:32:28.666982800,2,0
