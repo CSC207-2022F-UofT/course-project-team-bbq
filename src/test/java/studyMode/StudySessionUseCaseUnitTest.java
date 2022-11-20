@@ -1,6 +1,7 @@
 package studyMode;
 import dataAccess.*;
 import org.junit.jupiter.api.Test;
+import studyMode.screens.StudySettingsFailed;
 
 import java.io.IOException;
 
@@ -41,7 +42,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("test card 1", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -69,7 +69,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.alphSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("alphabetical order checker", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -97,7 +96,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("test card 1", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -125,7 +123,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.timeSort, true, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("test card 1", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -145,7 +142,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.timeSort, false, false);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("the first test card", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -165,7 +161,6 @@ public class StudySessionUseCaseUnitTest {
                 StudySessionController.timeSort, true, true);
 
         StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertFalse(settings.hasFailed());
 
         assertEquals("alphabetical order checker", settings.getOutputText());
         assertEquals(1, settings.getCardNumber());
@@ -192,7 +187,6 @@ public class StudySessionUseCaseUnitTest {
         StudySettingsRequestModel request = this.setup(emptyTestSetId,
                 StudySessionController.timeSort, true, true);
 
-        StudySettingsResponseModel settings = controller.getSetToStudy(request);
-        assertTrue(settings.hasFailed());
+        assertThrows(StudySettingsFailed.class, () -> controller.getSetToStudy(request));
     }
 }

@@ -149,19 +149,19 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
                     termIsDefault, isReverse);
         }
 
-        // get the response model
-        StudySettingsResponseModel response = this.controller.getSetToStudy(request);
 
         // close this screen
         setVisible(false);
         dispose();
 
-        // open the appropriate screen
-        if (response.hasFailed()){
-            new StudySettingsFailureScreen();
-        }
-        else {
+        // get the response model
+        try {
+            StudySettingsResponseModel response = this.controller.getSetToStudy(request);
             new StudySessionScreen(this.controller, response);
         }
+        catch (StudySettingsFailed err) {
+            JOptionPane.showMessageDialog(this, err.getMessage());
+        }
+
     }
 }

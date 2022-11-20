@@ -57,10 +57,14 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
     }
 
     @Override
-    public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) throws IndexOutOfBoundsException {
+    public StudySettingsResponseModel getSetToStudy(StudySettingsRequestModel request) {
         this.studier = builder.buildStudier(request.getFlashcardSetId(), request.isTermDefault());
 
-        try {
+        if (this.studier.getNumFlashcards() == 0) {
+            String error = "<html>This flashcard set is empty. Please add some flashcard to begin studying!</html>";
+            return presenter.prepareFailedStudyView(error);
+        }
+        else {
             String sortingOrder = request.getSortingOrder();
             if (sortingOrder.equals(StudySessionInteractor.shuffleSort)) {
                 studier.shuffle();
@@ -80,9 +84,6 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
 
             return presenter.prepareSuccessStudyView(studier.getOutputText(), studier.getTitle(),
                     studier.getNumFlashcards(), studier.getFlashcardSetId());
-        }
-        catch (IndexOutOfBoundsException exception) {
-            return presenter.prepareFailedStudyView();
         }
     }
 }
