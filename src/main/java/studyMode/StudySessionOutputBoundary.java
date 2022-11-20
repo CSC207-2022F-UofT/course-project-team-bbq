@@ -29,8 +29,8 @@ public interface StudySessionOutputBoundary {
                                                        int numFlashcards, int flashcardSetId);
 
     /**
-     * @return a response model which specifies that creating the study view has failed
+     * @return alert the system that preparing the study view has failed
      */
-    StudySettingsResponseModel prepareFailedStudyView();
+    StudySettingsResponseModel prepareFailedStudyView(String error);
 
 }
