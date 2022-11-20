@@ -19,9 +19,9 @@ public class StudySessionUseCaseUnitTest {
 
     StudySettingsRequestModel setup(int flashcardSetId, String sortingOrder,
                                      boolean termIsDefault, boolean isReverse) throws IOException {
-        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
-        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess("src/test/java/studyMode/testData/Flashcards.csv");
+        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess("src/test/java/studyMode/testData/FlashcardSets.csv");
+        IUserDataAccess userGateway = new CommonUserDataAccess("src/test/java/studyMode/testData/Users.csv");
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);
 
