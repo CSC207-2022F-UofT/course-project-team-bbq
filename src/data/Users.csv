@@ -1,3 +1,4 @@
-username,password,isAdmin,flashcardSetsIds
-testUser,456r2t17yuihjn@,false,0,1
+username,password,isAdmin,flashcardSetIds
 jempio,ilovejempio,false,3,4,5,6,7,8
+Lucas,testing,false
+testUser,password,false,0,1

@@ -17,6 +17,8 @@ public class HomePage extends JFrame {
 
     public HomePage(UserLoginResponseModel user) throws IOException {
         super(user.getSignedInUsername() + "'s home page");
+
+        this.user = user;
         // initialize DBGateway
         DBGateway gateway = new DBGateway(new FlashcardDataAccess(DBGateway.getFlashcardPath()),
                 new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
@@ -28,7 +30,7 @@ public class HomePage extends JFrame {
 
         int numSets = idsToFlashcardSetData.size();
         if (numSets==0){
-            new JLabel("You have no new FlashcardSets!");
+            this.add(new JLabel("You have no Flashcard Sets!"));
         }
         else {
             this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, true));
