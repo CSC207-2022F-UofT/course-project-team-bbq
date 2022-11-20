@@ -78,6 +78,7 @@ public class FlashcardSetInteractorTest {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
+
             @Override
             public FlashcardSetResponseModel prepareFailView(String error) {
                 throw new FlashcardSetCreationFailed("Title is missing!");
@@ -90,7 +91,7 @@ public class FlashcardSetInteractorTest {
         // Test part
         try {
             interactor.create(requestModel);  // no title should go immediately to catch block (i.e., pass test)
-            assert(false);  // if title is included, then this line is reached and test fails
+            assert (false);  // if title is included, then this line is reached and test fails
         } catch (FlashcardSetCreationFailed e) {
 
         }
@@ -111,6 +112,7 @@ public class FlashcardSetInteractorTest {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
+
             @Override
             public FlashcardSetResponseModel prepareFailView(String error) {
                 throw new FlashcardSetCreationFailed("Description is missing!");
@@ -123,7 +125,7 @@ public class FlashcardSetInteractorTest {
         // Test part
         try {
             interactor.create(requestModel);
-            assert(false);
+            assert (false);
         } catch (FlashcardSetCreationFailed e) {
 
         }
@@ -144,6 +146,7 @@ public class FlashcardSetInteractorTest {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
+
             @Override
             public FlashcardSetResponseModel prepareFailView(String error) {
                 throw new FlashcardSetCreationFailed("Username is missing!");
@@ -156,7 +159,7 @@ public class FlashcardSetInteractorTest {
         // Test part
         try {
             interactor.create(requestModel);
-            assert(false);
+            assert (false);
         } catch (FlashcardSetCreationFailed e) {
 
         }

@@ -1,7 +1,6 @@
 package create_flashcardset_use_case;
 
-import dataAccess.FlashcardSetDataAccess;
-import dataAccess.IFlashcardSetDataAccess;
+import dataAccess.*;
 import entities.FlashcardSetFactory;
 
 import javax.swing.*;
@@ -20,15 +19,11 @@ public class MainCreateFlashcardSet {
         application.add(screens);
 
         // Create the parts to plug into the Use Case+Entities engine
-        IFlashcardSetDataAccess flashcardSetRepo;
-        try {
-            flashcardSetRepo = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
-        }
+        DBGateway dbGateway = dbGatewaySetup();
+
         FlashcardSetOutputBoundary outputBoundary = new FlashcardSetPresenter();
         FlashcardSetFactory flashcardSetFactory = new FlashcardSetFactory();
-        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(flashcardSetRepo, outputBoundary,
+        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(dbGateway, outputBoundary,
                 flashcardSetFactory);
         FlashcardSetController flashcardSetController = new FlashcardSetController(
                 interactor
@@ -40,5 +35,20 @@ public class MainCreateFlashcardSet {
         cardLayout.show(screens, "create flashcard set");
         application.pack();
         application.setVisible(true);
+    }
+
+    public static DBGateway dbGatewaySetup() {
+        IFlashcardSetDataAccess flashcardSetRepo;
+        IFlashcardDataAccess flashcardRepo;
+        IUserDataAccess userRepo;
+        try {
+            flashcardSetRepo = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
+            flashcardRepo = new FlashcardDataAccess("src/data/Flashcards.csv");
+            userRepo = new CommonUserDataAccess("src/data/Users.csv");
+        } catch (IOException e) {
+            throw new RuntimeException("Could not create file.");
+        }
+
+        return new DBGateway(flashcardRepo, flashcardSetRepo, userRepo);
     }
 }

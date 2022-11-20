@@ -1,9 +1,7 @@
 package delete_flashcardset_use_case;
 
-import dataAccess.FlashcardDataAccess;
-import dataAccess.FlashcardSetDataAccess;
-import dataAccess.IFlashcardDataAccess;
-import dataAccess.IFlashcardSetDataAccess;
+import create_flashcardset_use_case.MainCreateFlashcardSet;
+import dataAccess.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,17 +20,9 @@ public class MainDeleteFlashcardSet {
         application.add(screens);
 
         // Create the parts to plug into the Use Case+Entities engine
-        IFlashcardSetDataAccess flashcardSetRepo;
-        IFlashcardDataAccess flashcardRepo;
-        try {
-            flashcardSetRepo = new FlashcardSetDataAccess("src/data/FlashcardSets.csv");
-            flashcardRepo = new FlashcardDataAccess("src/data/Flashcards.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
-        }
+        DBGateway dbGateway = MainCreateFlashcardSet.dbGatewaySetup();
         DelFlashcardSetOutputBoundary outputBoundary = new DelFlashcardSetPresenter();
-        DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(flashcardSetRepo, flashcardRepo,
-                outputBoundary);
+        DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(dbGateway, outputBoundary);
         DelFlashcardSetController controller = new DelFlashcardSetController(
                 interactor
         );

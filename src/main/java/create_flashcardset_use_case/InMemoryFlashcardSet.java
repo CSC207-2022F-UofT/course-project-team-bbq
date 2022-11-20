@@ -65,21 +65,6 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
 
     /**
      * @param flashcardSetId the id of the flashcard set
-     * @param title the title of the flashcard set
-     * @param description the description of the flashcard set
-     */
-
-    public void editTitleAndDescription(int flashcardSetId, String title, String description) {
-        for (FlashcardSetDsRequestModel fs : flashcardSets) {
-            if (checkIds(fs.getFlashcardSetId(), flashcardSetId)) {
-                fs.setTitle(title);
-                fs.setDescription(description);
-            }
-        }
-    }
-
-    /**
-     * @param flashcardSetId the id of the flashcard set
      */
     @Override
     public void deleteFlashcardSet(int flashcardSetId) {
