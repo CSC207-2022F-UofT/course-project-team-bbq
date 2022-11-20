@@ -59,41 +59,31 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
 
         if(evt.getActionCommand().equals("Log in")){
-            IFlashcardSetDataAccess flashcardSetGateway;
-            try {
-                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            IUserDataAccess userGateway;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
             UserLoginOutputBoundary presenter = new UserLoginPresenter();
             UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userGateway, flashcardSetGateway, presenter);
+                    gateway, presenter);
             UserLoginController userLoginController = new UserLoginController(interactor);
             setVisible(false);
             dispose();
             new LoginScreen(userLoginController).setVisible(true);
 
         } else if(evt.getActionCommand().equals("Sign up")){
-            IUserDataAccess userGateway;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+           // create register controller
             UserRegisterOutputBoundary presenter = new UserRegisterPresenter();
             UserFactory userFactory = new CommonUserFactory();
             UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-                    userGateway, presenter, userFactory);
+                    gateway, presenter, userFactory);
             UserRegisterController userRegisterController = new UserRegisterController(interactor);
+
+            // create login controller
+            UserLoginOutputBoundary loginPresenter = new UserLoginPresenter();
+            UserLoginInputBoundary loginInteractor = new UserLoginInteractor(
+                    gateway, loginPresenter);
+            UserLoginController userLoginController = new UserLoginController(loginInteractor);
             setVisible(false);
             dispose();
-            new RegisterScreen(userRegisterController).setVisible(true);
+            new RegisterScreen(userRegisterController, userLoginController).setVisible(true);
         }
 
     }

@@ -16,18 +16,21 @@ public class HomePage extends JFrame {
     UserLoginResponseModel user;
 
     public HomePage(UserLoginResponseModel user) throws IOException {
+        super(user.getSignedInUsername() + "'s home page");
+
+        this.user = user;
         // initialize DBGateway
         DBGateway gateway = new DBGateway(new FlashcardDataAccess(DBGateway.getFlashcardPath()),
                 new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
                 new CommonUserDataAccess(DBGateway.getUserPath()));
 
 
-        user.getSignedInUsername();
+
         Map<Integer, String[]> idsToFlashcardSetData = user.getFlashcardSets();
 
         int numSets = idsToFlashcardSetData.size();
         if (numSets==0){
-            new JLabel("You have no new FlashcardSets!");
+            this.add(new JLabel("You have no Flashcard Sets!"));
         }
         else {
             this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, true));
@@ -38,12 +41,11 @@ public class HomePage extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        Map<Integer, String[]> map = new HashMap<>();
+        HashMap<Integer, String[]> map = new HashMap<>();
         for (int i = 1; i < 4; i++) {
             map.put(i, new String[]{"test set " + i, "test description " + i});
         }
-        UserLoginResponseModel user = new UserLoginResponseModel("jempio",false,map);
-
+        UserLoginResponseModel user = new UserLoginResponseModel("Lucas", false, map);
         new HomePage(user);
     }
 }
