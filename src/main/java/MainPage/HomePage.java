@@ -4,18 +4,14 @@ import create_flashcardset_use_case.*;
 import dataAccess.*;
 import entities.FlashcardSetFactory;
 import loginAndSignupUseCase.UserLoginResponseModel;
-import quizUseCase.*;
-import quizUseCase.screens.QuizSettingsScreen;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.WelcomeScreen;
 import search_use_case.*;
-import studyMode.*;
-import studyMode.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Flow;
 
 public class HomePage extends JFrame {
 
@@ -60,9 +56,15 @@ public class HomePage extends JFrame {
 
         });
 
-//        logOff.addActionListener(e -> {
-//
-//        });
+        logOff.addActionListener(e -> {
+            this.setVisible(false);
+            this.dispose();
+            try {
+                new WelcomeScreen();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         topBar.add(searchButton);
         topBar.add(addFlashcardSetButton);

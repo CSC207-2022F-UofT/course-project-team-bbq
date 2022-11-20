@@ -80,7 +80,7 @@ public class LoginScreen extends JFrame implements ActionListener {
             try {
                 UserLoginResponseModel user = userLoginController.create(username.getText(),
                         String.valueOf(password.getPassword()));
-//                JOptionPane.showMessageDialog(this, String.format(username.getText()));
+                this.dispose();
                 new HomePage(user);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
