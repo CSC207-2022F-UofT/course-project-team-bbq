@@ -55,10 +55,10 @@ public class RegisterScreen extends JFrame implements ActionListener {
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel("Enter Password Again"), repeatPassword);
         LabelTextPanel adminCheckerInfo = new LabelTextPanel(
-                new JLabel("Enter Admin Key"), adminChecker);
+                new JLabel("Enter Admin Key (Optional)"), adminChecker);
 
         JButton signUp = new JButton("Sign up");
-        JButton cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Return");
 
         JPanel buttons = new JPanel();
         buttons.add(signUp);
@@ -69,16 +69,17 @@ public class RegisterScreen extends JFrame implements ActionListener {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(repeatPasswordInfo);
-        this.add(adminCheckerInfo);
-        this.add(buttons);
+        main.add(title);
+        main.add(usernameInfo);
+        main.add(passwordInfo);
+        main.add(repeatPasswordInfo);
+        main.add(adminCheckerInfo);
+        main.add(buttons);
 
         this.setContentPane(main);
 
         this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -86,34 +87,38 @@ public class RegisterScreen extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
-
-        try {
-            userRegisterController.create(username.getText(),
-                    String.valueOf(password.getPassword()),
-                    String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
-            JOptionPane.showMessageDialog(this, "%s created.".format(username.getText()));
-            IFlashcardSetDataAccess flashcardSetGateway;
+        if (evt.getActionCommand().equals("Return")) {
+            this.dispose();
+            new WelcomeScreen();
+        } else {
             try {
-                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                userRegisterController.create(username.getText(),
+                        String.valueOf(password.getPassword()),
+                        String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
+                JOptionPane.showMessageDialog(this, String.format(username.getText()));
+                IFlashcardSetDataAccess flashcardSetGateway;
+                try {
+                    flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                IUserDataAccess userGateway;
+                try {
+                    userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                UserLoginOutputBoundary presenter = new UserLoginPresenter();
+                UserLoginInputBoundary interactor = new UserLoginInteractor(
+                        userGateway, flashcardSetGateway, presenter);
+                UserLoginController userLoginController = new UserLoginController(interactor);
+                setVisible(false);
+                dispose();
+                new LoginScreen(userLoginController).setVisible(true);
+                new LoginScreen(userLoginController).setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
-            IUserDataAccess userGateway;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            UserLoginOutputBoundary presenter = new UserLoginPresenter();
-            UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userGateway, flashcardSetGateway, presenter);
-            UserLoginController userLoginController = new UserLoginController(interactor);
-            setVisible(false);
-            dispose();
-            new LoginScreen(userLoginController).setVisible(true);
-            new LoginScreen(userLoginController).setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 }

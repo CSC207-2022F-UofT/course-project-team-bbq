@@ -39,6 +39,8 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         main.add(buttons);
         this.setContentPane(main);
         this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -49,13 +51,13 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
 
         if(evt.getActionCommand().equals("Log in")){
-            IFlashcardSetDataAccess flashcardSetGateway = null;
+            IFlashcardSetDataAccess flashcardSetGateway;
             try {
                 flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            IUserDataAccess userGateway = null;
+            IUserDataAccess userGateway;
             try {
                 userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
             } catch (IOException e) {
@@ -70,7 +72,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
             new LoginScreen(userLoginController).setVisible(true);
 
         } else if(evt.getActionCommand().equals("Sign up")){
-            IUserDataAccess userGateway = null;
+            IUserDataAccess userGateway;
             try {
                 userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
             } catch (IOException e) {
@@ -86,5 +88,9 @@ public class WelcomeScreen extends JFrame implements ActionListener {
             new RegisterScreen(userRegisterController).setVisible(true);
         }
 
+    }
+
+    public static void main(String[] args) {
+        new WelcomeScreen();
     }
 }

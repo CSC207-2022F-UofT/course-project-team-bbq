@@ -37,7 +37,7 @@ public class LoginScreen extends JFrame implements ActionListener {
                 new JLabel("Password"), password);
 
         JButton logIn = new JButton("Log in");
-        JButton cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Return");
 
         JPanel buttons = new JPanel();
         buttons.add(logIn);
@@ -56,6 +56,7 @@ public class LoginScreen extends JFrame implements ActionListener {
         this.setContentPane(main);
 
         this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -64,14 +65,18 @@ public class LoginScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
 
         System.out.println("Click " + evt.getActionCommand());
+        if (evt.getActionCommand().equals("Return")) {
+            this.dispose();
+            new WelcomeScreen();
+        } else {
+            try {
+                userLoginController.create(username.getText(),
+                        String.valueOf(password.getPassword()));
+                JOptionPane.showMessageDialog(this, String.format(username.getText()));
 
-        try {
-            userLoginController.create(username.getText(),
-                    String.valueOf(password.getPassword()));
-            JOptionPane.showMessageDialog(this, "%s Logged In.".format(username.getText()));
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
         }
     }
 }
