@@ -57,4 +57,24 @@ public class DBGateway {
     public IUserDataAccess getUserGateway() {
         return userGateway;
     }
+
+    public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
+        this.userGateway.saveFlashcardSetID(flashcardSet.getOwnerUsername(), flashcardSet.getFlashcardSetId());
+        return this.flashcardSetGateway.saveFlashcardSet(flashcardSet);
+    }
+
+    public void deleteFlashcardSet(int flashcardSetID) {
+        // need to delete ID from user database too!!!
+        this.flashcardSetGateway.deleteFlashcardSet(flashcardSetID);
+    }
+
+    public int saveFlashcard(FlashcardDsRequestModel flashcard) {
+        this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), flashcard.getFlashcardId());
+        return this.flashcardGateway.saveFlashcard(flashcard);
+    }
+
+    public void deleteFlashcard(Integer flashcardID) {
+        // need to delete from flashcard set database as well
+        this.flashcardGateway.deleteFlashcard(flashcardID);
+    }
 }
