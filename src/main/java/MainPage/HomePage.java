@@ -37,12 +37,13 @@ public class HomePage extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Map<Integer, String[]> map = new HashMap<>();
         for (int i = 1; i < 4; i++) {
             map.put(i, new String[]{"test set " + i, "test description " + i});
         }
+        UserLoginResponseModel user = new UserLoginResponseModel("jempio",false,map);
 
-//        new HomePage(map);
+        new HomePage(user);
     }
 }
