@@ -32,12 +32,14 @@ public class EditorMainPage extends JFrame {
             FlashcardDsRequestModel flashcard = fcGateway.getFlashcard(flashcardId);
             flashcardData.add(flashcard);
         }
-
-        this.add(new ListOfFlashcardsDataPanel(dbGateway ,flashcardData, flashcardSet, this));
+        ListOfFlashcardsDataPanel listOfFlashcardPanel = new ListOfFlashcardsDataPanel(dbGateway ,flashcardData, flashcardSet, this);
+        JScrollPane scrollPane = new JScrollPane(listOfFlashcardPanel);
+        //scrollPane.setPreferredSize(new Dimension(100, 100));
+        this.add(scrollPane);
 
 
         this.setTitle("Edit Set \"" + flashcardSet.getTitle() + "\"");
-        this.setSize(1000, 1000);
+        this.setSize(1000, 800);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

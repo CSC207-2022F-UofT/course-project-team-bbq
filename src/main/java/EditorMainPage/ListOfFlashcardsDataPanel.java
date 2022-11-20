@@ -8,6 +8,7 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 import flashcardCreator.FcCMain;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -19,10 +20,14 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
     private final FlashcardSetDsRequestModel flashcardSet;
     JFrame frame;
 
+    JPanel flashcardPanels;
+
     public ListOfFlashcardsDataPanel(DBGateway dbGateway, List<FlashcardDsRequestModel> flashcardData, FlashcardSetDsRequestModel flashcardSet, JFrame frame) {
         this.dbGateway = dbGateway;
         this.frame = frame;
         this.flashcardSet = flashcardSet;
+
+        flashcardPanels = new JPanel();
 
         JPanel buttons = new JPanel();
         JButton addFlashcard = new JButton("Add Flashcard");
@@ -42,15 +47,23 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         if (numCards == 0){
             JLabel label = new JLabel("You have no Flashcards in this FlashcardSet.");
             label.setHorizontalAlignment(SwingConstants.CENTER);
-            label.setVerticalAlignment(SwingConstants.CENTER);
-            this.add(label);
+            label.setVerticalAlignment(SwingConstants.TOP);
+            JPanel labelPanel = new JPanel();
+            labelPanel.add(label);
+            flashcardPanels.add(labelPanel);
         }
         else{
             for (FlashcardDsRequestModel flashcard : flashcardData) {
-                this.add(new FlashcardDataPanel(dbGateway, flashcard, flashcardSet.getFlashcardSetId(),frame));
+                flashcardPanels.add(new FlashcardDataPanel(dbGateway, flashcard, flashcardSet.getFlashcardSetId(),frame));
             }
         }
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        flashcardPanels.setLayout(new FlowLayout());
+        flashcardPanels.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        flashcardPanels.setPreferredSize(new Dimension(1000,500));
+        this.add(flashcardPanels);
+        this.setLayout(new FlowLayout());
+        this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        this.setPreferredSize(new Dimension(500, 1000));
     }
 
     @Override
