@@ -95,21 +95,26 @@ public class RegisterScreen extends JFrame implements ActionListener {
             catch (IOException e){
                 throw new RuntimeException(e);
             }
-        } else {
+        }
+        else {
 
-           UserRegisterResponseModel newUser = userRegisterController.create(username.getText(),
-            String.valueOf(password.getPassword()),
-            String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
-
-
-            UserLoginResponseModel user = userLoginController.create(newUser.getSignedUpUsername(),
-                    newUser.getSignedUpPassword());
             try {
-                new HomePage(user);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                UserRegisterResponseModel newUser = userRegisterController.create(username.getText(),
+                        String.valueOf(password.getPassword()),
+                        String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
 
+
+                UserLoginResponseModel user = userLoginController.create(newUser.getSignedUpUsername(),
+                        newUser.getSignedUpPassword());
+                try {
+                    new HomePage(user);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            catch (UserRegistrationFailed e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
             setVisible(false);
             dispose();
 
