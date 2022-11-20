@@ -12,7 +12,6 @@ import javax.swing.border.Border;
 
 public class FlashcardSetDataPanel extends JPanel {
 
-    boolean editable;
     public FlashcardSetDataPanel(String title, String description,
                                  int flashcardSetId, DBGateway gateway) {
         Border border = BorderFactory.createTitledBorder(title);
@@ -30,10 +29,9 @@ public class FlashcardSetDataPanel extends JPanel {
         JButton edit = new JButton("Edit");
         JButton delete = new JButton("Delete");
 
-        if (editable) {
-            buttons.add(edit);
-            buttons.add(delete);
-        }
+
+        buttons.add(edit);
+        buttons.add(delete);
 
         edit.addActionListener((e) -> new EditorMainPage(flashcardSetId));
         study.addActionListener(e -> {
