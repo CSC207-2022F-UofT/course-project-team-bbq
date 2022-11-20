@@ -1,6 +1,5 @@
 package MainPage;
 
-import Editor.FlashcardSet.FCSetEditorMain;
 import EditorMainPage.EditorMainPage;
 import dataAccess.DBGateway;
 import quizUseCase.*;
@@ -15,7 +14,7 @@ public class FlashcardSetDataPanel extends JPanel {
 
     boolean editable;
     public FlashcardSetDataPanel(String title, String description,
-                                 int flashcardSetId, DBGateway gateway, boolean editable) {
+                                 int flashcardSetId, DBGateway gateway) {
         Border border = BorderFactory.createTitledBorder(title);
 
 
