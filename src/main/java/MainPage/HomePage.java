@@ -16,6 +16,7 @@ import java.util.Map;
 public class HomePage extends JFrame {
 
     UserLoginResponseModel user;
+    DBGateway gateway;
 
     public HomePage(UserLoginResponseModel user) throws IOException {
         super(user.getSignedInUsername() + "'s home page");
@@ -49,7 +50,8 @@ public class HomePage extends JFrame {
         addFlashcardSetButton.addActionListener(e -> {
             FlashcardSetOutputBoundary presenter = new FlashcardSetPresenter();
             FlashcardSetFactory setFactory = new FlashcardSetFactory();
-            FlashcardSetInteractor interactor = new FlashcardSetInteractor(flashcardSetDataAccess, presenter, setFactory);
+            FlashcardSetInteractor interactor = new FlashcardSetInteractor(flashcardSetDataAccess, presenter,
+                    setFactory);
             FlashcardSetController controller = new FlashcardSetController(interactor);
             new CreationScreen(controller, this);
 
@@ -84,13 +86,32 @@ public class HomePage extends JFrame {
             this.add(labelPanel);
         }
         else {
-            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, true));
+            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway));
         }
         this.setSize(1000, 1000);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+
+    private void refresh() {
+        try {
+//            UserLoginOutputBoundary presenter = new UserLoginPresenter();
+//            UserLoginInputBoundary interactor = new UserLoginInteractor(
+//                    gateway, presenter);
+//            UserLoginController userLoginController = new UserLoginController(interactor);
+//            setVisible(false);
+//            dispose();
+//            new LoginScreen(userLoginController).setVisible(true);
+//
+//            UserLoginResponseModel user = userLoginController.create(user.getSignedInUsername(),
+//                    user.getPassword());
+//            this.dispose();
+            new HomePage(user);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     public static void main(String[] args) throws IOException {
         Map<Integer, String[]> map = new HashMap<>();
         for (int i = 1; i < 4; i++) {

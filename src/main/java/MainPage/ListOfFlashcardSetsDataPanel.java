@@ -15,7 +15,7 @@ import java.util.Set;
 public class ListOfFlashcardSetsDataPanel extends JPanel {
 
     public ListOfFlashcardSetsDataPanel(Map<Integer, String[]> idsToFlashcardSetData,
-                                        DBGateway gateway, boolean editable) {
+                                        DBGateway gateway) {
         Set<Integer> flashcardSetIds = idsToFlashcardSetData.keySet();
 
         for (int flashcardSetId : flashcardSetIds) {
@@ -23,7 +23,7 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
            String title = data[0];
            String description = data[1];
 
-           this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, editable));
+           this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway));
         }
 
         this.setLayout(new FlowLayout());
@@ -41,7 +41,7 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
                 new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
                 null);
 
-        f.add(new ListOfFlashcardSetsDataPanel(map, gateway, true));
+        f.add(new ListOfFlashcardSetsDataPanel(map, gateway));
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
