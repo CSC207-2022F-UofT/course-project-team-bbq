@@ -73,7 +73,8 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
             new EditorMainPage(flashcardSetId);
             frame.dispose();
         } else if(event.getActionCommand().equals("Add Flashcard")){
-            new FcCMain(flashcardSet.getFlashcardSetId());
+            JFrame fcCreatePage = new FcCMain(flashcardSet.getFlashcardSetId());
+            fcCreatePage.addWindowListener(this);
         } else if(event.getActionCommand().equals("Edit Flashcard Set")) {
             JFrame fcSetEditPage = new FCSetEditorMain(dbGateway, flashcardSet);
             fcSetEditPage.addWindowListener(this);

@@ -53,7 +53,8 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
             fcEditPage.addWindowListener(this);
         }
         else if(event.getActionCommand().equals("Delete Flashcard")){
-            new FcRMain(flashcardSetId, flashcard.getFlashcardId());
+            JFrame fcRemovePage = new FcRMain(flashcardSetId, flashcard.getFlashcardId());
+            fcRemovePage.addWindowListener(this);
         }
     }
 

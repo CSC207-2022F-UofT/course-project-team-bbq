@@ -1,4 +1,4 @@
 title,description,isPrivate,flashcardSetId,ownerUsername,flashcardIds
-test set 1,for testing study use case,true,0,testUser,0,1,2,3,4,5,6,7,8,9
+test set 1,for testing study use case,true,0,testUser,0
 empty test set,for testing study use case with empty set,true,1,testUser
-empty test set,for testing study use case with empty set,true,2,testUser,6,7,8,9
+test set,test set 1,true,2,testUser
