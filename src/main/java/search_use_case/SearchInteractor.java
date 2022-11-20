@@ -3,6 +3,7 @@ package search_use_case;
 import dataAccess.*;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
+import loginAndSignupUseCase.UserLoginResponseModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class SearchInteractor implements SearchInputBoundary{
         ArrayList<Integer> flashcard_set_ids = new ArrayList<>();
 
         // populate result_set with all possible flashcards from database
-        CommonUserDsRequestModel curr_user = requestModel.getUser();
+        UserLoginResponseModel curr_user = requestModel.getUser();
 
         Collection<CommonUserDsRequestModel> all_users = gateway.getUserGateway().getAllUsers();
         for (CommonUserDsRequestModel user : all_users){
