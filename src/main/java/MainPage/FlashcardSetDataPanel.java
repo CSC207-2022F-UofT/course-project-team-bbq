@@ -1,5 +1,6 @@
 package MainPage;
 
+import Editor.FlashcardSet.FCSetEditorMain;
 import dataAccess.DBGateway;
 import quizUseCase.*;
 import quizUseCase.screens.QuizSettingsScreen;
@@ -8,7 +9,6 @@ import studyMode.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.*;
 
 public class FlashcardSetDataPanel extends JPanel {
 
@@ -35,6 +35,7 @@ public class FlashcardSetDataPanel extends JPanel {
             buttons.add(delete);
         }
 
+        edit.addActionListener((e) -> new FCSetEditorMain(gateway, gateway.getFlashcardSet(flashcardSetId)));
         study.addActionListener(e -> {
             StudySessionOutputBoundary presenter = new StudySessionPresenter();
             StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
