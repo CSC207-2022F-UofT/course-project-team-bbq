@@ -74,8 +74,14 @@ public class HomePage extends JFrame {
         Map<Integer, String[]> idsToFlashcardSetData = user.getFlashcardSets();
 
         int numSets = idsToFlashcardSetData.size();
+        System.out.println(numSets);
         if (numSets==0){
-            this.add(new JLabel("You have no Flashcard Sets!"));
+            JLabel label = new JLabel("You have no Flashcard Sets!");
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setVerticalAlignment(SwingConstants.TOP);
+            JPanel labelPanel = new JPanel();
+            labelPanel.add(label);
+            this.add(labelPanel);
         }
         else {
             this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, true));
