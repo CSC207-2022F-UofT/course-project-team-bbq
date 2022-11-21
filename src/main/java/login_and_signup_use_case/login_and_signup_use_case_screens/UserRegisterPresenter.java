@@ -1,7 +1,7 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import loginAndSignupUseCase.UserRegisterOutputBoundary;
-import loginAndSignupUseCase.UserRegisterResponseModel;
+import login_and_signup_use_case.UserRegisterOutputBoundary;
+import login_and_signup_use_case.UserRegisterResponseModel;
 
 /**
  * The presenter for Signup Use Case

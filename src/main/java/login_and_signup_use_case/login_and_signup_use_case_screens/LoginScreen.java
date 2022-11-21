@@ -1,7 +1,7 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import MainPage.HomePage;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.*;

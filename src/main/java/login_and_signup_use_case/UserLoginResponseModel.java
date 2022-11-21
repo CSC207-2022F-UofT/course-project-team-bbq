@@ -1,6 +1,5 @@
-package loginAndSignupUseCase;
+package login_and_signup_use_case;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

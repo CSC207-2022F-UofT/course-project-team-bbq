@@ -1,4 +1,4 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 /**
  * Display error message if login failed
  *<p>

@@ -1,4 +1,4 @@
-package loginAndSignupUseCase;
+package login_and_signup_use_case;
 
 /**
  * Register Request Model to request from the user.

@@ -1,6 +1,4 @@
-package loginAndSignupUseCase;
-
-import search_use_case.SearchResponseModel;
+package login_and_signup_use_case;
 
 /**
  * Login Output Boundary.

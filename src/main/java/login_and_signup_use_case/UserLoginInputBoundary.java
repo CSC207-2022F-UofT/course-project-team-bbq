@@ -1,4 +1,4 @@
-package loginAndSignupUseCase;
+package login_and_signup_use_case;
 /**
  * Login Input Boundary.
  * Application Business Rules

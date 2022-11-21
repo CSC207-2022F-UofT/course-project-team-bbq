@@ -1,4 +1,4 @@
-package loginAndSignUpUseCase;
+package login_and_sign_up_use_case;
 
 import dataAccess.IUserDataAccess;
 import entityRequestModels.CommonUserDsRequestModel;

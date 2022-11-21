@@ -1,8 +1,8 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import loginAndSignupUseCase.UserRegisterInputBoundary;
-import loginAndSignupUseCase.UserRegisterRequestModel;
-import loginAndSignupUseCase.UserRegisterResponseModel;
+import login_and_signup_use_case.UserRegisterInputBoundary;
+import login_and_signup_use_case.UserRegisterRequestModel;
+import login_and_signup_use_case.UserRegisterResponseModel;
 
 /**
  * Create controller for the signup use case
