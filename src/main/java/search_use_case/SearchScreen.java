@@ -62,7 +62,7 @@ public class SearchScreen extends JFrame implements ActionListener{
             // navigate to results screen if results are found
             try {
                 new ResultsScreen(search_controller.create(s1, selected_tags, curr_user),
-                        gateway);
+                        gateway, curr_user);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
@@ -76,7 +76,7 @@ public class SearchScreen extends JFrame implements ActionListener{
         search_all.addActionListener( e -> {
             try {
                 new ResultsScreen(search_controller.create("GET_ALL", selected_tags, curr_user),
-                        gateway);
+                        gateway, curr_user);
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
