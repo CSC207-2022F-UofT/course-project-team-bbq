@@ -120,9 +120,6 @@ public class RegisterScreen extends JFrame implements ActionListener {
             catch (UserRegistrationFailed e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-            setVisible(false);
-            dispose();
-
         }
     }
 }
