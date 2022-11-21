@@ -3,3 +3,16 @@ test card 1,the first test card,2022-11-13T15:32:26.666982800,0,0
 test card 2,the second test card,2022-11-13T15:32:27.666982800,1,0
 test card 3,the third test card,2022-11-13T15:32:28.666982800,2,0
 alphabetical order checker,to test if alphabetical order is working,2022-11-13T15:32:29.666982800,3,0
+en,in,2022-11-21T15:25:30.469804300,4,2
+arriba,above,2022-11-21T15:25:56.055014900,5,2
+encima (de),on/on top of,2022-11-21T15:26:20.878393300,6,2
+abajo,below,2022-11-21T15:26:35.401010900,7,2
+debajo (de),under,2022-11-21T15:26:44.936730600,8,2
+entre,between,2022-11-21T15:26:55.961577800,9,2
+delante (de),in front of,2022-11-21T15:27:10.793703700,10,2
+detras (de),behind,2022-11-21T15:27:27.331260600,11,2
+al lado (de)/junto a,next to/beside,2022-11-21T15:27:53.532273100,12,2
+a la derecha (de),to the right (of),2022-11-21T15:28:28.361860,13,2
+a la izquierda (de),to the left (of),2022-11-21T15:30:06.309623800,14,2
+cerca (de),close (to),2022-11-21T15:30:17.519000700,15,2
+lejos (de),far (from),2022-11-21T15:30:33.646349300,16,2
