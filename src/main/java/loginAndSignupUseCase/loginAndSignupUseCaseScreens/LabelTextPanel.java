@@ -2,7 +2,12 @@ package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
 import javax.swing.*;
 
-// Frameworks/Drivers layer
+/**
+ * Creating the ability to have a text panel to take have that label and textfield
+ *<p>
+ * Frameworks & Drivers Layer
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
+ */
 
 public class LabelTextPanel extends JPanel {
     public LabelTextPanel(JLabel label, JTextField textField) {

@@ -11,7 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-// Frameworks/Drivers layer
+/**
+ * Create a swing user interface for the Sign Up Screen
+ *<p>
+ * Frameworks and Drivers
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
+ */
 
 public class RegisterScreen extends JFrame implements ActionListener {
 
@@ -82,7 +87,7 @@ public class RegisterScreen extends JFrame implements ActionListener {
     }
 
     /**
-     * React to a button click that results in evt.
+     * React to a button click that results in evt, usually sign up.
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
