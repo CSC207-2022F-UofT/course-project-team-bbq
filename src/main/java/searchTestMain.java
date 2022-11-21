@@ -22,7 +22,7 @@ public class searchTestMain {
         SearchOutputBoundary search_presenter = new SearchPresenter();
         SearchInputBoundary search_interactor = new SearchInteractor(search_presenter, dbGateway);
         SearchController search_controller = new SearchController(search_interactor);
-        UserLoginResponseModel user = new UserLoginResponseModel("jempio",
+        UserLoginResponseModel user = new UserLoginResponseModel("jempio", "ilovejempio",
                 true, new HashMap<>());
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, null);

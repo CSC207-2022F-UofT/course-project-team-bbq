@@ -1,4 +1,6 @@
 username,password,isAdmin,flashcardSetIds
 jempio,ilovejempio,false
 ducas,badpassword,false
+lucas,password,false,2
+adminUser,password,true
 testUser,password,false,0,1

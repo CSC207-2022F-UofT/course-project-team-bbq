@@ -1,17 +1,19 @@
 package loginAndSignupUseCase;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class UserLoginResponseModel {
-    String username;
+    private final String username;
 
-    boolean isAdmin;
+    private final String password;
+    private final boolean isAdmin;
 
-    Map<Integer, String[]> flashcardSets;
+    private final Map<Integer, String[]> flashcardSets;
 
-    public UserLoginResponseModel(String loggedInUsername, boolean isAdmin, Map<Integer, String[]> flashcardSets){
+    public UserLoginResponseModel(String loggedInUsername, String password,
+                                  boolean isAdmin, Map<Integer, String[]> flashcardSets){
         this.username = loggedInUsername;
+        this.password = password;
         this.isAdmin = isAdmin;
         this.flashcardSets = flashcardSets;
     }
@@ -23,5 +25,9 @@ public class UserLoginResponseModel {
 
     public Map<Integer, String[]> getFlashcardSets(){
         return flashcardSets;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

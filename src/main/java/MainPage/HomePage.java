@@ -3,14 +3,18 @@ package MainPage;
 import create_flashcardset_use_case.*;
 import dataAccess.*;
 import entities.FlashcardSetFactory;
+import loginAndSignupUseCase.UserLoginInputBoundary;
+import loginAndSignupUseCase.UserLoginInteractor;
+import loginAndSignupUseCase.UserLoginOutputBoundary;
 import loginAndSignupUseCase.UserLoginResponseModel;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.UserLoginController;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.UserLoginPresenter;
 import loginAndSignupUseCase.loginAndSignupUseCaseScreens.WelcomeScreen;
 import search_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class HomePage extends JFrame {
@@ -94,30 +98,21 @@ public class HomePage extends JFrame {
     }
 
 
-    private void refresh() {
+    private void refresh(UserLoginResponseModel user) {
         try {
-//            UserLoginOutputBoundary presenter = new UserLoginPresenter();
-//            UserLoginInputBoundary interactor = new UserLoginInteractor(
-//                    gateway, presenter);
-//            UserLoginController userLoginController = new UserLoginController(interactor);
-//            setVisible(false);
-//            dispose();
-//            new LoginScreen(userLoginController).setVisible(true);
-//
-//            UserLoginResponseModel user = userLoginController.create(user.getSignedInUsername(),
-//                    user.getPassword());
-//            this.dispose();
+            UserLoginOutputBoundary presenter = new UserLoginPresenter();
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    gateway, presenter);
+            UserLoginController userLoginController = new UserLoginController(interactor);
+            setVisible(false);
+            dispose();
+
+            user = userLoginController.create(user.getSignedInUsername(),
+                    user.getPassword());
+            this.dispose();
             new HomePage(user);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }
-    public static void main(String[] args) throws IOException {
-        Map<Integer, String[]> map = new HashMap<>();
-        for (int i = 1; i < 4; i++) {
-            map.put(i, new String[]{"test set " + i, "test description " + i});
-        }
-        UserLoginResponseModel user = new UserLoginResponseModel("Lucas", false, map);
-        new HomePage(user);
     }
 }
