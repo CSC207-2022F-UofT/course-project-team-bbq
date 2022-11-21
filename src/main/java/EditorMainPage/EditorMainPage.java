@@ -41,6 +41,6 @@ public class EditorMainPage extends JFrame {
         this.setTitle("Edit Set \"" + flashcardSet.getTitle() + "\"");
         this.setSize(1000, 800);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }

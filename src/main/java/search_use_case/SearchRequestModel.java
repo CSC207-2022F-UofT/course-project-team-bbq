@@ -1,5 +1,4 @@
 package search_use_case;
-import entityRequestModels.CommonUserDsRequestModel;
 import loginAndSignupUseCase.UserLoginResponseModel;
 
 import java.util.ArrayList;

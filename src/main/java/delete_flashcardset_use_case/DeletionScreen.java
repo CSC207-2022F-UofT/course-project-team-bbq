@@ -1,5 +1,8 @@
 package delete_flashcardset_use_case;
 
+
+import loginAndSignupUseCase.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,29 +11,31 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class DeletionScreen extends JPanel implements ActionListener {
+public class DeletionScreen extends JFrame implements ActionListener {
     /**
      * The id of the flashcard set to be deleted
      */
     int flashcardSetID;
+
+    UserLoginResponseModel user;
 
     /**
      * The controller
      */
     DelFlashcardSetController controller;
 
-    /**
-     * The application
-     */
-    JFrame application;  // need this variable to only close the application and not the whole program
+//    /**
+//     * The application
+//     */
+//    JFrame application;  // need this variable to only close the application and not the whole program
 
     /**
      * A window with a title and a JButton.
      */
-    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, JFrame application) {
+    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user) {
+        this.user=user;
         this.flashcardSetID = flashcardSetID;
         this.controller = controller;
-        this.application = application;
 
         JLabel name = new JLabel("Flashcard Set Deletion Screen");
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -48,11 +53,15 @@ public class DeletionScreen extends JPanel implements ActionListener {
         delete.addActionListener(this);
         cancel.addActionListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         this.add(name);
 //        this.add(id);
         this.add(confirmationButtons);
+
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(1000, 800);
     }
 
     /**
@@ -63,7 +72,7 @@ public class DeletionScreen extends JPanel implements ActionListener {
 
         // Exit deletion screen if user cancels deletion
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
-            application.dispose();
+            this.dispose();
         }
 
         else {  // Delete was pressed
@@ -71,15 +80,16 @@ public class DeletionScreen extends JPanel implements ActionListener {
 //                int id = Integer.parseInt(flashcardSetID.getText());  // check input is an integer
 
             // Ask for confirmation
+            String title = user.getFlashcardSets().get(flashcardSetID)[0];
+
             int confirmation = JOptionPane.showConfirmDialog(this,
-                    "Delete Flashcard set #" + flashcardSetID + "?",
+                    "Delete " + title + "?",
                     "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmation == 0) {
                 try {
                     controller.delete(flashcardSetID);
-                    JOptionPane.showMessageDialog(this, "Flashcard Set #"
-                            + flashcardSetID + " has been deleted.");
-                    application.dispose();  // exit deletion screen
+                    JOptionPane.showMessageDialog(this, title + " has been deleted.");
+                    this.dispose();  // exit deletion screen
                 } catch (FlashcardSetNotFound e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }

@@ -1,33 +1,31 @@
 package loginAndSignupUseCase;
 
-import dataAccess.IFlashcardSetDataAccess;
-import dataAccess.IUserDataAccess;
+import dataAccess.DBGateway;
 import entityRequestModels.CommonUserDsRequestModel;
 
 import java.util.HashMap;
 
 public class UserLoginInteractor implements UserLoginInputBoundary{
-    final IUserDataAccess userDsGateway;
-    final IFlashcardSetDataAccess flashcardSetDsGateway;
+
+    final DBGateway gateway;
     final UserLoginOutputBoundary userLoginOutputBoundary;
 
-    public UserLoginInteractor(IUserDataAccess userLoginDsGateway, IFlashcardSetDataAccess flashcardSetDsGateway,
+    public UserLoginInteractor(DBGateway gateway,
                                UserLoginOutputBoundary userLoginOutputBoundary) {
-        this.flashcardSetDsGateway = flashcardSetDsGateway;
+        this.gateway = gateway;
         this.userLoginOutputBoundary = userLoginOutputBoundary;
-        this.userDsGateway = userLoginDsGateway;
     }
     @Override
     public UserLoginResponseModel login(UserLoginRequestModel userLoginRequestModel) {
-        CommonUserDsRequestModel tempUser = userDsGateway.getUser(userLoginRequestModel.getUsername());
-        if (!userDsGateway.existsByName(userLoginRequestModel.getUsername())) {
+        CommonUserDsRequestModel tempUser = gateway.getCommonUser(userLoginRequestModel.getUsername());
+        if (!gateway.existsByName(userLoginRequestModel.getUsername())) {
             return userLoginOutputBoundary.prepareFailView("User Doesn't Exist");
         } else if (!tempUser.getPassword().equals(userLoginRequestModel.getPassword())) {
             return userLoginOutputBoundary.prepareFailView("Incorrect Password");
         }
         HashMap<Integer, String[]> flashcardSets = new HashMap<>();
         for(int flashcardSetId : tempUser.getFlashcardSetIds()){
-            flashcardSets.put(flashcardSetId, flashcardSetDsGateway.getTitleAndDescription(flashcardSetId));
+            flashcardSets.put(flashcardSetId, gateway.getTitleAndDescription(flashcardSetId));
         }
 
 

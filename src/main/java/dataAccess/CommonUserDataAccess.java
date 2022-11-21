@@ -55,7 +55,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
             writer.newLine();
 
             for (CommonUserDsRequestModel user : accounts.values()) {
-                StringBuilder line = new StringBuilder(String.format("%s, %s, %s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
+                StringBuilder line = new StringBuilder(String.format("%s,%s,%s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
                 for(int flashcardSetIds: user.getFlashcardSetIds()){
                     line.append(",");
                     line.append(Integer.toString(flashcardSetIds));

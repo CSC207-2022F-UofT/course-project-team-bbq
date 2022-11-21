@@ -1,18 +1,18 @@
 package loginAndSignupUseCase;
 
-import dataAccess.IUserDataAccess;
+import dataAccess.DBGateway;
 import entities.User;
 import entities.UserFactory;
 import entityRequestModels.CommonUserDsRequestModel;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
-    private final IUserDataAccess userDsGateway;
+    private final DBGateway gateway;
     private final UserRegisterOutputBoundary userRegisterOutputBoundary;
     private final UserFactory userFactory;
 
-    public UserRegisterInteractor(IUserDataAccess userRegisterDsGateway, UserRegisterOutputBoundary userRegisterOutputBoundary,
+    public UserRegisterInteractor(DBGateway gateway, UserRegisterOutputBoundary userRegisterOutputBoundary,
                                   UserFactory userFactory) {
-        this.userDsGateway = userRegisterDsGateway;
+        this.gateway = gateway;
         this.userRegisterOutputBoundary = userRegisterOutputBoundary;
         this.userFactory = userFactory;
     }
@@ -20,20 +20,15 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     @Override
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) {
-        boolean isAdmin = false;
-
-        if (userDsGateway.existsByName(requestModel.getName())) {
+         if (gateway.existsByName(requestModel.getName())) {
             return userRegisterOutputBoundary.prepareFailView("User Already Exists.");
         } else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
             return userRegisterOutputBoundary.prepareFailView("Passwords Don't Match.");
         }
         User fakeUser = userFactory.create("BLANK", "BLANK1", false);
-        if(requestModel.getAdminKeyEntered().equals("")){
-            isAdmin = false;
-        }else if(fakeUser.adminKeyValid(requestModel.getAdminKeyEntered())){
-            isAdmin = true;
-        }
 
+        // set isAdmin to true if they entered the admin key correctly
+        boolean isAdmin = fakeUser.adminKeyValid(requestModel.getAdminKeyEntered());
 
         User user = userFactory.create(requestModel.getName(), requestModel.getPassword(), isAdmin);
         if(!requestModel.getAdminKeyEntered().equals("") && !user.adminKeyValid(requestModel.getAdminKeyEntered())){
@@ -45,7 +40,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
         CommonUserDsRequestModel userDsModel = new CommonUserDsRequestModel(user.getUsername(), user.getPassword(),
                 user.getIsAdmin(), user.getFlashcardSetIds());
-        userDsGateway.saveUser(userDsModel);
+        gateway.saveUser(userDsModel);
 
         UserRegisterResponseModel accountResponseModel = new UserRegisterResponseModel(user.getUsername(),
                 user.getPassword(), user.getIsAdmin());

@@ -1,10 +1,8 @@
 import dataAccess.*;
-import entityRequestModels.CommonUserDsRequestModel;
 import loginAndSignupUseCase.UserLoginResponseModel;
 import search_use_case.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
