@@ -63,7 +63,7 @@ class UserRegisterInteractorTest {
 
         // 2) Input data — Normally created by the Controller.
         UserRegisterRequestModel inputData = new UserRegisterRequestModel(
-                "John", "Apple123", "Apple123", "");
+                "Steve", "Apple123", "Apple123", "");
 
         // 3) Run the use case
         interactor.create(inputData);
