@@ -1,75 +1,85 @@
-//package loginAndSignUpUseCase;
-//
-//import dataAccess.CommonUserDataAccess;
-//import dataAccess.DBGateway;
-//import dataAccess.IUserDataAccess;
-//import entities.CommonUserFactory;
-//import entities.UserFactory;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import loginAndSignupUseCase.*;
-//import org.junit.jupiter.api.Test;
-//import org.testing.annotations.Test;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import java.io.IOException;
-//
-//import static org.junit.Assert.*;
-//import static org.testng.AssertJUnit.*;
-//
-//class UserRegisterInteractorTest {
-//        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
-//
-//        UserFactory userFactory = new CommonUserFactory();
-//        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-//                userRepository, presenter, userFactory);
-//
-//        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
-//                "Richard", "Virgin123", "Virgin123", "BuiltDifferent");
-//
-//         UserRegisterRequestModel inputData2 = new UserRegisterRequestModel(
-//                "Branson", "Virgin123", "Virgin123", "");
-//
-//        interactor.create(inputData);
-//        interactor.create(inputData2);
+package loginAndSignUpUseCase;
 
-//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
-//                "src/test/java/quizUseCase/testData/Flashcards.csv");
-//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
-//                "src/test/java/quizUseCase/testData/FlashcardSets.csv");
-//        IUserDataAccess userGateway = new CommonUserDataAccess(
-//                "src/test/java/quizUseCase/testData/Users.csv");
-//
-//        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
-//
-//    @Test
-//    void login() throws IOException {
-//
-//        UserLoginOutputBoundary presenter = new UserLoginOutputBoundary() {
-//            @Override
-//            public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
-//                assertEquals("Richard", user.getSignedInUsername());
-//                assertEquals(true, user.getIsAdmin());
-//                assertEquals({}, user.getFlashcardSet());
-//                return null;
-//            }
-//
-//            @Override
-//            public UserLoginResponseModel prepareFailView(String error) {
-//                fail("Use case failure is unexpected.");
-//                return null;
-//            }
-//        };
-//
-//        UserLoginInputBoundary interactor = new UserLoginInteractor(
-//                userRepository, presenter, userFactory);
-//
-//    }
-//
-//    @Test
-//    void create2() throws IOException {
-//
-//
-//    }
-//
-//}
+import dataAccess.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import static org.junit.Assert.fail;
+import java.io.IOException;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.UserLoginPresenter;
+import loginAndSignupUseCase.UserLoginOutputBoundary;
+import loginAndSignupUseCase.UserLoginInputBoundary;
+import loginAndSignupUseCase.UserLoginResponseModel;
+import loginAndSignupUseCase.UserLoginRequestModel;
+import loginAndSignupUseCase.UserLoginInteractor;
+
+class UserLoginInteractorTest {
+
+    // 1) UserLoginInteractorTest and prerequisite objects
+
+    IUserDataAccess userGateway = new CommonUserDataAccess(
+            "src/test/java/loginAndSignUpUseCase/testData/Users.csv");
+
+
+    DBGateway gateway = new DBGateway(null, null, userGateway);
+
+    UserLoginInteractorTest() throws IOException {
+    }
+
+    @Test
+    void create() throws IOException {
+        UserLoginOutputBoundary presenter = new UserLoginPresenter() {
+            @Override
+            public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+
+                Assertions.assertEquals("Steve", user.getSignedInUsername());
+                Assertions.assertFalse(user.getIsAdmin());
+                //assertEquals(Map, user.getFlashcardSets());
+                return null;
+            }
+
+            @Override
+            public UserLoginResponseModel prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+                return null;
+            }
+        };
+        UserLoginInputBoundary interactor = new UserLoginInteractor(
+                gateway, presenter);
+
+        // 2) Input data — Normally created by the Controller.
+        UserLoginRequestModel inputData = new UserLoginRequestModel(
+                "Steve", "Apple123");
+
+        // 3) Run the use case
+        interactor.login(inputData);
+    }
+
+    @Test
+    void create2() throws IOException {
+        UserLoginOutputBoundary presenter = new UserLoginPresenter() {
+            @Override
+            public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+
+                Assertions.assertEquals("Richard", user.getSignedInUsername());
+                Assertions.assertTrue(user.getIsAdmin());
+                //assertEquals({}, user.getFlashcardSets());
+                return null;
+            }
+
+            @Override
+            public UserLoginResponseModel prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+                return null;
+            }
+        };
+        UserLoginInputBoundary interactor = new UserLoginInteractor(
+                gateway, presenter);
+
+        // 2) Input data — Normally created by the Controller.
+        UserLoginRequestModel inputData = new UserLoginRequestModel(
+                "Richard", "Virgin123");
+
+        // 3) Run the use case
+        interactor.login(inputData);
+    }
+}
