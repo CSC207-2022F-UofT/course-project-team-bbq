@@ -43,7 +43,7 @@
 //                // are correct
 //                assertEquals("Steve", user.getSignedUpUsername());
 //                assertEquals(false, user.getIsAdmin());
-//                assertTrue(userRepository.existsByName("Steve"));
+//                assertTrue(gateway.existsByName("Steve"));
 //                return null;
 //            }
 //
@@ -56,7 +56,7 @@
 //
 //        UserFactory userFactory = new CommonUserFactory();
 //        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-//                gateway.getUserGateway(), presenter, userFactory);
+//                gateway, presenter, userFactory);
 //
 //        // 2) Input data — Normally created by the Controller.
 //        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
@@ -69,9 +69,12 @@
 //    @Test
 //    void create2() throws IOException {
 //
-//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
-//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
+//                "src/test/java/quizUseCase/testData/Flashcards.csv");
+//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
+//                "src/test/java/quizUseCase/testData/FlashcardSets.csv");
+//        IUserDataAccess userGateway = new CommonUserDataAccess(
+//                "src/test/java/quizUseCase/testData/Users.csv");
 //
 //        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 //        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
@@ -80,8 +83,8 @@
 //
 //                assertEquals("Richard", user.getSignedUpUsername());
 //                assertEquals(true, user.getIsAdmin());
-//                assertFalse(userRepository.existsByName("Steve"));
-//                assertTrue(userRepository.existsByName("Richard"));
+//                assertFalse(gateway.existsByName("Steve"));
+//                assertTrue(gateway.existsByName("Richard"));
 //                return null;
 //            }
 //
@@ -94,7 +97,7 @@
 //
 //        UserFactory userFactory = new CommonUserFactory();
 //        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-//                gateway.getUserGateway(), presenter, userFactory);
+//                gateway, presenter, userFactory);
 //
 //        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
 //                "Richard", "Virgin123", "Virgin123", "BuiltDifferent");

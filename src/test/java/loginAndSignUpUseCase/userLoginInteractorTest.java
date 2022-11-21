@@ -18,7 +18,6 @@
 //import static org.testng.AssertJUnit.*;
 //
 //class UserRegisterInteractorTest {
-//      IUserDataAccess userRepository = new UserRegisterTestHelper();
 //        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
 //
 //        UserFactory userFactory = new CommonUserFactory();
@@ -34,9 +33,12 @@
 //        interactor.create(inputData);
 //        interactor.create(inputData2);
 
-//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
-//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
+//                "src/test/java/quizUseCase/testData/Flashcards.csv");
+//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
+//                "src/test/java/quizUseCase/testData/FlashcardSets.csv");
+//        IUserDataAccess userGateway = new CommonUserDataAccess(
+//                "src/test/java/quizUseCase/testData/Users.csv");
 //
 //        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 //
