@@ -1,6 +1,7 @@
-//package userRegisterAndLoginUseCaseTest;
+//package loginAndSignUpUseCase;
 //
 //import dataAccess.CommonUserDataAccess;
+//import dataAccess.DBGateway;
 //import dataAccess.IUserDataAccess;
 //import entities.CommonUserFactory;
 //import entities.UserFactory;
@@ -28,7 +29,11 @@
 //        // 5) Check that the expected changes to the data layer are there.
 //
 //        // 1) UserRegisterInteractor and prerequisite objects
-//        IUserDataAccess userRepository = new CommonUserDataAccess();
+//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+//
+//        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 //
 //        // This creates an anonymous implementing class for the Output Boundary.
 //        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
@@ -51,7 +56,7 @@
 //
 //        UserFactory userFactory = new CommonUserFactory();
 //        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-//                userRepository, presenter, userFactory);
+//                gateway.getUserGateway(), presenter, userFactory);
 //
 //        // 2) Input data — Normally created by the Controller.
 //        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
@@ -64,8 +69,11 @@
 //    @Test
 //    void create2() throws IOException {
 //
-//        IUserDataAccess userRepository = new CommonUserDataAccess();
+//        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+//        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+//        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
 //
+//        DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 //        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
 //            @Override
 //            public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
@@ -86,7 +94,7 @@
 //
 //        UserFactory userFactory = new CommonUserFactory();
 //        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-//                userRepository, presenter, userFactory);
+//                gateway.getUserGateway(), presenter, userFactory);
 //
 //        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
 //                "Richard", "Virgin123", "Virgin123", "BuiltDifferent");
