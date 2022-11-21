@@ -26,12 +26,12 @@ class UserLoginInteractorTest {
     }
 
     @Test
-    void create() throws IOException {
+    void login() throws IOException {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
 
-                Assertions.assertEquals("Steve", user.getSignedInUsername());
+                Assertions.assertEquals("John", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 //assertEquals(Map, user.getFlashcardSets());
                 return null;
@@ -48,21 +48,21 @@ class UserLoginInteractorTest {
 
         // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
-                "Steve", "Apple123");
+                "John", "Rockefeller123");
 
         // 3) Run the use case
         interactor.login(inputData);
     }
 
     @Test
-    void create2() throws IOException {
+    void login2() throws IOException {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
 
-                Assertions.assertEquals("Richard", user.getSignedInUsername());
-                Assertions.assertTrue(user.getIsAdmin());
-                Assertions.assertFalse(!user.getIsAdmin());
+                Assertions.assertEquals("Walt", user.getSignedInUsername());
+                Assertions.assertFalse(user.getIsAdmin());
+                Assertions.assertTrue(!user.getIsAdmin());
                 //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
@@ -78,7 +78,7 @@ class UserLoginInteractorTest {
 
         // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
-                "Richard", "Virgin123");
+                "Walt", "Disney123");
 
         // 3) Run the use case
         interactor.login(inputData);
