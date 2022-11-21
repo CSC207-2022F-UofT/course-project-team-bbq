@@ -22,7 +22,15 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public WelcomeScreen() {
+
+    DBGateway gateway;
+    public WelcomeScreen() throws IOException {
+        IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+        IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+        IUserDataAccess userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
+
+        gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
+
 
         JLabel title = new JLabel("Welcome Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -44,6 +52,8 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         main.add(buttons);
         this.setContentPane(main);
         this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -54,42 +64,36 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         System.out.println("Click " + evt.getActionCommand());
 
         if(evt.getActionCommand().equals("Log in")){
-            IFlashcardSetDataAccess flashcardSetGateway = null;
-            try {
-                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            IUserDataAccess userGateway = null;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
             UserLoginOutputBoundary presenter = new UserLoginPresenter();
             UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userGateway, flashcardSetGateway, presenter);
+                    gateway, presenter);
             UserLoginController userLoginController = new UserLoginController(interactor);
             setVisible(false);
             dispose();
             new LoginScreen(userLoginController).setVisible(true);
 
         } else if(evt.getActionCommand().equals("Sign up")){
-            IUserDataAccess userGateway = null;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+           // create register controller
             UserRegisterOutputBoundary presenter = new UserRegisterPresenter();
             UserFactory userFactory = new CommonUserFactory();
             UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-                    userGateway, presenter, userFactory);
+                    gateway, presenter, userFactory);
             UserRegisterController userRegisterController = new UserRegisterController(interactor);
+
+            // create login controller
+            UserLoginOutputBoundary loginPresenter = new UserLoginPresenter();
+            UserLoginInputBoundary loginInteractor = new UserLoginInteractor(
+                    gateway, loginPresenter);
+            UserLoginController userLoginController = new UserLoginController(loginInteractor);
             setVisible(false);
             dispose();
-            new RegisterScreen(userRegisterController).setVisible(true);
+            new RegisterScreen(userRegisterController, userLoginController).setVisible(true);
         }
 
+    }
+
+    public static void main(String[] args) throws IOException {
+        new WelcomeScreen();
     }
 }

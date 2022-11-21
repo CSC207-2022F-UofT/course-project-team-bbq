@@ -1,9 +1,7 @@
 package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
 
-import dataAccess.*;
-import loginAndSignupUseCase.UserLoginInputBoundary;
-import loginAndSignupUseCase.UserLoginInteractor;
-import loginAndSignupUseCase.UserLoginOutputBoundary;
+import MainPage.HomePage;
+import loginAndSignupUseCase.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +18,7 @@ import java.io.IOException;
 
 public class RegisterScreen extends JFrame implements ActionListener {
 
+    private final UserLoginController userLoginController;
     /**
      * The username chosen by the user
      */
@@ -46,9 +45,10 @@ public class RegisterScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public RegisterScreen(UserRegisterController controller) {
+    public RegisterScreen(UserRegisterController registerController, UserLoginController loginController) {
 
-        this.userRegisterController = controller;
+        this.userRegisterController = registerController;
+        this.userLoginController = loginController;
 
         JLabel title = new JLabel("Register Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -60,10 +60,10 @@ public class RegisterScreen extends JFrame implements ActionListener {
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel("Enter Password Again"), repeatPassword);
         LabelTextPanel adminCheckerInfo = new LabelTextPanel(
-                new JLabel("Enter Admin Key"), adminChecker);
+                new JLabel("Enter Admin Key (Optional)"), adminChecker);
 
         JButton signUp = new JButton("Sign up");
-        JButton cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Return");
 
         JPanel buttons = new JPanel();
         buttons.add(signUp);
@@ -74,16 +74,17 @@ public class RegisterScreen extends JFrame implements ActionListener {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(repeatPasswordInfo);
-        this.add(adminCheckerInfo);
-        this.add(buttons);
+        main.add(title);
+        main.add(usernameInfo);
+        main.add(passwordInfo);
+        main.add(repeatPasswordInfo);
+        main.add(adminCheckerInfo);
+        main.add(buttons);
 
         this.setContentPane(main);
 
         this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -91,34 +92,37 @@ public class RegisterScreen extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
+        if (evt.getActionCommand().equals("Return")) {
+            this.dispose();
+            try {
+                new WelcomeScreen();
+            }
+            catch (IOException e){
+                throw new RuntimeException(e);
+            }
+        }
+        else {
 
-        try {
-            userRegisterController.create(username.getText(),
-                    String.valueOf(password.getPassword()),
-                    String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
-            JOptionPane.showMessageDialog(this, "%s created.".format(username.getText()));
-            IFlashcardSetDataAccess flashcardSetGateway;
             try {
-                flashcardSetGateway = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                UserRegisterResponseModel newUser = userRegisterController.create(username.getText(),
+                        String.valueOf(password.getPassword()),
+                        String.valueOf(repeatPassword.getPassword()), String.valueOf(adminChecker.getPassword()));
+
+
+                UserLoginResponseModel user = userLoginController.create(newUser.getSignedUpUsername(),
+                        newUser.getSignedUpPassword());
+                try {
+                    new HomePage(user);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            IUserDataAccess userGateway;
-            try {
-                userGateway = new CommonUserDataAccess(DBGateway.getUserPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            catch (UserRegistrationFailed e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
-            UserLoginOutputBoundary presenter = new UserLoginPresenter();
-            UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userGateway, flashcardSetGateway, presenter);
-            UserLoginController userLoginController = new UserLoginController(interactor);
             setVisible(false);
             dispose();
-            new LoginScreen(userLoginController).setVisible(true);
-            new LoginScreen(userLoginController).setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+
         }
     }
 }

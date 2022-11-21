@@ -1,5 +1,7 @@
 package create_flashcardset_use_case;
 
+import loginAndSignupUseCase.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,7 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class CreationScreen extends JPanel implements ActionListener {
+public class CreationScreen extends JFrame implements ActionListener {
     /**
      * The title of the flashcard set chosen by the user
      */
@@ -17,30 +19,26 @@ public class CreationScreen extends JPanel implements ActionListener {
      * The description of the flashcard set
      */
     JTextField description = new JTextField(15);
-    /**
-     * The owner's username of the flashcard set
-     */
-    JTextField username = new JTextField(15);
+//    /**
+//     * The owner's username of the flashcard set
+//     */
+//    JTextField username = new JTextField(15);
 
     /**
      * The controller
      */
     FlashcardSetController flashcardSetController;
 
-    /**
-     * The application
-     */
-    JFrame application;  // need this variable to only close the application and not the whole program
+    UserLoginResponseModel user;
 
     private boolean privateSelected;  // for public or private status of flashcard set
 
     /**
      * A window with a title and a JButton.
      */
-    public CreationScreen(FlashcardSetController controller, JFrame application) {
-
+    public CreationScreen(FlashcardSetController controller, UserLoginResponseModel user) {
+        this.user = user;
         this.flashcardSetController = controller;
-        this.application = application;
 
         JLabel name = new JLabel("Flashcard Set Creation Screen");
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -49,8 +47,8 @@ public class CreationScreen extends JPanel implements ActionListener {
                 new JLabel("Title:"), title);
         LabelTextPanel flashcardSetDescription = new LabelTextPanel(
                 new JLabel("Description:"), description);
-        LabelTextPanel flashcardSetOwner = new LabelTextPanel(
-                new JLabel("Owner (username):"), username);
+//        LabelTextPanel flashcardSetOwner = new LabelTextPanel(
+//                new JLabel("Owner (username):"), username);
 
         JButton signUp = new JButton("Create");
         JButton cancel = new JButton("Cancel");
@@ -67,14 +65,18 @@ public class CreationScreen extends JPanel implements ActionListener {
         privacyButton.add(privacy);
         privacy.addActionListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         this.add(name);
         this.add(flashcardSetTitle);
         this.add(flashcardSetDescription);
-        this.add(flashcardSetOwner);
+//        this.add(flashcardSetOwner);
         this.add(privacy);
         this.add(confirmationButtons);
+
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(1000, 800);
     }
 
     /**
@@ -85,16 +87,16 @@ public class CreationScreen extends JPanel implements ActionListener {
 
         // Exit the creation screen if user cancels creation
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
-            application.dispose();
+            this.dispose();
         } else if (Objects.equals(evt.getActionCommand(), "Set as Private")) {
             privateSelected = !privateSelected;  // toggle every time clicked
         } else {
             try {
                 flashcardSetController.create(title.getText(), description.getText(),
-                        privateSelected, username.getText());
+                        privateSelected, user.getSignedInUsername());
                 JOptionPane.showMessageDialog(this,
                         String.format("Flashcard Set: [%s] created.", title.getText()));
-                application.dispose();  // exit creation screen
+                this.dispose();  // exit creation screen
             } catch (FlashcardSetCreationFailed e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
 

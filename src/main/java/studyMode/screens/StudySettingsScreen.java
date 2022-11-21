@@ -125,7 +125,7 @@ public class StudySettingsScreen extends JFrame implements ActionListener {
         this.setVisible(true);//making the frame visible
 
         // quit if you close the tab
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

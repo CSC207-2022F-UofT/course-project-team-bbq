@@ -22,7 +22,8 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
 
     JPanel flashcardPanels;
 
-    public ListOfFlashcardsDataPanel(DBGateway dbGateway, List<FlashcardDsRequestModel> flashcardData, FlashcardSetDsRequestModel flashcardSet, JFrame frame) {
+    public ListOfFlashcardsDataPanel(DBGateway dbGateway, List<FlashcardDsRequestModel> flashcardData,
+                                     FlashcardSetDsRequestModel flashcardSet, JFrame frame) {
         this.dbGateway = dbGateway;
         this.frame = frame;
         this.flashcardSet = flashcardSet;

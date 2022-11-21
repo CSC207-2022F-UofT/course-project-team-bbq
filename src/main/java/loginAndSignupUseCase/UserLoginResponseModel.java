@@ -1,6 +1,7 @@
 package loginAndSignupUseCase;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Login Response Model to return to the system for the user
@@ -12,15 +13,16 @@ public class UserLoginResponseModel {
 
     boolean isAdmin;
 
-    HashMap<Integer, String[]> flashcardSets;
+    Map<Integer, String[]> flashcardSets;
 
-    /**
+     /**
      * Constructs a quiz response model based on the following parameters.
      * @param loggedInUsername the username of the current user using the system
      * @param isAdmin the admin access of the current user
-     * @param flashcardSets the flashcard sets pertaining to the user obtained by the login interactor
+     * @param flashcardSets the flashcard sets map pertaining to the user obtained by the login interactor, where each id
+     *                      pertains to its title and description
      */
-    public UserLoginResponseModel(String loggedInUsername, boolean isAdmin, HashMap<Integer, String[]> flashcardSets){
+    public UserLoginResponseModel(String loggedInUsername, boolean isAdmin, Map<Integer, String[]> flashcardSets){
         this.username = loggedInUsername;
         this.isAdmin = isAdmin;
         this.flashcardSets = flashcardSets;
@@ -33,7 +35,9 @@ public class UserLoginResponseModel {
         return username;
     }
     public boolean getIsAdmin(){return isAdmin;}
-    public HashMap<Integer, String[]> getFlashcardSets(){
+
+    public Map<Integer, String[]> getFlashcardSets(){
+
         return flashcardSets;
     }
 }

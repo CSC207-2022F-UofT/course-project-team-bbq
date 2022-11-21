@@ -1,10 +1,7 @@
 package search_use_case;
 
 import dataAccess.DBGateway;
-import entityRequestModels.CommonUserDsRequestModel;
 import loginAndSignupUseCase.UserLoginResponseModel;
-import quizUseCase.QuizController;
-import studyMode.StudySessionController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
