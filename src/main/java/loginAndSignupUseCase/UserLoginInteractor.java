@@ -19,7 +19,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary{
      * Constructs a login interactor.
      * @param userLoginDsGateway the user login gateway
      * @param flashcardSetDsGateway the user flashcard set gateway for the sets belonging to the user
-     * @param userLoginOutputBoundary the quiz output boundary presenter
+     * @param userLoginOutputBoundary the output boundary presenter
      */
     public UserLoginInteractor(IUserDataAccess userLoginDsGateway, IFlashcardSetDataAccess flashcardSetDsGateway,
                                UserLoginOutputBoundary userLoginOutputBoundary) {
@@ -29,7 +29,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary{
     }
 
     /**
-     * Constructs a login interactor.
+     * Login a user
      * @param userLoginRequestModel to get all the data inputted by the user
      * @return a UserLoginResponseModel for the response of after the user has logged in
      * through the userLoginOutputBoundary

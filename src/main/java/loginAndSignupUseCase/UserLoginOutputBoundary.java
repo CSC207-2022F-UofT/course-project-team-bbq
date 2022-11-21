@@ -11,7 +11,7 @@ public interface UserLoginOutputBoundary {
 
     /**
      * Confirm whether the user was successful in logging in
-     * @param user UserLoginResponseModel with the necessary data for the homepade
+     * @param user UserLoginResponseModel with the necessary data for the homepage
      * @return UserLoginResponseModel for the user having logged in.
      */
     UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user);
