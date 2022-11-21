@@ -1,6 +1,10 @@
 package loginAndSignupUseCase;
 
-// Use case layer
+/**
+ * Register Request Model to request from the user.
+ * Application Business Rules
+ * @author Aryan Chablani
+ */
 
 public class UserRegisterRequestModel {
 
@@ -10,6 +14,14 @@ public class UserRegisterRequestModel {
     //private boolean isAdmin;
     private final String adminKeyEntered;
 
+    /**
+     * Constructs a signup request model.
+     * @param name the username of the user
+     * @param password the password of the user
+     * @param repeatPassword the repeated password entered by the user to ensure coherency with the password
+     * @param adminKeyEntered the admin key entered by the user to check whether they should be allowed admin
+     *                        level access
+     */
     public UserRegisterRequestModel(String name, String password, String repeatPassword, String adminKeyEntered) {
         this.name = name;
         this.password = password;
@@ -17,6 +29,9 @@ public class UserRegisterRequestModel {
         this.adminKeyEntered = adminKeyEntered;
     }
 
+    /**
+     * GETTERS for the UserRegisterRequestModel
+     */
     String getName() {
         return name;
     }
