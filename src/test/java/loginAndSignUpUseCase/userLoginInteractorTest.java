@@ -46,11 +46,9 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
-        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "John", "Rockefeller123");
 
-        // 3) Run the use case
         interactor.login(inputData);
     }
 
@@ -76,11 +74,9 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
-        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "Walt", "Disney123");
 
-        // 3) Run the use case
         interactor.login(inputData);
     }
 }
