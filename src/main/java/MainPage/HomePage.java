@@ -14,10 +14,12 @@ import search_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.Map;
 
-public class HomePage extends JFrame {
+public class HomePage extends JFrame implements WindowListener {
 
     UserLoginResponseModel user;
     DBGateway gateway;
@@ -35,7 +37,7 @@ public class HomePage extends JFrame {
         IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
         DBGateway gateway = new DBGateway(flashcardDataAccess,
                 flashcardSetDataAccess, userDataAccess);
-
+        this.gateway = gateway;
         // top bar
         JPanel topBar = new JPanel();
         topBar.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
@@ -57,9 +59,10 @@ public class HomePage extends JFrame {
             FlashcardSetInteractor interactor = new FlashcardSetInteractor(gateway, presenter,
                     setFactory);
             FlashcardSetController controller = new FlashcardSetController(interactor);
-            new CreationScreen(controller, user);
-
+            JFrame creationScreen = new CreationScreen(controller, user);
+            creationScreen.addWindowListener(this);
         });
+
 
         logOff.addActionListener(e -> {
             this.setVisible(false);
@@ -98,7 +101,7 @@ public class HomePage extends JFrame {
     }
 
 
-    private void refresh(UserLoginResponseModel user) {
+    private void refresh() {
         try {
             UserLoginOutputBoundary presenter = new UserLoginPresenter();
             UserLoginInputBoundary interactor = new UserLoginInteractor(
@@ -114,5 +117,40 @@ public class HomePage extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        refresh();
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
