@@ -1,6 +1,7 @@
 package flashcardCreator.fcCScreens;
 
 import flashcardCreator.FcCController;
+import flashcardCreator.FcCMain;
 import flashcardCreator.FcCResponseModel;
 
 import javax.swing.*;
@@ -8,12 +9,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FcCScreen extends JFrame implements ActionListener {
+public class FcCScreen extends JPanel implements ActionListener {
     FcCController controller;
     JTextArea term_text;
     JTextArea definition_text;
-    public FcCScreen(FcCController controller){
+    JFrame fcCMain;
+    public FcCScreen(FcCController controller, JFrame fcCMain){
+        this.fcCMain = fcCMain;
         this.controller = controller;
+        this.setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel labelPanel = new JPanel(new GridLayout(1,2));
         JPanel textPanel = new JPanel(new GridLayout(1,2));
@@ -21,7 +25,8 @@ public class FcCScreen extends JFrame implements ActionListener {
         JButton confirm = new JButton("confirm");
         JButton cancel = new JButton("cancel");
         confirm.addActionListener(this);
-        cancel.addActionListener(e -> {dispose();});
+        cancel.addActionListener(e -> {
+            this.fcCMain.dispose();});
         buttonPanel.add(confirm);
         buttonPanel.add(cancel);
 
@@ -42,7 +47,6 @@ public class FcCScreen extends JFrame implements ActionListener {
         this.add(buttonPanel, BorderLayout.SOUTH);
         this.setSize(1000,500);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
 
@@ -52,12 +56,23 @@ public class FcCScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try{
             FcCResponseModel responseModel = controller.create(term_text.getText(), definition_text.getText());
-            new FcCSuccessScreen(controller, responseModel);
-            dispose();
+            int action = JOptionPane.showConfirmDialog(this,
+                    "Card created:\n"+responseModel.getTerm()+ "\n" + responseModel.getDefinition()
+                            +"\ncreate another card?");
+            if(action == JOptionPane.YES_OPTION){
+                term_text.setText("");
+                definition_text.setText("");
+            }else {
+                fcCMain.dispose();
+            }
         }catch (RuntimeException error){
-            new FcCFailureScreen(controller,error.toString());
-            dispose();
+            int action = JOptionPane.showConfirmDialog(this,
+                    error + "\nRecreate?");
+            if(action == JOptionPane.YES_OPTION){
+                term_text.setText("");
+            }else {
+                fcCMain.dispose();
+            }
         }
-
     }
 }

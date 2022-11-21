@@ -1,5 +1,7 @@
 package studyMode;
 
+import studyMode.screens.StudySettingsFailed;
+
 /**
  * The study session presenter.
  * <p>
@@ -20,7 +22,7 @@ public class StudySessionPresenter implements StudySessionOutputBoundary {
     }
 
     @Override
-    public StudySettingsResponseModel prepareFailedStudyView() {
-        return new StudySettingsResponseModel();
+    public StudySettingsResponseModel prepareFailedStudyView(String error) {
+        throw new StudySettingsFailed(error);
     }
 }

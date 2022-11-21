@@ -1,12 +1,11 @@
 package flashcardRemover;
 
 import dataAccess.*;
-import flashcardRemover.fcRScreens.FcRFailureScreen;
-import flashcardRemover.fcRScreens.FcRSuccessScreen;
 
+import javax.swing.*;
 import java.io.IOException;
 
-public class FcRMain{
+public class FcRMain extends JFrame {
     public FcRMain(int flashcardSetId, int flashcardId){
         DBGateway gateway;
         try{
@@ -20,13 +19,20 @@ public class FcRMain{
         FcRPresenter presenter = new FcRResponseFormatter();
         FcRInputBoundary interactor = new FcRInterator(gateway,presenter);
         FcRController controller = new FcRController(interactor, flashcardSetId);
-
+        this.setVisible(false);
         try {
             FcRResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);
-            new FcRSuccessScreen(responseModel);
+            JOptionPane.showMessageDialog(this,
+                    responseModel.getTerm() + " deleted from " + responseModel.getCardSetName() +
+                    " at " + responseModel.getDeleteDate());
+            this.dispose();
         }catch (RuntimeException error){
-            new FcRFailureScreen(error.toString());
+            JOptionPane.showMessageDialog(this, "Deletion failed:\n" + error);
+            this.dispose();
         }
+    }
+    public static void main(String[] args) {
+        new FcRMain(0, 4);
     }
 
 }

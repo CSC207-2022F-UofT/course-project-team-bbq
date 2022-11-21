@@ -1,6 +1,6 @@
 package search_use_case;
 
-import entityRequestModels.CommonUserDsRequestModel;
+import loginAndSignupUseCase.UserLoginResponseModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class SearchController {
      * @param user  the current user
      * @return  a response model with the result set
      */
-    public SearchResponseModel create(String search_input, ArrayList<String> tags, CommonUserDsRequestModel user) throws IOException {
+    public SearchResponseModel create(String search_input, ArrayList<String> tags, UserLoginResponseModel user) throws IOException {
         SearchRequestModel requestModel = new SearchRequestModel(search_input, tags, user);
 
         return userInput.create(requestModel);

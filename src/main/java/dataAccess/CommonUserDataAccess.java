@@ -100,6 +100,17 @@ public class CommonUserDataAccess implements IUserDataAccess{
     }
 
     @Override
+    public void deleteFlashcardSetID(String username, int FlashcardSetID) {
+        CommonUserDsRequestModel oldUser = accounts.get(username);
+        List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
+        newFlashcardSet.remove((Object) FlashcardSetID);
+        CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
+
+        accounts.put(username, newUser);
+        save();
+    }
+
+    @Override
     public void saveUser(CommonUserDsRequestModel user) {
         accounts.put(user.getUsername(), user);
         save();

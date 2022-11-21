@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
-import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway {
     private static final String flashcardPath = "src/data/Flashcards.csv";
@@ -56,5 +55,25 @@ public class DBGateway {
 
     public IUserDataAccess getUserGateway() {
         return userGateway;
+    }
+
+    public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
+        this.userGateway.saveFlashcardSetID(flashcardSet.getOwnerUsername(), flashcardSet.getFlashcardSetId());
+        return this.flashcardSetGateway.saveFlashcardSet(flashcardSet);
+    }
+
+    public void deleteFlashcardSet(String ownerUsername, int flashcardSetID) {
+        this.userGateway.deleteFlashcardSetID(ownerUsername, flashcardSetID);
+        this.flashcardSetGateway.deleteFlashcardSet(flashcardSetID);
+    }
+
+    public int saveFlashcard(FlashcardDsRequestModel flashcard) {
+        this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), flashcard.getFlashcardId());
+        return this.flashcardGateway.saveFlashcard(flashcard);
+    }
+
+    public void deleteFlashcard(int flashcardSetId, int flashcardId) {
+        this.flashcardSetGateway.removeFlashcardId(flashcardSetId, flashcardId);
+        this.flashcardGateway.deleteFlashcard(flashcardId);
     }
 }

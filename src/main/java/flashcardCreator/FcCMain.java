@@ -3,9 +3,10 @@ package flashcardCreator;
 import flashcardCreator.fcCScreens.FcCScreen;
 import dataAccess.*;
 
+import javax.swing.*;
 import java.io.IOException;
 
-public class FcCMain{
+public class FcCMain extends JFrame {
     public FcCMain(int flashcardSetId){
         DBGateway gateway;
         try{
@@ -19,7 +20,14 @@ public class FcCMain{
         FcCPresenter presenter = new FcCResponseFormatter();
         FcCInputBoundary interactor = new FcCInterator(gateway,presenter);
         FcCController controller = new FcCController(interactor, flashcardSetId);
-        new FcCScreen(controller);
+        FcCScreen fcCScreen= new FcCScreen(controller, this);
+        this.add(fcCScreen);
+        this.setSize(1000, 500);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new FcCMain(0);
     }
 
 }

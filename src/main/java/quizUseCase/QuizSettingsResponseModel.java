@@ -8,8 +8,10 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class QuizSettingsResponseModel {
-    // information
+    // information 1
     private int numFlashcards;
+
+    // information 2
     private ArrayList<String> types;
     private ArrayList<ArrayList<String>> outputText;
 
