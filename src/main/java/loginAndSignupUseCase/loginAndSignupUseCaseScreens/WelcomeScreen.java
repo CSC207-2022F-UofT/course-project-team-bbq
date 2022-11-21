@@ -10,7 +10,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-// Frameworks/Drivers layer
+/**
+ * Create a Swing user interface for the Welcom Screen
+ *<p>
+ * Frameworks and Drivers
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
+ */
 
 public class WelcomeScreen extends JFrame implements ActionListener {
 
