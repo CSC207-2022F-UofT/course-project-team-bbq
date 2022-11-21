@@ -1,15 +1,25 @@
-package loginAndSignupUseCase;
+package login_and_signup_use_case;
 
 import dataAccess.DBGateway;
 import entities.User;
 import entities.UserFactory;
 import entityRequestModels.CommonUserDsRequestModel;
-
+/**
+ * Signup Interactor, the heart of the registering use case engine.
+ * Application Business Rules
+ * @author Aryan Chablani
+ */
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     private final DBGateway gateway;
     private final UserRegisterOutputBoundary userRegisterOutputBoundary;
     private final UserFactory userFactory;
 
+    /**
+     * Constructs a registering interactor.
+     * @param gateway the user signup gateway
+     * @param userRegisterOutputBoundary the signup output boundary presenter
+     * @param userFactory to create a user
+     */
     public UserRegisterInteractor(DBGateway gateway, UserRegisterOutputBoundary userRegisterOutputBoundary,
                                   UserFactory userFactory) {
         this.gateway = gateway;
@@ -17,7 +27,11 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         this.userFactory = userFactory;
     }
 
-
+    /**
+     * Register a user
+     * @param requestModel to get all the data inputted by the user in order to register the
+     * @return a UserRegisterResponseModel for the response to the system after the user has been registered
+     */
     @Override
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) {
          if (gateway.existsByName(requestModel.getName())) {
@@ -25,6 +39,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         } else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
             return userRegisterOutputBoundary.prepareFailView("Passwords Don't Match.");
         }
+        // Create a temporary user to access the adminkey
         User fakeUser = userFactory.create("BLANK", "BLANK1", false);
 
         // set isAdmin to true if they entered the admin key correctly

@@ -1,5 +1,5 @@
 package search_use_case;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import java.util.ArrayList;
 

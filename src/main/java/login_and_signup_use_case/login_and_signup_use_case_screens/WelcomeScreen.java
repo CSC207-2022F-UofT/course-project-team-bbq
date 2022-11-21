@@ -1,16 +1,21 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import dataAccess.*;
 import entities.CommonUserFactory;
 import entities.UserFactory;
-import loginAndSignupUseCase.*;
+import login_and_signup_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-// Frameworks/Drivers layer
+/**
+ * Create a Swing user interface for the Welcom Screen
+ *<p>
+ * Frameworks and Drivers
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
+ */
 
 public class WelcomeScreen extends JFrame implements ActionListener {
 

@@ -1,15 +1,17 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-// Frameworks/Drivers layer
-
 /**
  * Used by Spring to know what data to maintain. It's used by JpaRepository,
  * Spring's root of the programmer-written persistence classes mapping data to =
- * storage.
+ * storage. If required.
+ *<p>
+ * Frameworks and Drivers
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
  */
+
 class UserDataMapper {
 
     String name;
@@ -17,8 +19,6 @@ class UserDataMapper {
     String password;
 
     boolean isAdmin;
-
-    LocalDateTime creationTime;
 
     ArrayList<Integer> flashcardSetIds;
 
@@ -31,7 +31,6 @@ class UserDataMapper {
         this.password = password;
         this.isAdmin = isAdmin;
         this.flashcardSetIds = flashcardSetIds;
-        this.creationTime = creationTime;
     }
 
     public String getName() {
@@ -58,12 +57,5 @@ class UserDataMapper {
         return flashcardSetIds;
     }
 
-    public LocalDateTime getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(LocalDateTime creationTime) {
-        this.creationTime = creationTime;
-    }
 }
 

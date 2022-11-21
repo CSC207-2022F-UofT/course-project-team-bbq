@@ -1,18 +1,23 @@
-package loginAndSignupUseCase.loginAndSignupUseCaseScreens;
+package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import MainPage.HomePage;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-// Frameworks/Drivers layer
+/**
+ * Create a swing user interface for the Login Screen
+ *<p>
+ * Frameworks and Drivers
+ * @author Aryan Chablani (with inspiration from Professor Paul Gries)
+ */
 
 public class LoginScreen extends JFrame implements ActionListener {
     /**
-     * The username chosen by the user
+     * The username belonging to the user
      */
     JTextField username = new JTextField(15);
     /**
@@ -64,7 +69,7 @@ public class LoginScreen extends JFrame implements ActionListener {
     }
 
     /**
-     * React to a button click that results in evt.
+     * React to a button click that results in evt, usually login.
      */
     public void actionPerformed(ActionEvent evt) {
 

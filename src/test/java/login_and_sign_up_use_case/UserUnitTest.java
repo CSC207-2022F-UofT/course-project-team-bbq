@@ -1,4 +1,4 @@
-package loginAndSignUpUseCase;
+package login_and_sign_up_use_case;
 
 import entities.CommonUser;
 import entities.User;
@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 public class UserUnitTest {
     @Test

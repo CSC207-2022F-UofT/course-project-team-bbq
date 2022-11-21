@@ -3,7 +3,7 @@ package search_use_case;
 import dataAccess.*;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
