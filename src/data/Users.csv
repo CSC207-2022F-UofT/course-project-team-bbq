@@ -1,0 +1,4 @@
+username,password,isAdmin,flashcardSetIds
+jempio,ilovejempio,false
+ducas,badpassword,false
+testUser,password,false,0,1
