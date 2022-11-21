@@ -45,6 +45,7 @@ class UserRegisterInteractorTest {
                 // are correct
                 Assertions.assertEquals("Steve", user.getSignedUpUsername());
                 Assertions.assertFalse(user.getIsAdmin());
+                Assertions.assertTrue(!user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
                 return null;
             }

@@ -62,6 +62,7 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("Richard", user.getSignedInUsername());
                 Assertions.assertTrue(user.getIsAdmin());
+                Assertions.assertFalse(!user.getIsAdmin());
                 //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
