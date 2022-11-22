@@ -10,9 +10,11 @@ import java.util.ArrayList;
 public class QuizUseCaseTest {
     QuizController controller;
 
-    QuizSettingsRequestModel setup(int numQuestions, boolean timerOn, int timerDuration,
-                                   boolean multipleChoiceOn, boolean textEntryOn, boolean trueFalseOn,
-                                   int flashcardSetID) throws IOException {
+    QuizSettingsRequestModel setup(int numQuestions,
+                                   boolean timerOn,
+                                   boolean multipleChoiceOn,
+                                   boolean textEntryOn,
+                                   boolean trueFalseOn) throws IOException {
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
                 "src/test/java/quiz_use_case/testData/Flashcards.csv");
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
@@ -27,13 +29,13 @@ public class QuizUseCaseTest {
         this.controller = new QuizController(interactor);
 
         return new QuizSettingsRequestModel(numQuestions, timerOn,
-                timerDuration, multipleChoiceOn, textEntryOn, trueFalseOn, flashcardSetID);
+                0, multipleChoiceOn, textEntryOn, trueFalseOn, 0);
     }
 
     @Test
     void testOnlyMultipleChoice() throws IOException {
-        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(10, false, 0,
-                true, false, false, 0);
+        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(10, false,
+                true, false, false);
 
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertFalse(quizSettingsResponseModel.isFailed());
@@ -62,8 +64,8 @@ public class QuizUseCaseTest {
 
     @Test
     void testAllOptionsEnabled() throws IOException {
-        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false, 0,
-                true, true, true, 0);
+        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false,
+                true, true, true);
 
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertFalse(quizSettingsResponseModel.isFailed());
@@ -73,9 +75,7 @@ public class QuizUseCaseTest {
 
         assertEquals(12, types.size());
         assertEquals(12, outputText.size());
-        assertTrue(types.contains("MC"));
-        assertTrue(types.contains("TE"));
-        assertTrue(types.contains("TF"));
+        assertTrue(types.contains("MC") || types.contains("TE") || types.contains("TF"));
 
         ArrayList<String> userAnswers = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
@@ -92,8 +92,8 @@ public class QuizUseCaseTest {
 
     @Test
     void testNoOptionsEnabled() throws IOException {
-        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false, 0,
-                false, false, false, 0);
+        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false,
+                false, false, false);
 
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertTrue(quizSettingsResponseModel.isFailed());
@@ -101,8 +101,8 @@ public class QuizUseCaseTest {
 
     @Test
     void testRidiculousTimer() throws IOException {
-        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, true, 0,
-                true, true, false, 0);
+        QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, true,
+                true, true, false);
 
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertTrue(quizSettingsResponseModel.isFailed());
