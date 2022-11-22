@@ -15,23 +15,26 @@ import java.util.ArrayList;
  */
 public class QuizScreen extends Screen {
     private final QuizController controller;
-
     private final int flashcardSetID;
-
     private final ArrayList<QuestionCard> questionCards;
 
-    // actions
     private enum Actions {
         RESTART, SUBMIT
     }
 
+    /**
+     * Constructs a quiz screen.
+     * @param controller the quiz controller
+     * @param response the quiz settings response model
+     * @param flashcardSetID the flashcard set ID
+     */
     public QuizScreen(QuizController controller, QuizSettingsResponseModel response, int flashcardSetID) {
         super("Quiz", false);
 
         this.controller = controller;
         this.flashcardSetID = flashcardSetID;
-
         this.questionCards = new ArrayList<>();
+        QuestionCardFactory questionCardFactory = new QuestionCardFactory();
 
         ArrayList<String> types = response.getTypes();
         ArrayList<ArrayList<String>> outputText = response.getOutputText();
@@ -48,22 +51,10 @@ public class QuizScreen extends Screen {
         c.fill = GridBagConstraints.BOTH;
 
         for (int i = 0; i < types.size(); i++) {
-            String type = types.get(i);
-            QuestionCard q;
             c.gridy = i;
-            if (type.equals("MC")) {
-                q = new MultipleChoiceQuestionCard(i+1, outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            } else if (type.equals("TE")) {
-                q = new TextEntryQuestionCard(i+1, outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            } else if (type.equals("TF")) {
-                q = new TrueFalseQuestionCard(i+1, outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            }
+            QuestionCard q = questionCardFactory.createQuestionCard(types.get(i), i+1, outputText.get(i));
+            this.questionCards.add(q);
+            centerPanel.add(q, c);
         }
 
         // SCROLL BAR
@@ -89,6 +80,11 @@ public class QuizScreen extends Screen {
         this.setupScreen();
     }
 
+    /**
+     * RESTART - the program returns to the quiz settings screen.
+     * SUBMIT - the program collects all user answers and proceeds to the quiz results screen.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

@@ -15,12 +15,8 @@ import java.util.ArrayList;
  */
 public class QuizResultsScreen extends Screen {
     private final QuizController controller;
-
     private final int flashcardSetID;
 
-    private final ArrayList<QuestionCard> questionCards;
-
-    // actions
     private enum Actions {
         RESTART
     }
@@ -36,7 +32,7 @@ public class QuizResultsScreen extends Screen {
 
         this.controller = controller;
         this.flashcardSetID = flashcardSetID;
-        this.questionCards = new ArrayList<>();
+        QuestionCardFactory questionCardFactory = new QuestionCardFactory();
 
         ArrayList<String> types = response.getTypes();
         ArrayList<ArrayList<String>> outputText = response.getOutputText();
@@ -73,25 +69,10 @@ public class QuizResultsScreen extends Screen {
         c.fill = GridBagConstraints.BOTH;
 
         for (int i = 0; i < types.size(); i++) {
-            String type = types.get(i);
-            QuestionCard q;
             c.gridy = i;
-            if (type.equals("MC")) {
-                q = new MultipleChoiceQuestionCard(i+1, outputText.get(i),
-                        userAnswers.get(i),actualAnswers.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            } else if (type.equals("TE")) {
-                q = new TextEntryQuestionCard(i+1, outputText.get(i),
-                        userAnswers.get(i), actualAnswers.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            } else if (type.equals("TF")) {
-                q = new TrueFalseQuestionCard(i+1, outputText.get(i),
-                        userAnswers.get(i), actualAnswers.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q, c);
-            }
+            QuestionCard q = questionCardFactory.createAnsweredQuestionCard(types.get(i), i+1, outputText.get(i),
+                    userAnswers.get(i), actualAnswers.get(i));
+            centerPanel.add(q, c);
         }
 
         // SCROLL BAR
@@ -114,6 +95,10 @@ public class QuizResultsScreen extends Screen {
         this.setupScreen();
     }
 
+    /**
+     * Restarts back to quiz settings screen on command.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
