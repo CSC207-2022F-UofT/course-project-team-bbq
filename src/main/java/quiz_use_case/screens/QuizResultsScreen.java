@@ -47,7 +47,7 @@ public class QuizResultsScreen extends Screen {
         int correct = response.getScore();
         int total = response.getNumQuestions();
         int incorrect = total - correct;
-        double percentage = (((double) correct) / total) * 100;
+        int percentage = (int) Math.round((((double) correct) / total) * 100);
 
         FlatLabel correctLabel = new FlatLabel((correct) + " Correct", "h00");
         FlatLabel incorrectLabel = new FlatLabel((incorrect) + " Incorrect", "h00");
@@ -63,23 +63,34 @@ public class QuizResultsScreen extends Screen {
 
         // CENTER PANEL
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        GridBagLayout grid = new GridBagLayout();
+        GridBagConstraints c = new GridBagConstraints();
+        centerPanel.setLayout(grid);
+        c.gridx = 0;
+        c.insets = new Insets(25, 25, 25, 25);
+        c.ipadx = 25;
+        c.ipady = 25;
+        c.fill = GridBagConstraints.BOTH;
 
         for (int i = 0; i < types.size(); i++) {
             String type = types.get(i);
             QuestionCard q;
+            c.gridy = i;
             if (type.equals("MC")) {
-                q = new MultipleChoiceQuestionCard(outputText.get(i), userAnswers.get(i), actualAnswers.get(i));
+                q = new MultipleChoiceQuestionCard(i+1, outputText.get(i),
+                        userAnswers.get(i),actualAnswers.get(i));
                 this.questionCards.add(q);
-                centerPanel.add(q);
+                centerPanel.add(q, c);
             } else if (type.equals("TE")) {
-                q = new TextEntryQuestionCard(outputText.get(i), userAnswers.get(i), actualAnswers.get(i));
+                q = new TextEntryQuestionCard(i+1, outputText.get(i),
+                        userAnswers.get(i), actualAnswers.get(i));
                 this.questionCards.add(q);
-                centerPanel.add(q);
+                centerPanel.add(q, c);
             } else if (type.equals("TF")) {
-                q = new TrueFalseQuestionCard(outputText.get(i), userAnswers.get(i), actualAnswers.get(i));
+                q = new TrueFalseQuestionCard(i+1, outputText.get(i),
+                        userAnswers.get(i), actualAnswers.get(i));
                 this.questionCards.add(q);
-                centerPanel.add(q);
+                centerPanel.add(q, c);
             }
         }
 

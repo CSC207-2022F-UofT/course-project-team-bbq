@@ -15,9 +15,11 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
 
     /**
      * Constructs a multiple choice question card that is ready to receive user input.
+     * @param num the question number
      * @param outputText the output text to display within the card
      */
-    public MultipleChoiceQuestionCard(ArrayList<String> outputText) {
+    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText) {
+        super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();
         ButtonGroup group = new ButtonGroup();
@@ -29,21 +31,31 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
             group.add(choice);
         }
 
-        // adding components
-        this.setLayout(new FlowLayout());
-        this.add(question);
+        // ADDING COMPONENTS
+        GridBagLayout grid = new GridBagLayout();
+        GridBagConstraints c = new GridBagConstraints();
+        this.setLayout(grid);
+        c.gridx = 0;
+        c.gridy = 0;
+        this.add(number, c);
+        c.gridy += 1;
+        this.add(question, c);
+        c.anchor = GridBagConstraints.LINE_START;
         for (JRadioButton choice : choices) {
-            this.add(choice);
+            c.gridy += 1;
+            this.add(choice, c);
         }
     }
 
     /**
      * Constructs a multiple choice question card that already has user answers inputted. For display purposes only.
+     * @param num the question number
      * @param outputText the output text to be displayed
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public MultipleChoiceQuestionCard(ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+        super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();
         ButtonGroup group = new ButtonGroup();
@@ -69,12 +81,21 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
             group.add(choice);
         }
 
-        // adding components
-        this.setLayout(new FlowLayout());
-        this.add(status);
-        this.add(question);
+        // ADDING COMPONENTS
+        GridBagLayout grid = new GridBagLayout();
+        GridBagConstraints c = new GridBagConstraints();
+        this.setLayout(grid);
+        c.gridx = 0;
+        c.gridy = 0;
+        this.add(number, c);
+        c.gridy += 1;
+        this.add(status, c);
+        c.gridy += 1;
+        this.add(question, c);
+        c.anchor = GridBagConstraints.LINE_START;
         for (JRadioButton choice : choices) {
-            this.add(choice);
+            c.gridy += 1;
+            this.add(choice, c);
         }
     }
 
