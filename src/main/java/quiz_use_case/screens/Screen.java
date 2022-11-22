@@ -1,4 +1,4 @@
-package quizUseCase.screens;
+package quiz_use_case.screens;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +38,7 @@ public abstract class Screen extends JFrame implements ActionListener {
         try {
             this.setIconImage(ImageIO.read(file));
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Unable to load file.");
         }
 
         // SCREEN SETUP

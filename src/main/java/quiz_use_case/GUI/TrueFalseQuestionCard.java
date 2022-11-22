@@ -1,4 +1,4 @@
-package quizUseCase.GUI;
+package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +47,7 @@ public class TrueFalseQuestionCard extends QuestionCard {
         JLabel term = new JLabel(outputText.get(0));
         JLabel potentialDefinition = new JLabel(outputText.get(1));
 
-        boolean isCorrect = actualAnswer.equals(userAnswer);
+        boolean isCorrect = actualAnswer.equalsIgnoreCase(userAnswer);
         JLabel status = generateStatus(isCorrect);
 
         this.trueButton = new JButton("TRUE");
@@ -56,7 +56,7 @@ public class TrueFalseQuestionCard extends QuestionCard {
         falseButton.setEnabled(false);
 
         if (userAnswer != null) {
-            if (userAnswer.equals("true")) {
+            if (userAnswer.equalsIgnoreCase("true")) {
                 if (isCorrect) {
                     trueButton.setIcon(yes);
                 } else {

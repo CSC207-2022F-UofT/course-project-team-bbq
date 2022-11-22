@@ -1,4 +1,4 @@
-package quizUseCase.GUI;
+package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +49,7 @@ public class TextEntryQuestionCard extends QuestionCard {
     public TextEntryQuestionCard(ArrayList<String> outputText, String userAnswer, String actualAnswer) {
         this.missingTerm = outputText.get(0) == null;
 
-        boolean isCorrect = actualAnswer.equals(userAnswer);
+        boolean isCorrect = actualAnswer.equalsIgnoreCase(userAnswer);
         JLabel status = generateStatus(isCorrect);
 
         this.textField = new JTextField();

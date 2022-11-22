@@ -1,4 +1,4 @@
-package quizUseCase;
+package quiz_use_case;
 
 /**
  * Quiz Input Boundary.

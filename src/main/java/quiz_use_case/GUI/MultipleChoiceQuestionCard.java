@@ -1,4 +1,4 @@
-package quizUseCase.GUI;
+package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +48,7 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
         this.choices = new ArrayList<>();
         ButtonGroup group = new ButtonGroup();
 
-        boolean isCorrect = actualAnswer.equals(userAnswer);
+        boolean isCorrect = actualAnswer.equalsIgnoreCase(userAnswer);
         JLabel status = generateStatus(isCorrect);
 
         for (int i = 1; i < outputText.size(); i++) {
@@ -56,10 +56,10 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
             JRadioButton choice = new JRadioButton(choiceText);
             choice.setEnabled(false); // disabled
 
-            if (choiceText.equals(actualAnswer)) {
+            if (choiceText.equalsIgnoreCase(actualAnswer)) {
                 choice.setIcon(yes);
             }
-            if (choiceText.equals(userAnswer)) {
+            if (choiceText.equalsIgnoreCase(userAnswer)) {
                 choice.setSelected(true);
                 if (!isCorrect) {
                     choice.setIcon(no);

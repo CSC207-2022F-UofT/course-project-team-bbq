@@ -1,8 +1,8 @@
 package search_use_case;
 
 import dataAccess.DBGateway;
-import quizUseCase.*;
-import quizUseCase.screens.QuizSettingsScreen;
+import quiz_use_case.*;
+import quiz_use_case.screens.QuizSettingsScreen;
 import studyMode.*;
 import studyMode.screens.StudySettingsScreen;
 
