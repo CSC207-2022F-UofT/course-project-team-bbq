@@ -34,7 +34,7 @@ public abstract class Screen extends JFrame implements ActionListener {
      */
     public void setupScreen() {
         // ICON
-        File file = new File("src/images/spungebub.png");
+        File file = new File("src/images/bbq.png");
         try {
             this.setIconImage(ImageIO.read(file));
         } catch (Exception e) {
