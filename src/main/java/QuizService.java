@@ -48,7 +48,7 @@ public class QuizService {
                 0
         );
         Flashcard f5 = flashcardFactory.create(
-                "Flashcard",
+                "edit_flashcard",
                 "a card containing a small amount of information as an aid to learning",
                 LocalDateTime.now(),
                 5,

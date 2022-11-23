@@ -1,6 +1,6 @@
 package MainPage;
 
-import EditorMainPage.EditorMainPage;
+import editor_main_page.EditorMainPage;
 import dataAccess.DBGateway;
 import delete_flashcardset_use_case.*;
 import login_and_signup_use_case.UserLoginResponseModel;
