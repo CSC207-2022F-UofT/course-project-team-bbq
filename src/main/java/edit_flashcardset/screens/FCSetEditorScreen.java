@@ -8,30 +8,46 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class FCSetEditorScreen extends JPanel implements ActionListener {
-    FCSetEditorController controller;
+    private final FCSetEditorController controller;
+    private final FlashcardSetDsRequestModel flashcardSet;
+    /**
+     * The main JFrame in which this editor screen lies in.
+     */
     JFrame editPage;
-    FlashcardSetDsRequestModel flashcardSet;
-    JTextField termText;
-    JTextField definitionText;
+    /**
+     * The title input field.
+     */
+    JTextField titleText;
+    /**
+     * The definition input field.
+     */
+    JTextField descriptionText;
 
-
+    /**
+     * Creates a new FCSetEditorScreen object with the corresponding JLabels, JPanels and JButtons.
+     * @param controller A FCSetEditorController object to tell the use case layer to execute.
+     * @param flashcardSet A FlashcardSetDsRequestModel object to display the current flashcard set title and
+     *                     description.
+     * @param editPage The main JFrame edit page.
+     */
     public FCSetEditorScreen(FCSetEditorController controller, FlashcardSetDsRequestModel flashcardSet, JFrame editPage){
         this.controller = controller;
         this.editPage = editPage;
         this.flashcardSet = flashcardSet;
 
-        JPanel termPanel = new JPanel();
-        JLabel termLabel = new JLabel("Title: ");
-        termText = new JTextField(flashcardSet.getTitle());
-        termPanel.add(termLabel);
-        termPanel.add(termText);
-
-        JPanel definitionPanel = new JPanel();
-        JLabel definitionLabel = new JLabel("Description: ");
-        definitionText = new JTextField(flashcardSet.getDescription());
-        definitionPanel.add(definitionLabel);
-        definitionPanel.add(definitionText);
-
+        //These are the components for the title input field.
+        JPanel titlePanel = new JPanel();
+        JLabel titleLabel = new JLabel("Title: ");
+        titleText = new JTextField(flashcardSet.getTitle());
+        titlePanel.add(titleLabel);
+        titlePanel.add(titleText);
+        //These are the components for the description input field.
+        JPanel descriptionPanel = new JPanel();
+        JLabel descriptionLabel = new JLabel("Description: ");
+        descriptionText = new JTextField(flashcardSet.getDescription());
+        descriptionPanel.add(descriptionLabel);
+        descriptionPanel.add(descriptionText);
+        //These are confirm and cancel buttons.
         JPanel buttons = new JPanel();
         JButton confirm = new JButton("Confirm");
         JButton cancel = new JButton("Cancel");
@@ -40,12 +56,16 @@ public class FCSetEditorScreen extends JPanel implements ActionListener {
         buttons.add(confirm);
         buttons.add(cancel);
 
-        this.add(termPanel);
-        this.add(definitionPanel);
+        this.add(titlePanel);
+        this.add(descriptionPanel);
         this.add(buttons);
     }
 
-
+    /**
+     * Listens to user's input and when user confirms their edits, the controller that is passed in will be called to
+     * edit the following flashcard set. If user cancels, we close this page.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
@@ -54,15 +74,16 @@ public class FCSetEditorScreen extends JPanel implements ActionListener {
         }
         else{
             int numId = flashcardSet.getFlashcardSetId();
-            String newTerm = termText.getText();
-            String newDefinition = definitionText.getText();
+            String newTerm = titleText.getText();
+            String newDefinition = descriptionText.getText();
             try{
                 FCSetEditorResponseModel newFlashcardSet = controller.edit(numId, newTerm, newDefinition);
                 String message = "Edited FlashcardSet: " + newFlashcardSet.getTitleEdit() + " : " + newFlashcardSet.getDescriptionEdit();
                 JOptionPane.showMessageDialog(this, message);
                 editPage.dispose();
             }
-            catch (Exception error){
+            //Catches the FCSetEditFailed that is thrown by the presenter.
+            catch (FCSetEditFailed error){
                 JOptionPane.showMessageDialog(this, error.getMessage());
             }
         }

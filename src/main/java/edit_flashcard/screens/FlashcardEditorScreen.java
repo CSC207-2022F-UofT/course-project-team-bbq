@@ -49,10 +49,8 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
         //These are confirm and cancel buttons.
         JButton confirm = new JButton("Confirm");
         JButton cancel = new JButton("Cancel");
-
         confirm.addActionListener(this);
         cancel.addActionListener(this);
-
         JPanel buttons = new JPanel();
         buttons.add(confirm);
         buttons.add(cancel);

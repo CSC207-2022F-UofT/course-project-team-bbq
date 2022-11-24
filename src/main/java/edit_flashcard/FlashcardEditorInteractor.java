@@ -43,7 +43,7 @@ public class FlashcardEditorInteractor implements FlashcardEditorInputBoundary {
         if (termEdit.equals("")){
             return fcEditorOB.prepareFailView("Error: Term input cannot be empty.");
         }
-        //If not empty, we edit the flashcard via the dbGateway and then we return success view.
+        //If not empty, we edit the flashcard via the dbGateway, and then we return success view.
         else{
             FlashcardDsRequestModel oldFlashcard = dbGateway.getFlashcard(flashcardId);
             LocalDateTime creationDate = oldFlashcard.getCreationDate();

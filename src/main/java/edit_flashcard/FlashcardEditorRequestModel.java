@@ -24,7 +24,7 @@ public class FlashcardEditorRequestModel {
 
     /**
      * Returns the id of this FlashcardEditorRequestModel.
-     * @return id of the given flashcard
+     * @return id of this FlashcardEditorRequestModel
      */
     public int getFlashcardId() {
         return flashcardId;
@@ -32,7 +32,7 @@ public class FlashcardEditorRequestModel {
 
     /**
      * Returns the definition of this FlashcardEditorRequestModel.
-     * @return definition of the given flashcard
+     * @return definition of this FlashcardEditorRequestModel
      */
     public String getDefinitionEdit() {
         return definitionEdit;
@@ -40,7 +40,7 @@ public class FlashcardEditorRequestModel {
 
     /**
      * Returns the term of this FlashcardEditorRequestModel.
-     * @return term of the given flashcard
+     * @return term of this FlashcardEditorRequestModel
      */
     public String getTermEdit() {
         return termEdit;

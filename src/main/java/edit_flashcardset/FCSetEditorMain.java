@@ -9,6 +9,13 @@ import entityRequestModels.FlashcardSetDsRequestModel;
 import javax.swing.*;
 
 public class FCSetEditorMain extends JFrame{
+    /**
+     * Creates a new FCSetEditorMain object. This constructor creates the presenter, interactor and controller and
+     * uses dependency inversion to follow clean architecture. This constructor makes the flashcard set edit page
+     * visible.
+     * @param dbGateway The database gateway.
+     * @param flashcardSet The flashcard set to edit.
+     */
     public FCSetEditorMain(DBGateway dbGateway, FlashcardSetDsRequestModel flashcardSet){
         FCSetEditorOutputBoundary presenter = new FCSetEditorPresenter();
 

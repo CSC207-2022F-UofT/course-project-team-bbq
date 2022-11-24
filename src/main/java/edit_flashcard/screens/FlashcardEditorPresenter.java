@@ -14,7 +14,7 @@ public class FlashcardEditorPresenter implements FlashcardEditorOutputBoundary {
      * @param flashcard A FlashcardEditorResponseModel that contains the edited flashcard information
      * @return The FlashcardEditorResponseModel given.
      */
-    //This may seem redundant in some sense because we are simply returning the flashcard again but we do this to
+    //This may seem redundant in some sense because we are simply returning the flashcard again, but we do this to
     //adhere to Clean Architecture principles.
     @Override
     public FlashcardEditorResponseModel prepareSuccessView(FlashcardEditorResponseModel flashcard) {
