@@ -1,11 +1,8 @@
 package search_use_case;
 
-import editor_main_page.EditorMainPage;
 import dataAccess.DBGateway;
-import delete_flashcardset_use_case.*;
-import login_and_signup_use_case.UserLoginResponseModel;
-import quizUseCase.*;
-import quizUseCase.screens.QuizSettingsScreen;
+import quiz_use_case.*;
+import quiz_use_case.screens.QuizSettingsScreen;
 import studyMode.*;
 import studyMode.screens.StudySettingsScreen;
 
@@ -29,7 +26,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
      * @param responseModel contains results from search
      * @param gateway to access information for study and quiz options
      */
-    public ResultsScreen(SearchResponseModel responseModel, DBGateway gateway, UserLoginResponseModel user){
+    public ResultsScreen(SearchResponseModel responseModel, DBGateway gateway){
         super("Search Results");
 
         // store results in a Box layout
@@ -46,6 +43,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
 
             // store all elements of this result in a GridLayout
             JPanel panel = new JPanel();
+            panel.setLayout(new GridLayout(6, 1, 20, 20));
             JLabel title = new JLabel("   " + responseModel.getResult_set().get(x).getTitle());
             JLabel description = new JLabel("   Description: " +
                     responseModel.getResult_set().get(x).getDescription());
@@ -79,30 +77,12 @@ public class ResultsScreen extends JFrame implements ActionListener {
                 }
             });
 
-            JButton edit = new JButton("Edit");
-            edit.addActionListener((e) -> new EditorMainPage(responseModel.getResult_set().get(tempX)
-                    .getFlashcardSetId()));
-            JButton delete = new JButton("Delete");
-            delete.addActionListener(e -> {
-                DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
-                DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
-                DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
-                new DeletionScreen(responseModel.getResult_set().get(tempX)
-                        .getFlashcardSetId(), controller, user);
-            });
-
             // add elements to the GridLayout
-            panel.setLayout(new GridLayout(6, 1, 20, 20));
             panel.add(title);
             panel.add(description);
             panel.add(owner);
             panel.add(study);
             panel.add(test);
-            if (user.getIsAdmin()) {
-                panel.setLayout(new GridLayout(8, 1, 20, 20));
-                panel.add(edit);
-                panel.add(delete);
-            }
             result_panel.add(panel);
         }
         // add the panel containing all the results

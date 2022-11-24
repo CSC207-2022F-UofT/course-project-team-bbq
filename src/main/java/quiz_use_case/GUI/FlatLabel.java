@@ -1,4 +1,4 @@
-package quizUseCase.GUI;
+package quiz_use_case.GUI;
 
 import javax.swing.*;
 
