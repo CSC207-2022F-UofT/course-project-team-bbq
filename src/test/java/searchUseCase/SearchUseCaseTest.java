@@ -1,7 +1,7 @@
 package searchUseCase;
 
 import dataAccess.*;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 import search_use_case.*;
 import org.junit.jupiter.api.Test;
 
