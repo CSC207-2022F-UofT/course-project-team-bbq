@@ -45,7 +45,42 @@ public class FlashcardInteractorTest {
     }
 
     @Test
-    public void editFail(){
+    public void editSuccessEmptyDefinition(){
+        IFlashcardDataAccess fcDataAccess = new InMemoryFlashcard();
+        DBGateway dbGateway = new DBGateway(fcDataAccess, null, null);
+        FlashcardEditorOutputBoundary presenter = new FlashcardEditorOutputBoundary(){
+
+            @Override
+            public FlashcardEditorResponseModel prepareSuccessView(FlashcardEditorResponseModel flashcard) {
+                Assertions.assertEquals("table", flashcard.getTermEdit());
+                Assertions.assertEquals("", flashcard.getDefinitionEdit());
+
+                FlashcardDsRequestModel newFlashcard = fcDataAccess.getFlashcard(flashcard.getFlashcardId());
+                Assertions.assertEquals(newFlashcard.getTerm(), flashcard.getTermEdit());
+                Assertions.assertEquals(newFlashcard.getDefinition(), flashcard.getDefinitionEdit());
+                return null;
+            }
+
+            @Override
+            public FlashcardEditorResponseModel prepareFailView(String error) {
+                Assertions.fail("Failure is unexpected");
+                return null;
+            }
+        };
+
+        FlashcardEditorInputBoundary interactor = new FlashcardEditorInteractor(dbGateway, presenter);
+
+        int flashcardId = 1;
+        FlashcardDsRequestModel currentFlashcard = new FlashcardDsRequestModel("chair", "furniture to sit on", LocalDateTime.now(), flashcardId, 0);
+        fcDataAccess.saveFlashcard(currentFlashcard);
+        FlashcardEditorRequestModel inputData = new FlashcardEditorRequestModel(flashcardId, "table", "");
+
+        interactor.edit(inputData);
+
+    }
+
+    @Test
+    public void editFailEmptyTerm(){
         IFlashcardDataAccess fcDataAccess = new InMemoryFlashcard();
         DBGateway dbGateway = new DBGateway(fcDataAccess, null, null);
         FlashcardEditorOutputBoundary presenter = new FlashcardEditorOutputBoundary(){
@@ -69,6 +104,41 @@ public class FlashcardInteractorTest {
         FlashcardDsRequestModel currentFlashcard = new FlashcardDsRequestModel("chair", "furniture to sit on", LocalDateTime.now(), flashcardId, 0);
         fcDataAccess.saveFlashcard(currentFlashcard);
         FlashcardEditorRequestModel inputData = new FlashcardEditorRequestModel(flashcardId, "", "furniture to work on");
+
+        interactor.edit(inputData);
+
+        //Check to see that nothing was changed when inputting an empty string as a Term.
+        FlashcardDsRequestModel newFlashcard = fcDataAccess.getFlashcard(flashcardId);
+        Assertions.assertEquals("chair", newFlashcard.getTerm());
+        Assertions.assertEquals("furniture to sit on", newFlashcard.getDefinition());
+
+    }
+
+    @Test
+    public void editFailEmptyTermEmptyDefinition(){
+        IFlashcardDataAccess fcDataAccess = new InMemoryFlashcard();
+        DBGateway dbGateway = new DBGateway(fcDataAccess, null, null);
+        FlashcardEditorOutputBoundary presenter = new FlashcardEditorOutputBoundary(){
+
+            @Override
+            public FlashcardEditorResponseModel prepareSuccessView(FlashcardEditorResponseModel flashcard) {
+                Assertions.fail("Success is unexpected");
+                return null;
+            }
+
+            @Override
+            public FlashcardEditorResponseModel prepareFailView(String error) {
+                Assertions.assertEquals("Error: Term input cannot be empty.", error);
+                return null;
+            }
+        };
+
+        FlashcardEditorInputBoundary interactor = new FlashcardEditorInteractor(dbGateway, presenter);
+
+        int flashcardId = 1;
+        FlashcardDsRequestModel currentFlashcard = new FlashcardDsRequestModel("chair", "furniture to sit on", LocalDateTime.now(), flashcardId, 0);
+        fcDataAccess.saveFlashcard(currentFlashcard);
+        FlashcardEditorRequestModel inputData = new FlashcardEditorRequestModel(flashcardId, "", "");
 
         interactor.edit(inputData);
 
