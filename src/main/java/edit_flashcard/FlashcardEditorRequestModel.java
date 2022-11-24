@@ -11,7 +11,7 @@ public class FlashcardEditorRequestModel {
     private final String definitionEdit;
 
     /**
-     * FlashcardEditorRequestModel constructor.
+     * Creates a new FlashcardEditorRequestModel.
      * @param flashcardId id of the flashcard
      * @param term term of the flashcard
      * @param definition definition of the flashcard
@@ -23,7 +23,7 @@ public class FlashcardEditorRequestModel {
     }
 
     /**
-     * Get the id of this FlashcardEditorRequestModel.
+     * Returns the id of this FlashcardEditorRequestModel.
      * @return id of the given flashcard
      */
     public int getFlashcardId() {
@@ -31,7 +31,7 @@ public class FlashcardEditorRequestModel {
     }
 
     /**
-     * Get the definition of this FlashcardEditorRequestModel.
+     * Returns the definition of this FlashcardEditorRequestModel.
      * @return definition of the given flashcard
      */
     public String getDefinitionEdit() {
@@ -39,7 +39,7 @@ public class FlashcardEditorRequestModel {
     }
 
     /**
-     * Get the term of this FlashcardEditorRequestModel.
+     * Returns the term of this FlashcardEditorRequestModel.
      * @return term of the given flashcard
      */
     public String getTermEdit() {

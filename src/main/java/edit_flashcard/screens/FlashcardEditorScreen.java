@@ -8,30 +8,45 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FlashcardEditorScreen extends JPanel implements ActionListener {
-    FlashcardEditorController controller;
-    FlashcardDsRequestModel flashcard;
+    private final FlashcardEditorController controller;
+    private final FlashcardDsRequestModel flashcard;
+    /**
+     * The main JFrame in which this editor screen lies in.
+     */
     JFrame editPage;
+    /**
+     * The term input field.
+     */
     JTextField termText;
+    /**
+     * The definition input field.
+     */
     JTextField definitionText;
 
-
+    /**
+     * Creates a new FlashcardEditorScreen object with the corresponding JLabels, JPanels and JButtons.
+     * @param controller A FlashcardEditorController object to tell the use case layer to execute.
+     * @param flashcard A FlashcardDsRequestModel object to display the current flashcard term and definition.
+     * @param editPage The main JFrame edit page.
+     */
     public FlashcardEditorScreen(FlashcardEditorController controller, FlashcardDsRequestModel flashcard, JFrame editPage){
         this.controller = controller;
         this.flashcard = flashcard;
         this.editPage = editPage;
 
+        //These are the components for the term input field.
         JPanel termPanel = new JPanel();
         JLabel termLabel = new JLabel("Term: ");
         termText = new JTextField(flashcard.getTerm());
         termPanel.add(termLabel);
         termPanel.add(termText);
-
+        //These are the components for the definition input field.
         JPanel definitionPanel = new JPanel();
         JLabel definitionLabel = new JLabel("Definition: ");
         definitionText = new JTextField(flashcard.getDefinition());
         definitionPanel.add(definitionLabel);
         definitionPanel.add(definitionText);
-
+        //These are confirm and cancel buttons.
         JButton confirm = new JButton("Confirm");
         JButton cancel = new JButton("Cancel");
 
@@ -49,7 +64,11 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
 
     }
 
-
+    /**
+     * Listens to user's input and when user confirms their edits, the controller that is passed in will be called to
+     * edit the following flashcard. If user cancels, we close this page.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked " + e.getActionCommand());
@@ -66,7 +85,8 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, message);
                 editPage.dispose();
             }
-            catch (Exception error){
+            //Catches the FlashcardEditFailed that is thrown by the presenter.
+            catch (FlashcardEditFailed error){
                 JOptionPane.showMessageDialog(this, error.getMessage());
             }
         }

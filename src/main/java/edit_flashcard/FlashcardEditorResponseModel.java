@@ -11,7 +11,7 @@ public class FlashcardEditorResponseModel {
     private final String definitionEdit;
 
     /**
-     * FlashcardEditorResponseModel constructor.
+     * Creates a new FlashcardEditorResponseModel object.
      * @param flashcardId id of the flashcard
      * @param term term of the flashcard
      * @param definition definition of the flashcard
@@ -23,7 +23,7 @@ public class FlashcardEditorResponseModel {
     }
 
     /**
-     * Get the id of this FlashcardEditorResponseModel.
+     * Returns the id of this FlashcardEditorResponseModel.
      * @return id of the new edited flashcard
      */
     public int getFlashcardId() {
@@ -31,7 +31,7 @@ public class FlashcardEditorResponseModel {
     }
 
     /**
-     * Get the definition of this FlashcardEditorResponseModel.
+     * Returns the definition of this FlashcardEditorResponseModel.
      * @return definition of the new edited flashcard
      */
     public String getDefinitionEdit() {
@@ -39,7 +39,7 @@ public class FlashcardEditorResponseModel {
     }
 
     /**
-     * Get the term of this FlashcardEditorResponseModel.
+     * Returns the term of this FlashcardEditorResponseModel.
      * @return term of the new edited flashcard
      */
     public String getTermEdit() {
