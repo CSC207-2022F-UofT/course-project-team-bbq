@@ -1,7 +1,7 @@
 package search_use_case;
 
 import dataAccess.DBGateway;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

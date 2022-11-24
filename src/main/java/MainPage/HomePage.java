@@ -3,8 +3,8 @@ package MainPage;
 import create_flashcardset_use_case.*;
 import dataAccess.*;
 import entities.FlashcardSetFactory;
-import loginAndSignupUseCase.UserLoginResponseModel;
-import loginAndSignupUseCase.loginAndSignupUseCaseScreens.WelcomeScreen;
+import login_and_signup_use_case.UserLoginResponseModel;
+import login_and_signup_use_case.login_and_signup_use_case_screens.WelcomeScreen;
 import search_use_case.*;
 
 import javax.swing.*;
