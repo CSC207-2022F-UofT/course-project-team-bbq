@@ -1,6 +1,6 @@
 username,password,isAdmin,flashcardSetIds
-George,Clooney123,false,
-John,Rockefeller123,false,
-rObErT,DowneyJr.,true,
+George,Clooney123,false
+John,Rockefeller123,false
 testUser,456r2t17yuihjn@,false,0,1
-Walt,Disney123,false,
+Walt,Disney123,false
+rObErT,DowneyJr.,true
