@@ -1,7 +1,7 @@
-package quizUseCase.screens;
+package quiz_use_case.screens;
 
-import quizUseCase.*;
-import quizUseCase.GUI.*;
+import quiz_use_case.*;
+import quiz_use_case.GUI.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

@@ -1,4 +1,4 @@
-package quizUseCase;
+package quiz_use_case;
 
 import dataAccess.DBGateway;
 import entities.Flashcard;

@@ -1,7 +1,7 @@
-package quizUseCase.screens;
+package quiz_use_case.screens;
 
-import quizUseCase.*;
-import quizUseCase.GUI.*;
+import quiz_use_case.*;
+import quiz_use_case.GUI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,47 +15,46 @@ import java.util.ArrayList;
  */
 public class QuizScreen extends Screen {
     private final QuizController controller;
-
     private final int flashcardSetID;
-
     private final ArrayList<QuestionCard> questionCards;
 
-    // actions
     private enum Actions {
         RESTART, SUBMIT
     }
 
+    /**
+     * Constructs a quiz screen.
+     * @param controller the quiz controller
+     * @param response the quiz settings response model
+     * @param flashcardSetID the flashcard set ID
+     */
     public QuizScreen(QuizController controller, QuizSettingsResponseModel response, int flashcardSetID) {
         super("Quiz", false);
 
         this.controller = controller;
         this.flashcardSetID = flashcardSetID;
-
         this.questionCards = new ArrayList<>();
+        QuestionCardFactory questionCardFactory = new QuestionCardFactory();
 
         ArrayList<String> types = response.getTypes();
         ArrayList<ArrayList<String>> outputText = response.getOutputText();
 
         // CENTER PANEL
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        GridBagLayout grid = new GridBagLayout();
+        GridBagConstraints c = new GridBagConstraints();
+        centerPanel.setLayout(grid);
+        c.gridx = 0;
+        c.insets = new Insets(25, 25, 25, 25);
+        c.ipadx = 25;
+        c.ipady = 25;
+        c.fill = GridBagConstraints.BOTH;
 
         for (int i = 0; i < types.size(); i++) {
-            String type = types.get(i);
-            QuestionCard q;
-            if (type.equals("MC")) {
-                q = new MultipleChoiceQuestionCard(outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q);
-            } else if (type.equals("TE")) {
-                q = new TextEntryQuestionCard(outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q);
-            } else if (type.equals("TF")) {
-                q = new TrueFalseQuestionCard(outputText.get(i));
-                this.questionCards.add(q);
-                centerPanel.add(q);
-            }
+            c.gridy = i;
+            QuestionCard q = questionCardFactory.createQuestionCard(types.get(i), i+1, outputText.get(i));
+            this.questionCards.add(q);
+            centerPanel.add(q, c);
         }
 
         // SCROLL BAR
@@ -81,6 +80,11 @@ public class QuizScreen extends Screen {
         this.setupScreen();
     }
 
+    /**
+     * RESTART - the program returns to the quiz settings screen.
+     * SUBMIT - the program collects all user answers and proceeds to the quiz results screen.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

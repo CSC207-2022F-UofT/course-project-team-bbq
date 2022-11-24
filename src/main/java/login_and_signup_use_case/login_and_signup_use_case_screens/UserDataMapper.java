@@ -25,7 +25,7 @@ class UserDataMapper {
     public UserDataMapper() {
     }
 
-    public UserDataMapper(String name, String password, boolean isAdmin, ArrayList flashcardSetIds, LocalDateTime creationTime) {
+    public UserDataMapper(String name, String password, boolean isAdmin, ArrayList<Integer> flashcardSetIds, LocalDateTime creationTime) {
         super();
         this.name = name;
         this.password = password;
@@ -51,9 +51,9 @@ class UserDataMapper {
 
     public boolean getIsAdmin(boolean isAdmin){return isAdmin;}
 
-    public void setIsAdmin(){this.isAdmin = isAdmin;}
+    public void setIsAdmin(boolean isAdmin){this.isAdmin = isAdmin;}
 
-    public ArrayList getFlashcardSetIds(){
+    public ArrayList<Integer> getFlashcardSetIds(){
         return flashcardSetIds;
     }
 
