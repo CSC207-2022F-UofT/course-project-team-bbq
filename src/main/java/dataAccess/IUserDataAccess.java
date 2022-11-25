@@ -8,7 +8,6 @@ import java.util.Collection;
 
 public interface IUserDataAccess {
 
-
     /**
      * @param username the user's username
      * @return the User object who has username

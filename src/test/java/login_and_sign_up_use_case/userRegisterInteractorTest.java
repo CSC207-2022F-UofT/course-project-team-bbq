@@ -12,6 +12,7 @@ import login_and_signup_use_case.UserRegisterInteractor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
@@ -21,7 +22,9 @@ class UserRegisterInteractorTest {
     // 1) UserRegisterInteractor and prerequisite objects
 
     IUserDataAccess userGateway = new CommonUserDataAccess(
-            "src/test/java/login_and_sign_up_use_case/test_data/Users.csv");
+            "src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
+
+    File file = new File("src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
 
     DBGateway gateway = new DBGateway(null, null, userGateway);
 
@@ -110,6 +113,7 @@ class UserRegisterInteractorTest {
                 Assertions.assertTrue(user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
                 Assertions.assertTrue(gateway.existsByName("Richard"));
+                Assertions.assertTrue(gateway.existsByName("Tom"));
                 Assertions.assertFalse(gateway.existsByName("Daquan"));
                 return null;
             }
@@ -141,6 +145,8 @@ class UserRegisterInteractorTest {
                 Assertions.assertTrue(user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
                 Assertions.assertTrue(gateway.existsByName("Richard"));
+                Assertions.assertTrue(gateway.existsByName("Tom"));
+                Assertions.assertTrue(gateway.existsByName("Brad"));
                 Assertions.assertFalse(gateway.existsByName("Daquan"));
                 return null;
             }
@@ -155,6 +161,43 @@ class UserRegisterInteractorTest {
         UserFactory userFactory = new CommonUserFactory();
         UserRegisterInputBoundary interactor = new UserRegisterInteractor(
                 gateway, presenter, userFactory);
+
+        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
+                "Brad", "Pitt123", "Pitt123", "BuiltDifferent");
+
+        interactor.create(inputData);
+    }
+
+    @Test
+    void create5() throws IOException {
+
+        file.delete();
+
+        IUserDataAccess userGateway2 = new InMemoryUser();
+
+        DBGateway gateway2 = new DBGateway(null, null, userGateway2);
+        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
+            @Override
+            public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
+
+                Assertions.assertEquals("Brad", user.getSignedUpUsername());
+                Assertions.assertTrue(user.getIsAdmin());
+//                Assertions.assertTrue(gateway.existsByName("Steve"));
+                Assertions.assertFalse(gateway2.existsByName("Channing"));
+                Assertions.assertFalse(gateway2.existsByName("Ryan"));
+                return null;
+            }
+
+            @Override
+            public UserRegisterResponseModel prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+                return null;
+            }
+        };
+
+        UserFactory userFactory = new CommonUserFactory();
+        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                gateway2, presenter, userFactory);
 
         UserRegisterRequestModel inputData = new UserRegisterRequestModel(
                 "Brad", "Pitt123", "Pitt123", "BuiltDifferent");

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.fail;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import login_and_signup_use_case.login_and_signup_use_case_screens.UserLoginPresenter;
 import login_and_signup_use_case.UserLoginOutputBoundary;
 import login_and_signup_use_case.UserLoginInputBoundary;
@@ -15,12 +18,15 @@ import login_and_signup_use_case.UserLoginInteractor;
 class UserLoginInteractorTest {
 
     // 1) UserLoginInteractorTest and prerequisite objects
-
+    IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
+            "src/test/java/login_and_sign_up_use_case/test_data/Flashcards.csv");
+    IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
+            "src/test/java/login_and_sign_up_use_case/test_data/FlashcardSets.csv");
     IUserDataAccess userGateway = new CommonUserDataAccess(
-            "src/test/java/login_and_sign_up_use_case/test_data/Users.csv");
+            "src/test/java/login_and_sign_up_use_case/test_data/LoginUsers.csv");
 
 
-    DBGateway gateway = new DBGateway(null, null, userGateway);
+    DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
     UserLoginInteractorTest() throws IOException {
     }
@@ -30,10 +36,12 @@ class UserLoginInteractorTest {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap();
 
                 Assertions.assertEquals("John", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                //assertEquals(Map, user.getFlashcardSets());
+                Assertions.assertTrue(gateway.existsByName("Ch3is"));
+                Assertions.assertEquals(emptyFlashcardSet, user.getFlashcardSets());
                 return null;
             }
 
@@ -57,11 +65,15 @@ class UserLoginInteractorTest {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap();
+                Map<Integer, String[]> notEmptyFlashcardSet = user.getFlashcardSets();
 
                 Assertions.assertEquals("Walt", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertTrue(!user.getIsAdmin());
-                //assertEquals({}, user.getFlashcardSets());
+                Assertions.assertEquals(notEmptyFlashcardSet, user.getFlashcardSets());
+                System.out.println(user.getFlashcardSets());
+                Assertions.assertNotEquals(emptyFlashcardSet, user.getFlashcardSets());
                 return null;
             }
 
@@ -89,7 +101,6 @@ class UserLoginInteractorTest {
                 Assertions.assertEquals("George", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertTrue(!user.getIsAdmin());
-                //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
 
@@ -117,7 +128,6 @@ class UserLoginInteractorTest {
                 Assertions.assertEquals("rObErT", user.getSignedInUsername());
                 Assertions.assertTrue(user.getIsAdmin());
                 Assertions.assertFalse(!user.getIsAdmin());
-                //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
 

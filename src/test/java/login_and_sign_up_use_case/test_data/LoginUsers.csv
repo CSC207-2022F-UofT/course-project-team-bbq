@@ -1,6 +1,11 @@
 username,password,isAdmin,flashcardSetIds
+Tom,Cruise123,true
 George,Clooney123,false
+Steve,Apple123,false
 John,Rockefeller123,false
+Richard,Virgin123,true
 testUser,456r2t17yuihjn@,false,0,1
-Walt,Disney123,false
+Walt,Disney123,false,0,1
+Brad,Pitt123,true
 rObErT,DowneyJr.,true
+Ch3is,EVans,true

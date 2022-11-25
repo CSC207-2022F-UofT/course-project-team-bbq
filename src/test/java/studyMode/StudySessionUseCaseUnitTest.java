@@ -22,7 +22,7 @@ public class StudySessionUseCaseUnitTest {
                                      boolean termIsDefault, boolean isReverse) throws IOException {
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess("src/test/java/studyMode/testData/Flashcards.csv");
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess("src/test/java/studyMode/testData/FlashcardSets.csv");
-        IUserDataAccess userGateway = new CommonUserDataAccess("src/test/java/studyMode/testData/Users.csv");
+        IUserDataAccess userGateway = new CommonUserDataAccess("src/test/java/studyMode/testData/LoginUsers.csv");
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
