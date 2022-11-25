@@ -32,7 +32,7 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create() throws IOException {
+    void register(){
         // 1) Create a UserRegisterInteractor and prerequisite objects
         //    (arguments for the UserRegisterInteractor constructor parameters)
         // 2) create the Input Data
@@ -48,7 +48,6 @@ class UserRegisterInteractorTest {
                 // are correct
                 Assertions.assertEquals("Steve", user.getSignedUpUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(!user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
                 return null;
             }
@@ -73,7 +72,7 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create2() throws IOException {
+    void register2WithExistingUser(){
         UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
@@ -104,7 +103,7 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create3() throws IOException {
+    void register3WithMultipleExistingUsers(){
         UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
@@ -112,7 +111,7 @@ class UserRegisterInteractorTest {
                 Assertions.assertEquals("Tom", user.getSignedUpUsername());
                 Assertions.assertTrue(user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
-                Assertions.assertTrue(gateway.existsByName("Richard"));
+//\                Assertions.assertTrue(gateway.existsByName("Richard"));
                 Assertions.assertTrue(gateway.existsByName("Tom"));
                 Assertions.assertFalse(gateway.existsByName("Daquan"));
                 return null;
@@ -136,16 +135,17 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create4() throws IOException {
+    void register4WithMultipleExistingUsersAndPasswordTest(){
         UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
             @Override
             public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
 
                 Assertions.assertEquals("Brad", user.getSignedUpUsername());
                 Assertions.assertTrue(user.getIsAdmin());
+                Assertions.assertNotEquals("Brad123", user.getSignedUpPassword());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
-                Assertions.assertTrue(gateway.existsByName("Richard"));
-                Assertions.assertTrue(gateway.existsByName("Tom"));
+//                Assertions.assertTrue(gateway.existsByName("Richard"));
+//                Assertions.assertTrue(gateway.existsByName("Tom"));
                 Assertions.assertTrue(gateway.existsByName("Brad"));
                 Assertions.assertFalse(gateway.existsByName("Daquan"));
                 return null;
@@ -169,7 +169,43 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create5() throws IOException {
+    void register5WithMultipleExistingUsersAndPasswordTestAndUnconventionalChars(){
+        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
+            @Override
+            public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
+
+                Assertions.assertEquals("HeNr!", user.getSignedUpUsername());
+                Assertions.assertFalse(user.getIsAdmin());
+                Assertions.assertEquals("Superman123", user.getSignedUpPassword());
+//                Assertions.assertTrue(userGateway.existsByName("Brad"));
+                Assertions.assertTrue(gateway.existsByName("Steve"));
+                Assertions.assertTrue(gateway.existsByName("HeNr!"));
+//                Assertions.assertTrue(gateway.existsByName("Tom"));
+//                Assertions.assertTrue(gateway.existsByName("Richard"));
+                Assertions.assertFalse(gateway.existsByName("Daquan"));
+
+                return null;
+            }
+
+            @Override
+            public UserRegisterResponseModel prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+                return null;
+            }
+        };
+
+        UserFactory userFactory = new CommonUserFactory();
+        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                gateway, presenter, userFactory);
+
+        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
+                "HeNr!", "Superman123", "Superman123", "");
+
+        interactor.create(inputData);
+    }
+
+    @Test
+    void register6WithMockDatabaseForSOLID(){
 
         file.delete();
 
@@ -182,7 +218,6 @@ class UserRegisterInteractorTest {
 
                 Assertions.assertEquals("Brad", user.getSignedUpUsername());
                 Assertions.assertTrue(user.getIsAdmin());
-//                Assertions.assertTrue(gateway.existsByName("Steve"));
                 Assertions.assertFalse(gateway2.existsByName("Channing"));
                 Assertions.assertFalse(gateway2.existsByName("Ryan"));
                 return null;
@@ -204,5 +239,4 @@ class UserRegisterInteractorTest {
 
         interactor.create(inputData);
     }
-
 }
