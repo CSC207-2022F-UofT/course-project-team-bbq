@@ -1,4 +1,4 @@
 title, description, privacy, id, owner, flashcardsIds
-test set,for testing study use case,true,0,testUser,0,1,2,3,4,5,6,7,8,9,10,11
-empty test set,for testing study use case with empty set,true,1,testUser,
-tester, tester thing, true, 0, Steve,
+test set,for testing study use case,true,0,Walt,0,1,2,3,4,5,6,7,8,9,10,11
+empty test set,for testing study use case with empty set,true,1,Walt,
+tester,tester thing,true,3,Steve,

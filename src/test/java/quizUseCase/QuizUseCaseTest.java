@@ -18,7 +18,7 @@ public class QuizUseCaseTest {
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
                 "src/test/java/quizUseCase/testData/FlashcardSets.csv");
         IUserDataAccess userGateway = new CommonUserDataAccess(
-                "src/test/java/quizUseCase/testData/Users.csv");
+                "src/test/java/quizUseCase/testData/LoginUsers.csv");
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
