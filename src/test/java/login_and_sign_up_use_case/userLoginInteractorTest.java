@@ -32,11 +32,11 @@ class UserLoginInteractorTest {
     }
 
     @Test
-    void login() throws IOException {
+    void login(){
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
-                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap();
+                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
 
                 Assertions.assertEquals("John", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
@@ -61,11 +61,11 @@ class UserLoginInteractorTest {
     }
 
     @Test
-    void login2() throws IOException {
+    void login2(){
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
-                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap();
+                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
                 Map<Integer, String[]> notEmptyFlashcardSet = new HashMap<>();
                 String[] firstSet = new String[] {"test set", "for testing study use case"};
                 String[] secondSet = new String[] {"empty test set", "for testing study use case with empty set"};
@@ -74,7 +74,6 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("Walt", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(!user.getIsAdmin());
                 Assertions.assertEquals(notEmptyFlashcardSet.get(0)[0], user.getFlashcardSets().get(0)[0]);
                 Assertions.assertEquals(notEmptyFlashcardSet.get(0)[1], user.getFlashcardSets().get(0)[1]);
                 Assertions.assertEquals(notEmptyFlashcardSet.get(1)[0], user.getFlashcardSets().get(1)[0]);
@@ -100,16 +99,14 @@ class UserLoginInteractorTest {
     }
 
     @Test
-    void login3() throws IOException {
+    void login3(){
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
 
                 Assertions.assertEquals("George", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(!user.getIsAdmin());
-                Assertions.assertNotNull(user.getFlashcardSets().size());
-                Assertions.assertTrue(user.getFlashcardSets().size() == 41);
+                Assertions.assertEquals(41, user.getFlashcardSets().size());
                 return null;
             }
 
@@ -129,11 +126,11 @@ class UserLoginInteractorTest {
     }
 
     @Test
-    void login4() throws IOException {
+    void login4(){
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
-                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap();
+                HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
                 Map<Integer, String[]> notEmptyFlashcardSet = new HashMap<>();
                 String[] zeroethSet = new String[] {"test set", "for testing study use case"};
                 String[] firstSet = new String[] {"empty test set", "for testing study use case with empty set"};
@@ -190,7 +187,7 @@ class UserLoginInteractorTest {
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
                 Assertions.assertEquals("Steve", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(user.getFlashcardSets().size() == 9);
+                Assertions.assertEquals(9, user.getFlashcardSets().size());
                 userGateway.saveFlashcardSetID(user.getSignedInUsername(), 90);
 
                 return null;
@@ -218,7 +215,7 @@ class UserLoginInteractorTest {
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
                 Assertions.assertEquals("Steve", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(user.getFlashcardSets().size() == 10);
+                Assertions.assertEquals(10, user.getFlashcardSets().size());
                 userGateway.deleteFlashcardSetID(user.getSignedInUsername(), 90);
 
                 System.out.println(user.getFlashcardSets().size());
