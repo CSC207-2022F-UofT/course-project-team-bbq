@@ -1,11 +1,11 @@
 package MainPage;
 
-import EditorMainPage.EditorMainPage;
+import editor_main_page.EditorMainPage;
 import dataAccess.DBGateway;
 import delete_flashcardset_use_case.*;
 import login_and_signup_use_case.UserLoginResponseModel;
-import quizUseCase.*;
-import quizUseCase.screens.QuizSettingsScreen;
+import quiz_use_case.*;
+import quiz_use_case.screens.QuizSettingsScreen;
 import studyMode.*;
 import studyMode.screens.StudySettingsScreen;
 
@@ -54,7 +54,7 @@ public class FlashcardSetDataPanel extends JPanel {
             DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
             DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
             DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
-            new DeletionScreen(flashcardSetId, controller, user);
+            new DeletionScreen(flashcardSetId, controller, user, gateway);
         });
 
         this.add(buttons);

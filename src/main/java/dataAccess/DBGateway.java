@@ -76,6 +76,10 @@ public class DBGateway {
         return id;
     }
 
+    public void editFlashcardSet(FlashcardSetDsRequestModel flashcardSet){
+        this.flashcardSetGateway.editTitleAndDescription(flashcardSet);
+    }
+
     public void deleteFlashcardSet(String ownerUsername, int flashcardSetID) {
         this.userGateway.deleteFlashcardSetID(ownerUsername, flashcardSetID);
         this.flashcardSetGateway.deleteFlashcardSet(flashcardSetID);
@@ -85,6 +89,10 @@ public class DBGateway {
         int id = this.flashcardGateway.saveFlashcard(flashcard);
         this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), flashcard.getFlashcardId());
         return id;
+    }
+
+    public void editFlashcard(FlashcardDsRequestModel flashcard){
+        this.flashcardGateway.editFlashcard(flashcard);
     }
 
     public void deleteFlashcard(int flashcardSetId, int flashcardId) {

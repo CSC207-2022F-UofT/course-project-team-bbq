@@ -1,12 +1,16 @@
 package delete_flashcardset_use_case;
 
 
+import dataAccess.DBGateway;
+import entityRequestModels.CommonUserDsRequestModel;
 import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
@@ -23,6 +27,7 @@ public class DeletionScreen extends JFrame implements ActionListener {
      * The controller
      */
     DelFlashcardSetController controller;
+    DBGateway gateway;
 
 //    /**
 //     * The application
@@ -32,10 +37,12 @@ public class DeletionScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user) {
+    public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user,
+                          DBGateway gateway) {
         this.user=user;
         this.flashcardSetID = flashcardSetID;
         this.controller = controller;
+        this.gateway = gateway;
 
         JLabel name = new JLabel("Flashcard Set Deletion Screen");
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -80,7 +87,16 @@ public class DeletionScreen extends JFrame implements ActionListener {
 //                int id = Integer.parseInt(flashcardSetID.getText());  // check input is an integer
 
             // Ask for confirmation
-            String title = user.getFlashcardSets().get(flashcardSetID)[0];
+            String title;
+            // Admin deletion
+            if (user.getFlashcardSets().get(flashcardSetID) == null){
+                title =  gateway.getFlashcardSet(flashcardSetID).getTitle();
+            }
+            else{
+                // User deletion
+                title = user.getFlashcardSets().get(flashcardSetID)[0];
+            }
+
 
             int confirmation = JOptionPane.showConfirmDialog(this,
                     "Delete " + title + "?",
