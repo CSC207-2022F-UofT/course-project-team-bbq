@@ -19,9 +19,9 @@ class UserLoginInteractorTest {
 
     // 1) UserLoginInteractorTest and prerequisite objects
     IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
-            "src/test/java/quizUseCase/testData/Flashcards.csv");
+            "src/test/java/login_and_sign_up_use_case/test_data/Flashcards.csv");
     IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
-            "src/test/java/quizUseCase/testData/FlashcardSets.csv");
+            "src/test/java/login_and_sign_up_use_case/test_data/FlashcardSets.csv");
     IUserDataAccess userGateway = new CommonUserDataAccess(
             "src/test/java/login_and_sign_up_use_case/test_data/LoginUsers.csv");
 
@@ -40,6 +40,7 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("John", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
+                Assertions.assertTrue(gateway.existsByName("Ch3is"));
                 Assertions.assertEquals(emptyFlashcardSet, user.getFlashcardSets());
                 return null;
             }
