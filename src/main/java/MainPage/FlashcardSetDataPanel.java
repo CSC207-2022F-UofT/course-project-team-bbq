@@ -54,7 +54,7 @@ public class FlashcardSetDataPanel extends JPanel {
             DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
             DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
             DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
-            new DeletionScreen(flashcardSetId, controller, user);
+            new DeletionScreen(flashcardSetId, controller, user, gateway);
         });
 
         this.add(buttons);

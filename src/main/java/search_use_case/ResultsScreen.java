@@ -1,6 +1,9 @@
 package search_use_case;
 
 import dataAccess.DBGateway;
+import delete_flashcardset_use_case.*;
+import editor_main_page.EditorMainPage;
+import login_and_signup_use_case.UserLoginResponseModel;
 import quiz_use_case.*;
 import quiz_use_case.screens.QuizSettingsScreen;
 import studyMode.*;
@@ -26,7 +29,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
      * @param responseModel contains results from search
      * @param gateway to access information for study and quiz options
      */
-    public ResultsScreen(SearchResponseModel responseModel, DBGateway gateway){
+    public ResultsScreen(SearchResponseModel responseModel, DBGateway gateway, UserLoginResponseModel user){
         super("Search Results");
 
         // store results in a Box layout
@@ -76,15 +79,34 @@ public class ResultsScreen extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, s.getMessage());
                 }
             });
+            JButton edit = new JButton("Edit");
+            edit.addActionListener((e) -> new EditorMainPage(responseModel.getResult_set().get(tempX)
+                    .getFlashcardSetId()));
+            JButton delete = new JButton("Delete");
+            delete.addActionListener(e -> {
+                DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
+                DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
+                DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
+                new DeletionScreen(responseModel.getResult_set().get(tempX)
+                        .getFlashcardSetId(), controller, user, gateway);
+                this.dispose();
+            });
 
             // add elements to the GridLayout
+            panel.setLayout(new GridLayout(6, 1, 20, 20));
             panel.add(title);
             panel.add(description);
             panel.add(owner);
             panel.add(study);
             panel.add(test);
+            if (user.getIsAdmin()) {
+                panel.setLayout(new GridLayout(8, 1, 20, 20));
+                panel.add(edit);
+                panel.add(delete);
+            }
             result_panel.add(panel);
         }
+
         // add the panel containing all the results
         add(scrPane);
         setSize(400, 500);
