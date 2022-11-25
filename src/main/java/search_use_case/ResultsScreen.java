@@ -88,7 +88,8 @@ public class ResultsScreen extends JFrame implements ActionListener {
                 DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
                 DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
                 new DeletionScreen(responseModel.getResult_set().get(tempX)
-                        .getFlashcardSetId(), controller, user);
+                        .getFlashcardSetId(), controller, user, gateway);
+                this.dispose();
             });
 
             // add elements to the GridLayout

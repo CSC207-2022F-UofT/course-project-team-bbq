@@ -64,6 +64,7 @@ public class SearchScreen extends JFrame implements ActionListener{
                 SearchRequestModel requestModel = new SearchRequestModel(s1, selected_tags, curr_user);
                 new ResultsScreen(search_controller.create(requestModel),
                         gateway, curr_user);
+                this.dispose();
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
@@ -80,6 +81,7 @@ public class SearchScreen extends JFrame implements ActionListener{
                         selected_tags, curr_user);
                 new ResultsScreen(search_controller.create(requestModel),
                         gateway, curr_user);
+                this.dispose();
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
