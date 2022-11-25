@@ -12,6 +12,7 @@ import login_and_signup_use_case.UserRegisterInteractor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
@@ -20,9 +21,10 @@ class UserRegisterInteractorTest {
 
     // 1) UserRegisterInteractor and prerequisite objects
 
-    /**To test registration with csv files*/
     IUserDataAccess userGateway = new CommonUserDataAccess(
             "src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
+
+    File file = new File("src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
 
     DBGateway gateway = new DBGateway(null, null, userGateway);
 
@@ -168,6 +170,8 @@ class UserRegisterInteractorTest {
 
     @Test
     void create5() throws IOException {
+
+        file.delete();
 
         IUserDataAccess userGateway2 = new InMemoryUser();
 
