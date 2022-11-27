@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import dataAccess.*;
+import data_access.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +16,11 @@ public class QuizUseCaseTest {
                                    boolean textEntryOn,
                                    boolean trueFalseOn) throws IOException {
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
-                "src/test/java/quiz_use_case/testData/Flashcards.csv");
+                "src/test/java/quiz_use_case/test_data/Flashcards.csv");
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
-                "src/test/java/quiz_use_case/testData/FlashcardSets.csv");
+                "src/test/java/quiz_use_case/test_data/FlashcardSets.csv");
         IUserDataAccess userGateway = new CommonUserDataAccess(
-                "src/test/java/quiz_use_case/testData/Users.csv");
+                "src/test/java/quiz_use_case/test_data/Users.csv");
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 

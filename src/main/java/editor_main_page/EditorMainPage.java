@@ -1,8 +1,8 @@
 package editor_main_page;
 
-import dataAccess.*;
-import entityRequestModels.FlashcardDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.*;
+import data_access.entity_request_models.FlashcardDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 
 import javax.swing.*;
 import java.io.IOException;

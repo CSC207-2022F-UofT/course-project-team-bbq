@@ -1,8 +1,8 @@
 package search_use_case;
 
-import dataAccess.*;
-import entityRequestModels.CommonUserDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.*;
+import data_access.entity_request_models.CommonUserDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import login_and_signup_use_case.UserLoginResponseModel;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import MainPage.HomePage;
+import main_page.HomePage;
 import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
