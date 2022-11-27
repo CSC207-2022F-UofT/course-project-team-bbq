@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public class CommonUserDsRequestModel {
-    private String username;
-    private String password;
-    private boolean isAdmin;
-    private List<Integer> flashcardSetIds;
+    private final String username;
+    private final String password;
+    private final boolean isAdmin;
+    private final List<Integer> flashcardSetIds;
 
     public CommonUserDsRequestModel(String username, String password, boolean isAdmin, List<Integer> flashcardSetIds){
         this.username = username;

@@ -26,8 +26,8 @@ public class QuizSettingsScreen extends Screen {
     private final int flashcardSetID;
 
     // GUI components
-    private Slider numQuestionsSlider;
-    private Slider timerSlider;
+    private final Slider numQuestionsSlider;
+    private final Slider timerSlider;
 
     private final JButton timerButton;
     private final JButton multipleChoiceButton;
@@ -35,7 +35,7 @@ public class QuizSettingsScreen extends Screen {
     private final JButton trueFalseButton;
 
     // listener
-    private ChangeListener listener;
+    private final ChangeListener listener;
 
     // actions
     private enum Actions {

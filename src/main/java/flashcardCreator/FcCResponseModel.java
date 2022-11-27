@@ -3,7 +3,7 @@ package flashcardCreator;
 import java.time.LocalDateTime;
 
 public class FcCResponseModel {
-    private LocalDateTime creationDate;
+    private final LocalDateTime creationDate;
     private String term, definition;
 
     public FcCResponseModel(LocalDateTime creationDate, String term, String definition) {

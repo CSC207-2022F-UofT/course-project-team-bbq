@@ -5,8 +5,8 @@ import java.time.*;
 public class Flashcard {
     private String term;
     private String definition;
-    private LocalDateTime creationDate;
-    private int flashcardId;
+    private final LocalDateTime creationDate;
+    private final int flashcardId;
     private int belongsToId;
 
 

@@ -8,8 +8,8 @@ public class FlashcardSetDsRequestModel {
     private String description;
     private boolean isPrivate;
 
-    private List<Integer> flashcardIds;
-    private String ownerUsername;
+    private final List<Integer> flashcardIds;
+    private final String ownerUsername;
     private int flashcardSetId;
 
     public FlashcardSetDsRequestModel(String title, String description, boolean isPrivate,

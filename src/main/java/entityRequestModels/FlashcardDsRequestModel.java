@@ -7,9 +7,9 @@ import java.util.List;
 public class FlashcardDsRequestModel {
     private String term;
     private String definition;
-    private LocalDateTime creationDate;
+    private final LocalDateTime creationDate;
     private int flashcardId;
-    private int belongsToId;
+    private final int belongsToId;
 
     public FlashcardDsRequestModel(String term, String definition, LocalDateTime creationDate,
                                    int flashcardId, int belongsToId){

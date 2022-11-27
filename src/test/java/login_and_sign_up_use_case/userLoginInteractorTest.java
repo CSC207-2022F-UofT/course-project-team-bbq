@@ -60,7 +60,7 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("Walt", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(!user.getIsAdmin());
+                Assertions.assertFalse(user.getIsAdmin());
                 //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
@@ -88,7 +88,7 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("George", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
-                Assertions.assertTrue(!user.getIsAdmin());
+                Assertions.assertFalse(user.getIsAdmin());
                 //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
@@ -116,7 +116,7 @@ class UserLoginInteractorTest {
 
                 Assertions.assertEquals("rObErT", user.getSignedInUsername());
                 Assertions.assertTrue(user.getIsAdmin());
-                Assertions.assertFalse(!user.getIsAdmin());
+                Assertions.assertTrue(user.getIsAdmin());
                 //assertEquals({}, user.getFlashcardSets());
                 return null;
             }
