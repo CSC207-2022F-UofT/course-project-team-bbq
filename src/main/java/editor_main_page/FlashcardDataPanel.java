@@ -1,9 +1,9 @@
 package editor_main_page;
 
-import edit_flashcard.FlashcardEditorMain;
-import dataAccess.DBGateway;
-import entityRequestModels.FlashcardDsRequestModel;
-import flashcardRemover.FcRMain;
+import edit_flashcard_use_case.FlashcardEditorMain;
+import data_access.DBGateway;
+import data_access.entity_request_models.FlashcardDsRequestModel;
+import remove_flashcard_use_case.FcRMain;
 
 import javax.swing.*;
 import javax.swing.border.Border;

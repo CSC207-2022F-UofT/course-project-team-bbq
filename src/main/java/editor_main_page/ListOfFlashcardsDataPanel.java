@@ -1,11 +1,11 @@
 package editor_main_page;
 
 
-import edit_flashcardset.FCSetEditorMain;
-import dataAccess.DBGateway;
-import entityRequestModels.FlashcardDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
-import flashcardCreator.FcCMain;
+import edit_flashcard_set_use_case.FCSetEditorMain;
+import data_access.DBGateway;
+import data_access.entity_request_models.FlashcardDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import create_flashcard_use_case.FcCMain;
 
 import javax.swing.*;
 import java.awt.*;
