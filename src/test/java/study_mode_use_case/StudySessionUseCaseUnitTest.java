@@ -25,7 +25,7 @@ public class StudySessionUseCaseUnitTest {
         IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
                 "src/test/java/study_mode_use_case/test_data/FlashcardSets.csv");
         IUserDataAccess userGateway = new CommonUserDataAccess(
-                "src/test/java/study_mode_use_case/test_data/LoginUsers.csv");
+                "src/test/java/study_mode_use_case/test_data/Users.csv");
 
         DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
