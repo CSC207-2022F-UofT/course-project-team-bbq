@@ -44,7 +44,7 @@ public class DelFlashcardSetInteractorTest {
 
         // Populate flashcardRepo
         FlashcardDsRequestModel fc1 = new FlashcardDsRequestModel("SOLID", "Single responsibility, " +
-                "Open/closed, Liskov substitution, Interface segragation, Dependency inversion", LocalDateTime.now(),
+                "Open/closed, Liskov substitution, Interface segregation, Dependency inversion", LocalDateTime.now(),
                 10, 1);
 
         FlashcardDsRequestModel fc2 = new FlashcardDsRequestModel("Bloaters", "too much code",

@@ -1,7 +1,7 @@
-package remove_flashcard_use_case.FcRScreens;
+package delete_flashcard_use_case.FcRScreens;
 
-import remove_flashcard_use_case.FcROutputBoundary;
-import remove_flashcard_use_case.FcRResponseModel;
+import delete_flashcard_use_case.FcROutputBoundary;
+import delete_flashcard_use_case.FcRResponseModel;
 /**
  * Presenter for flashcard remover.
  * Interface adaptors.

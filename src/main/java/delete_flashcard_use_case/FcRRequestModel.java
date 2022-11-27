@@ -1,4 +1,4 @@
-package remove_flashcard_use_case;
+package delete_flashcard_use_case;
 /**
  * Request model for flashcard remover.
  * Application business rules.

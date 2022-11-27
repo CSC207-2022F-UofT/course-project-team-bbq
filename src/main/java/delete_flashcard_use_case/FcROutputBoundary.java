@@ -1,4 +1,4 @@
-package remove_flashcard_use_case;
+package delete_flashcard_use_case;
 /**
  * Presenter for flashcard remover.
  * Application business rules.

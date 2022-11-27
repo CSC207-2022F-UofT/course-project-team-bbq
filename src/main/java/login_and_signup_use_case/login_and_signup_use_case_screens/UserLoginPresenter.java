@@ -23,7 +23,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
     /**
      * Prepares the Login failure view.
      * @param error to ensure there is an error.
-     * @throw the UserLoginFailed if the user login fails.
+     * @return the UserLoginFailed if the user login fails.
      */
     @Override
     public UserLoginResponseModel prepareFailView(String error) {
