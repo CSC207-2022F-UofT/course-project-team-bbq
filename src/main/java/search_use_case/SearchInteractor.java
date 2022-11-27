@@ -37,7 +37,7 @@ public class SearchInteractor implements SearchInputBoundary{
      * @return SearchResponseModel that contains the result set of FlashcardSets from the user search
      */
     @Override
-    public SearchResponseModel create(SearchRequestModel requestModel) throws IOException {
+    public SearchResponseModel create(SearchRequestModel requestModel) {
 
         ArrayList<FlashcardSetDsRequestModel> result_set = new ArrayList<>();
         ArrayList<Integer> flashcard_set_ids = new ArrayList<>();

@@ -14,5 +14,5 @@ public interface SearchInputBoundary {
      * @param requestModel a data-structure containing the user input, search tags, and current user
      * @return a data structure with the data required to set up the resultsScreen
      */
-    SearchResponseModel create(SearchRequestModel requestModel) throws IOException;
+    SearchResponseModel create(SearchRequestModel requestModel);
 }
