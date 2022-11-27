@@ -56,11 +56,11 @@ public class MultipleChoiceQuestion extends QuizQuestion {
 
     @Override
     public String toString() {
-        String s = "Prompt: " + this.question + "\n";
+        StringBuilder s = new StringBuilder("Prompt: " + this.question + "\n");
         for (int i = 0; i < this.numChoices; i++) {
-            s += "Option " + (i+1) + ": " + this.choices[i] + "\n";
+            s.append("Option ").append(i + 1).append(": ").append(this.choices[i]).append("\n");
         }
-        return s;
+        return s.toString();
     }
 
     /** GETTERS AND SETTERS **/
@@ -74,9 +74,5 @@ public class MultipleChoiceQuestion extends QuizQuestion {
 
     public String[] getChoices() {
         return choices;
-    }
-
-    public void setChoices(String[] choices) {
-        this.choices = choices;
     }
 }

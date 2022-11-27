@@ -1,7 +1,7 @@
 package search_use_case;
 
-import dataAccess.DBGateway;
-import loginAndSignupUseCase.UserLoginResponseModel;
+import data_access.DBGateway;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -61,8 +61,10 @@ public class SearchScreen extends JFrame implements ActionListener{
             }
             // navigate to results screen if results are found
             try {
-                new ResultsScreen(search_controller.create(s1, selected_tags, curr_user),
-                        gateway);
+                SearchRequestModel requestModel = new SearchRequestModel(s1, selected_tags, curr_user);
+                new ResultsScreen(search_controller.create(requestModel),
+                        gateway, curr_user);
+                this.dispose();
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());
@@ -75,8 +77,11 @@ public class SearchScreen extends JFrame implements ActionListener{
         search_all.setBounds(130, 400, 100, 40);
         search_all.addActionListener( e -> {
             try {
-                new ResultsScreen(search_controller.create("GET_ALL", selected_tags, curr_user),
-                        gateway);
+                SearchRequestModel requestModel = new SearchRequestModel("GET_ALL",
+                        selected_tags, curr_user);
+                new ResultsScreen(search_controller.create(requestModel),
+                        gateway, curr_user);
+                this.dispose();
             }
             catch (Exception x){
                 JOptionPane.showMessageDialog(this, x.getMessage());

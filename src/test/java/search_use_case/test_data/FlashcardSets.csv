@@ -1,0 +1,7 @@
+title, description, privacy, id, owner, flashcardsIds
+test1,d1,false,0,testUser1,0
+test2,d2,false,1,testUser2,0
+test3,d3,false,2,testUser3,0
+test4,d4,false,3,testUser4,0
+test5,d5,true,4,testUser4,0
+test6,d6,true,5,testUser4,0
