@@ -1,10 +1,14 @@
 package flashcardRemover;
 
 import dataAccess.*;
-
+import flashcardRemover.FcRScreens.FcRController;
+import flashcardRemover.FcRScreens.FcRResponsePresenter;
 import javax.swing.*;
 import java.io.IOException;
-
+/**
+ * Main frame for flashcard Remover.
+ * @author Junyu Chen
+ */
 public class FcRMain extends JFrame {
     public FcRMain(int flashcardSetId, int flashcardId){
         DBGateway gateway;
@@ -16,9 +20,9 @@ public class FcRMain extends JFrame {
         catch (IOException e){
             throw new RuntimeException("Could not access files.");
         }
-        FcRPresenter presenter = new FcRResponseFormatter();
-        FcRInputBoundary interactor = new FcRInterator(gateway,presenter);
-        FcRController controller = new FcRController(interactor, flashcardSetId);
+        FcROutputBoundary presenter = new FcRResponsePresenter();
+        FcRInputBoundary interactor = new FcRInteractor(gateway,presenter);
+        FcRController controller = new FcRController(interactor);
         this.setVisible(false);
         try {
             FcRResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);

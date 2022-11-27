@@ -6,17 +6,32 @@ import dataAccess.IFlashcardSetDataAccess;
 import entityRequestModels.FlashcardDsRequestModel;
 
 import java.time.LocalDateTime;
-
-public class FcCInterator implements FcCInputBoundary{
-    FcCPresenter presenter;
+/**
+ * Interactor for flashcard creator.
+ * Application business rules.
+ * @author Junyu Chen
+ */
+public class FcCInteractor implements FcCInputBoundary{
+    FcCOutputBoundary presenter;
     IFlashcardDataAccess fcDataAccess;
     IFlashcardSetDataAccess fcsDataAccess;
 
-    public FcCInterator(DBGateway gateway, FcCPresenter presenter){
+    /**
+     * Create FcCInteractor
+     * @param gateway Database gateway.
+     * @param presenter Presenter for failure or success view.
+     */
+    public FcCInteractor(DBGateway gateway, FcCOutputBoundary presenter){
         this.presenter = presenter;
         this.fcDataAccess = gateway.getFlashcardGateway();
         this.fcsDataAccess = gateway.getFlashcardSetGateway();
     }
+
+    /**
+     * Create flashcard with given term, definition in the given flashcard set recording the date of creation.
+     * If term or definition is empty flashcard set does not exist, returns the corresponding error.
+     * @return Success or failure view.
+     */
     @Override
     public FcCResponseModel create(FcCRequestModel requestModel) {
         if(requestModel.getDefinition().isEmpty()||requestModel.getTerm().isEmpty()){

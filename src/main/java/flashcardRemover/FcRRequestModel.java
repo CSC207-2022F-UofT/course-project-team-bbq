@@ -1,5 +1,9 @@
 package flashcardRemover;
-
+/**
+ * Request model for flashcard remover.
+ * Application business rules.
+ * @author Junyu Chen
+ */
 public class FcRRequestModel {
     private int flashcardSetId, flashcardId;
     public FcRRequestModel(int flashcardSetId, int flashcardId){
