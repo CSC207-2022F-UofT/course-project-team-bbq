@@ -24,7 +24,7 @@ abstract public class QuizQuestion {
      * @return true if the user answer is equal to the actual answer.
      */
     public boolean isCorrect(){
-        return this.actualAnswer.equals(this.userAnswer);
+        return this.actualAnswer.equalsIgnoreCase(this.userAnswer);
     }
 
     /** GETTERS AND SETTERS **/
@@ -33,7 +33,7 @@ abstract public class QuizQuestion {
     }
 
     public void setActualAnswer(String actualAnswer) {
-        this.actualAnswer = actualAnswer.toLowerCase();
+        this.actualAnswer = actualAnswer;
     }
 
     public String getUserAnswer() {
@@ -48,7 +48,7 @@ abstract public class QuizQuestion {
         if (userAnswer == null || userAnswer.equals("")) {
             this.userAnswer = null;
         } else {
-            this.userAnswer = userAnswer.toLowerCase();
+            this.userAnswer = userAnswer;
         }
     }
 }

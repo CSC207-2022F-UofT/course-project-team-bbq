@@ -1,8 +1,8 @@
 package search_use_case;
 
-import dataAccess.*;
-import entityRequestModels.CommonUserDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.*;
+import data_access.entity_request_models.CommonUserDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import login_and_signup_use_case.UserLoginResponseModel;
 
 import java.io.IOException;
@@ -90,15 +90,15 @@ public class SearchInteractor implements SearchInputBoundary{
             SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
             return presenter.prepareSuccessView(searchResponseModel);
         }
+        if (tags.size() > 0 && !input.equals("")){
+            return presenter.prepareFailView("There are currently no FlashcardSets in the database.");
+        }
         // User chooses no tags
         if (tags.size() == 0){
             return presenter.prepareFailView("Please select at least 1 tag.");
         }
         // User provides no input
-        if (input.equals("")){
-            return presenter.prepareFailView("Please enter a keyword to search.");
-        }
+        return presenter.prepareFailView("Please enter a keyword to search.");
         // User search unsuccessful
-        return presenter.prepareFailView("No Flashcard Sets matched your search criteria, please try again.");
     }
 }

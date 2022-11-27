@@ -25,7 +25,7 @@ public class UserRegisterPresenter implements UserRegisterOutputBoundary {
     /**
      * Prepares the Signup failure view.
      * @param error to ensure there is an error.
-     * @throw the UserRegistrationFailed if the user signup fails.
+     * @return the UserRegistrationFailed if the user signup fails.
      */
     @Override
     public UserRegisterResponseModel prepareFailView(String error) {

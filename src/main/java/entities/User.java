@@ -27,7 +27,7 @@ public interface User {
     ArrayList<Integer> getFlashcardSetIds();
 
     /**
-     * Checks whether the password is valid by not being nothing and greater in length by 5
+     * Checks whether the password is valid by not being null and greater by 5
      * @return whether the password is valid
      */
     boolean passwordIsValid();

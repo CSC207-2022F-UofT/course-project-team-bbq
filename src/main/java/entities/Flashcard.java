@@ -35,14 +35,6 @@ public class Flashcard {
         return flashcardId;
     }
 
-    public int getBelongsToId() {
-        return belongsToId;
-    }
-
-    public void setBelongsToId(int belongsToId) {
-        this.belongsToId = belongsToId;
-    }
-
     public void setDefinition(String definition) {
         this.definition = definition;
     }

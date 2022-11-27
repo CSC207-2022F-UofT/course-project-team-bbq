@@ -1,6 +1,6 @@
 package search_use_case;
 
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 
 import java.util.ArrayList;
 

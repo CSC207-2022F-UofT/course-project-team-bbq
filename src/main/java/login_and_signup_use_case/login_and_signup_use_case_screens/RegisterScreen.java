@@ -1,6 +1,6 @@
 package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import MainPage.HomePage;
+import main_page.HomePage;
 import login_and_signup_use_case.*;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
- * Create a swing user interface for the Sign Up Screen
+ * Create a swing user interface for the Sign-Up Screen
  *<p>
  * Frameworks and Drivers
  * @author Aryan Chablani (with inspiration from Professor Paul Gries)
