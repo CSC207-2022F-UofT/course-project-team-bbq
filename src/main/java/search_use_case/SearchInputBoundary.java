@@ -1,6 +1,5 @@
 package search_use_case;
 
-import java.io.IOException;
 /**
  * The search input boundary.
  * <p>
