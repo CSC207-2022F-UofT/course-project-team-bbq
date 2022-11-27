@@ -87,8 +87,8 @@ public class SearchInteractor implements SearchInputBoundary{
 
         // Return results if there is at least 1 result
         if (result_set.size() > 0){
-            SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
-            return presenter.prepareSuccessView(searchResponseModel);
+//            SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
+            return presenter.prepareSuccessView(result_set);
         }
         if (tags.size() > 0 && !input.equals("")){
             return presenter.prepareFailView("There are currently no FlashcardSets in the database.");
