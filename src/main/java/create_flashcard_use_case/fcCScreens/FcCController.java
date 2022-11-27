@@ -17,7 +17,7 @@ public class FcCController {
     /**
      * Create FcCController
      * @param inputBoundary Interactor for flashcard creator.
-     * @param flashcardSetId Id of flashcard set which new flashcard will be created in.
+     * @param flashcardSetId ID of flashcard set which new flashcard will be created in.
      */
     public FcCController(FcCInputBoundary inputBoundary, int flashcardSetId){
         this.inputBoundary = inputBoundary;

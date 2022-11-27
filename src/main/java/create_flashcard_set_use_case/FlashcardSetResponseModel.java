@@ -5,7 +5,7 @@ package create_flashcard_set_use_case;
 import entities.FlashcardSet;
 
 public class FlashcardSetResponseModel {
-    private FlashcardSet fs;
+    private final FlashcardSet fs;
 
     public FlashcardSetResponseModel(FlashcardSet fs) {
         this.fs = fs;

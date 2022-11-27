@@ -1,8 +1,8 @@
-package remove_flashcard_use_case;
+package delete_flashcard_use_case;
 
 import data_access.*;
-import remove_flashcard_use_case.FcRScreens.FcRController;
-import remove_flashcard_use_case.FcRScreens.FcRResponsePresenter;
+import delete_flashcard_use_case.FcRScreens.FcRController;
+import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
 import javax.swing.*;
 import java.io.IOException;
 /**

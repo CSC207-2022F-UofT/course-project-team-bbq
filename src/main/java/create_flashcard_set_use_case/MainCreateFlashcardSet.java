@@ -1,4 +1,4 @@
-//package create_flashcardset_use_case;
+//package create_flashcard_set_use_case;
 //
 //import dataAccess.*;
 //import entities.FlashcardSetFactory;

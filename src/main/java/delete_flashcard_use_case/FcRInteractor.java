@@ -1,4 +1,4 @@
-package remove_flashcard_use_case;
+package delete_flashcard_use_case;
 
 import data_access.DBGateway;
 

@@ -1,4 +1,4 @@
-package remove_flashcard_use_case;
+package delete_flashcard_use_case;
 
 import data_access.DBGateway;
 import data_access.IFlashcardDataAccess;
@@ -7,7 +7,7 @@ import data_access.entity_request_models.FlashcardDsRequestModel;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import create_flashcard_use_case.fcCScreens.InMemoryFlashcard;
 import create_flashcard_use_case.fcCScreens.InMemoryFlashcardSet;
-import remove_flashcard_use_case.FcRScreens.FcRResponsePresenter;
+import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,8 @@
-package remove_flashcard_use_case.FcRScreens;
+package delete_flashcard_use_case.FcRScreens;
 
-import remove_flashcard_use_case.FcRInputBoundary;
-import remove_flashcard_use_case.FcRRequestModel;
-import remove_flashcard_use_case.FcRResponseModel;
+import delete_flashcard_use_case.FcRInputBoundary;
+import delete_flashcard_use_case.FcRRequestModel;
+import delete_flashcard_use_case.FcRResponseModel;
 
 /**
  * Controller for flashcard Remover.
@@ -21,7 +21,7 @@ public class FcRController {
     }
 
     /**
-     * Removeing flashcard form flashcard set.
+     * Removing flashcard form flashcard set.
      * @param flashcardSetId id of the flashcard set that flashcard will be removed from
      * @param flashcardId id of flashcard that will be removed
      * @return Success or failure view.

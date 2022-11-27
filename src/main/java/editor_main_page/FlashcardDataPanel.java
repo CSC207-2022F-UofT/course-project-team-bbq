@@ -3,7 +3,7 @@ package editor_main_page;
 import edit_flashcard_use_case.FlashcardEditorMain;
 import data_access.DBGateway;
 import data_access.entity_request_models.FlashcardDsRequestModel;
-import remove_flashcard_use_case.FcRMain;
+import delete_flashcard_use_case.FcRMain;
 
 import javax.swing.*;
 import javax.swing.border.Border;

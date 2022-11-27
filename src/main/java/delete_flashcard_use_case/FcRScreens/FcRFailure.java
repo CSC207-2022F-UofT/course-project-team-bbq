@@ -1,4 +1,4 @@
-package remove_flashcard_use_case.FcRScreens;
+package delete_flashcard_use_case.FcRScreens;
 /**
  * Failure of flashcard remover.
  * Interface Adaptors.
