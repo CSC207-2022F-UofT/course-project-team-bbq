@@ -1,5 +1,5 @@
 package search_use_case;
-import entityRequestModels.CommonUserDsRequestModel;
+import login_and_signup_use_case.UserLoginResponseModel;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class SearchRequestModel {
 
     private final String search_input;
     private final ArrayList<String> tags;
-    private final CommonUserDsRequestModel user;
+    private final UserLoginResponseModel user;
 
     /**
      *  creates a SearchRequestModel
@@ -23,7 +23,7 @@ public class SearchRequestModel {
      * @param tags  the selected tags
      * @param user  the current user
      */
-    public SearchRequestModel(String search_input, ArrayList<String> tags, CommonUserDsRequestModel user){
+    public SearchRequestModel(String search_input, ArrayList<String> tags, UserLoginResponseModel user){
         this.search_input = search_input;
         this.tags = tags;
         this.user = user;
@@ -49,7 +49,7 @@ public class SearchRequestModel {
      *
      * @return the current user
      */
-    CommonUserDsRequestModel getUser(){
+    UserLoginResponseModel getUser(){
         return user;
     }
 

@@ -3,3 +3,15 @@ test card 1,the first test card,2022-11-13T15:32:26.666982800,0,0
 test card 2,the second test card,2022-11-13T15:32:27.666982800,1,0
 test card 3,the third test card,2022-11-13T15:32:28.666982800,2,0
 alphabetical order checker,to test if alphabetical order is working,2022-11-13T15:32:29.666982800,3,0
+Term A,Definition A,2022-11-13T15:32:26.666982800,10,2
+Term B,Definition B,2022-11-13T15:32:27.666982800,11,2
+Term C,Definition C,2022-11-13T15:32:28.666982800,12,2
+Term D,Definition D,2022-11-13T15:32:29.666982800,13,2
+Term E,Definition E,2022-11-13T15:32:29.666982800,14,2
+Term F,Definition F,2022-11-13T15:32:29.666982800,15,2
+Term G,Definition G,2022-11-13T15:32:29.666982800,16,2
+Term H,Definition H,2022-11-13T15:32:29.666982800,17,2
+Term I,Definition I,2022-11-13T15:32:29.666982800,18,2
+Term J,Definition J,2022-11-13T15:32:29.666982800,19,2
+Same Term,Same Definition,2022-11-13T15:32:29.666982800,20,2
+Same Term,Same Definition,2022-11-13T15:32:29.666982800,21,2

@@ -1,0 +1,13 @@
+term, definition, creationDate, flashcardId, belongsToId
+Term A,Definition A,2022-11-13T15:32:26.666982800,0,0
+Term B,Definition B,2022-11-13T15:32:27.666982800,1,0
+Term C,Definition C,2022-11-13T15:32:28.666982800,2,0
+Term D,Definition D,2022-11-13T15:32:29.666982800,3,0
+Term E,Definition E,2022-11-13T15:32:29.666982800,4,0
+Term F,Definition F,2022-11-13T15:32:29.666982800,5,0
+Term G,Definition G,2022-11-13T15:32:29.666982800,6,0
+Term H,Definition H,2022-11-13T15:32:29.666982800,7,0
+Term I,Definition I,2022-11-13T15:32:29.666982800,8,0
+Term J,Definition J,2022-11-13T15:32:29.666982800,9,0
+Same Term,Same Definition,2022-11-13T15:32:29.666982800,10,0
+Same Term,Same Definition,2022-11-13T15:32:29.666982800,11,0

@@ -55,7 +55,7 @@ public class CommonUserDataAccess implements IUserDataAccess{
             writer.newLine();
 
             for (CommonUserDsRequestModel user : accounts.values()) {
-                StringBuilder line = new StringBuilder(String.format("%s, %s, %s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
+                StringBuilder line = new StringBuilder(String.format("%s,%s,%s", user.getUsername(), user.getPassword(), user.getIsAdmin()));
                 for(int flashcardSetIds: user.getFlashcardSetIds()){
                     line.append(",");
                     line.append(Integer.toString(flashcardSetIds));
@@ -93,6 +93,17 @@ public class CommonUserDataAccess implements IUserDataAccess{
         CommonUserDsRequestModel oldUser = accounts.get(username);
         List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
         newFlashcardSet.add(FlashcardSetID);
+        CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
+
+        accounts.put(username, newUser);
+        save();
+    }
+
+    @Override
+    public void deleteFlashcardSetID(String username, int FlashcardSetID) {
+        CommonUserDsRequestModel oldUser = accounts.get(username);
+        List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
+        newFlashcardSet.remove((Object) FlashcardSetID);
         CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
 
         accounts.put(username, newUser);

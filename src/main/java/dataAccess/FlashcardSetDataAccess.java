@@ -142,6 +142,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess{
     }
 
     private int getLargestId(){
+        if (flashcardSets.size() == 0) {
+            return -1;
+        }
         Set<Integer> ids = flashcardSets.keySet();
         return max(ids);
     }

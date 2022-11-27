@@ -88,7 +88,7 @@ public class StudySessionScreen extends JFrame implements ActionListener {
 //        setLocationRelativeTo(null);
 
         // quit if you close the tab
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

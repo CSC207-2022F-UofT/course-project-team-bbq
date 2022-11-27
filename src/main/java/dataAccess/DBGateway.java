@@ -3,7 +3,6 @@ package dataAccess;
 import entityRequestModels.CommonUserDsRequestModel;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
-import entityRequestModels.UserDsRequestModel;
 
 public class DBGateway {
     private static final String flashcardPath = "src/data/Flashcards.csv";
@@ -43,7 +42,7 @@ public class DBGateway {
     }
 
     public CommonUserDsRequestModel getCommonUser(String username){
-        return (CommonUserDsRequestModel)this.userGateway.getUser(username);
+        return this.userGateway.getUser(username);
     }
 
     public IFlashcardDataAccess getFlashcardGateway() {
@@ -56,5 +55,48 @@ public class DBGateway {
 
     public IUserDataAccess getUserGateway() {
         return userGateway;
+    }
+
+    public String[] getTitleAndDescription(int flashcardSetId) {
+        return this.flashcardSetGateway.getTitleAndDescription(flashcardSetId);
+    }
+
+    public boolean existsByName(String username){
+        return this.userGateway.existsByName(username);
+    }
+
+    public void saveUser(CommonUserDsRequestModel user) {
+        this.userGateway.saveUser(user);
+    }
+
+
+    public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
+        int id = this.flashcardSetGateway.saveFlashcardSet(flashcardSet);
+        this.userGateway.saveFlashcardSetID(flashcardSet.getOwnerUsername(), flashcardSet.getFlashcardSetId());
+        return id;
+    }
+
+    public void editFlashcardSet(FlashcardSetDsRequestModel flashcardSet){
+        this.flashcardSetGateway.editTitleAndDescription(flashcardSet);
+    }
+
+    public void deleteFlashcardSet(String ownerUsername, int flashcardSetID) {
+        this.userGateway.deleteFlashcardSetID(ownerUsername, flashcardSetID);
+        this.flashcardSetGateway.deleteFlashcardSet(flashcardSetID);
+    }
+
+    public int saveFlashcard(FlashcardDsRequestModel flashcard) {
+        int id = this.flashcardGateway.saveFlashcard(flashcard);
+        this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), flashcard.getFlashcardId());
+        return id;
+    }
+
+    public void editFlashcard(FlashcardDsRequestModel flashcard){
+        this.flashcardGateway.editFlashcard(flashcard);
+    }
+
+    public void deleteFlashcard(int flashcardSetId, int flashcardId) {
+        this.flashcardSetGateway.removeFlashcardId(flashcardSetId, flashcardId);
+        this.flashcardGateway.deleteFlashcard(flashcardId);
     }
 }
