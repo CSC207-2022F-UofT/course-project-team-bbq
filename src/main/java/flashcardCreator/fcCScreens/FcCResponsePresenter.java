@@ -1,6 +1,9 @@
-package flashcardCreator;
+package flashcardCreator.fcCScreens;
 
-public class FcCResponseFormatter implements FcCPresenter{
+import flashcardCreator.FcCOutputBoundary;
+import flashcardCreator.FcCResponseModel;
+
+public class FcCResponsePresenter implements FcCOutputBoundary {
     @Override
     public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel) {
         return responseModel;

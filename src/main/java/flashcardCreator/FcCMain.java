@@ -1,12 +1,21 @@
 package flashcardCreator;
 
+import flashcardCreator.fcCScreens.FcCController;
+import flashcardCreator.fcCScreens.FcCResponsePresenter;
 import flashcardCreator.fcCScreens.FcCScreen;
 import dataAccess.*;
-
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Main frame for flashcard Creator.
+ * @author Junyu Chen
+ */
 public class FcCMain extends JFrame {
+    /**
+     * Create main frame for the flashcard creator.
+     * @param flashcardSetId id of the flashcard set which flashcard will be stored in.
+     */
     public FcCMain(int flashcardSetId){
         DBGateway gateway;
         try{
@@ -17,8 +26,8 @@ public class FcCMain extends JFrame {
         catch (IOException e){
             throw new RuntimeException("Could not access files.");
         }
-        FcCPresenter presenter = new FcCResponseFormatter();
-        FcCInputBoundary interactor = new FcCInterator(gateway,presenter);
+        FcCOutputBoundary presenter = new FcCResponsePresenter();
+        FcCInputBoundary interactor = new FcCInteractor(gateway,presenter);
         FcCController controller = new FcCController(interactor, flashcardSetId);
         FcCScreen fcCScreen= new FcCScreen(controller, this);
         this.add(fcCScreen);
