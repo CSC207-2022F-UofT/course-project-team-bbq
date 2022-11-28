@@ -3,6 +3,7 @@ package quiz_use_case.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Frameworks & Drivers
  * @author Anthony
  */
-public class MultipleChoiceQuestionCard extends QuestionCard {
+public class MultipleChoiceQuestionCard extends QuestionCard implements ActionListener {
     private final ArrayList<JRadioButton> choices;
 
     /**
@@ -99,6 +100,10 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
         }
     }
 
+    /**
+     * When a multiple choice button is pressed, this method sets the user answer according to its source button.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JRadioButton source = (JRadioButton) e.getSource();

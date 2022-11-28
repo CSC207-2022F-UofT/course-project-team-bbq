@@ -7,9 +7,23 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class contains various test cases for the quiz use case.
+ * @author Anthony
+ */
 public class QuizUseCaseTest {
     QuizController controller;
 
+    /**
+     * This method sets up my tests.
+     * @param numQuestions the number of questions
+     * @param timerOn is the timer on
+     * @param multipleChoiceOn is the multiple choice on
+     * @param textEntryOn is the text entry on
+     * @param trueFalseOn is the true false on
+     * @return the quiz settings request model
+     * @throws IOException if I can't access the test data
+     */
     QuizSettingsRequestModel setup(int numQuestions,
                                    boolean timerOn,
                                    boolean multipleChoiceOn,
@@ -32,6 +46,10 @@ public class QuizUseCaseTest {
                 0, multipleChoiceOn, textEntryOn, trueFalseOn, 0);
     }
 
+    /**
+     * Tests the quiz use case when only multiple choice questions are enabled.
+     * @throws IOException if I can't access the test data
+     */
     @Test
     void testOnlyMultipleChoice() throws IOException {
         QuizSettingsRequestModel quizSettingsRequestModel = this.setup(10, false,
@@ -62,6 +80,10 @@ public class QuizUseCaseTest {
         assertEquals(10, quizResponseModel.getNumQuestions());
     }
 
+    /**
+     * Tests the quiz use case when all question types are enabled.
+     * @throws IOException if I can't access the test data
+     */
     @Test
     void testAllOptionsEnabled() throws IOException {
         QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false,
@@ -90,6 +112,10 @@ public class QuizUseCaseTest {
         assertEquals(12, quizResponseModel.getNumQuestions());
     }
 
+    /**
+     * Tests the quiz use case when no question types are enabled.
+     * @throws IOException if I can't access the test data
+     */
     @Test
     void testNoOptionsEnabled() throws IOException {
         QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, false,
@@ -99,6 +125,10 @@ public class QuizUseCaseTest {
         assertTrue(quizSettingsResponseModel.isFailed());
     }
 
+    /**
+     * Tests the quiz use case when the timer is set to a ridiculous value.
+     * @throws IOException if I can't access the test data
+     */
     @Test
     void testRidiculousTimer() throws IOException {
         QuizSettingsRequestModel quizSettingsRequestModel = this.setup(12, true,

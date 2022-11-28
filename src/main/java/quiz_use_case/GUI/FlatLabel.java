@@ -8,6 +8,11 @@ import javax.swing.*;
  * @author Anthony
  */
 public class FlatLabel extends JLabel {
+    /**
+     * Creates a FlatLaf styled label.
+     * @param text the display text
+     * @param type the style type. Refer to FlatLaf documentation for a list of style types.
+     */
     public FlatLabel(String text, String type) {
         super(text);
         this.putClientProperty("FlatLaf.styleClass", type);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class QuizRequestModel {
-    private ArrayList<String> userAnswers;
+    private final ArrayList<String> userAnswers;
 
     /**
      * Constructs a quiz request model.
@@ -18,12 +18,11 @@ public class QuizRequestModel {
         this.userAnswers = userAnswers;
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the user answers.
+     * @return the user answers
+     */
     public ArrayList<String> getUserAnswers() {
         return userAnswers;
-    }
-
-    public void setUserAnswers(ArrayList<String> userAnswers) {
-        this.userAnswers = userAnswers;
     }
 }

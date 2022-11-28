@@ -3,6 +3,7 @@ package quiz_use_case.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Frameworks & Drivers
  * @author Anthony
  */
-public class TrueFalseQuestionCard extends QuestionCard {
+public class TrueFalseQuestionCard extends QuestionCard implements ActionListener {
     private final JButton trueButton;
     private final JButton falseButton;
 
@@ -108,6 +109,10 @@ public class TrueFalseQuestionCard extends QuestionCard {
         this.add(falseButton, c);
     }
 
+    /**
+     * If TRUE is toggled, toggle the true button. If FALSE is toggled, toggle the false button.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String c = e.getActionCommand();

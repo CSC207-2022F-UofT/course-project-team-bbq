@@ -2,7 +2,6 @@ package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -107,10 +106,5 @@ public class TextEntryQuestionCard extends QuestionCard {
      */
     public void updateUserAnswer() {
         this.setUserAnswer(this.textArea.getText());
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }
