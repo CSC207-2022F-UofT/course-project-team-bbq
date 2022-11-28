@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Winston Chieng
  */
 public class SearchResponseModel {
-    ArrayList<FlashcardSetDsRequestModel> result_set;
+    final ArrayList<FlashcardSetDsRequestModel> result_set;
 
     /**
      * Create a SearchResponseModel

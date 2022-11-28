@@ -11,8 +11,15 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tests for create_flashcard_use_case.FcCInteractor
+ * @author Junyu Chen
+ */
 public class FcCInteractorTest {
 
+    /**
+     * Test for creation of valid flashcard.
+     */
     @Test
     public void create_success(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -44,6 +51,9 @@ public class FcCInteractorTest {
         interactor.create(new FcCRequestModel(0, "term", "definition"));
     }
 
+    /**
+     * Test for Creation of flashcard with empty term.
+     */
     @Test
     public void create_failure_empty_term(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -70,6 +80,9 @@ public class FcCInteractorTest {
         interactor.create(new FcCRequestModel(0, "", "definition"));
     }
 
+    /**
+     * Test for Creation of flashcard with empty definition.
+     */
     @Test
     public void create_failure_empty_definition(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -96,6 +109,9 @@ public class FcCInteractorTest {
         interactor.create(new FcCRequestModel(0, "term", ""));
     }
 
+    /**
+     * Test for Creation of flashcard with non-existing flashcard set.
+     */
     @Test
     public void create_failure_no_flashcard_set(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();

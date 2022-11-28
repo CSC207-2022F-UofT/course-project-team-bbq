@@ -2,7 +2,7 @@ package create_flashcard_use_case;
 
 import java.time.LocalDateTime;
 /**
- * Response model for flashcard creator.
+ * Response model for flashcard creation.
  * Application business rules.
  * @author Junyu Chen
  */

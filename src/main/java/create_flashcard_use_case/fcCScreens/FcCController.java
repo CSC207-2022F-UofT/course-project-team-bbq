@@ -5,7 +5,7 @@ import create_flashcard_use_case.FcCRequestModel;
 import create_flashcard_use_case.FcCResponseModel;
 
 /**
- * Controller for flashcard creator.
+ * Controller for flashcard creation.
  * Interface adaptors.
  * @author Junyu Chen
  */

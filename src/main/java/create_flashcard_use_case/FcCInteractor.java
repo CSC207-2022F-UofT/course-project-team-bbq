@@ -7,7 +7,7 @@ import data_access.entity_request_models.FlashcardDsRequestModel;
 
 import java.time.LocalDateTime;
 /**
- * Interactor for flashcard creator.
+ * Interactor for flashcard creation.
  * Application business rules.
  * @author Junyu Chen
  */

@@ -1,6 +1,6 @@
 package create_flashcard_use_case;
 /**
- * Presenter for flashcard creator.
+ * Presenter for flashcard creation.
  * Application business rules.
  * @author Junyu Chen
  */

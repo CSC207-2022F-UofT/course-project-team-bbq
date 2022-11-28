@@ -1,6 +1,6 @@
 package delete_flashcard_use_case.FcRScreens;
 /**
- * Failure of flashcard remover.
+ * Failure of flashcard removal.
  * Interface Adaptors.
  * @author Junyu Chen
  */

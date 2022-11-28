@@ -1,6 +1,6 @@
 package delete_flashcard_use_case;
 /**
- * Request model for flashcard remover.
+ * Request model for flashcard removal.
  * Application business rules.
  * @author Junyu Chen
  */
