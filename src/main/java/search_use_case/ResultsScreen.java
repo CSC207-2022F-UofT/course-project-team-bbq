@@ -36,7 +36,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
         JPanel result_panel = new JPanel();
         result_panel.setLayout(new BoxLayout(result_panel, BoxLayout.Y_AXIS));
 
-        // scrollbar if results dont fit on screen
+        // scrollbar if results don't fit on screen
         JScrollPane scrPane = new JScrollPane(result_panel);
         scrPane.setPreferredSize(new Dimension(350, 500));
         scrPane.getVerticalScrollBar().setUnitIncrement(16);

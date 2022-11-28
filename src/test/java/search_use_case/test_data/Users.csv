@@ -1,5 +1,5 @@
 username,password,isAdmin,flashcardSetsIds
-testUser1,4sdasda,false,0
-testUser2,4sdasda,false,1
-testUser3,4sdasda,true,2
-testUser4,4sdasda,false,3,4,5
+testUser1,search,false,0
+testUser2,use,false,1
+testUser3,test,true,2
+testUser4,file,false,3,4,5

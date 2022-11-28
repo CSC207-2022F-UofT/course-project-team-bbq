@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SearchUseCaseTest {
     SearchController controller;
-    UserLoginResponseModel common_user = new UserLoginResponseModel("common_user",
+    final UserLoginResponseModel common_user = new UserLoginResponseModel("common_user",
             false, new HashMap<>());
-    UserLoginResponseModel admin = new UserLoginResponseModel("admin",
+    final UserLoginResponseModel admin = new UserLoginResponseModel("admin",
             true, new HashMap<>());
 
     SearchRequestModel setup(String search_input, ArrayList<String> tags,

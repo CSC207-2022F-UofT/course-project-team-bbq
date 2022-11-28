@@ -4,7 +4,16 @@ This is a flashcard study application inspired by Quizlet.
 
 # Main Features
 
-### 1. Log in or sign up for the application.
+### 1a. Sign Up For The Application.
+- If the user selects the "Sign Up" option from the welcome screen the user has an option of Signing up as a user with or without admin level access 
+  - The user must select a username that does not previously exist in the database, if the user inputs a previously existing username they shall be warned with a failure in registration and must choose another username.
+  - The password needs to be greater than or equal to 5 characters in length and not blank.
+  - The repeat password must match the password entered to ensure coherency and surety.
+  - If the user does not require admin level they can leave the Admin Key field blank and they shall be registered as a common user that can access teh program.
+  - If the user does require admin level access they can input the Admin Key in the field, if there is an error in the inputting of the key the user shall be warned accordingly.
+
+### 1b. Log In For The Application.
+- If the user selects the "Log In" option from the welcome screen the user may input their respective username and password, if the username does not match an existing username from the database or incorrect password they shall be warned.
 
 ### 2. Create a flashcard or a flashcard set.
 
