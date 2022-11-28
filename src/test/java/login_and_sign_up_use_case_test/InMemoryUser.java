@@ -1,4 +1,4 @@
-package login_and_sign_up_use_case;
+package login_and_sign_up_use_case_test;
 
 import data_access.IUserDataAccess;
 import data_access.entity_request_models.CommonUserDsRequestModel;
