@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Database for test purposes
+ * @author Junyu Chen
+ */
 public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     private final Map<Integer, FlashcardSetDsRequestModel> flashcardSets = new HashMap<>();
     @Override

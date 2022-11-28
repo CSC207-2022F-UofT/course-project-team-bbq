@@ -1,6 +1,6 @@
 package create_flashcard_use_case.fcCScreens;
 /**
- * Failure of flashcard creator.
+ * Failure of flashcard creation.
  * Interface Adaptors.
  * @author Junyu Chen
  */

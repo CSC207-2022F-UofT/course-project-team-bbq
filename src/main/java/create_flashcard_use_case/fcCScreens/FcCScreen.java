@@ -57,6 +57,10 @@ public class FcCScreen extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Response based on creation success or failure.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try{

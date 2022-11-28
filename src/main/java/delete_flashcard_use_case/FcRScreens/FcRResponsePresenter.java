@@ -3,7 +3,7 @@ package delete_flashcard_use_case.FcRScreens;
 import delete_flashcard_use_case.FcROutputBoundary;
 import delete_flashcard_use_case.FcRResponseModel;
 /**
- * Presenter for flashcard remover.
+ * Presenter for flashcard removal.
  * Interface adaptors.
  * @author Junyu Chen
  */

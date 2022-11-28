@@ -1,19 +1,25 @@
 package delete_flashcard_use_case;
 
+import create_flashcard_use_case.fcCScreens.*;
 import data_access.DBGateway;
 import data_access.IFlashcardDataAccess;
 import data_access.IFlashcardSetDataAccess;
 import data_access.entity_request_models.FlashcardDsRequestModel;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
-import create_flashcard_use_case.fcCScreens.InMemoryFlashcard;
-import create_flashcard_use_case.fcCScreens.InMemoryFlashcardSet;
 import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Tests for delete_flashcard_use_case.FcRInteractor
+ * @author Junyu Chen
+ */
 public class FcRInteractorTest {
+    /**
+     * Test deletion for valid delete request.
+     */
     @Test
     public void delete_success(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -43,6 +49,9 @@ public class FcRInteractorTest {
         interactor.delete(new FcRRequestModel(0,0));
     }
 
+    /**
+     * Test deletion for delete request with non-existing flashcard.
+     */
     @Test
     public void delete_failure_no_flashcard(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -67,6 +76,9 @@ public class FcRInteractorTest {
         interactor.delete(new FcRRequestModel(0,0));
     }
 
+    /**
+     * Test deletion for delete request with non-existing flashcard set.
+     */
     @Test
     public void delete_failure_no_flashcard_set(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
@@ -93,6 +105,9 @@ public class FcRInteractorTest {
         interactor.delete(new FcRRequestModel(0,0));
     }
 
+    /**
+     * Test deletion for delete request with existing flashcard, but not in flashcard set.
+     */
     @Test
     public void delete_failure_flashcard_not_in_flashcard_set(){
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();

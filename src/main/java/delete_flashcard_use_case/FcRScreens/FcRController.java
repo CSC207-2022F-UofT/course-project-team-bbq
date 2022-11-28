@@ -5,7 +5,7 @@ import delete_flashcard_use_case.FcRRequestModel;
 import delete_flashcard_use_case.FcRResponseModel;
 
 /**
- * Controller for flashcard Remover.
+ * Controller for flashcard Removal.
  * Interface adaptors.
  * @author Junyu Chen
  */

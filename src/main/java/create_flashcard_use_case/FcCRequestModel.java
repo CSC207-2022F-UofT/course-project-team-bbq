@@ -1,6 +1,6 @@
 package create_flashcard_use_case;
 /**
- * Request model for flashcard creator.
+ * Request model for flashcard creation.
  * Application business rules.
  * @author Junyu Chen
  */

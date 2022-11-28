@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 /**
- * Main frame for flashcard Creator.
+ * Main frame for flashcard Creation.
  * @author Junyu Chen
  */
 public class FcCMain extends JFrame {
