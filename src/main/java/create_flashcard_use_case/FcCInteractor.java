@@ -40,8 +40,9 @@ public class FcCInteractor implements FcCInputBoundary{
             return presenter.prepareFailView("Flashcard set does not exist.");
         }
         LocalDateTime creationDate = LocalDateTime.now();
-        FlashcardDsRequestModel flashcard = new FlashcardDsRequestModel(requestModel.getTerm(),
-                requestModel.getDefinition(), creationDate,-1, requestModel.getFlashcardSetId());
+        FlashcardDsRequestModel flashcard = new FlashcardDsRequestModel(
+                requestModel.getTerm().replace("\n", " "),
+                requestModel.getDefinition().replace("\n", " "), creationDate,-1, requestModel.getFlashcardSetId());
         int flashcardId = fcDataAccess.saveFlashcard(flashcard);
         fcsDataAccess.saveFlashcardID(requestModel.getFlashcardSetId(), flashcardId);
 
