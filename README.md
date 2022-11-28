@@ -31,6 +31,12 @@ This is a flashcard study application inspired by Quizlet.
 ### 4. Delete a flashcard or a flashcard set.
 
 ### 5. Search for a public flashcard set.
+- If the user selects the search button from the main page the user can search through the public community database for flashcard sets
+    - The user types in search input, and selects tags to search from (title, description, owner), or optionally they can choose to “search all”
+    - The user will be taken to a results screen where a list of all the public flashcard sets matching the user’s search will be returned, displaying the title, description, and creator for each
+    - If the user is an admin, a list of all flashcard sets will be returned, regardless if the flashcard set is public or private
+    - Once the user is on the results screen they are able to study or take a quiz for each flashcard set
+    - If the user is an admin they also have the ability to edit and delete every flashcard set in the results
 
 ### 6. Study from a flashcard set.
 
