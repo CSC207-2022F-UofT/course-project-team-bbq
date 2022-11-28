@@ -113,6 +113,7 @@ public class RegisterScreen extends JFrame implements ActionListener {
                         newUser.getSignedUpPassword());
                 try {
                     new HomePage(user);
+                    dispose();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
