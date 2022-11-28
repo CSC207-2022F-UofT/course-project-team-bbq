@@ -4,7 +4,7 @@ import data_access.DBGateway;
 
 import java.time.LocalDateTime;
 /**
- * Interactor for flashcard remover.
+ * Interactor for flashcard removal.
  * Application business rules.
  * @author Junyu Chen
  */

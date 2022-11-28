@@ -6,7 +6,7 @@ import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
 import javax.swing.*;
 import java.io.IOException;
 /**
- * Main frame for flashcard Remover.
+ * Main frame for flashcard removal.
  * @author Junyu Chen
  */
 public class FcRMain extends JFrame {

@@ -3,7 +3,7 @@ package delete_flashcard_use_case;
 import java.time.LocalDateTime;
 
 /**
- * Response model for flashcard remover.
+ * Response model for flashcard removal.
  * Application business rules.
  * @author Junyu Chen
  */
