@@ -87,7 +87,7 @@ public class DBGateway {
 
     public int saveFlashcard(FlashcardDsRequestModel flashcard) {
         int id = this.flashcardGateway.saveFlashcard(flashcard);
-        this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), flashcard.getFlashcardId());
+        this.flashcardSetGateway.saveFlashcardID(flashcard.getBelongsToId(), id);
         return id;
     }
 

@@ -61,7 +61,8 @@ public class FcCScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try{
             //Success view.
-            FcCResponseModel responseModel = controller.create(term_text.getText(), definition_text.getText());
+            FcCResponseModel responseModel = controller.create(term_text.getText().replace("\n", ""),
+                    definition_text.getText().replace("\n", ""));
             int action = JOptionPane.showConfirmDialog(this,
                     "Card created:\n"+responseModel.getTerm()+ "\n" + responseModel.getDefinition()
                             +"\ncreate another card?");
