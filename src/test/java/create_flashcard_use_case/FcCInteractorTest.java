@@ -191,10 +191,10 @@ public class FcCInteractorTest {
         interactor.create(new FcCRequestModel(-1, "", ""));
     }
     /**
-     * Test for creation of valid flashcard with multiple lines.
+     * Test for creation of valid flashcard with term of multiple lines.
      */
     @Test
-    public void create_success_multiple_lines_input(){
+    public void create_success_multiple_lines_term(){
         //Creating database for the test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
@@ -209,7 +209,7 @@ public class FcCInteractorTest {
             @Override
             public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcard(0).getTerm(), "term term");
-                Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(), "definition definition");
+                Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(), "definition");
                 List<Integer> ids = new ArrayList<>();
                 ids.add(0);
                 Assertions.assertEquals(gateway.getFlashcardSet(0).getFlashcardIds(),
@@ -226,6 +226,45 @@ public class FcCInteractorTest {
         };
         FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
         //Input with multiple lines.
-        interactor.create(new FcCRequestModel(0, "term\nterm", "definition\ndefinition"));
+        interactor.create(new FcCRequestModel(0, "term\nterm", "definition"));
+    }
+    /**
+     * Test for creation of valid flashcard with definition of multiple lines.
+     */
+    @Test
+    public void create_success_multiple_lines_definition(){
+        //Creating database for the test.
+        IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
+        IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
+        DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
+
+        //Adding flash card set with id 0 for interactor to create flashcard in.
+        flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("test set","description",
+                true, 0, "user", new ArrayList<>()));
+        //Changed presenter for the test.
+        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+            //Check if the flashcard is saved when response from interactor is successful.
+            @Override
+            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+                Assertions.assertEquals(gateway.getFlashcard(0).getTerm(), "term");
+                Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(),
+                        "definition definition");
+                List<Integer> ids = new ArrayList<>();
+                ids.add(0);
+                Assertions.assertEquals(gateway.getFlashcardSet(0).getFlashcardIds(),
+                        ids);
+                return null;
+            }
+
+            //Errors should not happen.
+            @Override
+            public FcCResponseModel prepareFailView(String error){
+                Assertions.fail("Unexpected Failure.");
+                return null;
+            }
+        };
+        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        //Input with multiple lines.
+        interactor.create(new FcCRequestModel(0, "term", "definition\ndefinition"));
     }
 }

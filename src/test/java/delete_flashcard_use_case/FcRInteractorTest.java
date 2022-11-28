@@ -115,32 +115,32 @@ public class FcRInteractorTest {
      * Test deletion for delete request with existing flashcard, but not in flashcard set.
      */
     @Test
-    public void delete_failure_flashcard_not_in_flashcard_set(){
+    public void delete_failure_flashcard_not_in_flashcard_set() {
         //Creating database for test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
         DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("title",
-                "description", true, 0,"User", new ArrayList<>()));
+                "description", true, 0, "User", new ArrayList<>()));
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("title",
-                "description", true, 1,"User", new ArrayList<>()));
+                "description", true, 1, "User", new ArrayList<>()));
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
-                LocalDateTime.now(), 0,1));
+                LocalDateTime.now(), 0, 1));
         //Creating presenter for test.
-        FcROutputBoundary presenter = new FcRResponsePresenter(){
+        FcROutputBoundary presenter = new FcRResponsePresenter() {
             @Override
-            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
+            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel) {
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
             @Override
-            public FcRResponseModel prepareFailView(String error){
+            public FcRResponseModel prepareFailView(String error) {
                 Assertions.assertEquals("Flashcard not in this flashcard set.", error);
                 return null;
             }
         };
         FcRInputBoundary interactor = new FcRInteractor(gateway, presenter);
-        interactor.delete(new FcRRequestModel(0,0));
+        interactor.delete(new FcRRequestModel(0, 0));
     }
 }
