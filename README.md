@@ -17,7 +17,16 @@ This is a flashcard study application inspired by Quizlet.
 
 ### 2. Create a flashcard or a flashcard set.
 
-### 3. Edit a flashcard or a flashcard set.
+### 3a. Edit a flashcard set.
+ - If there are no flashcard sets on the main page, then we cannot edit a flashcard set.
+ - If there is a flashcard set, the user can choose which flashcard set to edit and can click the "Edit" button of the desired flashcard set.
+  - When "Edit" is clicked an Editor Main Page is shown. There is an "Edit Flashcard Set" button and when clicked a window pops up with Title and Description text prompts for the user to edit. The user cannot change the Title to an empty title.
+### 3b. Edit a flashcard in a flashcard set.
+ - If there are no flashcard sets on the main page, then we cannot edit a flashcard in a flashcard set.
+ - If there is a flashcard set, the user can choose which flashcard set to edit and can click the "Edit" button of the desired flashcard set.
+  - When "Edit" is clicked an Editor Main Page is shown.
+   - If there are no flashcards, the user cannot edit a flashcard.
+   - If there are flashcards, the user can choose which flashcard to edit by clicking the "Edit Flashcard" button. When clicked a window pops up with Term and Definition text prompts for the user to edit. The user cannot change the Term to an empty term.
 
 ### 4. Delete a flashcard or a flashcard set.
 
