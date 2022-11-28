@@ -3,7 +3,12 @@ package MainPage;
 import EditorMainPage.EditorMainPage;
 import dataAccess.DBGateway;
 import delete_flashcardset_use_case.*;
+import loginAndSignupUseCase.UserLoginInputBoundary;
+import loginAndSignupUseCase.UserLoginInteractor;
+import loginAndSignupUseCase.UserLoginOutputBoundary;
 import loginAndSignupUseCase.UserLoginResponseModel;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.UserLoginController;
+import loginAndSignupUseCase.loginAndSignupUseCaseScreens.UserLoginPresenter;
 import quizUseCase.*;
 import quizUseCase.screens.QuizSettingsScreen;
 import studyMode.*;
@@ -11,18 +16,20 @@ import studyMode.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class FlashcardSetDataPanel extends JPanel {
-
+public class FlashcardSetDataPanel extends JPanel implements WindowListener {
+    HomePage home;
     public FlashcardSetDataPanel(String title, String description,
                                  int flashcardSetId, DBGateway gateway,
-                                 UserLoginResponseModel user) {
+                                 UserLoginResponseModel user, HomePage home) {
         Border border = BorderFactory.createTitledBorder(title);
-
 
         JLabel descriptionLabel = new JLabel(description);
         this.add(descriptionLabel);
-
+        this.home = home;
         JPanel buttons = new JPanel();
 
         JButton study = new JButton("Study");
@@ -36,7 +43,11 @@ public class FlashcardSetDataPanel extends JPanel {
         buttons.add(edit);
         buttons.add(delete);
 
-        edit.addActionListener((e) -> new EditorMainPage(flashcardSetId));
+        edit.addActionListener((e) -> {
+            EditorMainPage editor = new EditorMainPage(flashcardSetId);
+            editor.addWindowListener(this);
+        });
+
         study.addActionListener(e -> {
             StudySessionOutputBoundary presenter = new StudySessionPresenter();
             StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
@@ -63,4 +74,38 @@ public class FlashcardSetDataPanel extends JPanel {
     }
 
 
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        home.refresh();
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }

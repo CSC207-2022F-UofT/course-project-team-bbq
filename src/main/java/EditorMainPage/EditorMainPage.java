@@ -1,15 +1,19 @@
 package EditorMainPage;
 
+import MainPage.HomePage;
 import dataAccess.*;
 import entityRequestModels.FlashcardDsRequestModel;
 import entityRequestModels.FlashcardSetDsRequestModel;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EditorMainPage extends JFrame {
+
     public EditorMainPage(int flashcardSetId){
         IFlashcardSetDataAccess fcSetGateway;
         IFlashcardDataAccess fcGateway;
@@ -36,7 +40,6 @@ public class EditorMainPage extends JFrame {
         JScrollPane scrollPane = new JScrollPane(listOfFlashcardPanel);
         //scrollPane.setPreferredSize(new Dimension(100, 100));
         this.add(scrollPane);
-
 
         this.setTitle("Edit Set \"" + flashcardSet.getTitle() + "\"");
         this.setSize(1000, 800);

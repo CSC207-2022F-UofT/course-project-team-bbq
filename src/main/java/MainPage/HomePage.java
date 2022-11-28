@@ -1,5 +1,6 @@
 package MainPage;
 
+import EditorMainPage.EditorMainPage;
 import create_flashcardset_use_case.*;
 import dataAccess.*;
 import entities.FlashcardSetFactory;
@@ -24,20 +25,13 @@ public class HomePage extends JFrame implements WindowListener {
     UserLoginResponseModel user;
     DBGateway gateway;
 
-    public HomePage(UserLoginResponseModel user) throws IOException {
+    public HomePage(UserLoginResponseModel user, DBGateway gateway) throws IOException {
         super(user.getSignedInUsername() + "'s home page");
-
+        this.gateway = gateway;
         this.user = user;
         // home page layout
         getContentPane().setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 
-        // initialize DBGateway
-        IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
-        IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
-        IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
-        DBGateway gateway = new DBGateway(flashcardDataAccess,
-                flashcardSetDataAccess, userDataAccess);
-        this.gateway = gateway;
         // top bar
         JPanel topBar = new JPanel();
         topBar.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
@@ -45,6 +39,11 @@ public class HomePage extends JFrame implements WindowListener {
         JButton searchButton = new JButton("Search");
         JButton addFlashcardSetButton = new JButton("Add Flashcard Set");
         JButton logOff = new JButton("Log Off");
+        JButton refresh = new JButton("Refresh");
+
+        refresh.addActionListener(e -> {
+            refresh();
+        });
 
         searchButton.addActionListener(e -> {
             SearchOutputBoundary presenter = new SearchPresenter();
@@ -63,7 +62,6 @@ public class HomePage extends JFrame implements WindowListener {
             creationScreen.addWindowListener(this);
         });
 
-
         logOff.addActionListener(e -> {
             this.setVisible(false);
             this.dispose();
@@ -77,6 +75,7 @@ public class HomePage extends JFrame implements WindowListener {
         topBar.add(searchButton);
         topBar.add(addFlashcardSetButton);
         topBar.add(logOff);
+        topBar.add(refresh);
         topBar.setSize(1000,20);
         this.add(topBar);
 
@@ -93,27 +92,43 @@ public class HomePage extends JFrame implements WindowListener {
             this.add(labelPanel);
         }
         else {
-            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user));
+            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user, this));
         }
+
+//        for (Component component : comp) {
+//            if (component instanceof JButton) {
+//                if (((JButton) component).getText().equals("Edit")){
+//
+//                }
+//                else if (((JButton) component).getText().equals("Delete")){
+//
+//                }
+//            }
+//        }
+
         this.setSize(1000, 800);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 
-    private void refresh() {
+    public void refresh() {
         try {
+            IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+            IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+            IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
+            DBGateway gateway = new DBGateway(flashcardDataAccess,
+                    flashcardSetDataAccess, userDataAccess);
             UserLoginOutputBoundary presenter = new UserLoginPresenter();
             UserLoginInputBoundary interactor = new UserLoginInteractor(
                     gateway, presenter);
             UserLoginController userLoginController = new UserLoginController(interactor);
             setVisible(false);
-            dispose();
 
             user = userLoginController.create(user.getSignedInUsername(),
                     user.getPassword());
             this.dispose();
-            new HomePage(user);
+            new HomePage(user, gateway);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

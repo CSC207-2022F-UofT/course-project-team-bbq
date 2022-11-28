@@ -13,7 +13,7 @@ import java.util.Set;
 public class ListOfFlashcardSetsDataPanel extends JPanel {
 
     public ListOfFlashcardSetsDataPanel(Map<Integer, String[]> idsToFlashcardSetData,
-                                        DBGateway gateway, UserLoginResponseModel user) {
+                                        DBGateway gateway, UserLoginResponseModel user, HomePage home) {
         Set<Integer> flashcardSetIds = idsToFlashcardSetData.keySet();
 
         for (int flashcardSetId : flashcardSetIds) {
@@ -21,10 +21,10 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
            String title = data[0];
            String description = data[1];
 
-           this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, user));
+           this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, user, home));
         }
 
-        this.setLayout(new FlowLayout());
+        this.setLayout (new FlowLayout());
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         this.setPreferredSize(new Dimension(500, 1000));
     }
