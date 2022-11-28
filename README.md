@@ -39,11 +39,11 @@ This is a flashcard study application inspired by Quizlet.
     - If the user is an admin they also have the ability to edit and delete every flashcard set in the results
 
 ### 6. Study from a flashcard set.
--Given a flashcard set, the user can enter study mode
--The user can choose how to sort the flashcard set: by creation date, by alphabetical order, or by random shuffle
--The user can choose if they want to view the cards in order or in reverse order
--The user can choose if the flashcard displays terms or definition by default
--The user is then presented with the first flashcard in the flashcard set, given their sorting preferences. The user can choose to 
+- Given a flashcard set, the user can enter study mode
+- The user can choose how to sort the flashcard set: by creation date, by alphabetical order, or by random shuffle
+- The user can choose if they want to view the cards in order or in reverse order
+- The user can choose if the flashcard displays terms or definition by default
+- The user is then presented with the first flashcard in the flashcard set, given their sorting preferences. The user can choose to 
 flip the flashcard, go to the next card, or go to the previous card until they wish to quit studying
 ### 7. Generate and take a quiz from a flashcard set.
 - Given a flashcard set, the user can enter quiz mode.
