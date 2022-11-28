@@ -9,10 +9,24 @@ package study_mode_use_case;
  * @author Lucas Prates
  */
 public class StudySettingsRequestModel {
+    /**
+     * the id of the flashcard set to be studied
+     */
     private final int flashcardSetId;
+
+    /**
+     * the user's desired sorting order
+     */
     private final String sortingOrder;
 
+    /**
+     * a boolean specifying if the flashcard set should be sorted in order or in reverse
+     */
     private boolean isReverse = false;
+
+    /**
+     * a boolean which specifies if the term or definition is displayed by default
+     */
     private final boolean termIsDefault;
 
     /**
