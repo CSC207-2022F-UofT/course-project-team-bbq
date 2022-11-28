@@ -10,20 +10,27 @@ import java.util.*;
  */
 public interface User {
     String username = null;
-
     String password = null;
     boolean isAdmin = false;
-    String ADMIN_KEY = "BuiltDifferent";
 
-    //Map<Integer, String[]> flashcardSets = null;
-    ArrayList<Integer> flashcardSetIds = null;
-
+    /**
+     * Gets the username belonging to the user
+     */
     String getUsername();
 
+    /**
+     * Gets the password belonging to the user
+     */
     String getPassword();
 
+    /**
+     * Gets whether the user is an admin user
+     */
     boolean getIsAdmin();
 
+    /**
+     * Gets the list of flashcard set ids belonging to the user
+     */
     ArrayList<Integer> getFlashcardSetIds();
 
     /**

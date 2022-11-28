@@ -28,13 +28,24 @@ public class UserLoginResponseModel {
     }
 
     /**
-     * GETTERS for the system
+     * Gets the username of the user as saved in the database
+     * @return the username that the user stored
      */
     public String getSignedInUsername() {
         return username;
     }
+
+    /**
+     * Gets whether the user is saved as an admin in the database
+     * @return the admin level access of the user as stored in the database
+     */
     public boolean getIsAdmin(){return isAdmin;}
 
+    /**
+     * Gets the list of flashcard set ids belonging to the user and onverts it into a map with the id as
+     * a key and the title and description of the flashcard set as the value in a string array format
+     * @return map of the flashcard sets belonging to the user
+     */
     public Map<Integer, String[]> getFlashcardSets(){
 
         return flashcardSets;
