@@ -1,4 +1,4 @@
-package login_and_sign_up_use_case;
+package login_and_sign_up_use_case_test;
 
 import data_access.*;
 import entities.CommonUserFactory;
@@ -15,14 +15,16 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 class UserRegisterInteractorTest {
 
     // 1) UserRegisterInteractor and prerequisite objects
 
     IUserDataAccess userGateway = new CommonUserDataAccess(
-            "src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
+            "src/test/java/login_and_sign_up_use_case_test/test_data/RegistrationUsers.csv");
 
-    File file = new File("src/test/java/login_and_sign_up_use_case/test_data/RegistrationUsers.csv");
+    File file = new File("src/test/java/login_and_sign_up_use_case_test/test_data/RegistrationUsers.csv");
 
     DBGateway gateway = new DBGateway(null, null, userGateway);
 
@@ -52,7 +54,7 @@ class UserRegisterInteractorTest {
 
             @Override
             public UserRegisterResponseModel prepareFailView(String error) {
-                Assertions.fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected.");
                 return null;
             }
         };
@@ -85,7 +87,7 @@ class UserRegisterInteractorTest {
 
             @Override
             public UserRegisterResponseModel prepareFailView(String error) {
-                Assertions.fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected.");
                 return null;
             }
         };
@@ -117,7 +119,7 @@ class UserRegisterInteractorTest {
 
             @Override
             public UserRegisterResponseModel prepareFailView(String error) {
-                Assertions.fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected.");
                 return null;
             }
         };
@@ -140,6 +142,7 @@ class UserRegisterInteractorTest {
 
                 Assertions.assertEquals("Brad", user.getSignedUpUsername());
                 Assertions.assertTrue(user.getIsAdmin());
+                Assertions.assertNotEquals("Brad123", user.getSignedUpPassword());
                 Assertions.assertTrue(gateway.existsByName("Steve"));
                 Assertions.assertTrue(gateway.existsByName("Richard"));
                 Assertions.assertTrue(gateway.existsByName("Tom"));
@@ -150,7 +153,7 @@ class UserRegisterInteractorTest {
 
             @Override
             public UserRegisterResponseModel prepareFailView(String error) {
-                Assertions.fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected.");
                 return null;
             }
         };
@@ -166,7 +169,43 @@ class UserRegisterInteractorTest {
     }
 
     @Test
-    void create5() {
+    void register5WithMultipleExistingUsersAndPasswordTestAndUnconventionalChars(){
+        UserRegisterOutputBoundary presenter = new UserRegisterOutputBoundary() {
+            @Override
+            public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
+
+                Assertions.assertEquals("HeNr!", user.getSignedUpUsername());
+                Assertions.assertFalse(user.getIsAdmin());
+                Assertions.assertEquals("Superman123", user.getSignedUpPassword());
+//                Assertions.assertTrue(userGateway.existsByName("Brad"));
+                Assertions.assertTrue(gateway.existsByName("Steve"));
+                Assertions.assertTrue(gateway.existsByName("HeNr!"));
+//                Assertions.assertTrue(gateway.existsByName("Tom"));
+//                Assertions.assertTrue(gateway.existsByName("Richard"));
+                Assertions.assertFalse(gateway.existsByName("Daquan"));
+
+                return null;
+            }
+
+            @Override
+            public UserRegisterResponseModel prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+                return null;
+            }
+        };
+
+        UserFactory userFactory = new CommonUserFactory();
+        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                gateway, presenter, userFactory);
+
+        UserRegisterRequestModel inputData = new UserRegisterRequestModel(
+                "HeNr!", "Superman123", "Superman123", "");
+
+        interactor.create(inputData);
+    }
+
+    @Test
+    void create6() {
 
         file.delete();
 
@@ -187,7 +226,7 @@ class UserRegisterInteractorTest {
 
             @Override
             public UserRegisterResponseModel prepareFailView(String error) {
-                Assertions.fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected.");
                 return null;
             }
         };

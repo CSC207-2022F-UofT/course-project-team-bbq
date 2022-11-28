@@ -1,4 +1,4 @@
-package login_and_sign_up_use_case;
+package login_and_sign_up_use_case_test;
 
 import entities.CommonUser;
 import entities.User;
