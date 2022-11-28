@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Frameworks & Drivers
  * @author Anthony
  */
-public class QuizResultsScreen extends Screen {
+public class QuizResultsScreen extends QuizUseCaseScreen {
     private final QuizController controller;
     private final int flashcardSetID;
 

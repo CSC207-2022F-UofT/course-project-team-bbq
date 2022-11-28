@@ -5,10 +5,9 @@ import edit_flashcard_use_case.screens.FlashcardEditorPresenter;
 import edit_flashcard_use_case.screens.FlashcardEditorScreen;
 import data_access.*;
 import data_access.entity_request_models.FlashcardDsRequestModel;
+import view.Screen;
 
-import javax.swing.*;
-
-public class FlashcardEditorMain extends JFrame{
+public class FlashcardEditorMain extends Screen {
     /**
      * Creates a new FlashcardEditorMain object. This constructor creates the presenter, interactor and controller and
      * uses dependency inversion to follow clean architecture. This constructor makes the flashcard edit page visible.

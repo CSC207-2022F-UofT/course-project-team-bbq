@@ -3,13 +3,15 @@ package delete_flashcard_use_case;
 import data_access.*;
 import delete_flashcard_use_case.FcRScreens.FcRController;
 import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
+import view.Screen;
+
 import javax.swing.*;
 import java.io.IOException;
 /**
  * Main frame for flashcard removal.
  * @author Junyu Chen
  */
-public class FcRMain extends JFrame {
+public class FcRMain extends Screen {
     public FcRMain(int flashcardSetId, int flashcardId){
         DBGateway gateway;
         try{

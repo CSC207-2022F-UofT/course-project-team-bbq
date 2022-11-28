@@ -3,6 +3,7 @@ package study_mode_use_case.screens;
 import study_mode_use_case.StudySessionController;
 import study_mode_use_case.StudySettingsRequestModel;
 import study_mode_use_case.StudySettingsResponseModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
  * Frameworks & Drivers
  * @author Lucas Prates
  */
-public class StudySettingsScreen extends JFrame implements ActionListener {
+public class StudySettingsScreen extends Screen implements ActionListener {
 
     /**
      * The id of the flashcard set to study

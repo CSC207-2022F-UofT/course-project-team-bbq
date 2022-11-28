@@ -2,6 +2,7 @@ package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import main_page.HomePage;
 import login_and_signup_use_case.UserLoginResponseModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ import java.io.IOException;
  * @author Aryan Chablani (with inspiration from Professor Paul Gries)
  */
 
-public class LoginScreen extends JFrame implements ActionListener {
+public class LoginScreen extends Screen implements ActionListener {
     /**
      * The username belonging to the user
      */

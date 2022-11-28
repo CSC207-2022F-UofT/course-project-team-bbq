@@ -1,6 +1,7 @@
 package create_flashcard_set_use_case;
 
 import login_and_signup_use_case.UserLoginResponseModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class CreationScreen extends JFrame implements ActionListener {
+public class CreationScreen extends Screen implements ActionListener {
     /**
      * The title of the flashcard set chosen by the user
      */
