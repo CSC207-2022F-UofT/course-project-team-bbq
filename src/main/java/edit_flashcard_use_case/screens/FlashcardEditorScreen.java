@@ -13,15 +13,15 @@ public class FlashcardEditorScreen extends JPanel implements ActionListener {
     /**
      * The main JFrame in which this editor screen lies in.
      */
-    JFrame editPage;
+    final JFrame editPage;
     /**
      * The term input field.
      */
-    JTextField termText;
+    final JTextField termText;
     /**
      * The definition input field.
      */
-    JTextField definitionText;
+    final JTextField definitionText;
 
     /**
      * Creates a new FlashcardEditorScreen object with the corresponding JLabels, JPanels and JButtons.
