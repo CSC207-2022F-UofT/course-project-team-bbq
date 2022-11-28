@@ -2,6 +2,7 @@ package search_use_case;
 
 import data_access.DBGateway;
 import login_and_signup_use_case.UserLoginResponseModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * Frameworks & Drivers
  * @author Winston Chieng
  */
-public class SearchScreen extends JFrame implements ActionListener{
+public class SearchScreen extends Screen implements ActionListener{
 
     /**
      * Creates a SearchScreen

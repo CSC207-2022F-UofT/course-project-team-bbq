@@ -1,17 +1,17 @@
 package quiz_use_case.screens;
 
-import javax.imageio.ImageIO;
+import view.Screen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 /**
  * Abstract class representing a GUI screen.
  * Frameworks & Drivers
  * @author Anthony
  */
-public abstract class Screen extends JFrame implements ActionListener {
+public abstract class QuizUseCaseScreen extends Screen implements ActionListener {
     private final boolean pack;
 
     /**
@@ -19,7 +19,7 @@ public abstract class Screen extends JFrame implements ActionListener {
      * @param title the screen title
      * @param pack true if I want to pack it
      */
-    public Screen(String title, boolean pack) {
+    public QuizUseCaseScreen(String title, boolean pack) {
         super(title);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
@@ -30,18 +30,9 @@ public abstract class Screen extends JFrame implements ActionListener {
     }
 
     /**
-     * Sets up the screen at the end. Also adds an icon.
+     * Sets up the screen at the end.
      */
     public void setupScreen() {
-        // ICON
-        File file = new File("src/images/bbq.png");
-        try {
-            this.setIconImage(ImageIO.read(file));
-        } catch (Exception e) {
-            System.out.println("Unable to load file.");
-        }
-
-        // SCREEN SETUP
         if (pack) {
             this.pack();
         }

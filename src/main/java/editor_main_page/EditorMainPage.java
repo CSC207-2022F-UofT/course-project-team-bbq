@@ -3,6 +3,7 @@ package editor_main_page;
 import data_access.*;
 import data_access.entity_request_models.FlashcardDsRequestModel;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.List;
  * features of editing title and description of flashcard set, editing independent flashcards, deleting flashcards, and
  * add flashcards.
  */
-public class EditorMainPage extends JFrame {
+public class EditorMainPage extends Screen {
     /**
      * Constructs an EditorMainPage object which is a JFrame and constructor opens a new window and makes the frame
      * visible.

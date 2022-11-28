@@ -3,6 +3,7 @@ package delete_flashcard_set_use_case;
 
 import data_access.DBGateway;
 import login_and_signup_use_case.UserLoginResponseModel;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class DeletionScreen extends JFrame implements ActionListener {
+public class DeletionScreen extends Screen implements ActionListener {
     /**
      * The id of the flashcard set to be deleted
      */

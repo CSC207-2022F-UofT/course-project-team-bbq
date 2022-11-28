@@ -6,6 +6,7 @@ import entities.FlashcardSetFactory;
 import login_and_signup_use_case.UserLoginResponseModel;
 import login_and_signup_use_case.login_and_signup_use_case_screens.WelcomeScreen;
 import search_use_case.*;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomePage extends JFrame {
+public class HomePage extends Screen {
 
     UserLoginResponseModel user;
     DBGateway gateway;

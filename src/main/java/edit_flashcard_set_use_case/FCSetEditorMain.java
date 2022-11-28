@@ -5,10 +5,9 @@ import edit_flashcard_set_use_case.screens.FCSetEditorPresenter;
 import edit_flashcard_set_use_case.screens.FCSetEditorScreen;
 import data_access.DBGateway;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import view.Screen;
 
-import javax.swing.*;
-
-public class FCSetEditorMain extends JFrame{
+public class FCSetEditorMain extends Screen {
     /**
      * Creates a new FCSetEditorMain object. This constructor creates the presenter, interactor and controller and
      * uses dependency inversion to follow clean architecture. This constructor makes the flashcard set edit page

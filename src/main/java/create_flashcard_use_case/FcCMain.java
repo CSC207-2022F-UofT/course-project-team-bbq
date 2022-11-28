@@ -4,6 +4,8 @@ import create_flashcard_use_case.fcCScreens.FcCController;
 import create_flashcard_use_case.fcCScreens.FcCResponsePresenter;
 import create_flashcard_use_case.fcCScreens.FcCScreen;
 import data_access.*;
+import view.Screen;
+
 import javax.swing.*;
 import java.io.IOException;
 
@@ -11,7 +13,7 @@ import java.io.IOException;
  * Main frame for flashcard Creation.
  * @author Junyu Chen
  */
-public class FcCMain extends JFrame {
+public class FcCMain extends Screen {
     /**
      * Create main frame for the flashcard creator.
      * @param flashcardSetId id of the flashcard set which flashcard will be stored in.
