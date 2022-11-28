@@ -26,16 +26,13 @@ public class QuizSettingsScreen extends Screen {
     private final int flashcardSetID;
 
     // GUI components
-    private Slider numQuestionsSlider;
-    private Slider timerSlider;
+    private final Slider numQuestionsSlider;
+    private final Slider timerSlider;
 
     private final JButton timerButton;
     private final JButton multipleChoiceButton;
     private final JButton textEntryButton;
     private final JButton trueFalseButton;
-
-    // listener
-    private ChangeListener listener;
 
     // actions
     private enum Actions {
@@ -59,7 +56,8 @@ public class QuizSettingsScreen extends Screen {
         int numFlashcards = response.getNumFlashcards();
 
         // LISTENER
-        this.listener = new ChangeListener() {
+        // listener
+        ChangeListener listener = new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 JSlider s = (JSlider) e.getSource();
                 if (s.equals(numQuestionsSlider.slider)) {
@@ -72,14 +70,14 @@ public class QuizSettingsScreen extends Screen {
 
         // GUI COMPONENTS
         this.numQuestionsSlider = new Slider(1, numFlashcards, 4, 1, "Number of Questions:");
-        this.numQuestionsSlider.addChangeListener(this.listener);
+        this.numQuestionsSlider.addChangeListener(listener);
 
         this.timerButton = new JButton("Timer OFF");
         this.timerButton.setActionCommand(Actions.TIMER.name());
         this.timerButton.addActionListener(this);
         this.timerSlider = new Slider(0, 60, 30, 10, "Timer Duration:");
         this.timerSlider.setVisible(false);
-        this.timerSlider.addChangeListener(this.listener);
+        this.timerSlider.addChangeListener(listener);
 
         this.multipleChoiceButton = new JButton("Multiple Choice ON");
         this.multipleChoiceButton.setActionCommand(Actions.MULTIPLE_CHOICE.name());

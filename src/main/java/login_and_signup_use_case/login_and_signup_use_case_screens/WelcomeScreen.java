@@ -1,6 +1,6 @@
 package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import dataAccess.*;
+import data_access.*;
 import entities.CommonUserFactory;
 import entities.UserFactory;
 import login_and_signup_use_case.*;

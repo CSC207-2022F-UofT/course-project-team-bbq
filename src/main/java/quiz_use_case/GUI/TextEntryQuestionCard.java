@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class TextEntryQuestionCard extends QuestionCard {
-    private boolean missingTerm;
-    private JLabel label;
-    private JTextArea textArea;
+    private final boolean missingTerm;
+    private final JLabel label;
+    private final JTextArea textArea;
 
     /**
      * Constructs a text entry question card that is ready to receive user input.

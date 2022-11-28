@@ -1,12 +1,12 @@
 package quiz_use_case;
 
-import dataAccess.DBGateway;
+import data_access.DBGateway;
 import entities.Flashcard;
 import entities.FlashcardFactory;
 import entities.Quiz;
 import entities.QuizSettings;
-import entityRequestModels.FlashcardDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.entity_request_models.FlashcardDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;
