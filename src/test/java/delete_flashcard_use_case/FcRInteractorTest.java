@@ -22,6 +22,7 @@ public class FcRInteractorTest {
      */
     @Test
     public void delete_success(){
+        //Creating database for test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
         DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
@@ -29,6 +30,7 @@ public class FcRInteractorTest {
                 "description", true, 0,"User", new ArrayList<>()));
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0,0));
+        //Creating presenter for test.
         FcROutputBoundary presenter = new FcRResponsePresenter(){
             @Override
             public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
@@ -54,11 +56,13 @@ public class FcRInteractorTest {
      */
     @Test
     public void delete_failure_no_flashcard(){
+        //Creating database for test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
         DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("title",
                 "description", true, 0,"User", new ArrayList<>()));
+        //Creating presenter for test.
         FcROutputBoundary presenter = new FcRResponsePresenter(){
             @Override
             public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
@@ -81,6 +85,7 @@ public class FcRInteractorTest {
      */
     @Test
     public void delete_failure_no_flashcard_set(){
+        //Creating database for test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
         DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
@@ -88,6 +93,7 @@ public class FcRInteractorTest {
                 "description", true, 1,"User", new ArrayList<>()));
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0,1));
+        //Creating presenter for test.
         FcROutputBoundary presenter = new FcRResponsePresenter(){
             @Override
             public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
@@ -110,6 +116,7 @@ public class FcRInteractorTest {
      */
     @Test
     public void delete_failure_flashcard_not_in_flashcard_set(){
+        //Creating database for test.
         IFlashcardDataAccess flashcardDataAccess = new InMemoryFlashcard();
         IFlashcardSetDataAccess flashcardSetDataAccess = new InMemoryFlashcardSet();
         DBGateway gateway = new DBGateway(flashcardDataAccess, flashcardSetDataAccess, null);
@@ -119,6 +126,7 @@ public class FcRInteractorTest {
                 "description", true, 1,"User", new ArrayList<>()));
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0,1));
+        //Creating presenter for test.
         FcROutputBoundary presenter = new FcRResponsePresenter(){
             @Override
             public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
