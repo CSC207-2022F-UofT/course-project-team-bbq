@@ -18,6 +18,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class UserLoginInteractorTest {
 
+    // 1) Create a UserLoginInteractor and prerequisite objects
+    //    (arguments for the UserLoginInteractor constructor parameters)
+    // 2) create the Input Data
+    // 3) Call the use case User Input Boundary method to run the use case
+    // 4) Check that the Output Data passed to the Presenter is correct
+    // 5) Check that the expected changes to the data layer are there.
+
     // 1) UserLoginInteractorTest and prerequisite objects
     IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/Flashcards.csv");
@@ -26,12 +33,17 @@ class UserLoginInteractorTest {
     IUserDataAccess userGateway = new CommonUserDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/LoginUsers.csv");
 
-
     DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
+    /**
+     * Instantiate the class to test the login interactor.
+     */
     UserLoginInteractorTest() throws IOException {
     }
 
+    /**
+     * Test whether the login works in a base case
+     */
     @Test
     void login() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
@@ -39,6 +51,8 @@ class UserLoginInteractorTest {
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
                 HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
 
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("John", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertTrue(gateway.existsByName("Ch3is"));
@@ -55,17 +69,24 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "John", "Rockefeller123");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
+    /**
+     * Test whether a user that has flashcard sets stored in the database are able to appropriately
+     * receive their flashcard sets in a map format.
+     */
     @Test
     void login2() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+                //Create mock maps to test for coherence
                 HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
                 Map<Integer, String[]> notEmptyFlashcardSet = new HashMap<>();
                 String[] firstSet = new String[] {"test set", "for testing study use case"};
@@ -73,6 +94,8 @@ class UserLoginInteractorTest {
                 notEmptyFlashcardSet.put(0, firstSet);
                 notEmptyFlashcardSet.put(1, secondSet);
 
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("Walt", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertEquals(notEmptyFlashcardSet.get(0)[0], user.getFlashcardSets().get(0)[0]);
@@ -93,18 +116,26 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "Walt", "Disney123");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
+    /**
+     * Test whether the login interactor is able to generate a map that is of length in accordance the list of
+     * flashcardsets belonging to a user as specified by the database.
+     */
     @Test
     void login3() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
 
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("George", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertEquals(41, user.getFlashcardSets().size());
@@ -120,18 +151,25 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "George", "Clooney123");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
+    /**
+     * Test whether a user that has flashcard sets stored in the database are able to appropriately
+     * receive their flashcard sets in a map format with a longer list of sets.
+     */
     @Test
     void login4() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
 
+                //Create mock maps to test for coherence
                 HashMap<Integer, String[]> emptyFlashcardSet = new HashMap<>();
                 Map<Integer, String[]> notEmptyFlashcardSet = new HashMap<>();
                 String[] zeroethSet = new String[] {"test set", "for testing study use case"};
@@ -149,6 +187,8 @@ class UserLoginInteractorTest {
                 int setSize = user.getFlashcardSets().size();
                 int tempSetSize = notEmptyFlashcardSet.size();
 
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("Ch3is", user.getSignedInUsername());
                 Assertions.assertNotEquals("rObErT", user.getSignedInUsername());
                 Assertions.assertTrue(user.getIsAdmin());
@@ -176,17 +216,27 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "Ch3is", "EVans!@#$");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
+    /**
+     * Test whether the login interactor is able to generate a map that is of length in accordance the list of
+     * flashcardsets belonging to a user as specified by the database with a smaller size. Alongside test adding a
+     * flashcard set ID
+     */
     @Test
     void login5() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("Steve", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertEquals(9, user.getFlashcardSets().size());
@@ -204,17 +254,27 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
                 "Steve", "Apple123");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
+    /**
+     * Test whether the login interactor is able to generate a map that is of length in accordance the list of
+     * flashcardsets belonging to a user as specified by the database with a smaller size. Alongside test removing a
+     * flashcard set ID
+     */
     @Test
     void login6() {
         UserLoginOutputBoundary presenter = new UserLoginPresenter() {
             @Override
             public UserLoginResponseModel prepareSuccessView(UserLoginResponseModel user) {
+
+                // 4) Check that the Output Data and associated changes
+                // are correct
                 Assertions.assertEquals("Steve", user.getSignedInUsername());
                 Assertions.assertFalse(user.getIsAdmin());
                 Assertions.assertEquals(10, user.getFlashcardSets().size());
@@ -234,9 +294,11 @@ class UserLoginInteractorTest {
         UserLoginInputBoundary interactor = new UserLoginInteractor(
                 gateway, presenter);
 
+        // 2) Input data — Normally created by the Controller.
         UserLoginRequestModel inputData = new UserLoginRequestModel(
         "Steve", "Apple123");
 
+        // 3) Run the use case
         interactor.login(inputData);
     }
 
