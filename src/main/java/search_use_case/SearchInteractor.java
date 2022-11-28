@@ -5,7 +5,6 @@ import data_access.entity_request_models.CommonUserDsRequestModel;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import login_and_signup_use_case.UserLoginResponseModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
