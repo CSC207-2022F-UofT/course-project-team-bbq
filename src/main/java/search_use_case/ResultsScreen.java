@@ -1,13 +1,13 @@
 package search_use_case;
 
-import dataAccess.DBGateway;
-import delete_flashcardset_use_case.*;
+import data_access.DBGateway;
+import delete_flashcard_set_use_case.*;
 import editor_main_page.EditorMainPage;
 import login_and_signup_use_case.UserLoginResponseModel;
 import quiz_use_case.*;
 import quiz_use_case.screens.QuizSettingsScreen;
-import studyMode.*;
-import studyMode.screens.StudySettingsScreen;
+import study_mode_use_case.*;
+import study_mode_use_case.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +36,7 @@ public class ResultsScreen extends JFrame implements ActionListener {
         JPanel result_panel = new JPanel();
         result_panel.setLayout(new BoxLayout(result_panel, BoxLayout.Y_AXIS));
 
-        // scrollbar if results dont fit on screen
+        // scrollbar if results don't fit on screen
         JScrollPane scrPane = new JScrollPane(result_panel);
         scrPane.setPreferredSize(new Dimension(350, 500));
         scrPane.getVerticalScrollBar().setUnitIncrement(16);

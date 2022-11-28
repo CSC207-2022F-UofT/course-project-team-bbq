@@ -5,10 +5,10 @@ public class FlashcardSet {
     private String title;
     private String description;
     private boolean isPrivate;
-    private List<Flashcard> flashcards;
+    private final List<Flashcard> flashcards;
 
-    private String ownerUsername;
-    private int flashcardSetId;
+    private final String ownerUsername;
+    private final int flashcardSetId;
 
     public FlashcardSet(String title, String description, boolean isPrivate,
                         int flashcardSetId, String ownerUsername){

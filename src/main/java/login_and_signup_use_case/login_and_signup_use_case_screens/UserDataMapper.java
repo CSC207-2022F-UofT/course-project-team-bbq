@@ -1,6 +1,5 @@
 package login_and_signup_use_case.login_and_signup_use_case_screens;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +24,7 @@ class UserDataMapper {
     public UserDataMapper() {
     }
 
-    public UserDataMapper(String name, String password, boolean isAdmin, ArrayList<Integer> flashcardSetIds, LocalDateTime creationTime) {
+    public UserDataMapper(String name, String password, boolean isAdmin, ArrayList<Integer> flashcardSetIds) {
         super();
         this.name = name;
         this.password = password;
@@ -35,10 +34,6 @@ class UserDataMapper {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
@@ -52,10 +47,6 @@ class UserDataMapper {
     public boolean getIsAdmin(boolean isAdmin){return isAdmin;}
 
     public void setIsAdmin(boolean isAdmin){this.isAdmin = isAdmin;}
-
-    public ArrayList<Integer> getFlashcardSetIds(){
-        return flashcardSetIds;
-    }
 
 }
 

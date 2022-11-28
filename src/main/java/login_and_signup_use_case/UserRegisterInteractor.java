@@ -1,9 +1,9 @@
 package login_and_signup_use_case;
 
-import dataAccess.DBGateway;
+import data_access.DBGateway;
 import entities.User;
 import entities.UserFactory;
-import entityRequestModels.CommonUserDsRequestModel;
+import data_access.entity_request_models.CommonUserDsRequestModel;
 /**
  * Signup Interactor, the heart of the registering use case engine.
  * Application Business Rules

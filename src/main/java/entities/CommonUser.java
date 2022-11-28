@@ -24,7 +24,6 @@ public class CommonUser implements User{
      * @param username the username of the user
      * @param password the password of the user
      * @param isAdmin whether the user is an admin or not
-     * @return a CommonUser object
      * Post Condition: A common user will be instantiated.
      */
     public CommonUser(String username, String password, boolean isAdmin){
@@ -68,7 +67,7 @@ public class CommonUser implements User{
     }
 
     /**
-     * Checks whether the password is valid by not being nothing and greater in length by 5
+     * Checks whether the password is valid by not being null and greater by 5
      * @return whether the password is valid
      */
     @Override

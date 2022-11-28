@@ -16,7 +16,7 @@ public interface UserFactory {
      * @param password the password of the user
      * @param isAdmin whether the user is an admin or not
      * @return a User object
-     * Post Condition: A User will be creates.
+     * Post Condition: A User will be created.
      */
     User create(String username, String password, boolean isAdmin);
 }

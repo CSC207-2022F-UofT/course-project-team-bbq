@@ -1,6 +1,6 @@
 package search_use_case;
 
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Winston Chieng
  */
 public class SearchResponseModel {
-    ArrayList<FlashcardSetDsRequestModel> result_set;
+    final ArrayList<FlashcardSetDsRequestModel> result_set;
 
     /**
      * Create a SearchResponseModel

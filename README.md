@@ -1,39 +1,39 @@
-# Project Template
+**Welcome to Bargain Bin Quizlet (BBQ for short)!**
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+This is a flashcard study application inspired by Quizlet.
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+# Main Features
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+### 1a. Sign Up For The Application.
+- If the user selects the "Sign Up" option from the welcome screen the user has an option of Signing up as a user with or without admin level access 
+  - The user must select a username that does not previously exist in the database, if the user inputs a previously existing username they shall be warned with a failure in registration and must choose another username.
+  - The password needs to be greater than or equal to 5 characters in length and not blank.
+  - The repeat password must match the password entered to ensure coherency and surety.
+  - If the user does not require admin level they can leave the Admin Key field blank and they shall be registered as a common user that can access teh program.
+  - If the user does require admin level access they can input the Admin Key in the field, if there is an error in the inputting of the key the user shall be warned accordingly.
 
-## Workflow Documents
+### 1b. Log In For The Application.
+- If the user selects the "Log In" option from the welcome screen the user may input their respective username and password, if the username does not match an existing username from the database or incorrect password they shall be warned.
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+### 2. Create a flashcard or a flashcard set.
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+### 3. Edit a flashcard or a flashcard set.
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+### 4. Delete a flashcard or a flashcard set.
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+### 5. Search for a public flashcard set.
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+### 6. Study from a flashcard set.
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+### 7. Generate and take a quiz from a flashcard set.
+- Given a flashcard set, the user can enter quiz mode.
+- Quiz mode features three types of questions: multiple choice, text entry, and true/false.
+- First, the user toggles a set of quiz settings (such as number of questions, question types, and timer).
+- Then, the user submits their quiz settings and a quiz is automatically generated for them.
+- After taking and submitting the quiz, the user can receive their quiz results and identify which questions they answered incorrectly.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+### 8. Save user and flashcard data to the database.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+# How to run the application?
 
-You can create another simple class and try generating a test for this class.
+Run src/main/java/Main.java.

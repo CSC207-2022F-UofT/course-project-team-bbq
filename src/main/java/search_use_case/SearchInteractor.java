@@ -1,11 +1,10 @@
 package search_use_case;
 
-import dataAccess.*;
-import entityRequestModels.CommonUserDsRequestModel;
-import entityRequestModels.FlashcardSetDsRequestModel;
+import data_access.*;
+import data_access.entity_request_models.CommonUserDsRequestModel;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import login_and_signup_use_case.UserLoginResponseModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -37,7 +36,7 @@ public class SearchInteractor implements SearchInputBoundary{
      * @return SearchResponseModel that contains the result set of FlashcardSets from the user search
      */
     @Override
-    public SearchResponseModel create(SearchRequestModel requestModel) throws IOException {
+    public SearchResponseModel create(SearchRequestModel requestModel) {
 
         ArrayList<FlashcardSetDsRequestModel> result_set = new ArrayList<>();
         ArrayList<Integer> flashcard_set_ids = new ArrayList<>();
@@ -87,8 +86,8 @@ public class SearchInteractor implements SearchInputBoundary{
 
         // Return results if there is at least 1 result
         if (result_set.size() > 0){
-            SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
-            return presenter.prepareSuccessView(searchResponseModel);
+//            SearchResponseModel searchResponseModel = new SearchResponseModel(result_set);
+            return presenter.prepareSuccessView(result_set);
         }
         if (tags.size() > 0 && !input.equals("")){
             return presenter.prepareFailView("There are currently no FlashcardSets in the database.");
