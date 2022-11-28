@@ -1,6 +1,7 @@
 package study_mode_use_case.screens;
 
 import study_mode_use_case.*;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
  * Frameworks & Drivers
  * @author Lucas Prates
  */
-public class StudySessionScreen extends JFrame implements ActionListener {
+public class StudySessionScreen extends Screen implements ActionListener {
     private final StudySessionController controller;
     private final JButton flip;
 

@@ -14,10 +14,9 @@ import java.awt.event.ActionEvent;
  * Frameworks & Drivers
  * @author Anthony
  */
-public class QuizSettingsScreen extends Screen {
+public class QuizSettingsScreen extends QuizUseCaseScreen {
     private final QuizController controller;
 
-    // default values (later on default settings should be pulled directly from the database)
     private boolean timerOn = false;
     private boolean multipleChoiceOn = true;
     private boolean textEntryOn = true;
@@ -26,13 +25,13 @@ public class QuizSettingsScreen extends Screen {
     private final int flashcardSetID;
 
     // GUI components
-    private final Slider numQuestionsSlider;
-    private final Slider timerSlider;
+    private Slider numQuestionsSlider;
+    private Slider timerSlider;
 
-    private final JButton timerButton;
-    private final JButton multipleChoiceButton;
-    private final JButton textEntryButton;
-    private final JButton trueFalseButton;
+    private JButton timerButton;
+    private JButton multipleChoiceButton;
+    private JButton textEntryButton;
+    private JButton trueFalseButton;
 
     // actions
     private enum Actions {
@@ -41,7 +40,6 @@ public class QuizSettingsScreen extends Screen {
 
     /**
      * Initializes the quiz settings screen.
-     * Precondition: The flashcard set belonging to flashcardSetID contains at least 4 flashcards.
      * @param controller the quiz settings controller
      * @param flashcardSetID the flashcard set ID
      */
@@ -55,82 +53,86 @@ public class QuizSettingsScreen extends Screen {
         QuizSettingsResponseModel response = this.controller.getNumFlashcards(request);
         int numFlashcards = response.getNumFlashcards();
 
-        // LISTENER
-        // listener
-        ChangeListener listener = new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                JSlider s = (JSlider) e.getSource();
-                if (s.equals(numQuestionsSlider.slider)) {
-                    numQuestionsSlider.updateValue();
-                } else if (s.equals(timerSlider.slider)) {
-                    timerSlider.updateValue();
+        if (numFlashcards < 4) {
+            JOptionPane.showMessageDialog(this, "Quiz mode requires at least 4 flashcards. " +
+                    "This set contains "+numFlashcards+" flashcards.");
+        } else {
+            // listener
+            ChangeListener listener = new ChangeListener() {
+                public void stateChanged(ChangeEvent e) {
+                    JSlider s = (JSlider) e.getSource();
+                    if (s.equals(numQuestionsSlider.slider)) {
+                        numQuestionsSlider.updateValue();
+                    } else if (s.equals(timerSlider.slider)) {
+                        timerSlider.updateValue();
+                    }
                 }
-            }
-        };
+            };
 
-        // GUI COMPONENTS
-        this.numQuestionsSlider = new Slider(1, numFlashcards, 4, 1, "Number of Questions:");
-        this.numQuestionsSlider.addChangeListener(listener);
+            // GUI COMPONENTS
+            this.numQuestionsSlider = new Slider(1, numFlashcards, 4, 1, "Number of Questions:");
+            this.numQuestionsSlider.addChangeListener(listener);
 
-        this.timerButton = new JButton("Timer OFF");
-        this.timerButton.setActionCommand(Actions.TIMER.name());
-        this.timerButton.addActionListener(this);
-        this.timerSlider = new Slider(0, 60, 30, 10, "Timer Duration:");
-        this.timerSlider.setVisible(false);
-        this.timerSlider.addChangeListener(listener);
+            this.timerButton = new JButton("Timer OFF");
+            this.timerButton.setActionCommand(Actions.TIMER.name());
+            this.timerButton.addActionListener(this);
+            this.timerSlider = new Slider(0, 60, 30, 10, "Timer Duration:");
+            this.timerSlider.setVisible(false);
+            this.timerSlider.addChangeListener(listener);
 
-        this.multipleChoiceButton = new JButton("Multiple Choice ON");
-        this.multipleChoiceButton.setActionCommand(Actions.MULTIPLE_CHOICE.name());
-        this.multipleChoiceButton.addActionListener(this);
+            this.multipleChoiceButton = new JButton("Multiple Choice ON");
+            this.multipleChoiceButton.setActionCommand(Actions.MULTIPLE_CHOICE.name());
+            this.multipleChoiceButton.addActionListener(this);
 
-        this.textEntryButton = new JButton("Text Entry ON");
-        this.textEntryButton.setActionCommand(Actions.TEXT_ENTRY.name());
-        this.textEntryButton.addActionListener(this);
+            this.textEntryButton = new JButton("Text Entry ON");
+            this.textEntryButton.setActionCommand(Actions.TEXT_ENTRY.name());
+            this.textEntryButton.addActionListener(this);
 
-        this.trueFalseButton = new JButton("True False ON");
-        this.trueFalseButton.setActionCommand(Actions.TRUE_FALSE.name());
-        this.trueFalseButton.addActionListener(this);
+            this.trueFalseButton = new JButton("True False ON");
+            this.trueFalseButton.setActionCommand(Actions.TRUE_FALSE.name());
+            this.trueFalseButton.addActionListener(this);
 
-        JButton submit = new JButton("Submit");
-        submit.setActionCommand(Actions.SUBMIT.name());
-        submit.addActionListener(this);
+            JButton submit = new JButton("Submit");
+            submit.setActionCommand(Actions.SUBMIT.name());
+            submit.addActionListener(this);
 
-        // ADDING COMPONENTS IN A LAYOUT
-        JPanel timerPanel = new JPanel();
-        timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.LINE_AXIS));
-        timerPanel.add(timerButton);
-        timerPanel.add(timerSlider);
+            // ADDING COMPONENTS IN A LAYOUT
+            JPanel timerPanel = new JPanel();
+            timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.LINE_AXIS));
+            timerPanel.add(timerButton);
+            timerPanel.add(timerSlider);
 
-        JPanel typesPanel = new JPanel();
-        typesPanel.setLayout(new BoxLayout(typesPanel, BoxLayout.LINE_AXIS));
-        typesPanel.setBorder(BorderFactory.createEmptyBorder(10,10, 10, 10));
-        typesPanel.add(multipleChoiceButton);
-        typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-        typesPanel.add(textEntryButton);
-        typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-        typesPanel.add(trueFalseButton);
+            JPanel typesPanel = new JPanel();
+            typesPanel.setLayout(new BoxLayout(typesPanel, BoxLayout.LINE_AXIS));
+            typesPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            typesPanel.add(multipleChoiceButton);
+            typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            typesPanel.add(textEntryButton);
+            typesPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            typesPanel.add(trueFalseButton);
 
-        JPanel submitPanel = new JPanel();
-        submitPanel.add(submit);
+            JPanel submitPanel = new JPanel();
+            submitPanel.add(submit);
 
-        // adding everything
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
-        leftPanel.add(typesPanel);
+            // adding everything
+            JPanel leftPanel = new JPanel();
+            leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
+            leftPanel.add(typesPanel);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
-        centerPanel.add(numQuestionsSlider);
-        centerPanel.add(timerPanel);
+            JPanel centerPanel = new JPanel();
+            centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+            centerPanel.add(numQuestionsSlider);
+            centerPanel.add(timerPanel);
 
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.add(submitPanel);
+            JPanel bottomPanel = new JPanel();
+            bottomPanel.add(submitPanel);
 
-        Container contentPane = this.getContentPane();
-        contentPane.add(leftPanel, BorderLayout.LINE_START);
-        contentPane.add(centerPanel, BorderLayout.CENTER);
-        contentPane.add(bottomPanel, BorderLayout.PAGE_END);
-        this.setupScreen();
+            Container contentPane = this.getContentPane();
+            contentPane.add(leftPanel, BorderLayout.LINE_START);
+            contentPane.add(centerPanel, BorderLayout.CENTER);
+            contentPane.add(bottomPanel, BorderLayout.PAGE_END);
+            this.setupScreen();
+        }
     }
 
     /**

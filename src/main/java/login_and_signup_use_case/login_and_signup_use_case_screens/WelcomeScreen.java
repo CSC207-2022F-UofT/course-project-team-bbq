@@ -4,6 +4,7 @@ import data_access.*;
 import entities.CommonUserFactory;
 import entities.UserFactory;
 import login_and_signup_use_case.*;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +12,13 @@ import java.awt.event.*;
 import java.io.IOException;
 
 /**
- * Create a Swing user interface for the Welcom Screen
+ * Create a Swing user interface for the Welcome Screen
  *<p>
  * Frameworks and Drivers
  * @author Aryan Chablani (with inspiration from Professor Paul Gries)
  */
 
-public class WelcomeScreen extends JFrame implements ActionListener {
+public class WelcomeScreen extends Screen implements ActionListener {
 
     /**
      * A window with a title and a JButton.
