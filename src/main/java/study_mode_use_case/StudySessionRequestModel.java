@@ -8,6 +8,9 @@ package study_mode_use_case;
  * @author Lucas Prates
  */
 public class StudySessionRequestModel {
+    /**
+     * a string which specifies what the user wants to do
+     */
     private String command;
 
     /**

@@ -17,14 +17,30 @@ import java.awt.event.ActionListener;
  */
 public class StudySettingsScreen extends Screen implements ActionListener {
 
+    /**
+     * The id of the flashcard set to study
+     */
     private final int flashcardSetId;
 
+    /**
+     * The study mode controller
+     */
     private final StudySessionController controller;
 
+    /**
+     * A string specifying the sorting order of the flashcard set
+     */
     private String sortingOrder;
 
+    /**
+     * A boolean which specifies if the term or definition is displayed
+     * by default
+     */
     private boolean termIsDefault=true;
 
+    /**
+     * A boolean which specifies if the flashcard set is sorted in order or in reverse
+     */
     private boolean isReverse=false;
 
 

@@ -9,15 +9,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StudySessionUseCaseUnitTest {
 
+    /**
+     * the id of the study test set in the test database
+     */
     int testSetId = 0;
+
+    /**
+     * the id of the empty study test set in the test database
+     */
     int emptyTestSetId = 1;
 
+    /**
+     * a request model corresponding to a user who wants to view the next flashcard
+     */
     StudySessionRequestModel next = new StudySessionRequestModel();
+
+    /**
+     * a request model corresponding to a user who wants to view the previous flashcard
+     */
     StudySessionRequestModel prev = new StudySessionRequestModel();
+
+    /**
+     * a request model corresponding to a user who wants to flip the current flashcard
+     */
     StudySessionRequestModel flip = new StudySessionRequestModel();
 
+    /**
+     * the controller for the study mode use case
+     */
     StudySessionController controller;
 
+    /**
+     * a function which sets up the test database, test request models, and controller
+     * @param flashcardSetId the id of the flashcard set to be studied
+     * @param sortingOrder a string specifying the order the user wants to sort the flashcard set
+     * @param termIsDefault a boolean specifying if term or definition is displayed by default
+     * @param isReverse a boolean specifying if the set is sorted in order or in reverse
+     * @return a StudySettingsResponseModel corresponding to the flashcard set to be studied
+     * @throws IOException if there is unexpected database behaviour
+     */
     StudySettingsRequestModel setup(int flashcardSetId, String sortingOrder,
                                      boolean termIsDefault, boolean isReverse) throws IOException {
         IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
@@ -39,6 +69,11 @@ public class StudySessionUseCaseUnitTest {
 
         return new StudySettingsRequestModel(flashcardSetId, sortingOrder, termIsDefault, isReverse);
     }
+
+    /**
+     * Tests a flashcard set sorted by creation date by iterating forward through the flashcard set
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testTimeSort() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -66,6 +101,10 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(1, curr.getCardNumber());
     }
 
+    /**
+     * Tests a flashcard set sorted by alphabetical order by iterating forward through the flashcard set
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testAlphSort() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -93,6 +132,10 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(1, curr.getCardNumber());
     }
 
+    /**
+     * Tests the "previous" button by iterating backward through the flashcard set
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testPrevious() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -120,6 +163,11 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(1, curr.getCardNumber());
     }
 
+    /**
+     * Tests the flipping functionality by flipping the first flashcard and then
+     * iterating to the next flashcard
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testFlip() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -139,6 +187,11 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(2, curr.getCardNumber());
     }
 
+    /**
+     * Tests study mode with definitions set to default by flipping the first flashcard and then
+     * iterating to the next flashcard
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testsTermNotDefault() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -158,6 +211,10 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(2, curr.getCardNumber());
     }
 
+    /**
+     * Tests reverse functionality by iterating forward through a reversed flashcard set
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testReverse() throws IOException {
         StudySettingsRequestModel request = this.setup(testSetId,
@@ -185,6 +242,11 @@ public class StudySessionUseCaseUnitTest {
         assertEquals(1, curr.getCardNumber());
     }
 
+    /**
+     * Checks that a StudySettingsFailed response is thrown upon attempting to study an
+     * empty flashcard set
+     * @throws IOException if there is unexpected database behaviour
+     */
     @Test
     void testEmpty() throws IOException {
         StudySettingsRequestModel request = this.setup(emptyTestSetId,

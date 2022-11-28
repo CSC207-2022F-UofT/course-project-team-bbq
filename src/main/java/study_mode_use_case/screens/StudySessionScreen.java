@@ -15,14 +15,31 @@ import java.awt.event.ActionListener;
  * Frameworks & Drivers
  * @author Lucas Prates
  */
+
 public class StudySessionScreen extends Screen implements ActionListener {
+    /**
+     * the study session controller
+     */
     private final StudySessionController controller;
+
+    /**
+     * a JButton which handles flipping the flashcard
+     */
     private final JButton flip;
 
+    /**
+     * stores the length of the flashcard set
+     */
     private final int numFlashcards;
 
+    /**
+     * stores the text to be written to the on-screen flashcard
+     */
     private final JLabel cardLabel;
 
+    /**
+     * the id of the flashcard set being studied
+     */
     private final int flashcardSetId;
 
     /**

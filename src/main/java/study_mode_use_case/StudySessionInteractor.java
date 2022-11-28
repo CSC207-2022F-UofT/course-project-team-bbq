@@ -17,9 +17,20 @@ import java.util.Comparator;
  */
 public class StudySessionInteractor implements StudySessionInputBoundary {
 
+    /**
+     * a Flashcard Set which can handle study mode operations (flipping, going to next flashcard,
+     * going to previous flashcard)
+     */
     private FlashcardStudier studier;
+
+    /**
+     * an object which can prepare data for the view
+     */
     private final StudySessionOutputBoundary presenter;
 
+    /**
+     * an object that knows how to build a flashcard studier
+     */
     private final FlashcardStudierBuilder builder;
 
     /**

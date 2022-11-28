@@ -7,17 +7,40 @@ package study_mode_use_case;
  * @author Lucas Prates
  */
 public class StudySessionController {
+    /**
+     * an interactor which controls the use case
+     */
     private final StudySessionInputBoundary inputBoundary;
 
 
+    /**
+     * a string which tells the system that the user wants to flip the flashcard
+     */
     public static String flip = StudySessionInputBoundary.flip;
+
+    /**
+     * a string which tells the system that the user wants to gp to the next flashcard
+     */
     public static String next = StudySessionInputBoundary.next;
+
+    /**
+     * a string which tells the system that the user wants to gp to the previous flashcard
+     */
     public static String prev = StudySessionInputBoundary.prev;
 
+    /**
+     * a string which tells the system the user wants to shuffle randomly
+     */
     public static String shuffleSort = StudySessionInputBoundary.shuffleSort;
 
+    /**
+     * a string which tells the system the user wants to sort by alphabetical order
+     */
     public static String alphSort = StudySessionInputBoundary.alphSort;
 
+    /**
+     * a string which tells the system the user wants to sort by creation order
+     */
     public static String timeSort = StudySessionInputBoundary.timeSort;
 
     /**
