@@ -1,12 +1,16 @@
 package create_flashcard_set_use_case;
 
 import data_access.IFlashcardSetDataAccess;
-import delete_flashcard_set_use_case.FlashcardSetNotFound;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import delete_flashcard_set_use_case.FlashcardSetNotFound;
 
 import java.util.ArrayList;
 
-
+/**
+ * A mock flashcard set repository for testing purposes.
+ *
+ * @author Edward Ishii
+ */
 public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
 
     // Mock database
@@ -18,8 +22,8 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     }
 
     /**
-     * @param flashcardSetId the id of the flashcard set
-     * @return the flashcard set associated with the id
+     * @param flashcardSetId the id of the flashcard set.
+     * @return the flashcard set associated with the id.
      */
     @Override
     public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId) throws FlashcardSetNotFound {
@@ -33,8 +37,8 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     }
 
     /**
-     * @param flashcardSetId the id of the flashcard set
-     * @return the title and description of the flashcard set
+     * @param flashcardSetId the id of the flashcard set.
+     * @return the title and description of the flashcard set.
      */
     @Override
     public String[] getTitleAndDescription(int flashcardSetId) {
@@ -48,16 +52,33 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
         return toReturn;
     }
 
+    /**
+     * Edit the title and description of the flashcard set.
+     *
+     * @param flashcardSet the flashcard set to be edited.
+     */
     @Override
     public void editTitleAndDescription(FlashcardSetDsRequestModel flashcardSet) {
 
     }
 
+    /**
+     * Save a flashcard id into the flashcard set.
+     *
+     * @param flashcardSetId the flashcard set's id.
+     * @param flashcardId    the flashcard's id
+     */
     @Override
     public void saveFlashcardID(int flashcardSetId, int flashcardId) {
 
     }
 
+    /**
+     * Remove a flashcard id from the flashcard set.
+     *
+     * @param flashcardSetId the flashcard set's id.
+     * @param flashcardId    the flashcard's id.
+     */
     @Override
     public void removeFlashcardId(int flashcardSetId, int flashcardId) {
 

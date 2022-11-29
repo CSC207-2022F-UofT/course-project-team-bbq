@@ -2,9 +2,9 @@ package create_flashcard_set_use_case;
 
 import data_access.DBGateway;
 import data_access.IFlashcardSetDataAccess;
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
 import entities.FlashcardSet;
 import entities.FlashcardSetFactory;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,15 +22,22 @@ import java.util.Objects;
  * - check that the flashcard set contains a title, description, and owner's username (if not, alert user)
  * - create and store newly created flashcard set
  * - notify successful creation of flashcard set to user
+ *
+ * @author Edward Ishii
  */
-
 public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
     DBGateway dbGateway;
     IFlashcardSetDataAccess flashcardSetDataAccess;  // for testing
     FlashcardSetOutputBoundary flashcardSetOutputBoundary;
     FlashcardSetFactory flashcardSetFactory;
 
-
+    /**
+     * Constructs the use case interactor.
+     *
+     * @param dbGateway                  the database to store the flashcard set in.
+     * @param flashcardSetOutputBoundary the output boundary for preparing success/fail view of saving flashcard sets.
+     * @param flashcardSetFactory        the factory that creates flashcard sets.
+     */
     public FlashcardSetInteractor(DBGateway dbGateway, FlashcardSetOutputBoundary flashcardSetOutputBoundary,
                                   FlashcardSetFactory flashcardSetFactory) {
         this.dbGateway = dbGateway;
@@ -38,7 +45,13 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
         this.flashcardSetFactory = flashcardSetFactory;
     }
 
-    // Alternative construction for testing purposes
+    /**
+     * Alternative constructor for testing purposes.
+     *
+     * @param flashcardSetDataAccess     the flashcard set database.
+     * @param flashcardSetOutputBoundary the output boundary for preparing success/fail view.
+     * @param flashcardSetFactory        the factory creating flashcard sets.
+     */
     public FlashcardSetInteractor(IFlashcardSetDataAccess flashcardSetDataAccess,
                                   FlashcardSetOutputBoundary flashcardSetOutputBoundary,
                                   FlashcardSetFactory flashcardSetFactory) {
@@ -47,6 +60,13 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
         this.flashcardSetFactory = flashcardSetFactory;
     }
 
+    /**
+     * Creates a flashcard set and stores it into the database.
+     *
+     * @param inputData the request model containing data required for creating flashcard sets.
+     * @return the response model containing the newly created flashcard set data.
+     * @throws FlashcardSetCreationFailed the error thrown if flashcard set creation fails.
+     */
     @Override
     public FlashcardSetResponseModel create(FlashcardSetRequestModel inputData) throws FlashcardSetCreationFailed {
 
@@ -70,21 +90,24 @@ public class FlashcardSetInteractor implements FlashcardSetInputBoundary {
                 inputData.isPrivate(), tempFlashcardSetId, inputData.getUsername());
 
         // store the flashcard set into database
-        ArrayList<Integer> flashcardIds = new ArrayList<>();  // set starts with empty list of flashcard ids for database
+        ArrayList<Integer> flashcardIds = new ArrayList<>();  // set starts with empty list of flashcard ids
         FlashcardSetDsRequestModel dsRequestModel = new FlashcardSetDsRequestModel(fs.getTitle(), fs.getDescription(),
                 fs.getIsPrivate(), tempFlashcardSetId, fs.getOwnerUsername(), flashcardIds);
 
         try {
-            dbGateway.saveFlashcardSet(dsRequestModel);
-            FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
+            int savedFlashcardSetId = dbGateway.saveFlashcardSet(dsRequestModel);
+
+            // create the saved flashcard set with its proper id
+            FlashcardSet savedFs = factory.create(inputData.getTitle(), inputData.getDescription(),
+                    inputData.isPrivate(), savedFlashcardSetId, inputData.getUsername());
+
+            FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(savedFs);
+
             return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             return null;
         }
-//        dbGateway.saveFlashcardSet(dsRequestModel);
-//        FlashcardSetResponseModel responseModel = new FlashcardSetResponseModel(fs);
 
-//        return flashcardSetOutputBoundary.prepareSuccessView(responseModel);
     }
 
 
