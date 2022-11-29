@@ -1,7 +1,6 @@
 package create_flashcard_set_use_case;
 
 import login_and_signup_use_case.UserLoginResponseModel;
-import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +10,18 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class CreationScreen extends Screen implements ActionListener {
+/**
+ * The flashcard set creation screen.
+ *
+ * @author Edward Ishii
+ */
+public class CreationScreen extends JFrame implements ActionListener {
     /**
-     * The title of the flashcard set chosen by the user
+     * The title of the flashcard set chosen by the user.
      */
     JTextField title = new JTextField(15);
     /**
-     * The description of the flashcard set
+     * The description of the flashcard set.
      */
     JTextField description = new JTextField(15);
 //    /**
@@ -26,10 +30,13 @@ public class CreationScreen extends Screen implements ActionListener {
 //    JTextField username = new JTextField(15);
 
     /**
-     * The controller
+     * The controller.
      */
     FlashcardSetController flashcardSetController;
 
+    /**
+     * The user.
+     */
     UserLoginResponseModel user;
 
     private boolean privateSelected;  // for public or private status of flashcard set
@@ -93,10 +100,10 @@ public class CreationScreen extends Screen implements ActionListener {
             privateSelected = !privateSelected;  // toggle every time clicked
         } else {
             try {
-                flashcardSetController.create(title.getText(), description.getText(),
-                        privateSelected, user.getSignedInUsername());
+                FlashcardSetResponseModel responseModel = flashcardSetController.create(title.getText(),
+                        description.getText(), privateSelected, user.getSignedInUsername());
                 JOptionPane.showMessageDialog(this,
-                        String.format("Flashcard Set: [%s] created.", title.getText()));
+                        String.format("Flashcard Set: [%s] has been created.", responseModel.getFs().getTitle()));
                 this.dispose();  // exit creation screen
             } catch (FlashcardSetCreationFailed e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
