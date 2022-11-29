@@ -3,8 +3,6 @@ package delete_flashcard_set_use_case;
 // Use case (Red) layer
 
 import data_access.DBGateway;
-import data_access.IFlashcardDataAccess;
-import data_access.IFlashcardSetDataAccess;
 
 /**
  * [Feature: Deleting a Flashcard Set]
@@ -21,8 +19,7 @@ import data_access.IFlashcardSetDataAccess;
 public class DelFlashcardSetInteractor implements DelFlashcardSetInputBoundary {
 
     DBGateway dbGateway;
-    IFlashcardSetDataAccess flashcardSetDataAccess;  // for testing
-    IFlashcardDataAccess flashcardDataAccess;  // for testing
+
     DelFlashcardSetOutputBoundary outputBoundary;
 
     public DelFlashcardSetInteractor(DBGateway dbGateway, DelFlashcardSetOutputBoundary outputBoundary) {

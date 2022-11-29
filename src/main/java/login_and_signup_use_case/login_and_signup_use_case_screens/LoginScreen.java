@@ -2,6 +2,7 @@ package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import main_page.HomePage;
 import login_and_signup_use_case.UserLoginResponseModel;
+import data_access.*;
 import view.Screen;
 
 import javax.swing.*;
@@ -87,7 +88,12 @@ public class LoginScreen extends Screen implements ActionListener {
                 UserLoginResponseModel user = userLoginController.create(username.getText(),
                         String.valueOf(password.getPassword()));
                 this.dispose();
-                new HomePage(user);
+                IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+                IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+                IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
+                DBGateway gateway = new DBGateway(flashcardDataAccess,
+                        flashcardSetDataAccess, userDataAccess);
+                new HomePage(user, gateway);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }

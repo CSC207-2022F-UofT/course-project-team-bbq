@@ -65,7 +65,7 @@ public class FlashcardSetInteractorTest {
     }
 
     @Test
-    public void testMissingTitleException() throws FlashcardSetCreationFailed {
+    public void testMissingTitleException() {
         // Create a mock user input with no title
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("",
                 "Final Exam Review", false, "uncle_bob69");
@@ -92,14 +92,14 @@ public class FlashcardSetInteractorTest {
         try {
             interactor.create(requestModel);  // no title should go immediately to catch block (i.e., pass test)
             assert (false);  // if title is included, then this line is reached and test fails
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (FlashcardSetCreationFailed ignored) {
 
         }
 
     }
 
     @Test
-    public void testMissingDescriptionException() throws FlashcardSetCreationFailed {
+    public void testMissingDescriptionException() {
         // Create a mock user input with no description
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
                 "", false, "uncle_bob69");
@@ -126,14 +126,14 @@ public class FlashcardSetInteractorTest {
         try {
             interactor.create(requestModel);
             assert (false);
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (FlashcardSetCreationFailed ignored) {
 
         }
 
     }
 
     @Test
-    public void testMissingUsernameException() throws FlashcardSetCreationFailed {
+    public void testMissingUsernameException() {
         // Create a mock user input with no username
         FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
                 "Final Exam Review", false, "");
@@ -160,7 +160,7 @@ public class FlashcardSetInteractorTest {
         try {
             interactor.create(requestModel);
             assert (false);
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (FlashcardSetCreationFailed ignored) {
 
         }
 

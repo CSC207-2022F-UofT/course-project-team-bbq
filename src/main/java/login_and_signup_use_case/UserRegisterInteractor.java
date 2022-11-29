@@ -42,7 +42,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         // Create a temporary user to access the adminkey
         User fakeUser = userFactory.create("BLANK", "BLANK1", false);
 
-        // set isAdmin to true if they entered the admin key correctly
+        // Set isAdmin to true if they entered the admin key correctly
         boolean isAdmin = fakeUser.adminKeyValid(requestModel.getAdminKeyEntered());
 
         User user = userFactory.create(requestModel.getName(), requestModel.getPassword(), isAdmin);
