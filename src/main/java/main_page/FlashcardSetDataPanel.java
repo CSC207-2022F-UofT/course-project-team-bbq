@@ -11,7 +11,6 @@ import study_mode_use_case.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 

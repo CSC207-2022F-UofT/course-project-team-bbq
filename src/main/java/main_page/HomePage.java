@@ -1,6 +1,5 @@
 package main_page;
 
-import editor_main_page.EditorMainPage;
 import create_flashcard_set_use_case.*;
 import data_access.*;
 import entities.FlashcardSetFactory;
@@ -19,7 +18,6 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class HomePage extends Screen implements WindowListener {
