@@ -1,9 +1,7 @@
 package delete_flashcard_set_use_case;
 
-
 import data_access.DBGateway;
 import login_and_signup_use_case.UserLoginResponseModel;
-import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,18 +11,30 @@ import java.util.Objects;
 
 // Frameworks/Drivers (Blue) layer
 
-public class DeletionScreen extends Screen implements ActionListener {
+/**
+ * The flashcard set deletion screen.
+ *
+ * @author Edward Ishii
+ */
+public class DeletionScreen extends JFrame implements ActionListener {
     /**
-     * The id of the flashcard set to be deleted
+     * The id of the flashcard set to be deleted.
      */
     int flashcardSetID;
 
+    /**
+     * The user.
+     */
     UserLoginResponseModel user;
 
     /**
-     * The controller
+     * The controller.
      */
     DelFlashcardSetController controller;
+
+    /**
+     * The database gateway.
+     */
     DBGateway gateway;
 
 //    /**
@@ -37,7 +47,7 @@ public class DeletionScreen extends Screen implements ActionListener {
      */
     public DeletionScreen(int flashcardSetID, DelFlashcardSetController controller, UserLoginResponseModel user,
                           DBGateway gateway) {
-        this.user=user;
+        this.user = user;
         this.flashcardSetID = flashcardSetID;
         this.controller = controller;
         this.gateway = gateway;
@@ -78,19 +88,16 @@ public class DeletionScreen extends Screen implements ActionListener {
         // Exit deletion screen if user cancels deletion
         if (Objects.equals(evt.getActionCommand(), "Cancel")) {
             this.dispose();
-        }
-
-        else {  // Delete was pressed
+        } else {  // Delete was pressed
 //            try {
 //                int id = Integer.parseInt(flashcardSetID.getText());  // check input is an integer
 
             // Ask for confirmation
             String title;
             // Admin deletion
-            if (user.getFlashcardSets().get(flashcardSetID) == null){
-                title =  gateway.getFlashcardSet(flashcardSetID).getTitle();
-            }
-            else{
+            if (user.getFlashcardSets().get(flashcardSetID) == null) {
+                title = gateway.getFlashcardSet(flashcardSetID).getTitle();
+            } else {
                 // User deletion
                 title = user.getFlashcardSets().get(flashcardSetID)[0];
             }
@@ -101,8 +108,9 @@ public class DeletionScreen extends Screen implements ActionListener {
                     "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmation == 0) {
                 try {
-                    controller.delete(flashcardSetID);
-                    JOptionPane.showMessageDialog(this, title + " has been deleted.");
+                    DelFlashcardSetResponseModel responseModel = controller.delete(flashcardSetID);
+                    responseModel.setMessage(title + " has been deleted.");
+                    JOptionPane.showMessageDialog(this, responseModel.getMessage());
                     this.dispose();  // exit deletion screen
                 } catch (FlashcardSetNotFound e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
