@@ -5,6 +5,11 @@ import data_access.entity_request_models.FlashcardDsRequestModel;
 
 import java.util.ArrayList;
 
+/**
+ * A mock flashcard repository for testing purposes.
+ *
+ * @author Edward Ishii
+ */
 public class InMemoryFlashcard implements IFlashcardDataAccess {
 
     // Mock database
@@ -15,6 +20,10 @@ public class InMemoryFlashcard implements IFlashcardDataAccess {
         return id1 == id2;
     }
 
+    /**
+     * @param flashcardID the id of the flashcard.
+     * @return the flashcard associated with the id.
+     */
     @Override
     public FlashcardDsRequestModel getFlashcard(Integer flashcardID) {
         for (FlashcardDsRequestModel fc : flashcards) {
@@ -25,6 +34,10 @@ public class InMemoryFlashcard implements IFlashcardDataAccess {
         return null;
     }
 
+    /**
+     * @param flashcard the flashcard that is to be saved.
+     * @return the id of the flashcard that was saved.
+     */
     @Override
     public int saveFlashcard(FlashcardDsRequestModel flashcard) {
         flashcards.add(flashcard);
@@ -32,11 +45,17 @@ public class InMemoryFlashcard implements IFlashcardDataAccess {
         return flashcard.getFlashcardId();
     }
 
+    /**
+     * @param flashcard the flashcard that is to be edited.
+     */
     @Override
     public void editFlashcard(FlashcardDsRequestModel flashcard) {
 
     }
 
+    /**
+     * @param flashcardID the id of the flashcard.
+     */
     @Override
     public void deleteFlashcard(Integer flashcardID) {
         boolean deleted = false;
