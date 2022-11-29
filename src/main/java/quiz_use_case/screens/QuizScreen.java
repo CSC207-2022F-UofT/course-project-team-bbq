@@ -104,14 +104,19 @@ public class QuizScreen extends QuizUseCaseScreen {
     }
 
     /**
-     * RESTART - the program returns to the quiz settings screen.
-     * SUBMIT - the program collects all user answers and proceeds to the quiz results screen.
-     * @param e the action event
+     * RESTART          the program returns to the quiz settings screen.
+     * SUBMIT           the program collects all user answers and proceeds to the quiz results screen.
+     * UPDATE_TIMER     the program updates the timer. If the timer runs out of time, then the program automatically
+     *                  proceeds to the quiz results screen without any user input.
+     * @param e         the action event
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if (command.equals(Actions.RESTART.name())) {
+            if (timer != null) {
+                timer.stop();
+            }
             this.setVisible(false);
             this.dispose();
             new QuizSettingsScreen(this.controller, this.flashcardSetID);
@@ -126,11 +131,20 @@ public class QuizScreen extends QuizUseCaseScreen {
                 int input = JOptionPane.showConfirmDialog(null, message,
                         "WARNING", JOptionPane.YES_NO_OPTION);
                 if (input == 0) { // continue onwards
+                    if (timer != null) {
+                        timer.stop();
+                    }
+
+                    // transition into next screen
                     this.setVisible(false);
                     this.dispose();
                     new QuizResultsScreen(this.controller, response, this.flashcardSetID);
                 }
             } else {
+                if (timer != null) {
+                    timer.stop();
+                }
+
                 // transition into next screen
                 this.setVisible(false);
                 this.dispose();
