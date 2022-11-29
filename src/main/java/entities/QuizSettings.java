@@ -5,12 +5,12 @@ package entities;
  * @author Anthony
  */
 public class QuizSettings {
-    private int numQuestions;
-    private boolean timerOn;
-    private int timerDuration;
-    private boolean multipleChoiceOn;
-    private boolean textEntryOn;
-    private boolean trueFalseOn;
+    private final int numQuestions;
+    private final boolean timerOn;
+    private final int timerDuration;
+    private final boolean multipleChoiceOn;
+    private final boolean textEntryOn;
+    private final boolean trueFalseOn;
 
     /**
      * Constructor for quiz settings.
@@ -45,52 +45,35 @@ public class QuizSettings {
         return ((1 <= this.timerDuration && this.timerDuration <= 60) || !(this.timerOn));
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the number of questions.
+     * @return the number of questions
+     */
     public int getNumQuestions() {
         return numQuestions;
     }
 
-    public void setNumQuestions(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
-    public boolean isTimerOn() {
-        return timerOn;
-    }
-
-    public void setTimerOn(boolean timerOn) {
-        this.timerOn = timerOn;
-    }
-
-    public int getTimerDuration() {
-        return timerDuration;
-    }
-
-    public void setTimerDuration(int timerDuration) {
-        this.timerDuration = timerDuration;
-    }
-
+    /**
+     * Gets the multiple choice boolean value.
+     * @return true if multiple choice is on
+     */
     public boolean isMultipleChoiceOn() {
         return multipleChoiceOn;
     }
 
-    public void setMultipleChoiceOn(boolean multipleChoiceOn) {
-        this.multipleChoiceOn = multipleChoiceOn;
-    }
-
+    /**
+     * Gets the text entry boolean value.
+     * @return true if text entry is on
+     */
     public boolean isTextEntryOn() {
         return textEntryOn;
     }
 
-    public void setTextEntryOn(boolean textEntryOn) {
-        this.textEntryOn = textEntryOn;
-    }
-
+    /**
+     * Gets the true/false boolean value.
+     * @return true if true/false is on
+     */
     public boolean isTrueFalseOn() {
         return trueFalseOn;
-    }
-
-    public void setTrueFalseOn(boolean trueFalseOn) {
-        this.trueFalseOn = trueFalseOn;
     }
 }

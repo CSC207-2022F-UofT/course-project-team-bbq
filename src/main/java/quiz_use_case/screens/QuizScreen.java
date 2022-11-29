@@ -3,7 +3,7 @@ package quiz_use_case.screens;
 import quiz_use_case.*;
 import quiz_use_case.GUI.*;
 
-import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,8 +21,15 @@ public class QuizScreen extends QuizUseCaseScreen {
     private final int flashcardSetID;
     private final List<QuestionCard> questionCards;
 
+    // timer components
+    private Timer timer;
+    private long startTime = -1;
+    private long duration;
+    private FlatLabel timerLabel;
+    private final SimpleDateFormat df = new SimpleDateFormat("mm:ss:SSS");
+
     private enum Actions {
-        RESTART, SUBMIT
+        RESTART, SUBMIT, UPDATE_TIMER
     }
 
     /**
@@ -83,14 +90,15 @@ public class QuizScreen extends QuizUseCaseScreen {
 
         // TIMER
         if (response.isTimerOn()) {
-            JPanel topPanel = new JPanel();
-            Timer timer = new Timer(1000, new TimerActionListener());
-            timer.setInitialDelay(1000);
-            timer.start();
-            FlatLabel timerLabel = new FlatLabel(Integer.toString(response.getTimerDuration()), "h0");
-            topPanel.add(timerLabel);
-
-            contentPane.add(topPanel, BorderLayout.PAGE_START);
+            JPanel timerPanel = new JPanel();
+            this.duration = response.getTimerDuration() * 60000L;
+            this.timer = new Timer(250, this);
+            this.timer.setActionCommand(Actions.UPDATE_TIMER.name());
+            this.timer.setInitialDelay(1000); // delay between timer start and first event detection
+            this.timerLabel = new FlatLabel(df.format(duration), "h0");
+            timerPanel.add(timerLabel);
+            contentPane.add(timerPanel, BorderLayout.PAGE_START);
+            this.timer.start();
         }
         this.setupScreen();
     }
@@ -108,18 +116,7 @@ public class QuizScreen extends QuizUseCaseScreen {
             this.dispose();
             new QuizSettingsScreen(this.controller, this.flashcardSetID);
         } else if (command.equals(Actions.SUBMIT.name())) {
-            // collect all the user answers
-            ArrayList<String> userAnswers = new ArrayList<>();
-            for (QuestionCard q : this.questionCards) {
-                if (q instanceof TextEntryQuestionCard) {
-                    ((TextEntryQuestionCard)q).updateUserAnswer();
-                }
-                userAnswers.add(q.getUserAnswer());
-            }
-
-            // make a request based on user answers
-            QuizRequestModel request = new QuizRequestModel(userAnswers);
-            QuizResponseModel response = this.controller.getResults(request);
+            QuizResponseModel response = collectUserAnswers();
 
             if (response.isFailed()) {
                 String error = response.getMessage();
@@ -139,13 +136,42 @@ public class QuizScreen extends QuizUseCaseScreen {
                 this.dispose();
                 new QuizResultsScreen(this.controller, response, this.flashcardSetID);
             }
+        } else if (command.equals(Actions.UPDATE_TIMER.name())) {
+            if (startTime < 0) {
+                startTime = System.currentTimeMillis();
+            }
+            long now = System.currentTimeMillis();
+            long clockTime = now - startTime;
+            if (clockTime >= duration) {
+                clockTime = duration;
+                timer.stop();
+
+                QuizResponseModel response = collectUserAnswers();
+
+                // transition into next screen
+                this.setVisible(false);
+                this.dispose();
+                new QuizResultsScreen(this.controller, response, this.flashcardSetID);
+            }
+            timerLabel.setText(df.format(duration - clockTime));
         }
     }
 
-    private static class TimerActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("OH YEAH");
+    /**
+     * Private helper method that collects all the user answers and submits a quiz request in order to obtain a
+     * corresponding quiz response model.
+     * @return the quiz response model
+     */
+    private QuizResponseModel collectUserAnswers() {
+        List<String> userAnswers = new ArrayList<>();
+        for (QuestionCard q : this.questionCards) {
+            if (q instanceof TextEntryQuestionCard) {
+                ((TextEntryQuestionCard)q).updateUserAnswer();
+            }
+            userAnswers.add(q.getUserAnswer());
         }
+
+        QuizRequestModel request = new QuizRequestModel(userAnswers);
+        return this.controller.getResults(request);
     }
 }

@@ -16,7 +16,7 @@ public class Quiz {
 
     private int score;
 
-    private static final Random rand = new Random();
+    private static final Random rand = new Random(); // used for calculating random numbers
 
     /**
      * Precondition: flashcards contains at least 4 flashcards, and at least 1 question type is enabled in quizSettings.
@@ -72,7 +72,10 @@ public class Quiz {
         }
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Sets the user answers.
+     * @param userAnswers the user answers
+     */
     public void setUserAnswers(List<String> userAnswers) {
         for (int i = 0; i < userAnswers.size(); i++) {
             QuizQuestion q = this.quizQuestions.get(i);
@@ -81,6 +84,10 @@ public class Quiz {
         }
     }
 
+    /**
+     * Gets the actual answers.
+     * @return the actual answers
+     */
     public List<String> getActualAnswers() {
         List<String> actualAnswers = new ArrayList<>();
         for (QuizQuestion q : this.quizQuestions) {
@@ -89,14 +96,26 @@ public class Quiz {
         return actualAnswers;
     }
 
+    /**
+     * Gets the quiz questions.
+     * @return the quiz questions
+     */
     public List<QuizQuestion> getQuizQuestions() {
         return this.quizQuestions;
     }
 
+    /**
+     * Gets the quiz score.
+     * @return the score
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Gets the number of questions.
+     * @return the number of questions
+     */
     public int getNumQuestions() {
         return this.quizQuestions.size();
     }
