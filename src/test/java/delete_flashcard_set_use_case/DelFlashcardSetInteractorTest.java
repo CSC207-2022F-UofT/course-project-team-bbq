@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * [Feature: Deleting a Flashcard Set]
@@ -27,13 +26,17 @@ import static org.junit.jupiter.api.Assertions.fail;
  * - if it exists, ask for confirmation to delete from the user
  * - when a flashcard set is deleted, all flashcards contained within are deleted
  * - notify successful deletion of flashcard set to the user
+ *
+ * @author Edward Ishii
  */
-
 public class DelFlashcardSetInteractorTest {
 
     IFlashcardSetDataAccess flashcardSetRepo;
     IFlashcardDataAccess flashcardRepo;
 
+    /**
+     * The setup for testing deletion, i.e., create and populate mock flashcard set and flashcard databases.
+     */
     @BeforeEach
     public void setup() {
         // Create a mock flashcard set repository
@@ -44,7 +47,7 @@ public class DelFlashcardSetInteractorTest {
 
         // Populate flashcardRepo
         FlashcardDsRequestModel fc1 = new FlashcardDsRequestModel("SOLID", "Single responsibility, " +
-                "Open/closed, Liskov substitution, Interface segregation, Dependency inversion", LocalDateTime.now(),
+                "Open/closed, Liskov substitution, Interface segragation, Dependency inversion", LocalDateTime.now(),
                 10, 1);
 
         FlashcardDsRequestModel fc2 = new FlashcardDsRequestModel("Bloaters", "too much code",
@@ -84,6 +87,10 @@ public class DelFlashcardSetInteractorTest {
         Assertions.assertEquals(1, flashcardSetRepo.getFlashcardSet(2).getFlashcardIds().size());
     }
 
+    /**
+     * Test that when a flashcard set is deleted, the set is deleted from the flashcard set database, AND all
+     * the associated flashcards within that set is also deleted from the flashcard database.
+     */
     @Test
     public void testDelete() {
         // Create mock input
@@ -121,27 +128,31 @@ public class DelFlashcardSetInteractorTest {
         Assertions.assertEquals("Language", flashcardRepo.getFlashcard(30).getTerm());
     }
 
+    /**
+     * Test that the proper exception is thrown when the id of the flashcard set to be deleted does not exist
+     * within the database.
+     */
     @Test
-    public void testDeleteOnNonExistentFlashcardSet() throws FlashcardSetNotFound {
+    public void testDeleteOnNonExistentFlashcardSet() {
 
         // Mock input with id of a flashcard set that doesn't exist
         DelFlashcardSetRequestModel inputData = new DelFlashcardSetRequestModel(3);
 
 
         // Implement output boundaries to throw an exception
-        DelFlashcardSetOutputBoundary outputBoundary = new DelFlashcardSetOutputBoundary() {
-            @Override
-            public DelFlashcardSetResponseModel prepareSuccessView(String message) {
-                fail("Something went wrong since we are testing for failing deletion.");
-                return null;
-            }
-
-            @Override
-            public DelFlashcardSetResponseModel prepareFailView(String error) throws FlashcardSetNotFound {
-                throw new FlashcardSetNotFound("Flashcard set #" + inputData.getFlashcardSetId()
-                        + "  does not exist.");
-            }
-        };
+//        DelFlashcardSetOutputBoundary outputBoundary = new DelFlashcardSetOutputBoundary() {
+//            @Override
+//            public DelFlashcardSetResponseModel prepareSuccessView(String message) {
+//                fail("Something went wrong since we are testing for failing deletion.");
+//                return null;
+//            }
+//
+//            @Override
+//            public DelFlashcardSetResponseModel prepareFailView(String error) throws FlashcardSetNotFound {
+//                throw new FlashcardSetNotFound("Flashcard set #" + inputData.getFlashcardSetId()
+//                        + "  does not exist.");
+//            }
+//        };
 
         DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
 
@@ -167,8 +178,8 @@ public class DelFlashcardSetInteractorTest {
         // Test part
         try {
             interactor.delete(inputData);  // invalid id should go immediately to catch block (i.e., pass test)
-            assert(false);  // if id exists, then this line is reached and test fails
-        } catch (FlashcardSetNotFound e) {
+            assert (false);  // if id exists, then this line is reached and test fails
+        } catch (FlashcardSetNotFound ignored) {
 
         }
     }
