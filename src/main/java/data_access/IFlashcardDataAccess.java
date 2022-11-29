@@ -4,7 +4,7 @@ import data_access.entity_request_models.FlashcardDsRequestModel;
 
 // use case layer
 
-public interface IFlashcardDataAccess {
+public interface    IFlashcardDataAccess {
 
     FlashcardDsRequestModel getFlashcard(Integer flashcardID);
 
