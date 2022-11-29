@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class contains various test cases for the quiz use case.
@@ -58,8 +59,8 @@ public class QuizUseCaseTest {
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertFalse(quizSettingsResponseModel.isFailed());
 
-        ArrayList<String> types = quizSettingsResponseModel.getTypes();
-        ArrayList<ArrayList<String>> outputText = quizSettingsResponseModel.getOutputText();
+        List<String> types = quizSettingsResponseModel.getTypes();
+        List<List<String>> outputText = quizSettingsResponseModel.getOutputText();
 
         assertEquals(10, types.size());
         assertEquals(10, outputText.size());
@@ -67,7 +68,7 @@ public class QuizUseCaseTest {
         assertFalse(types.contains("TE"));
         assertFalse(types.contains("TF"));
 
-        ArrayList<String> userAnswers = new ArrayList<>();
+        List<String> userAnswers = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             userAnswers.add("incorrect answer");
         }
@@ -92,14 +93,14 @@ public class QuizUseCaseTest {
         QuizSettingsResponseModel quizSettingsResponseModel = controller.startQuiz(quizSettingsRequestModel);
         assertFalse(quizSettingsResponseModel.isFailed());
 
-        ArrayList<String> types = quizSettingsResponseModel.getTypes();
-        ArrayList<ArrayList<String>> outputText = quizSettingsResponseModel.getOutputText();
+        List<String> types = quizSettingsResponseModel.getTypes();
+        List<List<String>> outputText = quizSettingsResponseModel.getOutputText();
 
         assertEquals(12, types.size());
         assertEquals(12, outputText.size());
         assertTrue(types.contains("MC") || types.contains("TE") || types.contains("TF"));
 
-        ArrayList<String> userAnswers = new ArrayList<>();
+        List<String> userAnswers = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             userAnswers.add("incorrect answer");
         }
