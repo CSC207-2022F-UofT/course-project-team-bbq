@@ -11,18 +11,21 @@ import study_mode_use_case.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class FlashcardSetDataPanel extends JPanel {
-
+public class FlashcardSetDataPanel extends JPanel implements WindowListener {
+    HomePage home;
     public FlashcardSetDataPanel(String title, String description,
                                  int flashcardSetId, DBGateway gateway,
-                                 UserLoginResponseModel user) {
+                                 UserLoginResponseModel user, HomePage home) {
         Border border = BorderFactory.createTitledBorder(title);
 
 
         JLabel descriptionLabel = new JLabel(description);
         this.add(descriptionLabel);
-
+        this.home = home;
         JPanel buttons = new JPanel();
 
         JButton study = new JButton("Study");
@@ -36,7 +39,11 @@ public class FlashcardSetDataPanel extends JPanel {
         buttons.add(edit);
         buttons.add(delete);
 
-        edit.addActionListener((e) -> new EditorMainPage(flashcardSetId));
+        edit.addActionListener((e) -> {
+            EditorMainPage editor = new EditorMainPage(flashcardSetId);
+            editor.addWindowListener(this);
+        });
+
         study.addActionListener(e -> {
             StudySessionOutputBoundary presenter = new StudySessionPresenter();
             StudySessionInputBoundary interactor = new StudySessionInteractor(gateway, presenter);
@@ -54,7 +61,8 @@ public class FlashcardSetDataPanel extends JPanel {
             DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
             DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
             DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
-            new DeletionScreen(flashcardSetId, controller, user, gateway);
+            DeletionScreen deleter = new DeletionScreen(flashcardSetId, controller, user, gateway);
+            deleter.addWindowListener(this);
         });
 
         this.add(buttons);
@@ -63,4 +71,38 @@ public class FlashcardSetDataPanel extends JPanel {
     }
 
 
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        home.refresh();
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }

@@ -10,6 +10,8 @@ import java.util.Map;
 public class UserLoginResponseModel {
     String username;
 
+    String password;
+
     boolean isAdmin;
 
     Map<Integer, String[]> flashcardSets;
@@ -21,8 +23,9 @@ public class UserLoginResponseModel {
      * @param flashcardSets the flashcard sets map pertaining to the user obtained by the login interactor, where each id
      *                      pertains to its title and description
      */
-    public UserLoginResponseModel(String loggedInUsername, boolean isAdmin, Map<Integer, String[]> flashcardSets){
+    public UserLoginResponseModel(String loggedInUsername, String password, boolean isAdmin, Map<Integer, String[]> flashcardSets){
         this.username = loggedInUsername;
+        this.password = password;
         this.isAdmin = isAdmin;
         this.flashcardSets = flashcardSets;
     }
@@ -34,6 +37,12 @@ public class UserLoginResponseModel {
     public String getSignedInUsername() {
         return username;
     }
+
+    /**
+     * Gets the password of the user as saved in the database
+     * @return the password that the user stored
+     */
+    public String getPassword() { return password; }
 
     /**
      * Gets whether the user is saved as an admin in the database

@@ -32,7 +32,7 @@ public class UserLoginController {
      * @param password The password used to log in
      * @return The response given by the response model
      */
-    UserLoginResponseModel create(String username, String password) {
+    public UserLoginResponseModel create(String username, String password) {
         UserLoginRequestModel requestModel = new UserLoginRequestModel(username, password);
         return userInput.login(requestModel);
     }

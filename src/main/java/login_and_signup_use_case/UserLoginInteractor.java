@@ -45,6 +45,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary{
         }
 
         UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(tempUser.getUsername(),
+                tempUser.getPassword(),
                 tempUser.getIsAdmin(), flashcardSets);
         return userLoginOutputBoundary.prepareSuccessView(accountResponseModel);
     }

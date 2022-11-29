@@ -2,6 +2,7 @@ package login_and_signup_use_case.login_and_signup_use_case_screens;
 
 import main_page.HomePage;
 import login_and_signup_use_case.*;
+import data_access.*;
 import view.Screen;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ import java.io.IOException;
  * @author Aryan Chablani (with inspiration from Professor Paul Gries)
  */
 
-public class RegisterScreen extends Screen implements ActionListener {
+public class RegisterScreen extends JFrame implements ActionListener {
 
     private final UserLoginController userLoginController;
     /**
@@ -89,7 +90,7 @@ public class RegisterScreen extends Screen implements ActionListener {
     }
 
     /**
-     * React to a button click that results in evt, usually sign up.
+     * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
@@ -113,7 +114,12 @@ public class RegisterScreen extends Screen implements ActionListener {
                 UserLoginResponseModel user = userLoginController.create(newUser.getSignedUpUsername(),
                         newUser.getSignedUpPassword());
                 try {
-                    new HomePage(user);
+                    IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
+                    IFlashcardDataAccess flashcardDataAccess = new FlashcardDataAccess(DBGateway.getFlashcardPath());
+                    IUserDataAccess userDataAccess = new CommonUserDataAccess(DBGateway.getUserPath());
+                    DBGateway gateway = new DBGateway(flashcardDataAccess,
+                            flashcardSetDataAccess, userDataAccess);
+                    new HomePage(user, gateway);
                     dispose();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -122,6 +128,7 @@ public class RegisterScreen extends Screen implements ActionListener {
             catch (UserRegistrationFailed e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
+
         }
     }
 }
