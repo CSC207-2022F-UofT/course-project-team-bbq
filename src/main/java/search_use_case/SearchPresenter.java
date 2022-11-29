@@ -1,4 +1,9 @@
 package search_use_case;
+
+import data_access.entity_request_models.FlashcardSetDsRequestModel;
+
+import java.util.ArrayList;
+
 /**
  * The search presenter.
  * <p>
@@ -8,8 +13,8 @@ package search_use_case;
 public class SearchPresenter implements SearchOutputBoundary {
 
     @Override
-    public SearchResponseModel prepareSuccessView(SearchResponseModel results) {
-        return results;
+    public SearchResponseModel prepareSuccessView(ArrayList<FlashcardSetDsRequestModel> result_set) {
+        return new SearchResponseModel(result_set);
     }
 
     @Override

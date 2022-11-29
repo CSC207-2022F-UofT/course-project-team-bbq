@@ -1,9 +1,5 @@
 package search_use_case;
 
-import loginAndSignupUseCase.UserLoginResponseModel;
-
-import java.io.IOException;
-import java.util.ArrayList;
 /**
  * Search Controller
  * <p>
@@ -23,14 +19,10 @@ public class SearchController {
 
     /**
      * Creates a Response model to return a result set of FlashcardSets given user input and tags.
-     * @param search_input  the user search input
-     * @param tags  the tags the user selected
-     * @param user  the current user
+     * @param requestModel the request model with search input, tags, and current user
      * @return  a response model with the result set
      */
-    public SearchResponseModel create(String search_input, ArrayList<String> tags, UserLoginResponseModel user) throws IOException {
-        SearchRequestModel requestModel = new SearchRequestModel(search_input, tags, user);
-
+    public SearchResponseModel create(SearchRequestModel requestModel) {
         return userInput.create(requestModel);
     }
 }

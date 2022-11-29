@@ -1,11 +1,4 @@
 title,description,isPrivate,flashcardSetId,ownerUsername,flashcardIds
 test set 1,for testing study use case,false,0,testUser,0,1,2,3
 empty test set,for testing study use case with empty set,true,1,testUser
-my flashcard set,for presentation,false,2,lucas,4
-csc207,csc207 class,false,3,jempio
-lol,decsi,false,4,testUser
-l,fdjas;lghd,false,5,testUser
-k,tge gy,false,6,testUser,5
-p,osdglskg,false,7,testUser
-b,klijdasgsd,false,8,testUser
-kindasas,klndsaf,false,9,testUser
+Long Test Set,Insert Generic Description,false,2,Anthony,10,11,12,13,14,15,16,17,18,19,20,21
