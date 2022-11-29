@@ -3,7 +3,7 @@ package delete_flashcard_use_case;
 import data_access.*;
 import delete_flashcard_use_case.FcRScreens.FcRController;
 import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.io.IOException;

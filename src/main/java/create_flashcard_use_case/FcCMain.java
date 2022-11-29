@@ -4,7 +4,7 @@ import create_flashcard_use_case.fcCScreens.FcCController;
 import create_flashcard_use_case.fcCScreens.FcCResponsePresenter;
 import create_flashcard_use_case.fcCScreens.FcCScreen;
 import data_access.*;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.io.IOException;

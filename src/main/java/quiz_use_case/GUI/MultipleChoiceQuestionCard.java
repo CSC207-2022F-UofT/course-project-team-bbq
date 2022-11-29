@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI panel that displays a multiple choice question.
@@ -12,14 +13,14 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class MultipleChoiceQuestionCard extends QuestionCard implements ActionListener {
-    private final ArrayList<JRadioButton> choices;
+    private final List<JRadioButton> choices;
 
     /**
      * Constructs a multiple choice question card that is ready to receive user input.
      * @param num the question number
      * @param outputText the output text to display within the card
      */
-    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText) {
+    public MultipleChoiceQuestionCard(int num, List<String> outputText) {
         super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();
@@ -55,7 +56,7 @@ public class MultipleChoiceQuestionCard extends QuestionCard implements ActionLi
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public MultipleChoiceQuestionCard(int num, List<String> outputText, String userAnswer, String actualAnswer) {
         super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();

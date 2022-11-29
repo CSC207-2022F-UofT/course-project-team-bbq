@@ -4,7 +4,7 @@ import data_access.*;
 import entities.CommonUserFactory;
 import entities.UserFactory;
 import login_and_signup_use_case.*;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.*;

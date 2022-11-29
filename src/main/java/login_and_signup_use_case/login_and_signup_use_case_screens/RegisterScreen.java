@@ -3,7 +3,6 @@ package login_and_signup_use_case.login_and_signup_use_case_screens;
 import main_page.HomePage;
 import login_and_signup_use_case.*;
 import data_access.*;
-import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;

@@ -8,7 +8,7 @@ import quiz_use_case.*;
 import quiz_use_case.screens.QuizSettingsScreen;
 import study_mode_use_case.*;
 import study_mode_use_case.screens.StudySettingsScreen;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.*;

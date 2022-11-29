@@ -1,7 +1,7 @@
 package study_mode_use_case.screens;
 
 import study_mode_use_case.*;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.*;

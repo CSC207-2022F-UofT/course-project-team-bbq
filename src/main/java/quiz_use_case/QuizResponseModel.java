@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quiz Response Model
@@ -11,10 +11,10 @@ public class QuizResponseModel {
     // quiz result information
     private int score;
     private int numQuestions;
-    private ArrayList<String> types;
-    private ArrayList<ArrayList<String>> outputText;
-    private ArrayList<String> userAnswers;
-    private ArrayList<String> actualAnswers;
+    private List<String> types;
+    private List<List<String>> outputText;
+    private List<String> userAnswers;
+    private List<String> actualAnswers;
 
     // error handling
     private boolean failed = false;
@@ -31,10 +31,10 @@ public class QuizResponseModel {
      * @param actualAnswers the list of actual answers
      */
     public QuizResponseModel(int score, int numQuestions,
-                             ArrayList<String> types,
-                             ArrayList<ArrayList<String>> outputText,
-                             ArrayList<String> userAnswers,
-                             ArrayList<String> actualAnswers) {
+                             List<String> types,
+                             List<List<String>> outputText,
+                             List<String> userAnswers,
+                             List<String> actualAnswers) {
         this.score = score;
         this.numQuestions = numQuestions;
         this.types = types;
@@ -56,10 +56,10 @@ public class QuizResponseModel {
      */
     public QuizResponseModel(boolean needConfirmation, String message,
                              int score, int numQuestions,
-                             ArrayList<String> types,
-                             ArrayList<ArrayList<String>> outputText,
-                             ArrayList<String> userAnswers,
-                             ArrayList<String> actualAnswers) {
+                             List<String> types,
+                             List<List<String>> outputText,
+                             List<String> userAnswers,
+                             List<String> actualAnswers) {
         this.needConfirmation = needConfirmation;
         this.message = message;
         this.score = score;
@@ -121,35 +121,35 @@ public class QuizResponseModel {
         this.numQuestions = numQuestions;
     }
 
-    public ArrayList<String> getTypes() {
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(ArrayList<String> types) {
+    public void setTypes(List<String> types) {
         this.types = types;
     }
 
-    public ArrayList<ArrayList<String>> getOutputText() {
+    public List<List<String>> getOutputText() {
         return outputText;
     }
 
-    public void setOutputText(ArrayList<ArrayList<String>> outputText) {
+    public void setOutputText(List<List<String>> outputText) {
         this.outputText = outputText;
     }
 
-    public ArrayList<String> getUserAnswers() {
+    public List<String> getUserAnswers() {
         return userAnswers;
     }
 
-    public void setUserAnswers(ArrayList<String> userAnswers) {
+    public void setUserAnswers(List<String> userAnswers) {
         this.userAnswers = userAnswers;
     }
 
-    public ArrayList<String> getActualAnswers() {
+    public List<String> getActualAnswers() {
         return actualAnswers;
     }
 
-    public void setActualAnswers(ArrayList<String> actualAnswers) {
+    public void setActualAnswers(List<String> actualAnswers) {
         this.actualAnswers = actualAnswers;
     }
 }

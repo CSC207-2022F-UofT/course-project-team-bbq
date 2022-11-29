@@ -1,6 +1,6 @@
 package quiz_use_case.GUI;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Factory that produces GUI question cards.
@@ -15,7 +15,7 @@ public class QuestionCardFactory {
      * @param outputText the output text
      * @return the question card
      */
-    public QuestionCard createQuestionCard(String type, int num, ArrayList<String> outputText) {
+    public QuestionCard createQuestionCard(String type, int num, List<String> outputText) {
         switch(type) {
             case "MC":
                 return new MultipleChoiceQuestionCard(num, outputText);
@@ -37,7 +37,7 @@ public class QuestionCardFactory {
      * @param actualAnswer the actual answer
      * @return the answered question card
      */
-    public QuestionCard createAnsweredQuestionCard(String type, int num, ArrayList<String> outputText,
+    public QuestionCard createAnsweredQuestionCard(String type, int num, List<String> outputText,
                                                  String userAnswer, String actualAnswer) {
         switch(type) {
             case "MC":

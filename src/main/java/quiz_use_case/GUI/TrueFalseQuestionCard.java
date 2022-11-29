@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI panel that displays a true false question.
@@ -24,7 +24,7 @@ public class TrueFalseQuestionCard extends QuestionCard implements ActionListene
      * @param num the question number
      * @param outputText the output text to be displayed
      */
-    public TrueFalseQuestionCard(int num, ArrayList<String> outputText) {
+    public TrueFalseQuestionCard(int num, List<String> outputText) {
         super(num);
         JLabel term = new JLabel(outputText.get(0));
         JLabel potentialDefinition = new JLabel(outputText.get(1));
@@ -59,7 +59,7 @@ public class TrueFalseQuestionCard extends QuestionCard implements ActionListene
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public TrueFalseQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public TrueFalseQuestionCard(int num, List<String> outputText, String userAnswer, String actualAnswer) {
         super(num);
         JLabel term = new JLabel(outputText.get(0));
         JLabel potentialDefinition = new JLabel(outputText.get(1));

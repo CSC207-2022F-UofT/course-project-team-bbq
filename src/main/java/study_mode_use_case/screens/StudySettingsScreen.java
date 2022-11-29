@@ -3,7 +3,7 @@ package study_mode_use_case.screens;
 import study_mode_use_case.StudySessionController;
 import study_mode_use_case.StudySettingsRequestModel;
 import study_mode_use_case.StudySettingsResponseModel;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -3,10 +3,13 @@ package quiz_use_case.screens;
 import quiz_use_case.*;
 import quiz_use_case.GUI.*;
 
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 /**
  * GUI screen for the quiz.
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 public class QuizScreen extends QuizUseCaseScreen {
     private final QuizController controller;
     private final int flashcardSetID;
-    private final ArrayList<QuestionCard> questionCards;
+    private final List<QuestionCard> questionCards;
 
     private enum Actions {
         RESTART, SUBMIT
@@ -36,8 +39,8 @@ public class QuizScreen extends QuizUseCaseScreen {
         this.questionCards = new ArrayList<>();
         QuestionCardFactory questionCardFactory = new QuestionCardFactory();
 
-        ArrayList<String> types = response.getTypes();
-        ArrayList<ArrayList<String>> outputText = response.getOutputText();
+        List<String> types = response.getTypes();
+        List<List<String>> outputText = response.getOutputText();
 
         // CENTER PANEL
         JPanel centerPanel = new JPanel();
@@ -77,6 +80,18 @@ public class QuizScreen extends QuizUseCaseScreen {
         Container contentPane = this.getContentPane();
         contentPane.add(scroll, BorderLayout.CENTER);
         contentPane.add(bottomPanel, BorderLayout.PAGE_END);
+
+        // TIMER
+        if (response.isTimerOn()) {
+            JPanel topPanel = new JPanel();
+            Timer timer = new Timer(1000, new TimerActionListener());
+            timer.setInitialDelay(1000);
+            timer.start();
+            FlatLabel timerLabel = new FlatLabel(Integer.toString(response.getTimerDuration()), "h0");
+            topPanel.add(timerLabel);
+
+            contentPane.add(topPanel, BorderLayout.PAGE_START);
+        }
         this.setupScreen();
     }
 
@@ -124,6 +139,13 @@ public class QuizScreen extends QuizUseCaseScreen {
                 this.dispose();
                 new QuizResultsScreen(this.controller, response, this.flashcardSetID);
             }
+        }
+    }
+
+    private static class TimerActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("OH YEAH");
         }
     }
 }

@@ -6,7 +6,7 @@ import quiz_use_case.GUI.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI screen for quiz results.
@@ -34,10 +34,10 @@ public class QuizResultsScreen extends QuizUseCaseScreen {
         this.flashcardSetID = flashcardSetID;
         QuestionCardFactory questionCardFactory = new QuestionCardFactory();
 
-        ArrayList<String> types = response.getTypes();
-        ArrayList<ArrayList<String>> outputText = response.getOutputText();
-        ArrayList<String> userAnswers = response.getUserAnswers();
-        ArrayList<String> actualAnswers = response.getActualAnswers();
+        List<String> types = response.getTypes();
+        List<List<String>> outputText = response.getOutputText();
+        List<String> userAnswers = response.getUserAnswers();
+        List<String> actualAnswers = response.getActualAnswers();
 
         // NORTH PANEL
         int correct = response.getScore();

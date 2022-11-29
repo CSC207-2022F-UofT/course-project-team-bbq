@@ -37,7 +37,7 @@ public class Quiz {
     public void generateQuestions() {
         int numQuestions = this.quizSettings.getNumQuestions();
 
-        ArrayList<String> types = new ArrayList<String>();
+        List<String> types = new ArrayList<>();
         if (this.quizSettings.isTrueFalseOn()) {
             types.add("TF");
         }
@@ -73,15 +73,7 @@ public class Quiz {
     }
 
     /** GETTERS AND SETTERS **/
-    public ArrayList<String> getUserAnswers() {
-        ArrayList<String> userAnswers = new ArrayList<>();
-        for (QuizQuestion q : this.quizQuestions) {
-            userAnswers.add(q.getUserAnswer());
-        }
-        return userAnswers;
-    }
-
-    public void setUserAnswers(ArrayList<String> userAnswers) {
+    public void setUserAnswers(List<String> userAnswers) {
         for (int i = 0; i < userAnswers.size(); i++) {
             QuizQuestion q = this.quizQuestions.get(i);
             String a = userAnswers.get(i);
@@ -89,8 +81,8 @@ public class Quiz {
         }
     }
 
-    public ArrayList<String> getActualAnswers() {
-        ArrayList<String> actualAnswers = new ArrayList<>();
+    public List<String> getActualAnswers() {
+        List<String> actualAnswers = new ArrayList<>();
         for (QuizQuestion q : this.quizQuestions) {
             actualAnswers.add(q.getActualAnswer());
         }
