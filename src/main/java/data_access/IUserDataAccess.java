@@ -28,14 +28,14 @@ public interface IUserDataAccess {
     Collection<CommonUserDsRequestModel> getAllUsers();
     /**
      * @param username the user's username
-     * @param flashcardSetID the id of the flashcard set that the user would like to create.
+     * @param flashcardSetId the id of the flashcard set that the user would like to create.
      */
-    void saveFlashcardSetID(String username, int flashcardSetID);
+    void saveFlashcardSetID(String username, int flashcardSetId);
     /**
      * @param username the user's username
-     * @param flashcardSetID the id of the flashcard set that the user would like to delete.
+     * @param flashcardSetId the id of the flashcard set that the user would like to delete.
      */
-    void deleteFlashcardSetID(String username, int flashcardSetID);
+    void deleteFlashcardSetID(String username, int flashcardSetId);
     /**
      * @param user the User object.
      */
