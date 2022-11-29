@@ -65,7 +65,8 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
             DelFlashcardSetOutputBoundary presenter = new DelFlashcardSetPresenter();
             DelFlashcardSetInputBoundary interactor = new DelFlashcardSetInteractor(gateway, presenter);
             DelFlashcardSetController controller = new DelFlashcardSetController(interactor);
-            new DeletionScreen(flashcardSetId, controller, user);
+            DeletionScreen deleter = new DeletionScreen(flashcardSetId, controller, user);
+            deleter.addWindowListener(this);
         });
 
         this.add(buttons);
