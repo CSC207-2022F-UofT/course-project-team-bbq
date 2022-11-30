@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quiz Presenter.
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class QuizPresenter implements QuizOutputBoundary {
     /**
      * Prepares the settings error view.
-     * @param error the evil error
+     * @param error the error
      * @return quiz settings response model
      */
     @Override
@@ -20,29 +20,42 @@ public class QuizPresenter implements QuizOutputBoundary {
 
     /**
      * Prepares the quiz view.
+     * @param types the question types
+     * @param outputText the output text
+     * @param timerOn is the timer on
+     * @param timerDuration the timer duration in minutes
      * @return quiz settings response model
      */
     @Override
-    public QuizSettingsResponseModel prepareQuizView(ArrayList<String> types,
-                                                     ArrayList<ArrayList<String>> outputText) {
-        return new QuizSettingsResponseModel(types, outputText);
+    public QuizSettingsResponseModel prepareQuizView(List<String> types,
+                                                     List<List<String>> outputText,
+                                                     boolean timerOn, int timerDuration) {
+        return new QuizSettingsResponseModel(types, outputText, timerOn, timerDuration);
     }
 
+
     /**
-     * Prepares the results view.
-     * @return quiz response model
+     * Prepares the quiz results view.
+     * @param score         the score
+     * @param numQuestions  the number of questions
+     * @param types         the question types
+     * @param outputText    the output text
+     * @param userAnswers   the user answers
+     * @param actualAnswers the actual answers
+     * @return the quiz response model
      */
     @Override
     public QuizResponseModel prepareResultsView(int score, int numQuestions,
-                                                ArrayList<String> types,
-                                                ArrayList<ArrayList<String>> outputText,
-                                                ArrayList<String> userAnswers,
-                                                ArrayList<String> actualAnswers) {
+                                                List<String> types,
+                                                List<List<String>> outputText,
+                                                List<String> userAnswers,
+                                                List<String> actualAnswers) {
         return new QuizResponseModel(score, numQuestions, types, outputText, userAnswers, actualAnswers);
     }
 
     /**
      * Prepares the error view.
+     * @param error the error
      * @return quiz response model
      */
     @Override
@@ -58,10 +71,10 @@ public class QuizPresenter implements QuizOutputBoundary {
     @Override
     public QuizResponseModel prepareConfirmationView(String message,
                                                      int score, int numQuestions,
-                                                     ArrayList<String> types,
-                                                     ArrayList<ArrayList<String>> outputText,
-                                                     ArrayList<String> userAnswers,
-                                                     ArrayList<String> actualAnswers) {
+                                                     List<String> types,
+                                                     List<List<String>> outputText,
+                                                     List<String> userAnswers,
+                                                     List<String> actualAnswers) {
         return new QuizResponseModel(true, message, score, numQuestions,
                 types, outputText, userAnswers, actualAnswers);
     }

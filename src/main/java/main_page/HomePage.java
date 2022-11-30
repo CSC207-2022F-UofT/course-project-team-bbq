@@ -11,7 +11,7 @@ import login_and_signup_use_case.login_and_signup_use_case_screens.UserLoginCont
 import login_and_signup_use_case.login_and_signup_use_case_screens.UserLoginPresenter;
 import login_and_signup_use_case.login_and_signup_use_case_screens.WelcomeScreen;
 import search_use_case.*;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.*;

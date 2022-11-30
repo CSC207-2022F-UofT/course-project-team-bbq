@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quiz Output Boundary.
@@ -11,32 +11,39 @@ public interface QuizOutputBoundary {
     /**
      * Prepares the settings error view.
      * @param error the error
-     * @return quiz settings response model
+     * @return the quiz settings response model
      */
     QuizSettingsResponseModel prepareSettingsErrorView(String error);
 
     /**
      * Prepares the quiz view.
-     * @param types the list of question types
-     * @param outputText the text to be displayed
+     * @param types the question types
+     * @param outputText the output text
+     * @param timerOn is the timer on
+     * @param timerDuration the timer duration in minutes
      * @return quiz settings response model
      */
-    QuizSettingsResponseModel prepareQuizView(ArrayList<String> types, ArrayList<ArrayList<String>> outputText);
+    QuizSettingsResponseModel prepareQuizView(List<String> types, List<List<String>> outputText,
+                                              boolean timerOn, int timerDuration);
 
     /**
-     * Prepares the results view.
-     * @param score the score
-     * @param numQuestions the number of questions
-     * @return quiz response model
+     * Prepares the quiz results view.
+     * @param score         the score
+     * @param numQuestions  the number of questions
+     * @param types         the question types
+     * @param outputText    the output text
+     * @param userAnswers   the user answers
+     * @param actualAnswers the actual answers
+     * @return the quiz response model
      */
     QuizResponseModel prepareResultsView(int score, int numQuestions,
-                                         ArrayList<String> types,
-                                         ArrayList<ArrayList<String>> outputText,
-                                         ArrayList<String> userAnswers,
-                                         ArrayList<String> actualAnswers);
+                                         List<String> types,
+                                         List<List<String>> outputText,
+                                         List<String> userAnswers,
+                                         List<String> actualAnswers);
 
     /**
-     * Prepares the quiz error view.
+     * Prepares the error view.
      * @param error the error
      * @return quiz response model
      */
@@ -48,8 +55,8 @@ public interface QuizOutputBoundary {
      * @return quiz response model
      */
     QuizResponseModel prepareConfirmationView(String message, int score, int numQuestions,
-                                              ArrayList<String> types,
-                                              ArrayList<ArrayList<String>> outputText,
-                                              ArrayList<String> userAnswers,
-                                              ArrayList<String> actualAnswers);
+                                              List<String> types,
+                                              List<List<String>> outputText,
+                                              List<String> userAnswers,
+                                              List<String> actualAnswers);
 }

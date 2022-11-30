@@ -12,7 +12,7 @@ public class Slider extends JPanel {
     public JSlider slider;
 
     private JLabel title;
-    private JLabel valueText;
+    private final JLabel valueText;
 
     /**
      * Constructs a slider.
@@ -47,28 +47,35 @@ public class Slider extends JPanel {
         this.valueText.setText(String.valueOf(this.slider.getValue()));
     }
 
+    /**
+     * Gets the slider's current value.
+     * @return the slider's value
+     */
     public int getValue() {
         return this.slider.getValue();
     }
 
+    /**
+     * Adds a change listener to the slider.
+     * @param listener the change listener
+     */
     public void addChangeListener(ChangeListener listener) {
         this.slider.addChangeListener(listener);
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the title.
+     * @return the title
+     */
     public JLabel getTitle() {
         return title;
     }
 
+    /**
+     * Sets the title.
+     * @param title the title
+     */
     public void setTitle(JLabel title) {
         this.title = title;
-    }
-
-    public JLabel getValueText() {
-        return valueText;
-    }
-
-    public void setValueText(JLabel valueText) {
-        this.valueText = valueText;
     }
 }

@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quiz Request Model.
@@ -8,22 +8,21 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class QuizRequestModel {
-    private ArrayList<String> userAnswers;
+    private final List<String> userAnswers;
 
     /**
      * Constructs a quiz request model.
      * @param userAnswers the list of user answers
      */
-    public QuizRequestModel(ArrayList<String> userAnswers) {
+    public QuizRequestModel(List<String> userAnswers) {
         this.userAnswers = userAnswers;
     }
 
-    /** GETTERS AND SETTERS **/
-    public ArrayList<String> getUserAnswers() {
+    /**
+     * Gets the user answers.
+     * @return the user answers
+     */
+    public List<String> getUserAnswers() {
         return userAnswers;
-    }
-
-    public void setUserAnswers(ArrayList<String> userAnswers) {
-        this.userAnswers = userAnswers;
     }
 }

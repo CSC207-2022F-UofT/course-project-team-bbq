@@ -5,7 +5,7 @@ import edit_flashcard_use_case.screens.FlashcardEditorPresenter;
 import edit_flashcard_use_case.screens.FlashcardEditorScreen;
 import data_access.*;
 import data_access.entity_request_models.FlashcardDsRequestModel;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 public class FlashcardEditorMain extends Screen {
     /**

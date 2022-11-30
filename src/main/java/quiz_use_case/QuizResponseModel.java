@@ -1,6 +1,6 @@
 package quiz_use_case;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Quiz Response Model
@@ -11,10 +11,10 @@ public class QuizResponseModel {
     // quiz result information
     private int score;
     private int numQuestions;
-    private ArrayList<String> types;
-    private ArrayList<ArrayList<String>> outputText;
-    private ArrayList<String> userAnswers;
-    private ArrayList<String> actualAnswers;
+    private List<String> types;
+    private List<List<String>> outputText;
+    private List<String> userAnswers;
+    private List<String> actualAnswers;
 
     // error handling
     private boolean failed = false;
@@ -31,10 +31,10 @@ public class QuizResponseModel {
      * @param actualAnswers the list of actual answers
      */
     public QuizResponseModel(int score, int numQuestions,
-                             ArrayList<String> types,
-                             ArrayList<ArrayList<String>> outputText,
-                             ArrayList<String> userAnswers,
-                             ArrayList<String> actualAnswers) {
+                             List<String> types,
+                             List<List<String>> outputText,
+                             List<String> userAnswers,
+                             List<String> actualAnswers) {
         this.score = score;
         this.numQuestions = numQuestions;
         this.types = types;
@@ -56,10 +56,10 @@ public class QuizResponseModel {
      */
     public QuizResponseModel(boolean needConfirmation, String message,
                              int score, int numQuestions,
-                             ArrayList<String> types,
-                             ArrayList<ArrayList<String>> outputText,
-                             ArrayList<String> userAnswers,
-                             ArrayList<String> actualAnswers) {
+                             List<String> types,
+                             List<List<String>> outputText,
+                             List<String> userAnswers,
+                             List<String> actualAnswers) {
         this.needConfirmation = needConfirmation;
         this.message = message;
         this.score = score;
@@ -80,76 +80,91 @@ public class QuizResponseModel {
         this.message = message;
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the failed value.
+     * @return true if response has failed
+     */
     public boolean isFailed() {
         return failed;
     }
 
-    public void setFailed(boolean failed) {
-        this.failed = failed;
-    }
-
+    /**
+     * Gets the message.
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Sets the message.
+     * @param message the message
+     */
     public void setMessage(String message) {
         this.message = message;
     }
 
+    /**
+     * Returns true if the response needs confirmation from the user.
+     * @return need confirmation
+     */
     public boolean needToConfirm() {
         return needConfirmation;
     }
 
-    public void setNeedConfirmation(boolean needConfirmation) {
-        this.needConfirmation = needConfirmation;
-    }
-
+    /**
+     * Gets the score.
+     * @return the score
+     */
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    /**
+     * Gets the number of questions.
+     * @return the number of questions
+     */
     public int getNumQuestions() {
         return numQuestions;
     }
 
-    public void setNumQuestions(int numQuestions) {
-        this.numQuestions = numQuestions;
-    }
-
-    public ArrayList<String> getTypes() {
+    /**
+     * Gets the list of question types.
+     * @return the types
+     */
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(ArrayList<String> types) {
-        this.types = types;
-    }
-
-    public ArrayList<ArrayList<String>> getOutputText() {
+    /**
+     * Gets the output text.
+     * @return the list of lists of output text
+     */
+    public List<List<String>> getOutputText() {
         return outputText;
     }
 
-    public void setOutputText(ArrayList<ArrayList<String>> outputText) {
+    /**
+     * Sets the output text.
+     * @param outputText the list of lists of output text
+     */
+    public void setOutputText(List<List<String>> outputText) {
         this.outputText = outputText;
     }
 
-    public ArrayList<String> getUserAnswers() {
+    /**
+     * Gets the user answers.
+     * @return the user answers
+     */
+    public List<String> getUserAnswers() {
         return userAnswers;
     }
 
-    public void setUserAnswers(ArrayList<String> userAnswers) {
-        this.userAnswers = userAnswers;
-    }
-
-    public ArrayList<String> getActualAnswers() {
+    /**
+     * Gets the actual answers.
+     * @return the actual answers
+     */
+    public List<String> getActualAnswers() {
         return actualAnswers;
-    }
-
-    public void setActualAnswers(ArrayList<String> actualAnswers) {
-        this.actualAnswers = actualAnswers;
     }
 }

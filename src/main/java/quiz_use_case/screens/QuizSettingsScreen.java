@@ -39,7 +39,8 @@ public class QuizSettingsScreen extends QuizUseCaseScreen {
     }
 
     /**
-     * Initializes the quiz settings screen.
+     * Initializes the quiz settings screen. If there are less than 4 flashcards with the given flashcard set ID, then
+     * just display an error pane.
      * @param controller the quiz settings controller
      * @param flashcardSetID the flashcard set ID
      */
