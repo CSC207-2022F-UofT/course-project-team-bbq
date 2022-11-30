@@ -1,7 +1,14 @@
 package quiz_use_case;
 
-import data_access.*;
+import data_access_use_case.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import frameworks_and_drivers.database.CommonUserDataAccess;
+import frameworks_and_drivers.database.DBGateway;
+import frameworks_and_drivers.database.FlashcardDataAccess;
+import frameworks_and_drivers.database.FlashcardSetDataAccess;
+import interface_adapters.controllers.QuizController;
+import interface_adapters.presenters.QuizPresenter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

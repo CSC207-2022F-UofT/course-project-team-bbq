@@ -1,7 +1,7 @@
 package study_mode_use_case;
 
 
-import data_access.DBGateway;
+import frameworks_and_drivers.database.DBGateway;
 import entities.Flashcard;
 import entities.FlashcardStudier;
 import entities.comparators.FlashcardAlphComparator;

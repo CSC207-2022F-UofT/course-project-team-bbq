@@ -1,7 +1,13 @@
 package study_mode_use_case;
-import data_access.*;
+import data_access_use_case.*;
+import frameworks_and_drivers.database.CommonUserDataAccess;
+import frameworks_and_drivers.database.DBGateway;
+import frameworks_and_drivers.database.FlashcardDataAccess;
+import frameworks_and_drivers.database.FlashcardSetDataAccess;
+import interface_adapters.controllers.StudySessionController;
+import interface_adapters.presenters.StudySessionPresenter;
 import org.junit.jupiter.api.Test;
-import study_mode_use_case.screens.StudySettingsFailed;
+import interface_adapters.presenters.exceptions.StudySettingsFailed;
 
 import java.io.IOException;
 

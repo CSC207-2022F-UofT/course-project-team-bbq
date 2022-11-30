@@ -1,13 +1,17 @@
 package login_and_sign_up_use_case_test;
 
-import data_access.*;
+import data_access_use_case.*;
+import frameworks_and_drivers.database.CommonUserDataAccess;
+import frameworks_and_drivers.database.DBGateway;
+import frameworks_and_drivers.database.FlashcardDataAccess;
+import frameworks_and_drivers.database.FlashcardSetDataAccess;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import login_and_signup_use_case.login_and_signup_use_case_screens.UserLoginPresenter;
+import interface_adapters.presenters.UserLoginPresenter;
 import login_and_signup_use_case.UserLoginOutputBoundary;
 import login_and_signup_use_case.UserLoginInputBoundary;
 import login_and_signup_use_case.UserLoginResponseModel;
