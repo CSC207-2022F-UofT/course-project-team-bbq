@@ -1,7 +1,7 @@
 package login_and_signup_use_case;
 
-import data_access.DBGateway;
-import data_access.entity_request_models.CommonUserDsRequestModel;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.entity_request_models.CommonUserDsRequestModel;
 
 import java.util.HashMap;
 /**

@@ -1,6 +1,6 @@
 import com.formdev.flatlaf.FlatDarculaLaf;
 
-import login_and_signup_use_case.login_and_signup_use_case_screens.WelcomeScreen;
+import frameworks_and_drivers.screens.WelcomeScreen;
 
 import java.io.IOException;
 

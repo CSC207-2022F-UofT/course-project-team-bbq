@@ -1,10 +1,11 @@
 package create_flashcard_use_case;
 
-import data_access.DBGateway;
-import data_access.IFlashcardDataAccess;
-import data_access.IFlashcardSetDataAccess;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
-import create_flashcard_use_case.fcCScreens.*;
+import create_flashcard_use_case.function_testing.InMemoryFlashcard;
+import create_flashcard_use_case.function_testing.InMemoryFlashcardSet;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.IFlashcardDataAccess;
+import data_access_use_case.IFlashcardSetDataAccess;
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +32,10 @@ public class FcCInteractorTest {
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("test set","description",
                 true, 0, "user", new ArrayList<>()));
         //Changed presenter for the test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Check if the flashcard is saved when response from interactor is successful.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcard(0).getTerm(), "term");
                 Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(), "definition");
                 List<Integer> ids = new ArrayList<>();
@@ -46,14 +47,14 @@ public class FcCInteractorTest {
 
             //Errors should not happen.
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.fail("Unexpected Failure.");
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Valid input for flashcard.
-        interactor.create(new FcCRequestModel(0, "term", "definition"));
+        interactor.create(new CreateFlashcardRequestModel(0, "term", "definition"));
     }
 
     /**
@@ -71,24 +72,24 @@ public class FcCInteractorTest {
                 true, 0, "user", new ArrayList<>()));
 
         //Changed presenter for the test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Success should not happen with this input.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success");
                 return null;
             }
 
             ////Check if error thrown is correct
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Term or definition is empty.", error);
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Input with empty term.
-        interactor.create(new FcCRequestModel(0, "", "definition"));
+        interactor.create(new CreateFlashcardRequestModel(0, "", "definition"));
     }
 
     /**
@@ -106,24 +107,24 @@ public class FcCInteractorTest {
                 true, 0, "user", new ArrayList<>()));
 
         //Creating new response for the test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Success should not happen.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success");
                 return null;
             }
 
             //Check if error thrown is correct
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Term or definition is empty.", error);
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Input with empty definition.
-        interactor.create(new FcCRequestModel(0, "term", ""));
+        interactor.create(new CreateFlashcardRequestModel(0, "term", ""));
     }
 
     /**
@@ -138,24 +139,24 @@ public class FcCInteractorTest {
         //No testing flashcard set.
 
         //Creating presenter for test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary() {
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary() {
             //Success should not happen.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel) {
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel) {
                 Assertions.fail("Unexpected success");
                 return null;
             }
 
             //Check if error thrown is correct.
             @Override
-            public FcCResponseModel prepareFailView(String error) {
+            public CreateFlashcardResponseModel prepareFailView(String error) {
                 Assertions.assertEquals("Flashcard set does not exist.", error);
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Flashcard creation.
-        interactor.create(new FcCRequestModel(0, "term", "definition"));
+        interactor.create(new CreateFlashcardRequestModel(0, "term", "definition"));
     }
 
     /**
@@ -172,23 +173,23 @@ public class FcCInteractorTest {
                 true, 0, "user", new ArrayList<>()));
 
         //Creating presenter for test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Success should not happen.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success");
                 return null;
             }
             //Check if error thrown is correct.
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Term or definition is empty.", error);
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Input with empty term and definition.
-        interactor.create(new FcCRequestModel(-1, "", ""));
+        interactor.create(new CreateFlashcardRequestModel(-1, "", ""));
     }
     /**
      * Test for creation of valid flashcard with term of multiple lines.
@@ -204,10 +205,10 @@ public class FcCInteractorTest {
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("test set","description",
                 true, 0, "user", new ArrayList<>()));
         //Changed presenter for the test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Check if the flashcard is saved when response from interactor is successful.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcard(0).getTerm(), "term term");
                 Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(), "definition");
                 List<Integer> ids = new ArrayList<>();
@@ -219,14 +220,14 @@ public class FcCInteractorTest {
 
             //Errors should not happen.
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.fail("Unexpected Failure.");
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Input with multiple lines.
-        interactor.create(new FcCRequestModel(0, "term\nterm", "definition"));
+        interactor.create(new CreateFlashcardRequestModel(0, "term\nterm", "definition"));
     }
     /**
      * Test for creation of valid flashcard with definition of multiple lines.
@@ -242,10 +243,10 @@ public class FcCInteractorTest {
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("test set","description",
                 true, 0, "user", new ArrayList<>()));
         //Changed presenter for the test.
-        FcCOutputBoundary presenter = new FcCOutputBoundary(){
+        CreateFlashcardOutputBoundary presenter = new CreateFlashcardOutputBoundary(){
             //Check if the flashcard is saved when response from interactor is successful.
             @Override
-            public FcCResponseModel prepareSuccessView(FcCResponseModel responseModel){
+            public CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcard(0).getTerm(), "term");
                 Assertions.assertEquals(gateway.getFlashcard(0).getDefinition(),
                         "definition definition");
@@ -258,13 +259,13 @@ public class FcCInteractorTest {
 
             //Errors should not happen.
             @Override
-            public FcCResponseModel prepareFailView(String error){
+            public CreateFlashcardResponseModel prepareFailView(String error){
                 Assertions.fail("Unexpected Failure.");
                 return null;
             }
         };
-        FcCInputBoundary interactor = new FcCInteractor(gateway, presenter);
+        CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway, presenter);
         //Input with multiple lines.
-        interactor.create(new FcCRequestModel(0, "term", "definition\ndefinition"));
+        interactor.create(new CreateFlashcardRequestModel(0, "term", "definition\ndefinition"));
     }
 }

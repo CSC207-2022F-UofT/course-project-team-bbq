@@ -1,9 +1,11 @@
 package login_and_sign_up_use_case_test;
 
-import data_access.*;
+import data_access_use_case.*;
 import entities.CommonUserFactory;
 import entities.UserFactory;
-import login_and_signup_use_case.login_and_signup_use_case_screens.UserRegisterPresenter;
+import frameworks_and_drivers.database.CommonUserDataAccess;
+import frameworks_and_drivers.database.DBGateway;
+import interface_adapters.presenters.UserRegisterPresenter;
 import login_and_signup_use_case.UserRegisterOutputBoundary;
 import login_and_signup_use_case.UserRegisterInputBoundary;
 import login_and_signup_use_case.UserRegisterResponseModel;
