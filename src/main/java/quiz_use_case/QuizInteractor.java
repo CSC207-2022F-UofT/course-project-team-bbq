@@ -1,7 +1,7 @@
 package quiz_use_case;
 
-import data_access.DBGateway;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
 import entities.*;
 
 import java.util.ArrayList;

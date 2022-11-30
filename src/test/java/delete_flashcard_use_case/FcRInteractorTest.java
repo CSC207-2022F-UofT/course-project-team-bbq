@@ -1,12 +1,13 @@
 package delete_flashcard_use_case;
 
-import create_flashcard_use_case.fcCScreens.*;
-import data_access.DBGateway;
-import data_access.IFlashcardDataAccess;
-import data_access.IFlashcardSetDataAccess;
-import data_access.entity_request_models.FlashcardDsRequestModel;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
-import delete_flashcard_use_case.FcRScreens.FcRResponsePresenter;
+import create_flashcard_use_case.function_testing.InMemoryFlashcard;
+import create_flashcard_use_case.function_testing.InMemoryFlashcardSet;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.IFlashcardDataAccess;
+import data_access_use_case.IFlashcardSetDataAccess;
+import data_access_use_case.entity_request_models.FlashcardDsRequestModel;
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
+import interface_adapters.presenters.DeleteFlashcardPresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
@@ -31,9 +32,9 @@ public class FcRInteractorTest {
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0,0));
         //Creating presenter for test.
-        FcROutputBoundary presenter = new FcRResponsePresenter(){
+        DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
             @Override
-            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
+            public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcardSet(0).getFlashcardIds(), new ArrayList<>());
                 System.out.println(flashcardDataAccess.getFlashcard(0));
                 Assertions.assertNull(gateway.getFlashcard(0));
@@ -41,14 +42,14 @@ public class FcRInteractorTest {
             }
 
             @Override
-            public FcRResponseModel prepareFailView(String error){
+            public DeleteFlashcardResponseModel prepareFailView(String error){
                 System.out.println(error);
                 Assertions.fail("Unexpected Failure.");
                 return null;
             }
         };
-        FcRInputBoundary interactor = new FcRInteractor(gateway, presenter);
-        interactor.delete(new FcRRequestModel(0,0));
+        DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway, presenter);
+        interactor.delete(new DeleteFlashcardRequestModel(0,0));
     }
 
     /**
@@ -63,21 +64,21 @@ public class FcRInteractorTest {
         flashcardSetDataAccess.saveFlashcardSet(new FlashcardSetDsRequestModel("title",
                 "description", true, 0,"User", new ArrayList<>()));
         //Creating presenter for test.
-        FcROutputBoundary presenter = new FcRResponsePresenter(){
+        DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
             @Override
-            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
+            public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
             @Override
-            public FcRResponseModel prepareFailView(String error){
+            public DeleteFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Flashcard does not exist.", error);
                 return null;
             }
         };
-        FcRInputBoundary interactor = new FcRInteractor(gateway, presenter);
-        interactor.delete(new FcRRequestModel(0,0));
+        DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway, presenter);
+        interactor.delete(new DeleteFlashcardRequestModel(0,0));
     }
 
     /**
@@ -94,21 +95,21 @@ public class FcRInteractorTest {
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0,1));
         //Creating presenter for test.
-        FcROutputBoundary presenter = new FcRResponsePresenter(){
+        DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
             @Override
-            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel){
+            public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
             @Override
-            public FcRResponseModel prepareFailView(String error){
+            public DeleteFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Flashcard set does not exist.", error);
                 return null;
             }
         };
-        FcRInputBoundary interactor = new FcRInteractor(gateway, presenter);
-        interactor.delete(new FcRRequestModel(0,0));
+        DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway, presenter);
+        interactor.delete(new DeleteFlashcardRequestModel(0,0));
     }
 
     /**
@@ -127,20 +128,20 @@ public class FcRInteractorTest {
         gateway.saveFlashcard(new FlashcardDsRequestModel("term", "definition",
                 LocalDateTime.now(), 0, 1));
         //Creating presenter for test.
-        FcROutputBoundary presenter = new FcRResponsePresenter() {
+        DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter() {
             @Override
-            public FcRResponseModel prepareSuccessView(FcRResponseModel responseModel) {
+            public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel) {
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
             @Override
-            public FcRResponseModel prepareFailView(String error) {
+            public DeleteFlashcardResponseModel prepareFailView(String error) {
                 Assertions.assertEquals("Flashcard not in this flashcard set.", error);
                 return null;
             }
         };
-        FcRInputBoundary interactor = new FcRInteractor(gateway, presenter);
-        interactor.delete(new FcRRequestModel(0, 0));
+        DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway, presenter);
+        interactor.delete(new DeleteFlashcardRequestModel(0, 0));
     }
 }
