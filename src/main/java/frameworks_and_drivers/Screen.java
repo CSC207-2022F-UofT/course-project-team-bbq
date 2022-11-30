@@ -1,4 +1,4 @@
-package view;
+package frameworks_and_drivers;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -14,6 +14,11 @@ public class TextEntryQuestion extends QuizQuestion {
 
     private static final Random rand = new Random();
 
+    /**
+     * Constructs a text entry question.
+     * @param flashcards the list of flashcards
+     * @param index the index of a specific flashcard
+     */
     public TextEntryQuestion(List<Flashcard> flashcards, int index) {
         this.missingTerm = rand.nextBoolean();
         generateQuestion(flashcards, index);
@@ -36,6 +41,10 @@ public class TextEntryQuestion extends QuizQuestion {
         }
     }
 
+    /**
+     * Returns the string representation of the text entry question.
+     * @return string representation
+     */
     @Override
     public String toString() {
         if (this.missingTerm) {
@@ -45,24 +54,35 @@ public class TextEntryQuestion extends QuizQuestion {
         }
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the term.
+     * @return the term
+     */
     public String getTerm() {
         return term;
     }
 
+    /**
+     * Sets the term.
+     * @param term the term
+     */
     public void setTerm(String term) {
         this.term = term;
     }
 
+    /**
+     * Gets the definition.
+     * @return the definition.
+     */
     public String getDefinition() {
         return definition;
     }
 
+    /**
+     * Sets the definition.
+     * @param definition the definition
+     */
     public void setDefinition(String definition) {
         this.definition = definition;
-    }
-
-    public boolean isMissingTerm() {
-        return missingTerm;
     }
 }

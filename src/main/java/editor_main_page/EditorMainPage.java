@@ -3,7 +3,7 @@ package editor_main_page;
 import data_access.*;
 import data_access.entity_request_models.FlashcardDsRequestModel;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.io.IOException;

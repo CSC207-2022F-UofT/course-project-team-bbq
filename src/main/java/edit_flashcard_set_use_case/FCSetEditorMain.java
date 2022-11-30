@@ -5,7 +5,7 @@ import edit_flashcard_set_use_case.screens.FCSetEditorPresenter;
 import edit_flashcard_set_use_case.screens.FCSetEditorScreen;
 import data_access.DBGateway;
 import data_access.entity_request_models.FlashcardSetDsRequestModel;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 public class FCSetEditorMain extends Screen {
     /**

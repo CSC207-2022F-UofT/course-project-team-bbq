@@ -3,22 +3,24 @@ package quiz_use_case.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI panel that displays a multiple choice question.
  * Frameworks & Drivers
  * @author Anthony
  */
-public class MultipleChoiceQuestionCard extends QuestionCard {
-    private final ArrayList<JRadioButton> choices;
+public class MultipleChoiceQuestionCard extends QuestionCard implements ActionListener {
+    private final List<JRadioButton> choices;
 
     /**
      * Constructs a multiple choice question card that is ready to receive user input.
      * @param num the question number
      * @param outputText the output text to display within the card
      */
-    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText) {
+    public MultipleChoiceQuestionCard(int num, List<String> outputText) {
         super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();
@@ -54,7 +56,7 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public MultipleChoiceQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public MultipleChoiceQuestionCard(int num, List<String> outputText, String userAnswer, String actualAnswer) {
         super(num);
         JLabel question = new JLabel(outputText.get(0));
         this.choices = new ArrayList<>();
@@ -99,6 +101,10 @@ public class MultipleChoiceQuestionCard extends QuestionCard {
         }
     }
 
+    /**
+     * When a multiple choice button is pressed, this method sets the user answer according to its source button.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JRadioButton source = (JRadioButton) e.getSource();

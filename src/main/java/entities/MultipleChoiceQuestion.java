@@ -10,14 +10,22 @@ import java.util.Random;
  * @author Anthony
  */
 public class MultipleChoiceQuestion extends QuizQuestion {
+    /* If given term is true, then the term is the initial prompt.
+    If given term is false, then the definition is the initial prompt.
+     */
     private final boolean givenTerm;
 
     private String question;
-    private String[] choices;
+    private final String[] choices;
     private final int numChoices = 4;
 
     private static final Random rand = new Random();
 
+    /**
+     * Constructs a multiple choice question.
+     * @param flashcards the list of flashcards
+     * @param index the index of a specific flashcard
+     */
     public MultipleChoiceQuestion(List<Flashcard> flashcards, int index) {
         this.givenTerm = rand.nextBoolean();
         this.choices = new String[numChoices];
@@ -54,6 +62,10 @@ public class MultipleChoiceQuestion extends QuizQuestion {
         }
     }
 
+    /**
+     * Returns the string representation of the multiple choice question.
+     * @return string representation
+     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("Prompt: " + this.question + "\n");
@@ -63,15 +75,26 @@ public class MultipleChoiceQuestion extends QuizQuestion {
         return s.toString();
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the question.
+     * @return the question
+     */
     public String getQuestion() {
         return question;
     }
 
+    /**
+     * Sets the question.
+     * @param question the question
+     */
     public void setQuestion(String question) {
         this.question = question;
     }
 
+    /**
+     * Sets the choices.
+     * @return the choices
+     */
     public String[] getChoices() {
         return choices;
     }

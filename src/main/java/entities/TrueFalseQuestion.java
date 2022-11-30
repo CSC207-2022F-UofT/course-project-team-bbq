@@ -14,6 +14,11 @@ public class TrueFalseQuestion extends QuizQuestion {
 
     private static final Random rand = new Random();
 
+    /**
+     * Constructs a true/false question.
+     * @param flashcards the list of flashcards
+     * @param index the index of a specific flashcard
+     */
     public TrueFalseQuestion(List<Flashcard> flashcards, int index) {
         this.pranked = rand.nextBoolean();
         generateQuestion(flashcards, index);
@@ -40,6 +45,10 @@ public class TrueFalseQuestion extends QuizQuestion {
         this.potentialDefinition = flashcard.getDefinition();
     }
 
+    /**
+     * Returns the string representation of the true/false question.
+     * @return string representation
+     */
     @Override
     public String toString() {
         return ("TRUE OR FALSE?\nTerm: " + this.term + "\nDefinition: " + this.potentialDefinition);
@@ -59,20 +68,27 @@ public class TrueFalseQuestion extends QuizQuestion {
         return n;
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the term.
+     * @return the term
+     */
     public String getTerm() {
         return term;
     }
 
+    /**
+     * Sets the term.
+     * @param term the term
+     */
     public void setTerm(String term) {
         this.term = term;
     }
 
+    /**
+     * Gets the potential definition.
+     * @return the potential definition
+     */
     public String getPotentialDefinition() {
         return potentialDefinition;
-    }
-
-    public void setPotentialDefinition(String potentialDefinition) {
-        this.potentialDefinition = potentialDefinition;
     }
 }

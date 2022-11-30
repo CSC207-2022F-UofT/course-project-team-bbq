@@ -16,7 +16,7 @@ public class Quiz {
 
     private int score;
 
-    private static final Random rand = new Random();
+    private static final Random rand = new Random(); // used for calculating random numbers
 
     /**
      * Precondition: flashcards contains at least 4 flashcards, and at least 1 question type is enabled in quizSettings.
@@ -37,7 +37,7 @@ public class Quiz {
     public void generateQuestions() {
         int numQuestions = this.quizSettings.getNumQuestions();
 
-        ArrayList<String> types = new ArrayList<String>();
+        List<String> types = new ArrayList<>();
         if (this.quizSettings.isTrueFalseOn()) {
             types.add("TF");
         }
@@ -72,16 +72,11 @@ public class Quiz {
         }
     }
 
-    /** GETTERS AND SETTERS **/
-    public ArrayList<String> getUserAnswers() {
-        ArrayList<String> userAnswers = new ArrayList<>();
-        for (QuizQuestion q : this.quizQuestions) {
-            userAnswers.add(q.getUserAnswer());
-        }
-        return userAnswers;
-    }
-
-    public void setUserAnswers(ArrayList<String> userAnswers) {
+    /**
+     * Sets the user answers.
+     * @param userAnswers the user answers
+     */
+    public void setUserAnswers(List<String> userAnswers) {
         for (int i = 0; i < userAnswers.size(); i++) {
             QuizQuestion q = this.quizQuestions.get(i);
             String a = userAnswers.get(i);
@@ -89,22 +84,38 @@ public class Quiz {
         }
     }
 
-    public ArrayList<String> getActualAnswers() {
-        ArrayList<String> actualAnswers = new ArrayList<>();
+    /**
+     * Gets the actual answers.
+     * @return the actual answers
+     */
+    public List<String> getActualAnswers() {
+        List<String> actualAnswers = new ArrayList<>();
         for (QuizQuestion q : this.quizQuestions) {
             actualAnswers.add(q.getActualAnswer());
         }
         return actualAnswers;
     }
 
+    /**
+     * Gets the quiz questions.
+     * @return the quiz questions
+     */
     public List<QuizQuestion> getQuizQuestions() {
         return this.quizQuestions;
     }
 
+    /**
+     * Gets the quiz score.
+     * @return the score
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Gets the number of questions.
+     * @return the number of questions
+     */
     public int getNumQuestions() {
         return this.quizQuestions.size();
     }

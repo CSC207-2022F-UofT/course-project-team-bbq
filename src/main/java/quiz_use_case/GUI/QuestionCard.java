@@ -2,14 +2,13 @@ package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Abstract class that represents a GUI panel that displays a quiz question.
  * Frameworks & Drivers
  * @author Anthony
  */
-public abstract class QuestionCard extends JPanel implements ActionListener {
+public abstract class QuestionCard extends JPanel {
     private String userAnswer = null;
 
     protected FlatLabel number;
@@ -46,11 +45,18 @@ public abstract class QuestionCard extends JPanel implements ActionListener {
         return new JLabel(statusMessage);
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the user answer.
+     * @return the user answer
+     */
     public String getUserAnswer() {
         return this.userAnswer;
     }
 
+    /**
+     * Sets the user answer.
+     * @param userAnswer the user answer
+     */
     public void setUserAnswer(String userAnswer) {
         this.userAnswer = userAnswer;
     }

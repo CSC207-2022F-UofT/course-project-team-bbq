@@ -2,7 +2,7 @@ package search_use_case;
 
 import data_access.DBGateway;
 import login_and_signup_use_case.UserLoginResponseModel;
-import view.Screen;
+import frameworks_and_drivers.Screen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

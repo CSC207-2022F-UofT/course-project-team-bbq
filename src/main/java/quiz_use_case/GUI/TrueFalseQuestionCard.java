@@ -3,14 +3,15 @@ package quiz_use_case.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * GUI panel that displays a true false question.
  * Frameworks & Drivers
  * @author Anthony
  */
-public class TrueFalseQuestionCard extends QuestionCard {
+public class TrueFalseQuestionCard extends QuestionCard implements ActionListener {
     private final JButton trueButton;
     private final JButton falseButton;
 
@@ -23,7 +24,7 @@ public class TrueFalseQuestionCard extends QuestionCard {
      * @param num the question number
      * @param outputText the output text to be displayed
      */
-    public TrueFalseQuestionCard(int num, ArrayList<String> outputText) {
+    public TrueFalseQuestionCard(int num, List<String> outputText) {
         super(num);
         JLabel term = new JLabel(outputText.get(0));
         JLabel potentialDefinition = new JLabel(outputText.get(1));
@@ -58,7 +59,7 @@ public class TrueFalseQuestionCard extends QuestionCard {
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public TrueFalseQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public TrueFalseQuestionCard(int num, List<String> outputText, String userAnswer, String actualAnswer) {
         super(num);
         JLabel term = new JLabel(outputText.get(0));
         JLabel potentialDefinition = new JLabel(outputText.get(1));
@@ -108,6 +109,10 @@ public class TrueFalseQuestionCard extends QuestionCard {
         this.add(falseButton, c);
     }
 
+    /**
+     * If TRUE is toggled, toggle the true button. If FALSE is toggled, toggle the false button.
+     * @param e the action event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String c = e.getActionCommand();

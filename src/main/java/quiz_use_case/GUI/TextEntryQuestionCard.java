@@ -2,8 +2,7 @@ package quiz_use_case.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI panel that displays a text entry question.
@@ -20,7 +19,7 @@ public class TextEntryQuestionCard extends QuestionCard {
      * @param num the question number
      * @param outputText the output text to be displayed
      */
-    public TextEntryQuestionCard(int num, ArrayList<String> outputText) {
+    public TextEntryQuestionCard(int num, List<String> outputText) {
         super(num);
         GridBagLayout grid = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
@@ -58,7 +57,7 @@ public class TextEntryQuestionCard extends QuestionCard {
      * @param userAnswer the user answer
      * @param actualAnswer the actual answer
      */
-    public TextEntryQuestionCard(int num, ArrayList<String> outputText, String userAnswer, String actualAnswer) {
+    public TextEntryQuestionCard(int num, List<String> outputText, String userAnswer, String actualAnswer) {
         super(num);
         GridBagLayout grid = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
@@ -107,10 +106,5 @@ public class TextEntryQuestionCard extends QuestionCard {
      */
     public void updateUserAnswer() {
         this.setUserAnswer(this.textArea.getText());
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }
