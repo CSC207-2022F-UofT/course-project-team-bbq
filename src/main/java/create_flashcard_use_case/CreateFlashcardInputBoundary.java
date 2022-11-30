@@ -8,5 +8,6 @@ package create_flashcard_use_case;
 
 public interface CreateFlashcardInputBoundary {
     CreateFlashcardResponseModel create(CreateFlashcardRequestModel requestModel);
+    CreateFlashcardResponseModel create(CreateFlashcardRequestModel requestModel, int flashcardId);
 
 }

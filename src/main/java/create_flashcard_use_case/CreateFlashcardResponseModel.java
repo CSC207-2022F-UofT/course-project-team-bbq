@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class CreateFlashcardResponseModel {
     private final LocalDateTime creationDate;
     private String term, definition;
+    private int flashcardId;
 
     /**
      * Create FcCResponseModel
@@ -16,10 +17,12 @@ public class CreateFlashcardResponseModel {
      * @param term term of the flashcard
      * @param definition definition of the flashcard
      */
-    public CreateFlashcardResponseModel(LocalDateTime creationDate, String term, String definition) {
+    public CreateFlashcardResponseModel(LocalDateTime creationDate, String term, String definition, int flashcardId) {
         this.creationDate = creationDate;
         this.term = term;
         this.definition = definition;
+        this.flashcardId = flashcardId;
+
     }
 
     public void setDefinition(String definition) {
@@ -28,6 +31,10 @@ public class CreateFlashcardResponseModel {
 
     public void setTerm(String term) {
         this.term = term;
+    }
+
+    public void setFlashcardId(int flashcardId) {
+        this.flashcardId = flashcardId;
     }
 
     public String getDefinition() {
@@ -40,5 +47,9 @@ public class CreateFlashcardResponseModel {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public int getFlashcardId() {
+        return flashcardId;
     }
 }
