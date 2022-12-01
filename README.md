@@ -16,6 +16,15 @@ This is a flashcard study application inspired by Quizlet.
 - If the user selects the "Log In" option from the welcome screen the user may input their respective username and password, if the username does not match an existing username from the database or incorrect password they shall be warned.
 
 ### 2. Create a flashcard or a flashcard set.
+- Flashcard Set:
+  - The user can create a flashcard set by clicking the "Add Flashcard Set" button located on the main page
+  - Once the button is clicked, the user is taken to the flashcard set creation screen
+  - The user can then enter a title and description for the flashcard set
+  - If the user clicks on "Create" with either the title or description missing, the user is alerted to include them
+  - The user can also make the flashcard set Public (unchecked box) or Private (checked box)
+  - Note: public flashcard sets are searchable by other users, while private ones are not (unless those users are Admins)
+  - If the user wishes to cancel the creation, they can do so by clicking "Cancel"
+  - Upon successful creation, the user is notified that their flashcard set has been created
 
 ### 3a. Edit a flashcard set.
  - If there are no flashcard sets on the main page, then we cannot edit a flashcard set.
@@ -29,6 +38,14 @@ This is a flashcard study application inspired by Quizlet.
    - If there are flashcards, the user can choose which flashcard to edit by clicking the "Edit Flashcard" button. When clicked a window pops up with Term and Definition text prompts for the user to edit. The user cannot change the Term to an empty term.
 
 ### 4. Delete a flashcard or a flashcard set.
+- Flashcard Set:
+  - The user can delete a flashcard set by clicking the "Delete" button located inside a flashcard set's options box on the main page
+  - When the button is clicked, the user is then taken to the flashcard set deletion screen
+  - On this screen, user can cancel the deletion at any time by clicking the "Cancel" button
+  - If the user clicks on "Delete", the user is presented with a confirmation dialog box
+  - Selecting "No" cancels the deletion and selecting "Yes" commences the deletion process 
+  - Note: deleting a flashcard set would also delete all flashcards contained within that set
+  - Upon successful deletion, the user is notified that their flashcard set has been deleted
 
 ### 5. Search for a public flashcard set.
 - If the user selects the search button from the main page the user can search through the public community database for flashcard sets
