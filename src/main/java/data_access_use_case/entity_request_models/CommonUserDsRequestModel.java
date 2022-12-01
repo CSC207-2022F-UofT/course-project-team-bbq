@@ -6,6 +6,7 @@ import java.util.List;
  * Application Business Rules
  * @author Justin Li
  */
+
 public class CommonUserDsRequestModel {
     private final String username;
     private final String password;
