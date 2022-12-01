@@ -106,7 +106,7 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
     public void windowClosing(WindowEvent e) {}
     @Override
     public void windowClosed(WindowEvent e) {
-        // When a window is closed we will refresh the page.
+        // When a window is closed the page will be refreshed.
         home.refresh();
     }
     @Override
