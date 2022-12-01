@@ -1,6 +1,11 @@
 package data_access_use_case.entity_request_models;
 
 import java.util.List;
+/**
+ * Flashcard Set Request Model.
+ * Application Business Rules
+ * @author Justin Li
+ */
 
 public class FlashcardSetDsRequestModel {
     private String title;
@@ -11,6 +16,14 @@ public class FlashcardSetDsRequestModel {
     private final String ownerUsername;
     private int flashcardSetId;
 
+    /**
+     * Creates a flashcard response model based on the following parameters.
+     * @param title the flashcard set title
+     * @param description the flashcard set description.
+     * @param isPrivate true if the flashcard set is private.
+     * @param flashcardSetId the flashcard set id
+     * @param ownerUsername the id of the user that created the flashcard set.
+     */
     public FlashcardSetDsRequestModel(String title, String description, boolean isPrivate,
                         int flashcardSetId, String ownerUsername,
                         List<Integer> flashcardIds){

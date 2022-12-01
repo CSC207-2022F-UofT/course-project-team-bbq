@@ -1,7 +1,11 @@
 package data_access_use_case.entity_request_models;
 
 import java.util.List;
-
+/**
+ * Common User Request Model.
+ * Application Business Rules
+ * @author Justin Li
+ */
 public class CommonUserDsRequestModel {
     private final String username;
     private final String password;
