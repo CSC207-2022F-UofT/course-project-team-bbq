@@ -19,7 +19,7 @@ public class CommonUserDataAccess implements IUserDataAccess {
     private final Map<String, CommonUserDsRequestModel> accounts = new HashMap<>();
 
     /**
-     * Creates a common user data access based on the following parameters.
+     * Creates a common user data access object based on the following parameters.
      * @param csvPath the csv file pathway to the database.
      */
     public CommonUserDataAccess(String csvPath) throws IOException {
