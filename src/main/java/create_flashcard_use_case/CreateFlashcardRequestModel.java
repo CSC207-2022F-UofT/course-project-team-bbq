@@ -11,7 +11,7 @@ public class CreateFlashcardRequestModel {
     private String term, definition;
 
     /**
-     * Create FcCRequestModel
+     * Create CreateFlashcardRequestModel
      * @param flashcardSetId id of flashcard set which new flashcard will be added to
      * @param term term of the flashcard
      * @param definition definition of the flashcard

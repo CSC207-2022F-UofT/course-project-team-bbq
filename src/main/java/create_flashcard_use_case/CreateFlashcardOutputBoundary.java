@@ -7,5 +7,5 @@ package create_flashcard_use_case;
 public interface CreateFlashcardOutputBoundary {
     CreateFlashcardResponseModel prepareSuccessView(CreateFlashcardResponseModel responseModel);
     CreateFlashcardResponseModel prepareFailView(String error);
-    CreateFlashcardResponseModel prepareFailView(CreateFlashcardResponseModel responseModel);
+    CreateFlashcardResponseModel prepareDuplicateView(CreateFlashcardResponseModel responseModel);
 }

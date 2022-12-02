@@ -13,12 +13,12 @@ public class CreateFlashcardResponseModel {
     private final Boolean existsDuplicate;
 
     /**
-     *Creating CreateFlashcardResponseModel for flashcard creation
+     *Create CreateFlashcardResponseModel for flashcard creation
      * @param creationDate date of creation
      * @param term term of the flashcard
      * @param definition definition of the flashcard
      * @param flashcardId flashcard id of the flashcard
-     * @param existsDuplicate if there is duplicate flashcard currently
+     * @param existsDuplicate if there is a duplicate flashcard currently
      */
     public CreateFlashcardResponseModel(LocalDateTime creationDate, String term, String definition, int flashcardId, Boolean existsDuplicate) {
         this.creationDate = creationDate;

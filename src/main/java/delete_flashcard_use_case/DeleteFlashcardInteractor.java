@@ -14,7 +14,7 @@ public class DeleteFlashcardInteractor implements DeleteFlashcardInputBoundary {
     DBGateway gateway;
 
     /**
-     * Create FcRInteractor.
+     * Create DeleteFlashcardInteractor.
      * @param gateway Database gateway.
      * @param presenter presenter that prepares success or failure view.
      */

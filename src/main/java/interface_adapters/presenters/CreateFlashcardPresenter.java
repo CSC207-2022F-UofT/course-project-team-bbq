@@ -36,7 +36,7 @@ public class CreateFlashcardPresenter implements CreateFlashcardOutputBoundary {
      * @return the responseModel
      */
     @Override
-    public CreateFlashcardResponseModel prepareFailView(CreateFlashcardResponseModel responseModel) {
+    public CreateFlashcardResponseModel prepareDuplicateView(CreateFlashcardResponseModel responseModel) {
         return responseModel;
     }
 }
