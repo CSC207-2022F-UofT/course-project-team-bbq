@@ -35,6 +35,8 @@ public class CreateFlashcardPanel extends JPanel implements ActionListener {
         cancel.addActionListener(e -> this.fcCMain.dispose());
         buttonPanel.add(confirm);
         buttonPanel.add(cancel);
+
+        //Creating the label panel.
         JLabel term_label = new JLabel("term");
         JLabel definition_label = new JLabel("definition");
         labelPanel.add(term_label);
@@ -52,7 +54,7 @@ public class CreateFlashcardPanel extends JPanel implements ActionListener {
         textPanel.add(existing_term);
         textPanel.add(existing_definition);
 
-        //Creating the label panel.
+        //Showing the sub panel.
         this.add(labelPanel, BorderLayout.NORTH);
         this.add(textPanel);
         this.add(buttonPanel, BorderLayout.SOUTH);
