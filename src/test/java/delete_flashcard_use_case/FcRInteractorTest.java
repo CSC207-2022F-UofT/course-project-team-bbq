@@ -33,6 +33,7 @@ public class FcRInteractorTest {
                 LocalDateTime.now(), 0,0));
         //Creating presenter for test.
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
+            //Test if deletion is successful.
             @Override
             public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.assertEquals(gateway.getFlashcardSet(0).getFlashcardIds(), new ArrayList<>());
@@ -41,6 +42,7 @@ public class FcRInteractorTest {
                 return null;
             }
 
+            //Failure should not happen.
             @Override
             public DeleteFlashcardResponseModel prepareFailView(String error){
                 System.out.println(error);
@@ -65,12 +67,14 @@ public class FcRInteractorTest {
                 "description", true, 0,"User", new ArrayList<>()));
         //Creating presenter for test.
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
+            //Success should not happen.
             @Override
             public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
+            //Check if failure message is correct.
             @Override
             public DeleteFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Flashcard does not exist.", error);
@@ -96,12 +100,14 @@ public class FcRInteractorTest {
                 LocalDateTime.now(), 0,1));
         //Creating presenter for test.
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter(){
+            //Success should not happen.
             @Override
             public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel){
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
+            //Check if failure message is correct.
             @Override
             public DeleteFlashcardResponseModel prepareFailView(String error){
                 Assertions.assertEquals("Flashcard set does not exist.", error);
@@ -129,12 +135,14 @@ public class FcRInteractorTest {
                 LocalDateTime.now(), 0, 1));
         //Creating presenter for test.
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter() {
+            //Success should not happen.
             @Override
             public DeleteFlashcardResponseModel prepareSuccessView(DeleteFlashcardResponseModel responseModel) {
                 Assertions.fail("Unexpected success.");
                 return null;
             }
 
+            //Check if failure message is correct.
             @Override
             public DeleteFlashcardResponseModel prepareFailView(String error) {
                 Assertions.assertEquals("Flashcard not in this flashcard set.", error);
