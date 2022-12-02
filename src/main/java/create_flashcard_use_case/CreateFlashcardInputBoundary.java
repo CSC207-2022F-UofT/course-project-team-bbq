@@ -10,4 +10,5 @@ public interface CreateFlashcardInputBoundary {
     CreateFlashcardResponseModel create(CreateFlashcardRequestModel requestModel);
     CreateFlashcardResponseModel create(CreateFlashcardRequestModel requestModel, int flashcardId);
 
+
 }

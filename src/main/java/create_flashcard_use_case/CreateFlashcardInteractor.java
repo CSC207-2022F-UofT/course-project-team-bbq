@@ -39,14 +39,15 @@ public class CreateFlashcardInteractor implements CreateFlashcardInputBoundary {
         }
         for (int flashcardId : gateway.getFlashcardSet(requestModel.getFlashcardSetId()).getFlashcardIds()){
             if (gateway.getFlashcard(flashcardId).getTerm().equals(term)){
-                return new CreateFlashcardResponseModel(LocalDateTime.now(), requestModel.getTerm(),
-                        gateway.getFlashcard(flashcardId).getDefinition(), flashcardId);
+                return presenter.prepareFailView(new CreateFlashcardResponseModel(LocalDateTime.now(), requestModel.getTerm(),
+                        gateway.getFlashcard(flashcardId).getDefinition(), flashcardId, true));
             }
         }
         LocalDateTime creationDate = LocalDateTime.now();
-        gateway.saveFlashcard(new FlashcardDsRequestModel(term, definition, creationDate, -1,
+        int flashcardId = gateway.saveFlashcard(new FlashcardDsRequestModel(term, definition, creationDate, -1,
                 requestModel.getFlashcardSetId()));
-        return new CreateFlashcardResponseModel(creationDate, term, definition, -1);
+        return presenter.prepareSuccessView(new
+                CreateFlashcardResponseModel(creationDate, term, definition, flashcardId, false));
 
     }
 
@@ -56,9 +57,6 @@ public class CreateFlashcardInteractor implements CreateFlashcardInputBoundary {
         LocalDateTime creationDate = LocalDateTime.now();
         gateway.editFlashcard(new FlashcardDsRequestModel(term, definition, creationDate, flashcardId,
                 requestModel.getFlashcardSetId()));
-        return new CreateFlashcardResponseModel(creationDate, term, definition, -1);
+        return new CreateFlashcardResponseModel(creationDate, term, definition, flashcardId,false);
     }
-
-
-
 }

@@ -10,18 +10,22 @@ public class CreateFlashcardResponseModel {
     private final LocalDateTime creationDate;
     private String term, definition;
     private int flashcardId;
+    private final Boolean existsDuplicate;
 
     /**
-     * Create FcCResponseModel
-     * @param creationDate date of creation of the flashcard
+     *Creating CreateFlashcardResponseModel for flashcard creation
+     * @param creationDate date of creation
      * @param term term of the flashcard
      * @param definition definition of the flashcard
+     * @param flashcardId flashcard id of the flashcard
+     * @param existsDuplicate if there is duplicate flashcard currently
      */
-    public CreateFlashcardResponseModel(LocalDateTime creationDate, String term, String definition, int flashcardId) {
+    public CreateFlashcardResponseModel(LocalDateTime creationDate, String term, String definition, int flashcardId, Boolean existsDuplicate) {
         this.creationDate = creationDate;
         this.term = term;
         this.definition = definition;
         this.flashcardId = flashcardId;
+        this.existsDuplicate = existsDuplicate;
 
     }
 
@@ -51,5 +55,9 @@ public class CreateFlashcardResponseModel {
 
     public int getFlashcardId() {
         return flashcardId;
+    }
+
+    public Boolean existsDuplicate() {
+        return existsDuplicate;
     }
 }

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Panel for flashcard creator.
@@ -72,30 +73,18 @@ public class CreateFlashcardPanel extends JPanel implements ActionListener {
             //Success view.
             CreateFlashcardResponseModel responseModel = controller.create(term_text.getText(),
                     definition_text.getText(), -1);
-            if (responseModel.getFlashcardId() == -1) {
+            if (! responseModel.existsDuplicate()) {
                 successView(responseModel);
             } else {
-                Object[] options = {"re-edit current card", "overwrite", "back to flashcard set"};
-                int action = JOptionPane.showOptionDialog(this,
-                        "Term already exist:\n" + responseModel.getTerm() + "\n" + responseModel.getDefinition()
-                        + "\ncurrent card:\n"+ term_text.getText() + "\n" + definition_text.getText(),
-                        "conflict", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-                        null, options, options[0]);
-                if (action == JOptionPane.YES_OPTION) {
-                    existing_definition.setText("<html>existing definition :<br>" + responseModel.getDefinition() +
-                            "</html>");
-                } else if (action == JOptionPane.NO_OPTION) {
-                    responseModel = controller.create(term_text.getText().replace("\n", " "),
-                            definition_text.getText().replace("\n", " "), responseModel.getFlashcardId());
-                    successView(responseModel);
-                } else {
-                    fcCMain.dispose();
-                }
+                duplicateView(responseModel);
             }
         } catch (RuntimeException error) {
             //Failure view.
-            int action = JOptionPane.showConfirmDialog(this,
-                    error + "\nre-edit?");
+            Object[] options = {"re_edit", "back to flashcard set"};
+            int action = JOptionPane.showOptionDialog(this,
+                    error.getMessage(),
+                    "Failure", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, options, options[0]);
             if (action == JOptionPane.NO_OPTION) {
                 fcCMain.dispose();
             }
@@ -105,12 +94,34 @@ public class CreateFlashcardPanel extends JPanel implements ActionListener {
     private void successView(CreateFlashcardResponseModel responseModel){
         Object[] options = {"create another card", "back to flashcard set"};
         int action = JOptionPane.showOptionDialog(this,
-                "Card created:\n" + responseModel.getTerm() + "\n" + responseModel.getDefinition(),
+                "Card created at "+ responseModel.getCreationDate().format(DateTimeFormatter.
+                        ofPattern("yyyy-MM-dd HH:mm")) + "\nTerm: " + responseModel.getTerm() + "\nDefinition: " +
+                        responseModel.getDefinition() + "\nid: " + responseModel.getFlashcardId(),
                 "Success", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, options, options[0]);
         if (action == JOptionPane.YES_OPTION) {
             term_text.setText("");
             definition_text.setText("");
+        } else {
+            fcCMain.dispose();
+        }
+    }
+    private void duplicateView(CreateFlashcardResponseModel responseModel){
+        Object[] options = {"re-edit current card", "overwrite", "back to flashcard set"};
+        int action = JOptionPane.showOptionDialog(this,
+                "Term already exist:\n" + responseModel.getTerm() + "\n" + responseModel.getDefinition()
+                        + "\ncurrent card:\n"+ term_text.getText() + "\n" + definition_text.getText(),
+                "conflict", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, options, options[0]);
+        if (action == JOptionPane.YES_OPTION) {
+            existing_definition.setText("<html>existing definition :<br>" + responseModel.getDefinition() +
+                    "</html>");
+            existing_term.setText("<html>existing term :<br>" + responseModel.getTerm() +
+                    "</html>");
+        } else if (action == JOptionPane.NO_OPTION) {
+            responseModel = controller.create(term_text.getText().replace("\n", " "),
+                    definition_text.getText().replace("\n", " "), responseModel.getFlashcardId());
+            successView(responseModel);
         } else {
             fcCMain.dispose();
         }
