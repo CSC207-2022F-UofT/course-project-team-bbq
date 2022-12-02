@@ -5,6 +5,11 @@ import data_access_use_case.entity_request_models.CommonUserDsRequestModel;
 
 import java.io.*;
 import java.util.*;
+/**
+ * Common User Request Model.
+ * Application Business Rules
+ * @author Justin Li
+ */
 
 public class CommonUserDataAccess implements IUserDataAccess {
     private final File userCsvFile;
@@ -13,6 +18,10 @@ public class CommonUserDataAccess implements IUserDataAccess {
 
     private final Map<String, CommonUserDsRequestModel> accounts = new HashMap<>();
 
+    /**
+     * Creates a common user data access object based on the following parameters.
+     * @param csvPath the csv file pathway to the database.
+     */
     public CommonUserDataAccess(String csvPath) throws IOException {
         userCsvFile = new File(csvPath);
 
@@ -48,6 +57,9 @@ public class CommonUserDataAccess implements IUserDataAccess {
             reader.close();
         }
     }
+    /**
+     * A private function that is called in the methods below which saves any changes made to a common user.
+     */
     private void save() {
         BufferedWriter writer;
         try {
@@ -73,44 +85,67 @@ public class CommonUserDataAccess implements IUserDataAccess {
         }
 
     }
+    /**
+     * Gets the user object with a given username.
+     * @param username the user's username.
+     * @return the user object with the given username.
+     */
     @Override
     public CommonUserDsRequestModel getUser(String username) {
         return accounts.get(username);
-
     }
-
+    /**
+     * Gets all the user objects in the database.
+     * @return all the user objects in the database.
+     */
     @Override
     public Collection<CommonUserDsRequestModel> getAllUsers(){
         return accounts.values();
     }
-
+    /**
+     * Returns true if a user object containing given username exists.
+     * @param username the user's username
+     * @return true if a user object containing given username exists.
+     */
     @Override
     public boolean existsByName(String username) {
         return accounts.containsKey(username);
 
     }
+    /**
+     * Saves a new flashcard set id into the list of current flashcard set ids that the user has created.
+     * @param username the user's username
+     * @param flashcardSetId the id of the flashcard set that the user created.
+     */
     @Override
-    public void saveFlashcardSetID(String username, int FlashcardSetID) {
+    public void saveFlashcardSetID(String username, int flashcardSetId) {
         CommonUserDsRequestModel oldUser = accounts.get(username);
         List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
-        newFlashcardSet.add(FlashcardSetID);
+        newFlashcardSet.add(flashcardSetId);
         CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
 
         accounts.put(username, newUser);
         save();
     }
-
+    /**
+     * Deletes a flashcard set created by a user.
+     * @param username the user's username
+     * @param flashcardSetId the id of the flashcard set that will be deleted
+     */
     @Override
-    public void deleteFlashcardSetID(String username, int FlashcardSetID) {
+    public void deleteFlashcardSetID(String username, int flashcardSetId) {
         CommonUserDsRequestModel oldUser = accounts.get(username);
         List<Integer> newFlashcardSet = new ArrayList<>(oldUser.getFlashcardSetIds());
-        newFlashcardSet.remove((Object) FlashcardSetID);
+        newFlashcardSet.remove((Object) flashcardSetId);
         CommonUserDsRequestModel newUser = new CommonUserDsRequestModel(oldUser.getUsername(), oldUser.getPassword(), oldUser.getIsAdmin(), newFlashcardSet);
 
         accounts.put(username, newUser);
         save();
     }
-
+    /**
+     * Saves a newly created user to the database
+     * @param user the user's username
+     */
     @Override
     public void saveUser(CommonUserDsRequestModel user) {
         accounts.put(user.getUsername(), user);

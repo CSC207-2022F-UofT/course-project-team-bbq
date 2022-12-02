@@ -7,12 +7,24 @@ import login_and_signup_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Abstract class that represents a panel for all flashcard set panels for a user.
+ * This panel includes all FlashcardSetDataPanel objects and their buttons.
+ * Frameworks & Drivers
+ * @author Justin Li
+ */
 public class ListOfFlashcardSetsDataPanel extends JPanel {
-
+    /**
+     *Creates a ListOfFlashcardSetDataPanel object that includes the idsToFlashcardSetData,
+     * gateway, user, and home.
+     * @param idsToFlashcardSetData the ids of the flashcard sets.
+     * @param gateway the gateway to reach all the flashcard sets.
+     * @param user the user that contains all the flashcard sets.
+     * @param home the home page that the list of flashcard set panels will be displayed on.
+     */
     public ListOfFlashcardSetsDataPanel(Map<Integer, String[]> idsToFlashcardSetData,
                                         DBGateway gateway, UserLoginResponseModel user, HomeScreen home) {
         Set<Integer> flashcardSetIds = idsToFlashcardSetData.keySet();
@@ -28,20 +40,5 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
         this.setLayout (new FlowLayout());
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         this.setPreferredSize(new Dimension(500, 1000));
-    }
-
-    public static void main(String[] args) throws IOException {
-//        JFrame f = new JFrame();
-//
-//        Map<Integer, String[]> map = new HashMap<>();
-//        map.put(0, new String[] {"test set", "for testing study use case"});
-//        map.put(1, new String[] {"empty test set", "for testing study use case with empty set"});
-//        DBGateway gateway = new DBGateway(new FlashcardDataAccess(DBGateway.getFlashcardPath()),
-//                new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath()),
-//                null);
-//
-//        f.add(new ListOfFlashcardSetsDataPanel(map, gateway, user));
-//        f.setVisible(true);
-//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

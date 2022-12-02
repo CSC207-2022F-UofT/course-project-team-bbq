@@ -15,7 +15,10 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
     private final Map<Integer, FlashcardDsRequestModel> flashcards = new HashMap<>();
-
+    /**
+     * Creates a flashcard data access object based on the following parameters.
+     * @param csvPath the csv file pathway to the database.
+     */
     public FlashcardDataAccess(String csvPath) throws IOException {
         flashCardCsvFile = new File(csvPath);
 
@@ -49,6 +52,9 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
             reader.close();
         }
     }
+    /**
+     * A private function that is called in the methods below which saves any changes made to a flashcard.
+     */
     private void save() {
         BufferedWriter writer;
         try {
@@ -72,12 +78,20 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
         }
     }
 
-
+    /**
+     * Gets the flashcard request model containing a given flashcard id.
+     * @param flashcardId the id of the flashcard.
+     * @return the flashcard request model containing a given flashcard id.
+     */
     @Override
-    public FlashcardDsRequestModel getFlashcard(Integer flashcardID) {
-        return flashcards.get(flashcardID);
+    public FlashcardDsRequestModel getFlashcard(Integer flashcardId) {
+        return flashcards.get(flashcardId);
     }
-
+    /**
+     * Saves a newly created flashcard into the database with a unique id.
+     * @param flashcard the flashcard object that will be created.
+     * @return the id of the flashcard saved.
+     */
     @Override
     public int saveFlashcard(FlashcardDsRequestModel flashcard) {
         int id = getLargestId() + 1;
@@ -87,18 +101,28 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
         return id;
     }
 
+    /**
+     * Gets the largest id contained in a flashcard in the database.
+     * @return the largest id contained in a flashcard in the database.
+     */
     private int getLargestId(){
         Set<Integer> ids = flashcards.keySet();
         return max(ids);
     }
-
+    /**
+     * Edits the flashcard by edits given and rewrites the flashcard database.
+     * @param flashcard the flashcard request model that will be edited
+     */
     @Override
     public void editFlashcard(FlashcardDsRequestModel flashcard) {
         int id = flashcard.getFlashcardId();
         flashcards.replace(id, flashcard);
         save();
     }
-
+    /**
+     * Deletes the flashcard containing the given id and rewrites the flashcard database.
+     * @param flashcardID the id of the flashcard that will be deleted.
+     */
     @Override
     public void deleteFlashcard(Integer flashcardID) {
         flashcards.remove(flashcardID);
