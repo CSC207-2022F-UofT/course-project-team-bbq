@@ -23,7 +23,19 @@ public class CreateFlashcardController {
         this.inputBoundary = inputBoundary;
         this.flashcardSetId = flashcardSetId;
     }
-    public CreateFlashcardResponseModel create(String term, String definition){
-        return inputBoundary.create(new CreateFlashcardRequestModel(flashcardSetId, term, definition));
+
+    /**
+     * If flashcardId is -1, try to create a new flashcard.
+     * If flashcardId is not -1, try to create a new flashcard at the given flashcard id.
+     * @param term term of the flashcard
+     * @param definition definition of the flashcard
+     * @param flashcardId flashcard id to write to, -1 is a placeholder meaning no given flashcard id.
+     * @return CreateFlashcardResponseModel
+     */
+    public CreateFlashcardResponseModel create(String term, String definition, int flashcardId){
+        if (flashcardId == -1){
+            return inputBoundary.create(new CreateFlashcardRequestModel(flashcardSetId, term, definition));
+        }
+        return inputBoundary.create(new CreateFlashcardRequestModel(flashcardSetId, term, definition), flashcardId);
     }
 }

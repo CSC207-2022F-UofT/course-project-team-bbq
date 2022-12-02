@@ -4,7 +4,7 @@ import data_access_use_case.*;
 import delete_flashcard_use_case.DeleteFlashcardInputBoundary;
 import delete_flashcard_use_case.DeleteFlashcardInteractor;
 import delete_flashcard_use_case.DeleteFlashcardOutputBoundary;
-import delete_flashcard_use_case.DeleteFlashcardResponseModel;
+import frameworks_and_drivers.components.DeleteFlashcardPanel;
 import interface_adapters.controllers.DeleteFlashcardController;
 import interface_adapters.presenters.DeleteFlashcardPresenter;
 import frameworks_and_drivers.database.DBGateway;
@@ -31,17 +31,10 @@ public class DeleteFlashcardScreen extends Screen {
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter();
         DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway,presenter);
         DeleteFlashcardController controller = new DeleteFlashcardController(interactor);
-        this.setVisible(false);
-        try {
-            DeleteFlashcardResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);
-            JOptionPane.showMessageDialog(this,
-                    responseModel.getTerm() + " deleted from " + responseModel.getCardSetName() +
-                    " at " + responseModel.getDeleteDate());
-            this.dispose();
-        }catch (RuntimeException error){
-            JOptionPane.showMessageDialog(this, "Deletion failed:\n" + error);
-            this.dispose();
-        }
+        this.add(new DeleteFlashcardPanel(controller,this, flashcardId, flashcardSetId));
+        this.setSize(200, 100);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
         new DeleteFlashcardScreen(0, 4);
