@@ -22,30 +22,53 @@ import javax.swing.border.Border;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Abstract class that represents a panel for an individual flashcard set.
+ * This panel includes buttons for study, edit, test, and delete.
+ * Frameworks & Drivers
+ * @author Justin Li
+ */
 public class FlashcardSetDataPanel extends JPanel implements WindowListener {
+    /**
+     * The main JFrame that the flashcard set data panel will lie in.
+     */
     HomeScreen home;
+
+    /**
+     * Creates a FlashcardSetDataPanel object that includes the title, description, flashcardSetId, gateway,
+     * user, and home.
+     * @param title the title of the flashcard set.
+     * @param description the description of the flashcard set.
+     * @param flashcardSetId the flashcard set id.
+     * @param gateway the gateway to reach the flashcard set.
+     * @param user the user that owns that flashcard set.
+     * @param home the home screen containing the flashcard set panel.
+     */
     public FlashcardSetDataPanel(String title, String description,
                                  int flashcardSetId, DBGateway gateway,
                                  UserLoginResponseModel user, HomeScreen home) {
+        // Panel Construction
         Border border = BorderFactory.createTitledBorder(title);
-
 
         JLabel descriptionLabel = new JLabel(description);
         this.add(descriptionLabel);
         this.home = home;
+
+        // Button Construction
         JPanel buttons = new JPanel();
 
         JButton study = new JButton("Study");
         buttons.add(study);
+
         JButton test = new JButton("Test");
         buttons.add(test);
+
         JButton edit = new JButton("Edit");
         JButton delete = new JButton("Delete");
-
-
         buttons.add(edit);
         buttons.add(delete);
 
+        // Action listeners for edit, study, test, and delete buttons.
         edit.addActionListener((e) -> {
             EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
             editor.addWindowListener(this);
@@ -77,39 +100,21 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
-
     @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
+    public void windowOpened(WindowEvent e) {}
     @Override
-    public void windowClosing(WindowEvent e) {
-    }
-
+    public void windowClosing(WindowEvent e) {}
     @Override
     public void windowClosed(WindowEvent e) {
+        // When a window is closed the page will be refreshed.
         home.refresh();
-
     }
-
     @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
+    public void windowIconified(WindowEvent e) {}
     @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
+    public void windowDeiconified(WindowEvent e) {}
     @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
+    public void windowActivated(WindowEvent e) {}
     @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
+    public void windowDeactivated(WindowEvent e) {}
 }

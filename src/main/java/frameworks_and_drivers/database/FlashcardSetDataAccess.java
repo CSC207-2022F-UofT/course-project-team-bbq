@@ -15,6 +15,10 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
 
     private final Map<Integer, FlashcardSetDsRequestModel> flashcardSets = new HashMap<>();
 
+    /**
+     * Creates a flashcard set data access object based on the following parameters.
+     * @param csvPath the csv file pathway to the database.
+     */
     public FlashcardSetDataAccess(String csvPath) throws IOException {
         flashCardSetCsvFile = new File(csvPath);
 
@@ -53,6 +57,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
             reader.close();
         }
     }
+    /**
+     * A private function that is called in the methods below which saves any changes made to a flashcard set.
+     */
     private void save() {
         BufferedWriter writer;
         try {
@@ -78,25 +85,42 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Gets the flashcard set request model containing the given flashcard set id.
+     * @param flashcardSetId the id of the flashcard set.
+     * @return the flashcard set request model containing the given flashcard set id.
+     */
     @Override
     public FlashcardSetDsRequestModel getFlashcardSet(int flashcardSetId) {
         return flashcardSets.get(flashcardSetId);
     }
 
+    /**
+     * Gets the title and description of the flashcard set
+     * @param flashcardSetId the id of the flashcard set.
+     * @return the tile and description of the flashcard set
+     */
     @Override
     public String[] getTitleAndDescription(int flashcardSetId) {
         return new String[] {flashcardSets.get(flashcardSetId).getTitle(),
                 flashcardSets.get(flashcardSetId).getDescription()};
     }
 
+    /**
+     * Edits the title and description of the flashcard set by edits given and rewrites the flashcard set database.
+     * @param flashcardSet the flashcard set object.
+     */
     @Override
     public void editTitleAndDescription(FlashcardSetDsRequestModel flashcardSet) {
         int id = flashcardSet.getFlashcardSetId();
         flashcardSets.replace(id, flashcardSet);
         save();
     }
-
+    /**
+     * Saves the newly created flashcard id into the list of flashcard ids contained in the flashcard set.
+     * @param flashcardSetId the id of the flashcard set.
+     * @param flashcardId the id of the flashcard that will be added.
+     */
     @Override
     public void saveFlashcardID(int flashcardSetId, int flashcardId) {
         FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
@@ -111,7 +135,11 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
         flashcardSets.put(flashcardSetId, newFlashcardSet);
         save();
     }
-
+    /**
+     * Removes a flashcard id from the list of flashcard ids contained in the flashcard set.
+     * @param flashcardSetId the id of the flashcard set.
+     * @param flashcardId the id of the flashcard that will be removed.
+     */
     @Override
     public void removeFlashcardId(int flashcardSetId, int flashcardId){
         FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
@@ -126,13 +154,20 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
         flashcardSets.put(flashcardSetId, newFlashcardSet);
         save();
     }
-
+    /**
+     * Deletes a flashcard set containing the given id.
+     * @param flashcardSetID the id of the flashcard set that will be deleted.
+     */
     @Override
     public void deleteFlashcardSet(int flashcardSetID) {
         flashcardSets.remove(flashcardSetID);
         save();
     }
-
+    /**
+     * Saves a newly created flashcard set with a unique id into the database.
+     * @param flashcardSet the flashcard set object.
+     * @return the id of the newly created flashcard set.
+     */
     @Override
     public int saveFlashcardSet(FlashcardSetDsRequestModel flashcardSet) {
         int id = getLargestId() + 1;
@@ -141,7 +176,10 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
         save();
         return id;
     }
-
+    /**
+     * Gets the largest id contained in a flashcard set in the database.
+     * @return the largest id contained in a flashcard set in the database.
+     */
     private int getLargestId(){
         if (flashcardSets.size() == 0) {
             return -1;

@@ -27,11 +27,28 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.Map;
 
-public class HomeScreen extends Screen implements WindowListener {
+/**
+ * The home page of a user. Includes the list of all their flashcard sets panels including their buttons.
+ * Also include a top bar with a search, add flashcard set, and log off button.
+ * Frameworks & Drivers.
+ * @author Justin Li
+ */
 
+public class HomeScreen extends Screen implements WindowListener {
+    /**
+     * The logged-in user
+     */
     UserLoginResponseModel user;
+    /**
+     * The gateway object to access the entire database.
+     */
     DBGateway gateway;
 
+    /**
+     * Creates the home screen.
+     * @param user the logged-in user.
+     * @param gateway the gateway object to access the entire database.
+     */
     public HomeScreen(UserLoginResponseModel user, DBGateway gateway) throws IOException {
         super(user.getSignedInUsername() + "'s home page");
         this.gateway = gateway;
@@ -43,10 +60,12 @@ public class HomeScreen extends Screen implements WindowListener {
         JPanel topBar = new JPanel();
         topBar.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
+        // button creation
         JButton searchButton = new JButton("Search");
         JButton addFlashcardSetButton = new JButton("Add Flashcard Set");
         JButton logOff = new JButton("Log Off");
 
+        // action listeners for search, add flashcard set, and log off buttons.
         searchButton.addActionListener(e -> {
             SearchOutputBoundary presenter = new SearchPresenter();
             SearchInteractor interactor = new SearchInteractor(presenter, gateway);
@@ -80,6 +99,7 @@ public class HomeScreen extends Screen implements WindowListener {
         topBar.setSize(1000,20);
         this.add(topBar);
 
+        // adding list of flashcard set data panels to the home screen
         Map<Integer, String[]> idsToFlashcardSetData = user.getFlashcardSets();
 
         int numSets = idsToFlashcardSetData.size();
@@ -100,7 +120,10 @@ public class HomeScreen extends Screen implements WindowListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-
+    /**
+     * A function used to refresh the home page by calling the user login again.
+     * The current home page is dispose and a new home page is created.
+     */
     public void refresh() {
         try {
             IFlashcardSetDataAccess flashcardSetDataAccess = new FlashcardSetDataAccess(DBGateway.getFlashcardSetPath());
@@ -124,37 +147,20 @@ public class HomeScreen extends Screen implements WindowListener {
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
+    public void windowOpened(WindowEvent e) {}
     @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
+    public void windowClosing(WindowEvent e) {}
     @Override
     public void windowClosed(WindowEvent e) {
+        // When a window is closed the page will be refreshed.
         refresh();
     }
-
     @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
+    public void windowIconified(WindowEvent e) {}
     @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
+    public void windowDeiconified(WindowEvent e) {}
     @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
+    public void windowActivated(WindowEvent e) {}
     @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
+    public void windowDeactivated(WindowEvent e) {}
 }

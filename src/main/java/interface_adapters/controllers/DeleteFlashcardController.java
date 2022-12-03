@@ -13,7 +13,7 @@ public class DeleteFlashcardController {
     DeleteFlashcardInputBoundary inputBoundary;
 
     /**
-     * Create FcRController.
+     * Create DeleteFlashcardController.
      * @param inputBoundary interactor for flashcard remover.
      */
     public DeleteFlashcardController(DeleteFlashcardInputBoundary inputBoundary){
