@@ -3,3 +3,4 @@ jempio,ilovejempio,false
 ducas,badpassword,false
 Anthony,123456,false,2
 testUser,password,false,0,1
+adminUser,pass,true
