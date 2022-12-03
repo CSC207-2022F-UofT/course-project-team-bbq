@@ -1,5 +1,5 @@
 package edit_flashcard_use_case;
-import edit_flashcard_use_case.screens.InMemoryFlashcard;
+import edit_flashcard_use_case.function_testing.InMemoryFlashcard;
 import frameworks_and_drivers.database.DBGateway;
 import data_access_use_case.IFlashcardDataAccess;
 import data_access_use_case.entity_request_models.FlashcardDsRequestModel;
