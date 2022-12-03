@@ -33,34 +33,61 @@ public class CommonUser implements User{
         this.flashcardSetIds = new ArrayList<>();
     }
 
-    //GETTERS AND SETTERS
+    /**
+     * Gets the username of the user
+     * @return the username of the user
+     */
     @Override
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Sets the username of the user to be as given.
+     * @param username the username of the use
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Gets the password of the user
+     * @return the password of the user
+     */
     @Override
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets the password of the user to be as given.
+     * @param password the username of the use
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Gets the admin access level of the user
+     * @return whether the user is an admin
+     */
     @Override
     public boolean getIsAdmin() {
         return isAdmin;
     }
 
+    /**
+     * Sets the level of admin access the user has
+     * @param isAdmin whether the user should obtain admin level access
+     */
     public void setIsAdmin(boolean isAdmin){
         this.isAdmin = isAdmin;
     }
 
+    /**
+     * Gets the list of flashcard set ids belonging to the user
+     * @return list of flashcard set ids
+     */
     @Override
     public ArrayList<Integer> getFlashcardSetIds() {
         return flashcardSetIds;
@@ -77,7 +104,7 @@ public class CommonUser implements User{
 
     /**
      * Checks whether the admin key entered is similar to the actual admin key in the business rules
-     * @param adminKey the username of the use
+     * @param adminKey the username of the user
      * @return whether the admin is the same as the one stored in the enterprise rules
      */
     @Override

@@ -30,28 +30,37 @@ public class UserRegisterRequestModel {
     }
 
     /**
-     * GETTERS for the UserRegisterRequestModel
+     * Gets the inputted name that the user opts to be as their username.
+     * @return the username that the user inputted.
      */
     String getName() {
         return name;
     }
 
+    /**
+     * Gets the inputted password that the user opts to be as their password.
+     * @return the password that the user inputted.
+     */
     String getPassword() {
         return password;
     }
 
+    /**
+     * Gets the inputted repeated password that the user opts to be as their password again to ensure that
+     * they are sure of the password and that it matches their previously inputted password.
+     * @return the password that the user inputted.
+     */
     public String getRepeatPassword() {
         return repeatPassword;
     }
 
+    /**
+     * Gets the admin key that the user has inputted to check whether they should be given admin level access.
+     * @return the admin key inputted by the user.
+     */
     public String getAdminKeyEntered() {
         return adminKeyEntered;
     }
-//    public void setAdmin(boolean isAdmin) {
-//        this.isAdmin = isAdmin;
-//    }
-
-
 
 }
 

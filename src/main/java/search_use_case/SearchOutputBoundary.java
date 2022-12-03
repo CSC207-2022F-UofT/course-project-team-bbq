@@ -1,4 +1,9 @@
 package search_use_case;
+
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
+
+import java.util.ArrayList;
+
 /**
  * The search Output Boundary.
  * <p>
@@ -9,10 +14,10 @@ public interface SearchOutputBoundary {
 
     /**
      * return a Response Model with the results if there are results
-     * @param results SearchResponseModel containing the result set
+     * @param result_set the result set of flashcard sets
      * @return SearchResponseModel with changes as needed.
      */
-    SearchResponseModel prepareSuccessView(SearchResponseModel results);
+    SearchResponseModel prepareSuccessView(ArrayList<FlashcardSetDsRequestModel> result_set);
 
     /**
      * display an error if the search was unsuccessful

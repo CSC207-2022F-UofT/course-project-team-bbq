@@ -1,6 +1,12 @@
 package search_use_case;
 
-import data_access.*;
+import data_access_use_case.*;
+import frameworks_and_drivers.database.CommonUserDataAccess;
+import frameworks_and_drivers.database.DBGateway;
+import frameworks_and_drivers.database.FlashcardDataAccess;
+import frameworks_and_drivers.database.FlashcardSetDataAccess;
+import interface_adapters.controllers.SearchController;
+import interface_adapters.presenters.SearchPresenter;
 import login_and_signup_use_case.UserLoginResponseModel;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SearchUseCaseTest {
     SearchController controller;
-    UserLoginResponseModel common_user = new UserLoginResponseModel("common_user",
+    final UserLoginResponseModel common_user = new UserLoginResponseModel("common_user", "password",
             false, new HashMap<>());
-    UserLoginResponseModel admin = new UserLoginResponseModel("admin",
+    final UserLoginResponseModel admin = new UserLoginResponseModel("admin","adminpassword",
             true, new HashMap<>());
 
     SearchRequestModel setup(String search_input, ArrayList<String> tags,

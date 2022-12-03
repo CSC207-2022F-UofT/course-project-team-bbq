@@ -21,12 +21,17 @@ public class UserLoginRequestModel {
     }
 
     /**
-     * GETTERS AND SETTERS
+     * Gets the inputted username of the user
+     * @return the username that the user inputted
      */
     String getUsername() {
         return username;
     }
 
+    /**
+     * Sets the inputted password of the user to be as given.
+     * @return the password that the user inputted
+     */
     String getPassword() {
         return password;
     }

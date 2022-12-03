@@ -1,7 +1,7 @@
 package quiz_use_case;
 
-import data_access.DBGateway;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
 import entities.*;
 
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ public class QuizInteractor implements QuizInputBoundary {
     private Quiz quiz;
 
     // information
-    private ArrayList<String> questionTypes;
-    private ArrayList<ArrayList<String>> outputText;
+    private List<String> questionTypes;
+    private List<List<String>> outputText;
 
     // output boundary
     private final QuizOutputBoundary presenter;
@@ -47,9 +47,10 @@ public class QuizInteractor implements QuizInputBoundary {
      */
     @Override
     public QuizSettingsResponseModel startQuiz(QuizSettingsRequestModel request) {
-        // entities
-        QuizSettings quizSettings = new QuizSettings(request.getNumQuestions(), request.isTimerOn(),
-                request.getTimerDuration(), request.isMultipleChoiceOn(), request.isTextEntryOn(),
+        boolean timerOn = request.isTimerOn();
+        int timerDuration = request.getTimerDuration();
+        QuizSettings quizSettings = new QuizSettings(request.getNumQuestions(), timerOn,
+                timerDuration, request.isMultipleChoiceOn(), request.isTextEntryOn(),
                 request.isTrueFalseOn());
 
         // HANDLE WEIRD INPUTS
@@ -70,27 +71,27 @@ public class QuizInteractor implements QuizInputBoundary {
                 if (quizQuestion instanceof MultipleChoiceQuestion) {
                     MultipleChoiceQuestion q = (MultipleChoiceQuestion) quizQuestion;
                     questionTypes.add("MC"); // add type
-                    ArrayList<String> output = new ArrayList<>(); // add question + choices under output
+                    List<String> output = new ArrayList<>(); // add question + choices under output
                     output.add((q.getQuestion()));
                     output.addAll(Arrays.asList(q.getChoices()));
                     outputText.add(output);
                 } else if (quizQuestion instanceof TextEntryQuestion) {
                     TextEntryQuestion q = (TextEntryQuestion) quizQuestion;
                     questionTypes.add("TE"); // add type
-                    ArrayList<String> output = new ArrayList<>(); // add term and definition (one of them is null)
+                    List<String> output = new ArrayList<>(); // add term and definition (one of them is null)
                     output.add(q.getTerm());
                     output.add(q.getDefinition());
                     outputText.add(output);
                 } else if (quizQuestion instanceof TrueFalseQuestion) {
                     TrueFalseQuestion q = (TrueFalseQuestion) quizQuestion;
                     questionTypes.add("TF"); // add type
-                    ArrayList<String> output = new ArrayList<>(); // add term and potential definition
+                    List<String> output = new ArrayList<>(); // add term and potential definition
                     output.add(q.getTerm());
                     output.add(q.getPotentialDefinition());
                     outputText.add(output);
                 }
             }
-            return presenter.prepareQuizView(questionTypes, outputText);
+            return presenter.prepareQuizView(questionTypes, outputText, timerOn, timerDuration);
         }
     }
 
@@ -101,8 +102,8 @@ public class QuizInteractor implements QuizInputBoundary {
      */
     @Override
     public QuizResponseModel getResults(QuizRequestModel requestModel) {
-        ArrayList<String> userAnswers = requestModel.getUserAnswers();
-        ArrayList<String> actualAnswers = quiz.getActualAnswers();
+        List<String> userAnswers = requestModel.getUserAnswers();
+        List<String> actualAnswers = quiz.getActualAnswers();
         this.quiz.setUserAnswers(userAnswers);
         this.quiz.evaluate(); // evaluate the quiz
         int score = this.quiz.getScore();

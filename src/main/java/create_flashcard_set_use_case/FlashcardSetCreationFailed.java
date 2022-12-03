@@ -1,7 +1,0 @@
-package create_flashcard_set_use_case;
-
-public class FlashcardSetCreationFailed extends RuntimeException {
-    public FlashcardSetCreationFailed(String error) {
-        super(error);
-    }
-}

@@ -1,7 +1,7 @@
 package edit_flashcard_use_case.screens;
 
-import data_access.IFlashcardDataAccess;
-import data_access.entity_request_models.FlashcardDsRequestModel;
+import data_access_use_case.IFlashcardDataAccess;
+import data_access_use_case.entity_request_models.FlashcardDsRequestModel;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -26,15 +26,25 @@ public class UserRegisterResponseModel {
     }
 
     /**
-     * GETTERS for the UserRegisterResponseModel
+     * Gets the username of the user as it would be saved in the database.
+     * @return the username assigned to the user for their account.
      */
     public String getSignedUpUsername() {
         return signedUpUsername;
     }
 
+    /**
+     * Gets the password of the user as it would be saved in the database.
+     * @return the password assigned to the user for their account.
+     */
     public String getSignedUpPassword(){
         return signedUpPassword;
     }
+
+    /**
+     * Gets the admin level access of the user as it would be saved in the database.
+     * @return whether the user is assigned admin level access for their account.
+     */
     public boolean getIsAdmin(){return isAdmin;}
 
 }

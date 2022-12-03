@@ -9,8 +9,17 @@ package study_mode_use_case;
  */
 public class StudySettingsResponseModel extends StudySessionResponseModel {
 
+    /**
+     * stores the length of the flashcard set
+     */
     private final int numFlashcards;
+    /**
+     * stores the title of the flashcard set
+     */
     private final String title;
+    /**
+     * stores the id of the flashcard set
+     */
     private final int flashcardSetId;
 
     /**

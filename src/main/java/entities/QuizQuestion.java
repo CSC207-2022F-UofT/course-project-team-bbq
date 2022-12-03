@@ -27,17 +27,20 @@ abstract public class QuizQuestion {
         return this.actualAnswer.equalsIgnoreCase(this.userAnswer);
     }
 
-    /** GETTERS AND SETTERS **/
+    /**
+     * Gets the actual answer.
+     * @return the actual answer
+     */
     public String getActualAnswer() {
         return actualAnswer;
     }
 
+    /**
+     * Sets the actual answer.
+     * @param actualAnswer the actual answer
+     */
     public void setActualAnswer(String actualAnswer) {
         this.actualAnswer = actualAnswer;
-    }
-
-    public String getUserAnswer() {
-        return userAnswer;
     }
 
     /**

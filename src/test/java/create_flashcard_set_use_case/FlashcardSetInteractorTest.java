@@ -1,7 +1,9 @@
 package create_flashcard_set_use_case;
 
-import data_access.IFlashcardSetDataAccess;
+import create_flashcard_set_use_case.function_testing.InMemoryFlashcardSet;
+import data_access_use_case.IFlashcardSetDataAccess;
 import entities.FlashcardSetFactory;
+import interface_adapters.presenters.exceptions.CreateFlashcardSetFailed;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +27,7 @@ public class FlashcardSetInteractorTest {
     @Test
     public void testCreate() {
         // Create a mock user input
-        FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
+        CreateFlashcardSetRequestModel requestModel = new CreateFlashcardSetRequestModel("CSC207",
                 "Final Exam Review", false, "uncle_bob69");
 
 
@@ -36,9 +38,9 @@ public class FlashcardSetInteractorTest {
 
         // Argument 2: Output Boundary
         // Creating an anonymous implementing class for the Output Boundary.
-        FlashcardSetOutputBoundary outputBoundary = new FlashcardSetOutputBoundary() {
+        CreateFlashcardSetOutputBoundary outputBoundary = new CreateFlashcardSetOutputBoundary() {
             @Override
-            public FlashcardSetResponseModel prepareSuccessView(FlashcardSetResponseModel responseModel) {
+            public CreateFlashcardSetResponseModel prepareSuccessView(CreateFlashcardSetResponseModel responseModel) {
 
                 assertEquals("CSC207", responseModel.getFs().getTitle());
                 assertEquals("CSC207", flashcardSetRepository.getFlashcardSet(-1).getTitle());
@@ -46,7 +48,7 @@ public class FlashcardSetInteractorTest {
             }
 
             @Override
-            public FlashcardSetResponseModel prepareFailView(String error) {
+            public CreateFlashcardSetResponseModel prepareFailView(String error) {
                 fail("Something went wrong since we are testing for successful creation.");
                 return null;
             }
@@ -56,7 +58,7 @@ public class FlashcardSetInteractorTest {
         FlashcardSetFactory flashcardSetFactoryfactory = new FlashcardSetFactory();
 
         // Construct interactor
-        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(flashcardSetRepository, outputBoundary,
+        CreateFlashcardSetInputBoundary interactor = new CreateFlashcardSetInteractor(flashcardSetRepository, outputBoundary,
                 flashcardSetFactoryfactory);
 
         // Create and store the flashcard set with the interactor
@@ -65,102 +67,102 @@ public class FlashcardSetInteractorTest {
     }
 
     @Test
-    public void testMissingTitleException() throws FlashcardSetCreationFailed {
+    public void testMissingTitleException() {
         // Create a mock user input with no title
-        FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("",
+        CreateFlashcardSetRequestModel requestModel = new CreateFlashcardSetRequestModel("",
                 "Final Exam Review", false, "uncle_bob69");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();
-        FlashcardSetOutputBoundary outputBoundary = new FlashcardSetOutputBoundary() {
+        CreateFlashcardSetOutputBoundary outputBoundary = new CreateFlashcardSetOutputBoundary() {
             @Override
-            public FlashcardSetResponseModel prepareSuccessView(FlashcardSetResponseModel fs) {
+            public CreateFlashcardSetResponseModel prepareSuccessView(CreateFlashcardSetResponseModel fs) {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
 
             @Override
-            public FlashcardSetResponseModel prepareFailView(String error) {
-                throw new FlashcardSetCreationFailed("Title is missing!");
+            public CreateFlashcardSetResponseModel prepareFailView(String error) {
+                throw new CreateFlashcardSetFailed("Title is missing!");
             }
         };
         FlashcardSetFactory flashcardSetFactoryfactory = new FlashcardSetFactory();
-        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(flashcardSetRepository, outputBoundary,
+        CreateFlashcardSetInputBoundary interactor = new CreateFlashcardSetInteractor(flashcardSetRepository, outputBoundary,
                 flashcardSetFactoryfactory);
 
         // Test part
         try {
             interactor.create(requestModel);  // no title should go immediately to catch block (i.e., pass test)
             assert (false);  // if title is included, then this line is reached and test fails
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (CreateFlashcardSetFailed ignored) {
 
         }
 
     }
 
     @Test
-    public void testMissingDescriptionException() throws FlashcardSetCreationFailed {
+    public void testMissingDescriptionException() {
         // Create a mock user input with no description
-        FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
+        CreateFlashcardSetRequestModel requestModel = new CreateFlashcardSetRequestModel("CSC207",
                 "", false, "uncle_bob69");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();
-        FlashcardSetOutputBoundary outputBoundary = new FlashcardSetOutputBoundary() {
+        CreateFlashcardSetOutputBoundary outputBoundary = new CreateFlashcardSetOutputBoundary() {
             @Override
-            public FlashcardSetResponseModel prepareSuccessView(FlashcardSetResponseModel fs) {
+            public CreateFlashcardSetResponseModel prepareSuccessView(CreateFlashcardSetResponseModel fs) {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
 
             @Override
-            public FlashcardSetResponseModel prepareFailView(String error) {
-                throw new FlashcardSetCreationFailed("Description is missing!");
+            public CreateFlashcardSetResponseModel prepareFailView(String error) {
+                throw new CreateFlashcardSetFailed("Description is missing!");
             }
         };
         FlashcardSetFactory flashcardSetFactoryfactory = new FlashcardSetFactory();
-        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(flashcardSetRepository, outputBoundary,
+        CreateFlashcardSetInputBoundary interactor = new CreateFlashcardSetInteractor(flashcardSetRepository, outputBoundary,
                 flashcardSetFactoryfactory);
 
         // Test part
         try {
             interactor.create(requestModel);
             assert (false);
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (CreateFlashcardSetFailed ignored) {
 
         }
 
     }
 
     @Test
-    public void testMissingUsernameException() throws FlashcardSetCreationFailed {
+    public void testMissingUsernameException() {
         // Create a mock user input with no username
-        FlashcardSetRequestModel requestModel = new FlashcardSetRequestModel("CSC207",
+        CreateFlashcardSetRequestModel requestModel = new CreateFlashcardSetRequestModel("CSC207",
                 "Final Exam Review", false, "");
 
         // Setup is same as testCreate, but we implement Output Boundary to throw an exception
         IFlashcardSetDataAccess flashcardSetRepository = new InMemoryFlashcardSet();
-        FlashcardSetOutputBoundary outputBoundary = new FlashcardSetOutputBoundary() {
+        CreateFlashcardSetOutputBoundary outputBoundary = new CreateFlashcardSetOutputBoundary() {
             @Override
-            public FlashcardSetResponseModel prepareSuccessView(FlashcardSetResponseModel fs) {
+            public CreateFlashcardSetResponseModel prepareSuccessView(CreateFlashcardSetResponseModel fs) {
                 fail("Something went wrong since we are testing for failing creation.");
                 return null;
             }
 
             @Override
-            public FlashcardSetResponseModel prepareFailView(String error) {
-                throw new FlashcardSetCreationFailed("Username is missing!");
+            public CreateFlashcardSetResponseModel prepareFailView(String error) {
+                throw new CreateFlashcardSetFailed("Username is missing!");
             }
         };
         FlashcardSetFactory flashcardSetFactoryfactory = new FlashcardSetFactory();
-        FlashcardSetInputBoundary interactor = new FlashcardSetInteractor(flashcardSetRepository, outputBoundary,
+        CreateFlashcardSetInputBoundary interactor = new CreateFlashcardSetInteractor(flashcardSetRepository, outputBoundary,
                 flashcardSetFactoryfactory);
 
         // Test part
         try {
             interactor.create(requestModel);
             assert (false);
-        } catch (FlashcardSetCreationFailed e) {
+        } catch (CreateFlashcardSetFailed ignored) {
 
         }
 

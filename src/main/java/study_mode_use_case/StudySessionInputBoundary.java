@@ -9,12 +9,34 @@ package study_mode_use_case;
 
 public interface StudySessionInputBoundary {
 
+    /**
+     * a string which tells the system that the user wants to flip the flashcard
+     */
     String flip = "flip";
+
+    /**
+     * a string which tells the system that the user wants to gp to the next flashcard
+     */
     String next = "next";
+
+    /**
+     * a string which tells the system that the user wants to gp to the previous flashcard
+     */
     String prev = "prev";
 
+    /**
+     * a string which tells the system the user wants to shuffle randomly
+     */
     String shuffleSort = "shuffle";
+
+    /**
+     * a string which tells the system the user wants to sort by alphabetical order
+     */
     String alphSort = "alph";
+
+    /**
+     * a string which tells the system the user wants to sort by creation order
+     */
     String timeSort = "time";
 
     /**

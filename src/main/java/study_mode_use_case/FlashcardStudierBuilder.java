@@ -1,9 +1,9 @@
 package study_mode_use_case;
 // use case layer
 
-import data_access.DBGateway;
-import data_access.entity_request_models.FlashcardDsRequestModel;
-import data_access.entity_request_models.FlashcardSetDsRequestModel;
+import frameworks_and_drivers.database.DBGateway;
+import data_access_use_case.entity_request_models.FlashcardDsRequestModel;
+import data_access_use_case.entity_request_models.FlashcardSetDsRequestModel;
 import entities.*;
 
 import java.util.List;
@@ -16,8 +16,19 @@ import java.util.List;
  */
 public class FlashcardStudierBuilder {
 
+    /**
+     * a class that knows how to create a flashcard
+     */
     FlashcardFactory cardFactory = new FlashcardFactory();
+
+    /**
+     * a class that knows how to create a flashcard studier
+     */
     FlashcardStudierFactory studierFactory = new FlashcardStudierFactory();
+
+    /**
+     * an object which accesses the database
+     */
     DBGateway gateway;
 
     /**
