@@ -1,4 +1,4 @@
 title,description,isPrivate,flashcardSetId,ownerUsername,flashcardIds
-test set 1,for testing study use case,false,0,testUser,0,1,2,3
-empty test set,for testing study use case with empty set,true,1,testUser
-Long Test Set,Insert Generic Description,false,2,Anthony,10,11,12,13,14,15,16,17,18,19,20,21
+"test set 1","for testing study use case",false,0,testUser,0,1,2,3
+"empty test set","for testing study use case with empty set",true,1,testUser
+"Long Test Set","Insert Generic Description",false,2,Anthony,10,11,12,13,14,15,16,17,18,19,20,21
