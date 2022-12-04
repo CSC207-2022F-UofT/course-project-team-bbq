@@ -30,14 +30,14 @@ class UserLoginInteractorTest {
     // 5) Check that the expected changes to the data layer are there.
 
     // 1) UserLoginInteractorTest and prerequisite objects
-    IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
+    final IFlashcardDataAccess flashcardGateway = new FlashcardDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/Flashcards.csv");
-    IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
+    final IFlashcardSetDataAccess flashcardSetGateway = new FlashcardSetDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/FlashcardSets.csv");
-    IUserDataAccess userGateway = new CommonUserDataAccess(
+    final IUserDataAccess userGateway = new CommonUserDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/LoginUsers.csv");
 
-    DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
+    final DBGateway gateway = new DBGateway(flashcardGateway, flashcardSetGateway, userGateway);
 
     /**
      * Instantiate the class to test the login interactor.

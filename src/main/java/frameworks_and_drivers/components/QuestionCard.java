@@ -11,7 +11,7 @@ import java.awt.*;
 public abstract class QuestionCard extends JPanel {
     private String userAnswer = null;
 
-    protected FlatLabel number;
+    protected final FlatLabel number;
     protected final ImageIcon yes = new ImageIcon("src/images/yes.png");
     protected final ImageIcon no = new ImageIcon("src/images/no.png");
 

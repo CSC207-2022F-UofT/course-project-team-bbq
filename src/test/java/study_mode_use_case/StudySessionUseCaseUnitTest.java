@@ -18,27 +18,27 @@ public class StudySessionUseCaseUnitTest {
     /**
      * the id of the study test set in the test database
      */
-    int testSetId = 0;
+    final int testSetId = 0;
 
     /**
      * the id of the empty study test set in the test database
      */
-    int emptyTestSetId = 1;
+    final int emptyTestSetId = 1;
 
     /**
      * a request model corresponding to a user who wants to view the next flashcard
      */
-    StudySessionRequestModel next = new StudySessionRequestModel();
+    final StudySessionRequestModel next = new StudySessionRequestModel();
 
     /**
      * a request model corresponding to a user who wants to view the previous flashcard
      */
-    StudySessionRequestModel prev = new StudySessionRequestModel();
+    final StudySessionRequestModel prev = new StudySessionRequestModel();
 
     /**
      * a request model corresponding to a user who wants to flip the current flashcard
      */
-    StudySessionRequestModel flip = new StudySessionRequestModel();
+    final StudySessionRequestModel flip = new StudySessionRequestModel();
 
     /**
      * the controller for the study mode use case

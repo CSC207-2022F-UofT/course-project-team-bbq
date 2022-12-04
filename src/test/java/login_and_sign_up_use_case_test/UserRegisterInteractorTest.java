@@ -30,12 +30,12 @@ class UserRegisterInteractorTest {
 
     // 1) UserRegisterInteractor and prerequisite objects
 
-    IUserDataAccess userGateway = new CommonUserDataAccess(
+    final IUserDataAccess userGateway = new CommonUserDataAccess(
             "src/test/java/login_and_sign_up_use_case_test/test_data/RegistrationUsers.csv");
 
-    File file = new File("src/test/java/login_and_sign_up_use_case_test/test_data/RegistrationUsers.csv");
+    final File file = new File("src/test/java/login_and_sign_up_use_case_test/test_data/RegistrationUsers.csv");
 
-    DBGateway gateway = new DBGateway(null, null, userGateway);
+    final DBGateway gateway = new DBGateway(null, null, userGateway);
 
     UserRegisterInteractorTest() throws IOException {
     }

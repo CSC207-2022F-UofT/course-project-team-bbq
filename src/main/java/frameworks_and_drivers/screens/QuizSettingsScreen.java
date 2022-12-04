@@ -6,7 +6,6 @@ import quiz_use_case.*;
 
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -61,14 +60,12 @@ public class QuizSettingsScreen extends QuizUseCaseScreen {
                     "This set contains "+numFlashcards+" flashcards.");
         } else {
             // listener
-            ChangeListener listener = new ChangeListener() {
-                public void stateChanged(ChangeEvent e) {
-                    JSlider s = (JSlider) e.getSource();
-                    if (s.equals(numQuestionsSlider.slider)) {
-                        numQuestionsSlider.updateValue();
-                    } else if (s.equals(timerSlider.slider)) {
-                        timerSlider.updateValue();
-                    }
+            ChangeListener listener = e -> {
+                JSlider s = (JSlider) e.getSource();
+                if (s.equals(numQuestionsSlider.slider)) {
+                    numQuestionsSlider.updateValue();
+                } else if (s.equals(timerSlider.slider)) {
+                    timerSlider.updateValue();
                 }
             };
 

@@ -23,11 +23,11 @@ public class CreateFlashcardSetScreen extends JFrame implements ActionListener {
     /**
      * The title of the flashcard set chosen by the user.
      */
-    JTextField title = new JTextField(15);
+    final JTextField title = new JTextField(15);
     /**
      * The description of the flashcard set.
      */
-    JTextField description = new JTextField(15);
+    final JTextField description = new JTextField(15);
 //    /**
 //     * The owner's username of the flashcard set
 //     */
@@ -36,12 +36,12 @@ public class CreateFlashcardSetScreen extends JFrame implements ActionListener {
     /**
      * The controller.
      */
-    CreateFlashcardSetController createFlashcardSetController;
+    final CreateFlashcardSetController createFlashcardSetController;
 
     /**
      * The user.
      */
-    UserLoginResponseModel user;
+    final UserLoginResponseModel user;
 
     private boolean privateSelected;  // for public or private status of flashcard set
 

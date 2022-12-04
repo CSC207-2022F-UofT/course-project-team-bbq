@@ -15,15 +15,15 @@ public class EditFlashcardSetPanel extends JPanel implements ActionListener {
     /**
      * The main JFrame in which this editor screen lies in.
      */
-    JFrame editPage;
+    final JFrame editPage;
     /**
      * The title input field.
      */
-    JTextField titleText;
+    final JTextField titleText;
     /**
      * The definition input field.
      */
-    JTextField descriptionText;
+    final JTextField descriptionText;
 
     /**
      * Creates a new FCSetEditorScreen object with the corresponding JLabels, JPanels and JButtons.

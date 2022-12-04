@@ -8,13 +8,13 @@ import java.util.Map;
  * @author Aryan Chablani
  */
 public class UserLoginResponseModel {
-    String username;
+    final String username;
 
-    String password;
+    final String password;
 
-    boolean isAdmin;
+    final boolean isAdmin;
 
-    Map<Integer, String[]> flashcardSets;
+    final Map<Integer, String[]> flashcardSets;
 
      /**
      * Constructs a quiz response model based on the following parameters.

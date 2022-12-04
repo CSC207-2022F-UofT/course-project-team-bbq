@@ -29,8 +29,8 @@ import java.util.Objects;
 public class CreateFlashcardSetInteractor implements CreateFlashcardSetInputBoundary {
     DBGateway dbGateway;
     IFlashcardSetDataAccess flashcardSetDataAccess;  // for testing
-    CreateFlashcardSetOutputBoundary createFlashcardSetOutputBoundary;
-    FlashcardSetFactory flashcardSetFactory;
+    final CreateFlashcardSetOutputBoundary createFlashcardSetOutputBoundary;
+    final FlashcardSetFactory flashcardSetFactory;
 
     /**
      * Constructs the use case interactor.

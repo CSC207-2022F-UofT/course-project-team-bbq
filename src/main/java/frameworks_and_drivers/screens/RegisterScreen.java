@@ -30,25 +30,25 @@ public class RegisterScreen extends JFrame implements ActionListener {
     /**
      * The username chosen by the user
      */
-    JTextField username = new JTextField(15);
+    final JTextField username = new JTextField(15);
     /**
      * The password
      */
-    JPasswordField password = new JPasswordField(15);
+    final JPasswordField password = new JPasswordField(15);
     /**
      * The second password to make sure the user understands
      */
-    JPasswordField repeatPassword = new JPasswordField(15);
+    final JPasswordField repeatPassword = new JPasswordField(15);
 
     /**
      * The Admin Key to ensure to make sure whether the user is an admin user or not
      */
-    JPasswordField adminChecker = new JPasswordField(15);
+    final JPasswordField adminChecker = new JPasswordField(15);
 
     /**
      * The controller
      */
-    UserRegisterController userRegisterController;
+    final UserRegisterController userRegisterController;
 
     /**
      * A window with a title and a JButton.
