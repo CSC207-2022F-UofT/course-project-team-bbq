@@ -71,6 +71,7 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
 
         // Action listeners for edit, study, test, and delete buttons.
         edit.addActionListener((e) -> {
+            home.setVisible(false);
             EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
             editor.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent event) {
