@@ -57,6 +57,7 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         refresh.addActionListener(this);
 
         this.add(buttons);
+        this.setMaximumSize(new Dimension(1000, 100));
 
         //If there are no flashcards we show a label that states that there are no flashcards.
         //If there are flashcards we show the flashcard information with a FlashcardDataPanel object.
@@ -90,7 +91,10 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         }
 
         //This panel customization
-        this.add(flashcardPanels);
+        JPanel panel = new JPanel();
+        panel.add(flashcardPanels);
+        panel.setLayout(new FlowLayout());
+        this.add(panel);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
