@@ -113,7 +113,8 @@ public class HomeScreen extends Screen implements WindowListener {
             this.add(labelPanel);
         }
         else {
-            this.add(new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user, this));
+            ListOfFlashcardSetsDataPanel listOfFCSet = new ListOfFlashcardSetsDataPanel(idsToFlashcardSetData, gateway, user, this);
+            this.add(new JScrollPane(listOfFCSet));
         }
         this.setSize(1000, 800);
         this.setVisible(true);

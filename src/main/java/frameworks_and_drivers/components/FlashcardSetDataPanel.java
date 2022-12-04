@@ -19,6 +19,7 @@ import frameworks_and_drivers.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -48,12 +49,15 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
     public FlashcardSetDataPanel(String title, String description,
                                  int flashcardSetId, DBGateway gateway,
                                  UserLoginResponseModel user, HomeScreen home) {
-        // Panel Construction
-        Border border = BorderFactory.createTitledBorder(title);
-
-        JLabel descriptionLabel = new JLabel(description);
-        this.add(descriptionLabel);
         this.home = home;
+
+        // Panel Construction
+        Border border = BorderFactory.createTitledBorder("<html>"+title+"<html>");
+
+        JLabel descriptionLabel = new JLabel("<html>"+description+"<html>");
+        JPanel descriptionPanel = new JPanel();
+        descriptionLabel.setPreferredSize(new Dimension(300,200));
+        descriptionPanel.add(descriptionLabel);
 
         // Button Construction
         JPanel buttons = new JPanel();
@@ -100,7 +104,7 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
             DeleteFlashcardSetScreen deleter = new DeleteFlashcardSetScreen(flashcardSetId, controller, user, gateway);
             deleter.addWindowListener(this);
         });
-
+        this.add(descriptionPanel);
         this.add(buttons);
         this.setBorder(border);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

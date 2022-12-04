@@ -77,12 +77,12 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         int size = flashcardData.size();
         int rows;
         if (size % 3 == 0){
-            rows = flashcardData.size()/3;
+            rows = size/3;
         }
         else{
-            rows = flashcardData.size()/3 + 1;
+            rows = size/3 + 1;
         }
-        flashcardPanels.setLayout(new GridLayout( rows, 3));
+        flashcardPanels.setLayout(new GridLayout(rows, 3));
 
         //This panel customization
         this.add(flashcardPanels);
