@@ -9,6 +9,7 @@ import frameworks_and_drivers.screens.CreateFlashcardScreen;
 import frameworks_and_drivers.screens.EditorMainScreen;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,8 +63,8 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         int numCards = flashcardData.size();
         if (numCards == 0){
             JLabel label = new JLabel("You have no Flashcards in this FlashcardSet.");
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-            label.setVerticalAlignment(SwingConstants.TOP);
+            //label.setHorizontalAlignment(SwingConstants.CENTER);
+            //label.setVerticalAlignment(SwingConstants.TOP);
             JPanel labelPanel = new JPanel();
             labelPanel.add(label);
             flashcardPanels.add(labelPanel);
@@ -76,17 +77,22 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         //flashcardPanels customization
         int size = flashcardData.size();
         int rows;
-        if (size % 3 == 0){
+        if (size == 0){
+            flashcardPanels.setLayout(new GridLayout(1, 1));
+        }
+        else if (size % 3 == 0){
             rows = size/3;
+            flashcardPanels.setLayout(new GridLayout(rows, 3));
         }
         else{
             rows = size/3 + 1;
+            flashcardPanels.setLayout(new GridLayout(rows, 3));
         }
-        flashcardPanels.setLayout(new GridLayout(rows, 3));
 
         //This panel customization
         this.add(flashcardPanels);
-        this.setLayout(new FlowLayout());
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(new EmptyBorder(10, 10, 10, 10));
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         Dimension fcPSize = flashcardPanels.getPreferredSize();
         this.setPreferredSize(new Dimension(fcPSize.width, fcPSize.height + 100));
