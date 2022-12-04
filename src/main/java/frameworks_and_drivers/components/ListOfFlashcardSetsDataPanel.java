@@ -46,7 +46,7 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
         }
         flashcardSets.setLayout(new GridLayout(rows, 2));
         Dimension flashcardSetPanelSize = flashcardSets.getPreferredSize();
-        flashcardSets.setPreferredSize(new Dimension(flashcardSetPanelSize.width, flashcardSetPanelSize.height + 200));
+        flashcardSets.setPreferredSize(new Dimension(flashcardSetPanelSize.width, flashcardSetPanelSize.height + 100));
 
         this.add(flashcardSets);
         this.setLayout (new FlowLayout());
