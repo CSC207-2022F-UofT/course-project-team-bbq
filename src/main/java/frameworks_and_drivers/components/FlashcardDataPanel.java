@@ -70,13 +70,15 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
     @Override
     public void windowOpened(WindowEvent e) {}
     @Override
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e) {}
+    @Override
+    public void windowClosed(WindowEvent e) {
         //When observing a window close we refresh the page.
         frame.dispose();
-        new EditorMainScreen(flashcardSetId);
+        WindowListener wl = frame.getWindowListeners()[0];
+        EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
+        editor.addWindowListener(wl);
     }
-    @Override
-    public void windowClosed(WindowEvent e) {}
     @Override
     public void windowIconified(WindowEvent e) {}
     @Override

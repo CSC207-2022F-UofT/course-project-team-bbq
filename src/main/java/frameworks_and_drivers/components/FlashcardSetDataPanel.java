@@ -19,6 +19,7 @@ import frameworks_and_drivers.screens.StudySettingsScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -71,7 +72,11 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
         // Action listeners for edit, study, test, and delete buttons.
         edit.addActionListener((e) -> {
             EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
-            editor.addWindowListener(this);
+            editor.addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent event) {
+                    home.refresh();
+                }
+            });
         });
 
         study.addActionListener(e -> {

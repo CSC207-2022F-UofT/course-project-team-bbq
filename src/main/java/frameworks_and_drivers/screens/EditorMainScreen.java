@@ -58,6 +58,5 @@ public class EditorMainScreen extends Screen {
         this.setTitle("Edit Set \"" + flashcardSet.getTitle() + "\"");
         this.setSize(1000, 800);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
