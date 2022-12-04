@@ -15,4 +15,17 @@ Term I,Definition I,2022-11-13T15:32:29.666982800,18,2
 Term J,Definition J,2022-11-13T15:32:29.666982800,19,2
 Same Term,Same Definition,2022-11-13T15:32:29.666982800,20,2
 Same Term,Same Definition,2022-11-13T15:32:29.666982800,21,2
-term1,definition 1,2022-12-03T21:26:20.070806900,22,3
+Entity,A basic bit of data that we are storing in our program.,2022-12-03T21:52:27.507373800,22,3
+Factory,An object that knows how to make a class instance typically by calling a constructor.,2022-12-03T21:52:47.933762600,23,3
+Use case,Something a user wants to do with the program.,2022-12-03T21:53:04.556680900,24,3
+Input boundary,The public interface for calling the use case.,2022-12-03T21:53:17.541271200,25,3
+Interactor,The class that runs the use case (a subclass of the input boundary).,2022-12-03T21:53:34.172732200,26,3
+Repository,The persistence mechanism (a subclass of the gateway).,2022-12-03T21:53:49.101677400,27,3
+Gateway,The methods the repository needs to implement for the interactor to do its job.,2022-12-03T21:54:03.276713900,28,3
+Controller,The object that the UI asks to run a use case.,2022-12-03T21:54:14.308815800,29,3
+Presenter,The object that tells the UI what to do when a use case finishes.,2022-12-03T21:54:26.957394100,30,3
+Downcasting,Casting the type of a variable into its subclass.,2022-12-03T21:55:06.381100300,31,3
+Upcasting,Casting the type of a variable into its superclass.,2022-12-03T21:55:16.940754800,32,3
+Private,Can only be accessed by code within the same class.,2022-12-03T21:55:28.372671100,33,3
+Protected,Can only be accessed by code within the same class or within a class derived from the original.,2022-12-03T21:55:42.829787700,34,3
+Variable shadowing,The same variable name is used in two different scopes.,2022-12-03T21:56:00.916802500,35,3

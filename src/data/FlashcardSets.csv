@@ -2,4 +2,4 @@ title,description,isPrivate,flashcardSetId,ownerUsername,flashcardIds
 test set 1,for testing study use case,false,0,testUser,0,1,2,3
 empty test set,for testing study use case with empty set,true,1,testUser
 Long Test Set,Insert Generic Description,false,2,Anthony,10,11,12,13,14,15,16,17,18,19,20,21
-Test 1,Test,false,3,tomomot,22
+CSC207 Final Exam Prep,Prepare for the CSC207 final exam with this flashcard set.,false,3,csc207,22,23,24,25,26,27,28,29,30,31,32,33,34,35
