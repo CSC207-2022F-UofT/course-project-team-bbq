@@ -14,10 +14,12 @@ import java.time.format.DateTimeFormatter;
  * @author Junyu Chen
  */
 public class CreateFlashcardPanel extends JPanel implements ActionListener {
-    CreateFlashcardController controller;
-    JTextArea term_text, definition_text;
-    JLabel existing_term, existing_definition;
-    JFrame fcCMain;
+    final CreateFlashcardController controller;
+    final JTextArea term_text;
+    final JTextArea definition_text;
+    final JLabel existing_term;
+    final JLabel existing_definition;
+    final JFrame fcCMain;
 
     public CreateFlashcardPanel(CreateFlashcardController controller, JFrame fcCMain) {
         //Initiating all the sub panels.

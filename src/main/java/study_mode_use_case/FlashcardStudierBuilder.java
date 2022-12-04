@@ -19,17 +19,17 @@ public class FlashcardStudierBuilder {
     /**
      * a class that knows how to create a flashcard
      */
-    FlashcardFactory cardFactory = new FlashcardFactory();
+    final FlashcardFactory cardFactory = new FlashcardFactory();
 
     /**
      * a class that knows how to create a flashcard studier
      */
-    FlashcardStudierFactory studierFactory = new FlashcardStudierFactory();
+    final FlashcardStudierFactory studierFactory = new FlashcardStudierFactory();
 
     /**
      * an object which accesses the database
      */
-    DBGateway gateway;
+    final DBGateway gateway;
 
     /**
      * @param gateway an object which gives this class database access

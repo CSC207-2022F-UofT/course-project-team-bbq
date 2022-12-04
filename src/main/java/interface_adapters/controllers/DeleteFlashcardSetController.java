@@ -13,7 +13,7 @@ import delete_flashcard_set_use_case.DeleteFlashcardSetResponseModel;
  */
 public class DeleteFlashcardSetController {
 
-    DeleteFlashcardSetInputBoundary interactor;
+    final DeleteFlashcardSetInputBoundary interactor;
 
     /**
      * Constructs a new DelFlashcardSetController.

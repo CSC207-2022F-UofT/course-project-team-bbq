@@ -8,10 +8,10 @@ package login_and_signup_use_case;
 
 public class UserRegisterResponseModel {
 
-    String signedUpUsername;
+    final String signedUpUsername;
 
-    String signedUpPassword;
-    boolean isAdmin;
+    final String signedUpPassword;
+    final boolean isAdmin;
 
     /**
      * Constructs a signup response model.

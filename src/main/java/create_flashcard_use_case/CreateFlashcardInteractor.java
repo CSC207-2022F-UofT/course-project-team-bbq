@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  * @author Junyu Chen
  */
 public class CreateFlashcardInteractor implements CreateFlashcardInputBoundary {
-    CreateFlashcardOutputBoundary presenter;
-    DBGateway gateway;
+    final CreateFlashcardOutputBoundary presenter;
+    final DBGateway gateway;
 
     /**
      * Create CreateFlashcardInteractor

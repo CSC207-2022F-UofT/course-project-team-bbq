@@ -19,9 +19,9 @@ import frameworks_and_drivers.database.DBGateway;
  */
 public class DeleteFlashcardSetInteractor implements DeleteFlashcardSetInputBoundary {
 
-    DBGateway dbGateway;
+    final DBGateway dbGateway;
 
-    DeleteFlashcardSetOutputBoundary outputBoundary;
+    final DeleteFlashcardSetOutputBoundary outputBoundary;
 
     /**
      * Constructs the use case interactor.

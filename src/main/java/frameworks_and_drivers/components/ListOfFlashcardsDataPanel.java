@@ -23,9 +23,9 @@ import java.util.List;
 public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener, WindowListener {
     private final DBGateway dbGateway;
     private final FlashcardSetDsRequestModel flashcardSet;
-    JFrame frame;
+    final JFrame frame;
 
-    JPanel flashcardPanels;
+    final JPanel flashcardPanels;
 
     /**
      * Constructs a ListOfFlashcardsDataPanel object. Includes buttons for adding flashcards, editing flashcards and

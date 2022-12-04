@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
  */
 
 public class DeleteFlashcardInteractor implements DeleteFlashcardInputBoundary {
-    DeleteFlashcardOutputBoundary presenter;
-    DBGateway gateway;
+    final DeleteFlashcardOutputBoundary presenter;
+    final DBGateway gateway;
 
     /**
      * Create DeleteFlashcardInteractor.

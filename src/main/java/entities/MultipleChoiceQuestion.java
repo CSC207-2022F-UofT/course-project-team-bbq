@@ -84,14 +84,6 @@ public class MultipleChoiceQuestion extends QuizQuestion {
     }
 
     /**
-     * Sets the question.
-     * @param question the question
-     */
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    /**
      * Sets the choices.
      * @return the choices
      */

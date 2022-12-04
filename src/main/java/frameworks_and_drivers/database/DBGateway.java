@@ -14,15 +14,15 @@ public class DBGateway {
     /**
      * The gateway object to access flashcard data
      */
-    IFlashcardDataAccess flashcardGateway;
+    final IFlashcardDataAccess flashcardGateway;
     /**
      * The gateway object to access flashcard set data
      */
-    IFlashcardSetDataAccess flashcardSetGateway;
+    final IFlashcardSetDataAccess flashcardSetGateway;
     /**
      * The gateway object to access user data
      */
-    IUserDataAccess userGateway;
+    final IUserDataAccess userGateway;
 
     /**
      * Creates a DBGateway object which contain gateways to every csv file in the database. This acts as a facade class

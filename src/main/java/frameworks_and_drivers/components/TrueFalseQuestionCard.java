@@ -35,6 +35,7 @@ public class TrueFalseQuestionCard extends QuestionCard implements ActionListene
 
         GridBagLayout grid = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10,10,10,10);
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
@@ -90,6 +91,7 @@ public class TrueFalseQuestionCard extends QuestionCard implements ActionListene
 
         GridBagLayout grid = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10,10,10,10);
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;

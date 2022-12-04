@@ -8,8 +8,9 @@ import java.time.LocalDateTime;
  * @author Junyu Chen
  */
 public class DeleteFlashcardResponseModel {
-    LocalDateTime DeleteDate;
-    String term, cardSetTitle;
+    final LocalDateTime DeleteDate;
+    String term;
+    final String cardSetTitle;
 
     public DeleteFlashcardResponseModel(LocalDateTime delete, String term, String cardSetTitle) {
         this.DeleteDate = delete;
