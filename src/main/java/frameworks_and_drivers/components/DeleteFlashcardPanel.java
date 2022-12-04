@@ -7,9 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DeleteFlashcardPanel extends JPanel implements ActionListener {
-    DeleteFlashcardController controller;
-    JFrame deleteScreen;
-    int flashcardId, flashcardSetId;
+    final DeleteFlashcardController controller;
+    final JFrame deleteScreen;
+    final int flashcardId;
+    final int flashcardSetId;
 
     public DeleteFlashcardPanel(DeleteFlashcardController controller, JFrame DeleteScreen, int flashcardId, int flashcardSetId) {
         //Initiating all the sub panels.

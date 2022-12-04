@@ -21,7 +21,7 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
     private final DBGateway dbGateway;
     private final FlashcardDsRequestModel flashcard;
     private final int flashcardSetId;
-    JFrame frame;
+    final JFrame frame;
     /**
      * Constructs a FlashcardDataPanel object that includes flashcard information and editing buttons.
      */

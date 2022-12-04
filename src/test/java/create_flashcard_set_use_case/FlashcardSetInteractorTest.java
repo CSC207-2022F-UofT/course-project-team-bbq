@@ -55,11 +55,11 @@ public class FlashcardSetInteractorTest {
         };
 
         // Argument 3: Factory
-        FlashcardSetFactory flashcardSetFactoryfactory = new FlashcardSetFactory();
+        FlashcardSetFactory flashcardSetFactory = new FlashcardSetFactory();
 
         // Construct interactor
         CreateFlashcardSetInputBoundary interactor = new CreateFlashcardSetInteractor(flashcardSetRepository, outputBoundary,
-                flashcardSetFactoryfactory);
+                flashcardSetFactory);
 
         // Create and store the flashcard set with the interactor
         interactor.create(requestModel);

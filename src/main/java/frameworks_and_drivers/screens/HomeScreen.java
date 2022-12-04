@@ -42,7 +42,7 @@ public class HomeScreen extends Screen implements WindowListener {
     /**
      * The gateway object to access the entire database.
      */
-    DBGateway gateway;
+    final DBGateway gateway;
 
     /**
      * Creates the home screen.

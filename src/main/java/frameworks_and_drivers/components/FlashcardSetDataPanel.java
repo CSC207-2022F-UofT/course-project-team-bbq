@@ -34,7 +34,7 @@ public class FlashcardSetDataPanel extends JPanel implements WindowListener {
     /**
      * The main JFrame that the flashcard set data panel will lie in.
      */
-    HomeScreen home;
+    final HomeScreen home;
 
     /**
      * Creates a FlashcardSetDataPanel object that includes the title, description, flashcardSetId, gateway,
