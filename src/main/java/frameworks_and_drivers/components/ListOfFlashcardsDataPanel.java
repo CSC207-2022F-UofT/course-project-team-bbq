@@ -74,15 +74,22 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
             }
         }
         //flashcardPanels customization
-        flashcardPanels.setLayout(new FlowLayout());
-        flashcardPanels.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        flashcardPanels.setPreferredSize(new Dimension(1000,10000));
+        int size = flashcardData.size();
+        int rows;
+        if (size % 3 == 0){
+            rows = flashcardData.size()/3;
+        }
+        else{
+            rows = flashcardData.size()/3 + 1;
+        }
+        flashcardPanels.setLayout(new GridLayout( rows, 3));
 
         //This panel customization
         this.add(flashcardPanels);
         this.setLayout(new FlowLayout());
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.setPreferredSize(new Dimension(1000, 10000));
+        Dimension fcPSize = flashcardPanels.getPreferredSize();
+        this.setPreferredSize(new Dimension(fcPSize.width, fcPSize.height + 100));
     }
 
     /**
