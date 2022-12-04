@@ -37,9 +37,9 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
 
             String row;
             while ((row = reader.readLine()) != null) {
-                String[] col = row.split(",");
-                String term = String.valueOf(col[headers.get("term")]);
-                String definition = String.valueOf(col[headers.get("definition")]);
+                String[] col = row.split(",(?=([^\"]|\"[^\"]*\")*$)");
+                String term = String.valueOf(col[headers.get("term")]).replace("\"","");
+                String definition = String.valueOf(col[headers.get("definition")]).replace("\"","");
                 String creationDateText = String.valueOf(col[headers.get("creationDate")]);
                 LocalDateTime creationDate = LocalDateTime.parse(creationDateText);
                 int flashcardId = Integer.parseInt(col[headers.get("flashcardId")]);
@@ -64,7 +64,7 @@ public class FlashcardDataAccess implements IFlashcardDataAccess {
 
             for (FlashcardDsRequestModel set : flashcards.values()) {
                 String line = String.
-                        format("%s,%s,%s,%s,%s", set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
+                        format("\"%s\",\"%s\",%s,%s,%s", set.getTerm(), set.getDefinition(), set.getCreationDate(), set.getFlashcardId(),
                                 set.getBelongsToId());
 
                 writer.write(line);
