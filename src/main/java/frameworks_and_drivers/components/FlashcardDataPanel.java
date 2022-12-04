@@ -8,6 +8,7 @@ import frameworks_and_drivers.screens.EditorMainScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -31,9 +32,12 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
         this.flashcardSetId = flashcardSetId;
 
         //Includes flashcard information.
-        Border border = BorderFactory.createTitledBorder(flashcard.getTerm());
-        JLabel descriptionLabel = new JLabel(flashcard.getDefinition());
-        this.add(descriptionLabel);
+        Border border = BorderFactory.createTitledBorder("<html>"+flashcard.getTerm()+"<html>");
+        JLabel definitionLabel = new JLabel("<html>"+flashcard.getDefinition()+"<html>");
+        JPanel definition = new JPanel();
+        definitionLabel.setPreferredSize(new Dimension(200,200));
+        definition.add(definitionLabel);
+        this.add(definition);
 
         //Buttons for this flashcard panel.
         JPanel buttons = new JPanel();
@@ -70,13 +74,15 @@ public class FlashcardDataPanel extends JPanel implements ActionListener, Window
     @Override
     public void windowOpened(WindowEvent e) {}
     @Override
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e) {}
+    @Override
+    public void windowClosed(WindowEvent e) {
         //When observing a window close we refresh the page.
         frame.dispose();
-        new EditorMainScreen(flashcardSetId);
+        WindowListener wl = frame.getWindowListeners()[0];
+        EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
+        editor.addWindowListener(wl);
     }
-    @Override
-    public void windowClosed(WindowEvent e) {}
     @Override
     public void windowIconified(WindowEvent e) {}
     @Override

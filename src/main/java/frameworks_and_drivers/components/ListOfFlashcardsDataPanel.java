@@ -74,15 +74,22 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
             }
         }
         //flashcardPanels customization
-        flashcardPanels.setLayout(new FlowLayout());
-        flashcardPanels.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        flashcardPanels.setPreferredSize(new Dimension(1000,500));
+        int size = flashcardData.size();
+        int rows;
+        if (size % 3 == 0){
+            rows = size/3;
+        }
+        else{
+            rows = size/3 + 1;
+        }
+        flashcardPanels.setLayout(new GridLayout(rows, 3));
 
         //This panel customization
         this.add(flashcardPanels);
         this.setLayout(new FlowLayout());
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.setPreferredSize(new Dimension(500, 1000));
+        Dimension fcPSize = flashcardPanels.getPreferredSize();
+        this.setPreferredSize(new Dimension(fcPSize.width, fcPSize.height + 100));
     }
 
     /**
@@ -96,8 +103,10 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
     public void actionPerformed(ActionEvent event) {
         if(event.getActionCommand().equals("Refresh")){
             int flashcardSetId = flashcardSet.getFlashcardSetId();
-            new EditorMainScreen(flashcardSetId);
             frame.dispose();
+            WindowListener wl = frame.getWindowListeners()[0];
+            EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
+            editor.addWindowListener(wl);
         } else if(event.getActionCommand().equals("Add Flashcard")){
             JFrame fcCreatePage = new CreateFlashcardScreen(flashcardSet.getFlashcardSetId());
             fcCreatePage.addWindowListener(this);
@@ -114,8 +123,11 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
     @Override
     public void windowClosed(WindowEvent e) {
         //When observing a window close we refresh the page
+        int flashcardSetId = flashcardSet.getFlashcardSetId();
         frame.dispose();
-        new EditorMainScreen(flashcardSet.getFlashcardSetId());
+        WindowListener wl = frame.getWindowListeners()[0];
+        EditorMainScreen editor = new EditorMainScreen(flashcardSetId);
+        editor.addWindowListener(wl);
     }
     @Override
     public void windowIconified(WindowEvent e) {}

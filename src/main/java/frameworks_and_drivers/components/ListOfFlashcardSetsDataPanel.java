@@ -28,17 +28,28 @@ public class ListOfFlashcardSetsDataPanel extends JPanel {
     public ListOfFlashcardSetsDataPanel(Map<Integer, String[]> idsToFlashcardSetData,
                                         DBGateway gateway, UserLoginResponseModel user, HomeScreen home) {
         Set<Integer> flashcardSetIds = idsToFlashcardSetData.keySet();
-
+        JPanel flashcardSets = new JPanel();
         for (int flashcardSetId : flashcardSetIds) {
            String[] data = idsToFlashcardSetData.get(flashcardSetId);
            String title = data[0];
            String description = data[1];
 
-           this.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, user, home));
+           flashcardSets.add(new FlashcardSetDataPanel(title, description, flashcardSetId, gateway, user, home));
         }
+        int size = flashcardSetIds.size();
+        int rows;
+        if (size % 2 == 0){
+            rows = size/2;
+        }
+        else{
+            rows = size/2 + 1;
+        }
+        flashcardSets.setLayout(new GridLayout(rows, 2));
+        Dimension flashcardSetPanelSize = flashcardSets.getPreferredSize();
+        flashcardSets.setPreferredSize(new Dimension(flashcardSetPanelSize.width, flashcardSetPanelSize.height + 100));
 
+        this.add(flashcardSets);
         this.setLayout (new FlowLayout());
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.setPreferredSize(new Dimension(500, 1000));
     }
 }

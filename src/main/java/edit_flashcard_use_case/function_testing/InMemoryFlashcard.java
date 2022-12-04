@@ -1,4 +1,4 @@
-package edit_flashcard_use_case.screens;
+package edit_flashcard_use_case.function_testing;
 
 import data_access_use_case.IFlashcardDataAccess;
 import data_access_use_case.entity_request_models.FlashcardDsRequestModel;
