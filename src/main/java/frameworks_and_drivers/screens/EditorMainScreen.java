@@ -51,7 +51,6 @@ public class EditorMainScreen extends Screen {
         //Create a panel that includes all the flashcards in the flashcard set and a panel with editing buttons.
         ListOfFlashcardsDataPanel listOfFlashcardPanel = new ListOfFlashcardsDataPanel(dbGateway ,flashcardData, flashcardSet, this);
         JScrollPane scrollPane = new JScrollPane(listOfFlashcardPanel);
-        //scrollPane.setPreferredSize(new Dimension(100, 100));
         this.add(scrollPane);
 
         //Customize this frame with the title of the flashcard, size of the  panel, and setting frame to be visible.
