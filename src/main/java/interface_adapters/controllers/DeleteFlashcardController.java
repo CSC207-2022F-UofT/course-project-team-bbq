@@ -10,7 +10,7 @@ import delete_flashcard_use_case.DeleteFlashcardResponseModel;
  * @author Junyu Chen
  */
 public class DeleteFlashcardController {
-    DeleteFlashcardInputBoundary inputBoundary;
+    final DeleteFlashcardInputBoundary inputBoundary;
 
     /**
      * Create DeleteFlashcardController.

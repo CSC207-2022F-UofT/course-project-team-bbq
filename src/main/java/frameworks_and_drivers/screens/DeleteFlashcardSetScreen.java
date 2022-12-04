@@ -23,22 +23,22 @@ public class DeleteFlashcardSetScreen extends JFrame implements ActionListener {
     /**
      * The id of the flashcard set to be deleted.
      */
-    int flashcardSetID;
+    final int flashcardSetID;
 
     /**
      * The user.
      */
-    UserLoginResponseModel user;
+    final UserLoginResponseModel user;
 
     /**
      * The controller.
      */
-    DeleteFlashcardSetController controller;
+    final DeleteFlashcardSetController controller;
 
     /**
      * The database gateway.
      */
-    DBGateway gateway;
+    final DBGateway gateway;
 
 //    /**
 //     * The application

@@ -13,7 +13,7 @@ import create_flashcard_set_use_case.CreateFlashcardSetResponseModel;
  */
 public class CreateFlashcardSetController {
 
-    CreateFlashcardSetInputBoundary interactor;
+    final CreateFlashcardSetInputBoundary interactor;
 
     /**
      * Constructs a new FlashcardSetController.

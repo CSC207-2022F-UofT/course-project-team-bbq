@@ -72,7 +72,7 @@ public class StudySessionInteractor implements StudySessionInputBoundary {
         this.studier = builder.buildStudier(request.getFlashcardSetId(), request.isTermDefault());
 
         if (this.studier.getNumFlashcards() == 0) {
-            String error = "<html>This flashcard set is empty. Please add some flashcard to begin studying!</html>";
+            String error = "<html>This flashcard set is empty. Please add some flashcards to begin studying!</html>";
             return presenter.prepareFailedStudyView(error);
         }
         else {

@@ -25,16 +25,16 @@ public class LoginScreen extends Screen implements ActionListener {
     /**
      * The username belonging to the user
      */
-    JTextField username = new JTextField(15);
+    final JTextField username = new JTextField(15);
     /**
      * The password
      */
-    JPasswordField password = new JPasswordField(15);
+    final JPasswordField password = new JPasswordField(15);
 
     /**
      * The controller
      */
-    UserLoginController userLoginController;
+    final UserLoginController userLoginController;
 
     /**
      * A window with a title and a JButton.

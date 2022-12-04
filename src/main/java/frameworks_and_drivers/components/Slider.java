@@ -9,7 +9,7 @@ import javax.swing.event.ChangeListener;
  * @author Anthony
  */
 public class Slider extends JPanel {
-    public JSlider slider;
+    public final JSlider slider;
 
     private JLabel title;
     private final JLabel valueText;
@@ -61,14 +61,6 @@ public class Slider extends JPanel {
      */
     public void addChangeListener(ChangeListener listener) {
         this.slider.addChangeListener(listener);
-    }
-
-    /**
-     * Gets the title.
-     * @return the title
-     */
-    public JLabel getTitle() {
-        return title;
     }
 
     /**

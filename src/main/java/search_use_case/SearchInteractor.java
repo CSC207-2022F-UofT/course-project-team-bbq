@@ -90,7 +90,8 @@ public class SearchInteractor implements SearchInputBoundary{
             return presenter.prepareSuccessView(result_set);
         }
         if (tags.size() > 0 && !input.equals("")){
-            return presenter.prepareFailView("There are currently no FlashcardSets in the database.");
+            return presenter.prepareFailView("There are currently no FlashcardSets in the database matching your" +
+                    " search input.");
         }
         // User chooses no tags
         if (tags.size() == 0){

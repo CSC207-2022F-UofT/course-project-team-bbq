@@ -38,9 +38,9 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
 
             String row;
             while ((row = reader.readLine()) != null) {
-                String[] col = row.split(",");
-                String title = String.valueOf(col[headers.get("title")]);
-                String description = String.valueOf(col[headers.get("description")]);
+                String[] col = row.split(",(?=([^\"]|\"[^\"]*\")*$)");
+                String title = String.valueOf(col[headers.get("title")]).replace("\"","");
+                String description = String.valueOf(col[headers.get("description")]).replace("\"","");
                 boolean privacy = Boolean.parseBoolean(col[headers.get("isPrivate")]);
                 int id = Integer.parseInt(col[headers.get("flashcardSetId")]);
                 String ownerUsername = String.valueOf(col[headers.get("ownerUsername")]);
@@ -69,7 +69,7 @@ public class FlashcardSetDataAccess implements IFlashcardSetDataAccess {
 
             for (FlashcardSetDsRequestModel set : flashcardSets.values()) {
                 StringBuilder line = new StringBuilder(String.
-                        format("%s,%s,%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(),
+                        format("\"%s\",\"%s\",%s,%s,%s", set.getTitle(), set.getDescription(), set.getIsPrivate(),
                                 set.getFlashcardSetId(), set.getOwnerUsername()));
                 for(int flashcardIds : set.getFlashcardIds()){
                     line.append(",");

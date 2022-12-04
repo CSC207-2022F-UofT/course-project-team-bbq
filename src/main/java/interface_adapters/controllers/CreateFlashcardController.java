@@ -11,8 +11,8 @@ import create_flashcard_use_case.CreateFlashcardResponseModel;
  */
 
 public class CreateFlashcardController {
-    CreateFlashcardInputBoundary inputBoundary;
-    int flashcardSetId;
+    final CreateFlashcardInputBoundary inputBoundary;
+    final int flashcardSetId;
 
     /**
      * Create FcCController

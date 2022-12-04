@@ -4,3 +4,4 @@ ducas,badpassword,false
 Anthony,123456,false,2
 csc207,csc207,false,3
 testUser,password,false,0,1
+adminUser,pass,true

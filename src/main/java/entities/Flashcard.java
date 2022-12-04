@@ -7,7 +7,7 @@ public class Flashcard {
     private String definition;
     private final LocalDateTime creationDate;
     private final int flashcardId;
-    private int belongsToId;
+    private final int belongsToId;
 
 
     public Flashcard(String term, String definition, LocalDateTime creationDate,
