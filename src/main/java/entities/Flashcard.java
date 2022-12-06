@@ -3,12 +3,11 @@ package entities;
 import java.time.*;
 
 public class Flashcard {
-
     private String term;
     private String definition;
-    private LocalDateTime creationDate;
-    private int flashcardId;
-    private int belongsToId;
+    private final LocalDateTime creationDate;
+    private final int flashcardId;
+    private final int belongsToId;
 
 
     public Flashcard(String term, String definition, LocalDateTime creationDate,
@@ -34,14 +33,6 @@ public class Flashcard {
 
     public int getFlashcardId() {
         return flashcardId;
-    }
-
-    public int getBelongsToId() {
-        return belongsToId;
-    }
-
-    public void setBelongsToId(int belongsToId) {
-        this.belongsToId = belongsToId;
     }
 
     public void setDefinition(String definition) {

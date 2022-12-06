@@ -1,37 +1,48 @@
 package entities;
 import java.util.*;
 
-public class User {
-    private String username;
-    private String password;
-    private Map<Integer, String[]> flashcardSets;
+/**
+ * A user interface that has their username, password, whether they have admin access, and the list of all the ids
+ * of the flashcard sets that belong to them
+ *<p>
+ * Enterprise Business Rules
+ * @author Aryan Chablani
+ */
+public interface User {
+    String username = null;
+    String password = null;
+    boolean isAdmin = false;
 
-    public User(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
+    /**
+     * Gets the username belonging to the user
+     */
+    String getUsername();
 
-    public String getUsername() {
-        return username;
-    }
+    /**
+     * Gets the password belonging to the user
+     */
+    String getPassword();
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    /**
+     * Gets whether the user is an admin user
+     */
+    boolean getIsAdmin();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    /**
+     * Gets the list of flashcard set ids belonging to the user
+     */
+    ArrayList<Integer> getFlashcardSetIds();
 
-    public void setFlashcardSets(Map<Integer, String[]> flashcardSets) {
-        this.flashcardSets = flashcardSets;
-    }
+    /**
+     * Checks whether the password is valid by not being null and greater by 5
+     * @return whether the password is valid
+     */
+    boolean passwordIsValid();
 
-    public String getPassword() {
-        return password;
-    }
-
-    public Map<Integer, String[]> getFlashcardSets() {
-        return flashcardSets;
-    }
+    /**
+     * Checks whether the admin key entered is similar to the actual admin key in the business rules
+     * @param adminKey the username of the use
+     * @return whether the admin is the same as the one stored in the enterprise rules
+     */
+    boolean adminKeyValid(String adminKey);
 }
