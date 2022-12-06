@@ -40,6 +40,12 @@ public class DBGateway {
     }
 
     /**
+     * Gets the user object with a given username.
+     * @param username the user's username.
+     * @return the user object with the given username.
+     */
+    public CommonUserDsRequestModel getUser(String username) { return this.userGateway.getUser(username); }
+    /**
      * Returns the value for if the user contains the given username.
      * @param username the user's username.
      * @return true if the user contains the given username.
