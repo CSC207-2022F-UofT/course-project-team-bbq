@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Tests for delete_flashcard_use_case.FcRInteractor
  * @author Junyu Chen
  */
-public class FcRInteractorTest {
+public class DeleteFlashcardUseCaseTest {
     /**
      * Test deletion for valid delete request.
      */
