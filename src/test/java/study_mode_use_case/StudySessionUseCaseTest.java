@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StudySessionUseCaseUnitTest {
+public class StudySessionUseCaseTest {
 
     /**
      * the id of the study test set in the test database

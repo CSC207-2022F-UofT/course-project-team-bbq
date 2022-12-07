@@ -1,7 +1,5 @@
 package entities;
 
-import entities.Flashcard;
-
 import java.util.List;
 
 /**

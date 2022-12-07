@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class FlashcardSetInteractorTest {
+public class CreateFlashcardSetUseCaseTest {
 
     /**
      * [Feature 3: Creating a Flashcard Set]

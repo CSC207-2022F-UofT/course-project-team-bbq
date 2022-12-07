@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Edward Ishii
  */
-public class DeleteFlashcardScreenFlashcardSetInteractorTest {
+public class DeleteFlashcardSetUseCaseTest {
 
     IFlashcardSetDataAccess flashcardSetRepo;
     IFlashcardDataAccess flashcardRepo;

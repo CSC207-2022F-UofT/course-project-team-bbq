@@ -18,7 +18,7 @@ import java.util.List;
  * Tests for create_flashcard_use_case.FcCInteractor
  * @author Junyu Chen
  */
-public class FcCInteractorTest {
+public class CreateFlashcardUseCaseTest {
 
     /**
      * Test for creation of valid flashcard.
