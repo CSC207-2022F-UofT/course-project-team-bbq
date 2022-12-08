@@ -2,6 +2,7 @@ package create_flashcard_set_use_case;
 
 import create_flashcard_set_use_case.function_testing.InMemoryFlashcardSet;
 import data_access_use_case.IFlashcardSetDataAccess;
+import entities.FlashcardSet;
 import entities.FlashcardSetFactory;
 import interface_adapters.presenters.exceptions.CreateFlashcardSetFailed;
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,9 @@ public class FlashcardSetInteractorTest {
             @Override
             public CreateFlashcardSetResponseModel prepareFailView(String error) {
                 fail("Something went wrong since we are testing for successful creation.");
-                return null;
+                // random flashcard set to get rid of "Method always returns the same value" warning
+                FlashcardSet fs = new FlashcardSet("", "", false, -1, "");
+                return new CreateFlashcardSetResponseModel(fs);
             }
         };
 

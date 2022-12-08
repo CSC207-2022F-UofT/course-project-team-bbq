@@ -8,10 +8,10 @@ package create_flashcard_set_use_case;
  * @author Edward Ishii
  */
 public class CreateFlashcardSetRequestModel {
-    private String title;
-    private String description;
-    private boolean isPrivate;
-    private String username;
+    private final String title;
+    private final String description;
+    private final boolean isPrivate;
+    private final String username;
 
     /**
      * Constructs the request model.
@@ -38,30 +38,12 @@ public class CreateFlashcardSetRequestModel {
     }
 
     /**
-     * Setter for the flashcard set title.
-     *
-     * @param title the new title for this flashcard set.
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
      * Getter for the description of the flashcard set.
      *
      * @return the description of this flashcard set.
      */
     public String getDescription() {
         return description;
-    }
-
-    /**
-     * Setter for the description of the flashcard set.
-     *
-     * @param description the new description for this flashcard set.
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
@@ -74,15 +56,6 @@ public class CreateFlashcardSetRequestModel {
     }
 
     /**
-     * Setter for the privacy of the flashcard set.
-     *
-     * @param aPrivate the new privacy status for this flashcard set.
-     */
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
-
-    /**
      * Getter for the owner's username of the flashcard set.
      *
      * @return the owner's username of this flashcard set.
@@ -90,14 +63,4 @@ public class CreateFlashcardSetRequestModel {
     public String getUsername() {
         return username;
     }
-
-    /**
-     * Setter for the owner's username of the flashcard set.
-     *
-     * @param username the new owner's username of this flashcard set.
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
 }
