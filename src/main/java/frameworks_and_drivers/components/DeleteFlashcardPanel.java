@@ -62,7 +62,8 @@ public class DeleteFlashcardPanel extends JPanel implements ActionListener {
             //Success view.
             DeleteFlashcardResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);
             JOptionPane.showMessageDialog(this, "Flashcard [" + responseModel.getTerm() +
-                    "] deleted at [" + responseModel.getDeleteDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "].");
+                    "] deleted from ["+responseModel.getCardSetName() + "] at [" +
+                    responseModel.getDeleteDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "].");
             deleteScreen.dispose();
         } catch (RuntimeException error) {
             //Failure view.
