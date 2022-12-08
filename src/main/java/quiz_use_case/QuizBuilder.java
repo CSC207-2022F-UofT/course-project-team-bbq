@@ -15,7 +15,7 @@ import java.util.List;
  * Quiz Builder.
  * @author Anthony
  */
-public class QuizBuilder {
+public class   QuizBuilder {
     private final FlashcardFactory flashcardFactory;
     private final DBGateway gateway;
 

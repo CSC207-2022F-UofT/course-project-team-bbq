@@ -1,35 +1,45 @@
 package frameworks_and_drivers.components;
+import delete_flashcard_use_case.DeleteFlashcardResponseModel;
 import interface_adapters.controllers.DeleteFlashcardController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 
+/**
+ * Panel for deleting flashcard.
+ * @author Junyu Chen
+ */
 public class DeleteFlashcardPanel extends JPanel implements ActionListener {
-    final DeleteFlashcardController controller;
-    final JFrame deleteScreen;
-    final int flashcardId;
-    final int flashcardSetId;
+    DeleteFlashcardController controller;
+    JFrame deleteScreen;
+    int flashcardId, flashcardSetId;
+    String flashcardTerm, flashcardSetTitle;
 
-    public DeleteFlashcardPanel(DeleteFlashcardController controller, JFrame DeleteScreen, int flashcardId, int flashcardSetId) {
+    public DeleteFlashcardPanel(DeleteFlashcardController controller, JFrame DeleteScreen, int flashcardId,
+                                int flashcardSetId, String flashcardTerm, String flashcardSetTitle) {
         //Initiating all the sub panels.
         this.deleteScreen = DeleteScreen;
         this.controller = controller;
         this.flashcardId = flashcardId;
         this.flashcardSetId = flashcardSetId;
+        this.flashcardTerm = flashcardTerm;
+        this.flashcardSetTitle = flashcardSetTitle;
         this.setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
 
         //Creating the button panel.
-        JButton confirm = new JButton("confirm");
-        JButton cancel = new JButton("cancel");
+        JButton confirm = new JButton("Confirm");
+        JButton cancel = new JButton("Cancel");
         confirm.addActionListener(this);
         cancel.addActionListener(e -> this.deleteScreen.dispose());
         buttonPanel.add(confirm);
         buttonPanel.add(cancel);
-        JLabel message = new JLabel("Do you wish to delete " +  flashcardId);
+        JLabel message = new JLabel("<html>Do you wish to delete the flashcard ["+ flashcardTerm +"] from ["
+                + flashcardSetTitle +"]</html>");
 
 
         //Creating the showing the sub panel.
@@ -50,8 +60,9 @@ public class DeleteFlashcardPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             //Success view.
-            controller.delete(flashcardSetId, flashcardId);
-            JOptionPane.showMessageDialog(this, "Flashcard deleted.");
+            DeleteFlashcardResponseModel responseModel = controller.delete(flashcardSetId, flashcardId);
+            JOptionPane.showMessageDialog(this, "Flashcard [" + responseModel.getTerm() +
+                    "] deleted at [" + responseModel.getDeleteDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "].");
             deleteScreen.dispose();
         } catch (RuntimeException error) {
             //Failure view.

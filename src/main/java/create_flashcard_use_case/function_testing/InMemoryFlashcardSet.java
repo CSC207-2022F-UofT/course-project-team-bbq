@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Database for test purposes
+ * Database for create and deleting use case tests.
  * @author Junyu Chen
  */
 public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {

@@ -13,7 +13,7 @@ public class CreateFlashcardInteractor implements CreateFlashcardInputBoundary {
     final DBGateway gateway;
 
     /**
-     * Create CreateFlashcardInteractor
+     * Create CreateFlashcard Interactor
      * @param gateway Database gateway.
      * @param presenter Presenter for failure or success view.
      */
@@ -62,6 +62,7 @@ public class CreateFlashcardInteractor implements CreateFlashcardInputBoundary {
      * @param flashcardId flashcardId for the method to overwrite
      * @return success or failure view
      */
+    @Override
     public CreateFlashcardResponseModel create(CreateFlashcardRequestModel requestModel, int flashcardId){
         String term = requestModel.getTerm().replace("\n", " ").trim();
         String definition = requestModel.getDefinition().replace("\n", " ").trim();
