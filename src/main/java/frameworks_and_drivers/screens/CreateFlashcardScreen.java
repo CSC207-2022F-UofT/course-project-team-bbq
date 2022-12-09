@@ -10,8 +10,6 @@ import interface_adapters.controllers.CreateFlashcardController;
 import interface_adapters.presenters.CreateFlashcardPresenter;
 import frameworks_and_drivers.components.CreateFlashcardPanel;
 import data_access_use_case.*;
-
-import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -20,8 +18,8 @@ import java.io.IOException;
  */
 public class CreateFlashcardScreen extends Screen {
     /**
-     * Create main frame for the flashcard creator.
-     * @param flashcardSetId id of the flashcard set which flashcard will be stored in.
+     * Create main frame for the flashcard creator
+     * @param flashcardSetId id of the flashcard set which the flashcard will be stored in
      */
     public CreateFlashcardScreen(int flashcardSetId){
         DBGateway gateway;
@@ -37,13 +35,16 @@ public class CreateFlashcardScreen extends Screen {
         CreateFlashcardInputBoundary interactor = new CreateFlashcardInteractor(gateway,presenter);
         CreateFlashcardController controller = new CreateFlashcardController(interactor, flashcardSetId);
         CreateFlashcardPanel createFlashcardPanel = new CreateFlashcardPanel(controller, this);
+        this.setTitle("Create Flashcard");
         this.add(createFlashcardPanel);
+        setLocationRelativeTo(null);
         this.setSize(1000, 500);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    //To run flashcard deletion screen.
     public static void main(String[] args) {
-        new CreateFlashcardScreen(0);
+        int flashcardSetId = 0;
+        new CreateFlashcardScreen(flashcardSetId);
     }
 
 }

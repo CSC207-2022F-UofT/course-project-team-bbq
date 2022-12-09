@@ -25,6 +25,14 @@ This is a flashcard study application inspired by Quizlet.
   - Note: public flashcard sets are searchable by other users, while private ones are not (unless those users are Admins)
   - If the user wishes to cancel the creation, they can do so by clicking "Cancel"
   - Upon successful creation, the user is notified that their flashcard set has been created
+- Flashcard:
+  - The user opens the flashcard creator screen by clicking "Add Flashcard" button within the edit flashcard screen.
+  - The user enters the term and definition in the field under the respective label and clicks "Confirm" to save the flashcard.
+  - If card is saved successfully, success screen will then be displayed and user can choose to create another card or return to the edit flashcard screen.
+  - If the user clicks "Cancel", the page will close the current screen and return to the edit flashcard screen.
+  - The user can only enter non-empty term or definition with at least one character that is not space or line breaker.
+  - If the user tries to create another card with the same term, warning will be shown.
+  - The user can then choose to continue editing the current card or overwrite the existing card.
 
 ### 3a. Edit a flashcard set.
  - If there are no flashcard sets on the main page, then we cannot edit a flashcard set.
@@ -46,6 +54,12 @@ This is a flashcard study application inspired by Quizlet.
   - Selecting "No" cancels the deletion and selecting "Yes" commences the deletion process 
   - Note: deleting a flashcard set would also delete all flashcards contained within that set
   - Upon successful deletion, the user is notified that their flashcard set has been deleted
+- Flashcard:
+  - The user can delete a flashcard by clicking the "Delete Flashcard" button within the edit flashcard screen.
+  - A confirmation page will then be shown and verify that the user wants to delete the flashcard.
+  - The user can click "Confirm" to remove the flashcard or "Cancel" to cancel the deletion.
+  - If successful, the success screen will show.
+
 
 ### 5. Search for a public flashcard set.
 - If the user selects the search button from the main page the user can search through the public community database for flashcard sets

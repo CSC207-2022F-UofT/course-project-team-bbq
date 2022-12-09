@@ -10,14 +10,17 @@ import interface_adapters.presenters.DeleteFlashcardPresenter;
 import frameworks_and_drivers.database.DBGateway;
 import frameworks_and_drivers.database.FlashcardDataAccess;
 import frameworks_and_drivers.database.FlashcardSetDataAccess;
-
-import javax.swing.*;
 import java.io.IOException;
 /**
  * Main frame for flashcard removal.
  * @author Junyu Chen
  */
 public class DeleteFlashcardScreen extends Screen {
+    /**
+     * Creating main frame for deleting flashcard.
+     * @param flashcardSetId id of flashcard set containing the flashcard
+     * @param flashcardId id of the flashcard to delete
+     */
     public DeleteFlashcardScreen(int flashcardSetId, int flashcardId){
         DBGateway gateway;
         try{
@@ -31,13 +34,18 @@ public class DeleteFlashcardScreen extends Screen {
         DeleteFlashcardOutputBoundary presenter = new DeleteFlashcardPresenter();
         DeleteFlashcardInputBoundary interactor = new DeleteFlashcardInteractor(gateway,presenter);
         DeleteFlashcardController controller = new DeleteFlashcardController(interactor);
-        this.add(new DeleteFlashcardPanel(controller,this, flashcardId, flashcardSetId));
-        this.setSize(200, 100);
+        this.setTitle("Delete Flashcard");
+        this.add(new DeleteFlashcardPanel(controller,this, flashcardId, flashcardSetId,
+                gateway.getFlashcard(flashcardId).getTerm(), gateway.getFlashcardSet(flashcardSetId).getTitle()));
+        this.setSize(500, 200);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    //To run flashcard creation screen.
     public static void main(String[] args) {
-        new DeleteFlashcardScreen(0, 4);
+        int flashcardSetId = 0;
+        int flashcardId = 38;
+        new DeleteFlashcardScreen(flashcardSetId, flashcardId);
     }
 
 }

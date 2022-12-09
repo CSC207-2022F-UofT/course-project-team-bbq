@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Database for test purposes
+ * Database for creating and deleting use case tests.
  * @author Junyu Chen
  */
 public class InMemoryFlashcard implements IFlashcardDataAccess {
