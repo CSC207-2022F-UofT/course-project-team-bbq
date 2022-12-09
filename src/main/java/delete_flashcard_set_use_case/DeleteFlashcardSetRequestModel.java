@@ -9,7 +9,7 @@ package delete_flashcard_set_use_case;
  */
 public class DeleteFlashcardSetRequestModel {
 
-    private int flashcardSetId;
+    private final int flashcardSetId;
 
     /**
      * Constructs the request model.
@@ -28,14 +28,4 @@ public class DeleteFlashcardSetRequestModel {
     public int getFlashcardSetId() {
         return flashcardSetId;
     }
-
-    /**
-     * Setter for the flashcard set id.
-     *
-     * @param flashcardSetId the new id of this flashcard set.
-     */
-    public void setFlashcardSetId(int flashcardSetId) {
-        this.flashcardSetId = flashcardSetId;
-    }
-
 }

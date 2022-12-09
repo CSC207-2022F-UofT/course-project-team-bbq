@@ -35,9 +35,9 @@ public class CreateFlashcardSetInteractor implements CreateFlashcardSetInputBoun
     /**
      * Constructs the use case interactor.
      *
-     * @param dbGateway                  the database to store the flashcard set in.
+     * @param dbGateway                        the database to store the flashcard set in.
      * @param createFlashcardSetOutputBoundary the output boundary for preparing success/fail view of saving flashcard sets.
-     * @param flashcardSetFactory        the factory that creates flashcard sets.
+     * @param flashcardSetFactory              the factory that creates flashcard sets.
      */
     public CreateFlashcardSetInteractor(DBGateway dbGateway, CreateFlashcardSetOutputBoundary createFlashcardSetOutputBoundary,
                                         FlashcardSetFactory flashcardSetFactory) {
@@ -49,9 +49,9 @@ public class CreateFlashcardSetInteractor implements CreateFlashcardSetInputBoun
     /**
      * Alternative constructor for testing purposes.
      *
-     * @param flashcardSetDataAccess     the flashcard set database.
+     * @param flashcardSetDataAccess           the flashcard set database.
      * @param createFlashcardSetOutputBoundary the output boundary for preparing success/fail view.
-     * @param flashcardSetFactory        the factory creating flashcard sets.
+     * @param flashcardSetFactory              the factory creating flashcard sets.
      */
     public CreateFlashcardSetInteractor(IFlashcardSetDataAccess flashcardSetDataAccess,
                                         CreateFlashcardSetOutputBoundary createFlashcardSetOutputBoundary,
@@ -86,8 +86,7 @@ public class CreateFlashcardSetInteractor implements CreateFlashcardSetInputBoun
         int tempFlashcardSetId = -1;  // placeholder id
 
         // create the flashcard set
-        FlashcardSetFactory factory = new FlashcardSetFactory();
-        FlashcardSet fs = factory.create(inputData.getTitle(), inputData.getDescription(),
+        FlashcardSet fs = this.flashcardSetFactory.create(inputData.getTitle(), inputData.getDescription(),
                 inputData.isPrivate(), tempFlashcardSetId, inputData.getUsername());
 
         // store the flashcard set into database
@@ -99,13 +98,14 @@ public class CreateFlashcardSetInteractor implements CreateFlashcardSetInputBoun
             int savedFlashcardSetId = dbGateway.saveFlashcardSet(dsRequestModel);
 
             // create the saved flashcard set with its proper id
-            FlashcardSet savedFs = factory.create(inputData.getTitle(), inputData.getDescription(),
+            FlashcardSet savedFs = this.flashcardSetFactory.create(inputData.getTitle(), inputData.getDescription(),
                     inputData.isPrivate(), savedFlashcardSetId, inputData.getUsername());
 
             CreateFlashcardSetResponseModel responseModel = new CreateFlashcardSetResponseModel(savedFs);
 
             return createFlashcardSetOutputBoundary.prepareSuccessView(responseModel);
         } catch (NullPointerException e) {
+            flashcardSetDataAccess.saveFlashcardSet(dsRequestModel);
             return null;
         }
 
