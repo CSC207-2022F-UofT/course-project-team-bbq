@@ -83,8 +83,6 @@ flip the flashcard, go to the next card, or go to the previous card until they w
 - Then, the user submits their quiz settings and a quiz is automatically generated for them.
 - After taking and submitting the quiz, the user can receive their quiz results and identify which questions they answered incorrectly.
 
-### 8. Save user and flashcard data to the database.
-
 # How to run the application?
 
 Run src/main/java/Main.java.
