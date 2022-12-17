@@ -64,8 +64,6 @@ public class ListOfFlashcardsDataPanel extends JPanel implements ActionListener,
         int numCards = flashcardData.size();
         if (numCards == 0){
             JLabel label = new JLabel("You have no Flashcards in this FlashcardSet.");
-            //label.setHorizontalAlignment(SwingConstants.CENTER);
-            //label.setVerticalAlignment(SwingConstants.TOP);
             JPanel labelPanel = new JPanel();
             labelPanel.add(label);
             flashcardPanels.add(labelPanel);

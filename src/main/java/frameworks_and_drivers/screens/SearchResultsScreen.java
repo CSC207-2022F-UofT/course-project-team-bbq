@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 
 /**
  * The results screen where the user can
@@ -84,8 +85,10 @@ public class SearchResultsScreen extends Screen implements ActionListener {
                 }
             });
             JButton edit = new JButton("Edit");
-            edit.addActionListener((e) -> new EditorMainScreen(responseModel.getResult_set().get(tempX)
-                    .getFlashcardSetId()));
+            edit.addActionListener((e) -> {
+                EditorMainScreen editor = new EditorMainScreen(responseModel.getResult_set().get(tempX).getFlashcardSetId());
+                editor.addWindowListener(new WindowAdapter() {});
+            });
             JButton delete = new JButton("Delete");
             delete.addActionListener(e -> {
                 DeleteFlashcardSetOutputBoundary presenter = new DeleteFlashcardSetPresenter();

@@ -55,15 +55,17 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     @Override
     public void saveFlashcardID(int flashcardSetId, int flashcardId) {
         FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
-        String title = oldFlashcardSet.getTitle();
-        String description = oldFlashcardSet.getDescription();
-        boolean isPrivate = oldFlashcardSet.getIsPrivate();
         List<Integer> flashcardIds = oldFlashcardSet.getFlashcardIds();
-        String owner = oldFlashcardSet.getOwnerUsername();
 
         ArrayList<Integer> newFlashcardIds = new ArrayList<>(flashcardIds);
         newFlashcardIds.add(flashcardId);
-        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(title, description, isPrivate, flashcardSetId, owner, newFlashcardIds);
+        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(
+                oldFlashcardSet.getTitle(),
+                oldFlashcardSet.getDescription(),
+                oldFlashcardSet.getIsPrivate(),
+                flashcardSetId,
+                oldFlashcardSet.getOwnerUsername(),
+                newFlashcardIds);
 
         flashcardSets.put(flashcardSetId, newFlashcardSet);
     }
@@ -77,15 +79,16 @@ public class InMemoryFlashcardSet implements IFlashcardSetDataAccess {
     @Override
     public void removeFlashcardId(int flashcardSetId, int flashcardId) {
         FlashcardSetDsRequestModel oldFlashcardSet = flashcardSets.get(flashcardSetId);
-        String title = oldFlashcardSet.getTitle();
-        String description = oldFlashcardSet.getDescription();
-        boolean isPrivate = oldFlashcardSet.getIsPrivate();
         List<Integer> flashcardIds = oldFlashcardSet.getFlashcardIds();
-        String owner = oldFlashcardSet.getOwnerUsername();
-
         ArrayList<Integer> newFlashcardIds = new ArrayList<>(flashcardIds);
         newFlashcardIds.remove(flashcardId);
-        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(title, description, isPrivate, flashcardSetId, owner, newFlashcardIds);
+        FlashcardSetDsRequestModel newFlashcardSet = new FlashcardSetDsRequestModel(
+                oldFlashcardSet.getTitle(),
+                oldFlashcardSet.getDescription(),
+                oldFlashcardSet.getIsPrivate(),
+                flashcardSetId,
+                oldFlashcardSet.getOwnerUsername(),
+                newFlashcardIds);
 
         flashcardSets.put(flashcardSetId, newFlashcardSet);
     }
