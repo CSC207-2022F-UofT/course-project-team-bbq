@@ -1,6 +1,7 @@
 **Welcome to Bargain Bin Quizlet (BBQ for short)!**
 
 This is a flashcard study application inspired by Quizlet.
+More information on the development process: https://docs.google.com/presentation/d/1njNzKJetvinsbI11aE5h2UpoX83O-bVc-4Z1DgMm6rg/edit#slide=id.p 
 
 # Main Features
 
